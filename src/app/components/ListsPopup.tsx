@@ -1,6 +1,6 @@
 import { createPortal } from "react-dom";
 import { useEffect, useRef } from "react";
-import { IdCard } from "lucide-react";
+import { IdCardLanyard } from "lucide-react";
 import { Button } from "./ui/button";
 import svgPaths from "../../imports/svg-ca11n9opp9";
 
@@ -76,7 +76,7 @@ export function ListsPopup({ anchorRect, onClose }: ListsPopupProps) {
                   <path d={action.svgPath} fill="currentColor" />
                 </svg>
               ) : (
-                <IdCard className="shrink-0 size-4 text-[#8270FF] transition-colors duration-200 ease-out" />
+                <IdCardLanyard className="shrink-0 size-4 text-[#8270FF] transition-colors duration-200 ease-out" />
               )}
               <span className="font-medium">{action.label}</span>
             </Button>

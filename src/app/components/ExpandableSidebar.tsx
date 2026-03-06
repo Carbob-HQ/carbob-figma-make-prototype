@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from "react";
-import { Home, Calendar, SquareKanban, ListTree, HelpCircle, Settings, Plus, PanelRightOpen, PanelRightClose } from "lucide-react";
+import { Home, Calendar, SquareKanban, TableProperties, HelpCircle, Settings, Plus, PanelRightOpen, PanelRightClose } from "lucide-react";
 import imgCarbobCropped from "figma:asset/335bae29933abbce2529018c6b80d0d1b6f73b66.png";
 import { Button } from "./ui/button";
 import { cn } from "./ui/utils";
@@ -260,7 +260,7 @@ export function ExpandableSidebar({ isExpanded, onToggle }: ExpandableSidebarPro
                 isListsPopupOpen && "bg-white/10"
               )}
             >
-              <ListTree className={cn("h-4 w-4 shrink-0 group-hover/btn:text-white transition-colors duration-200 ease-out", isListsPopupOpen ? "text-white" : "text-[#A1A1AA]")} />
+              <TableProperties className={cn("h-4 w-4 shrink-0 group-hover/btn:text-white transition-colors duration-200 ease-out", isListsPopupOpen ? "text-white" : "text-[#A1A1AA]")} />
               <span className={cn("group-hover/btn:text-white font-medium transition-[color,opacity] duration-200 ease-out whitespace-nowrap", isListsPopupOpen ? "text-white" : "text-[#A1A1AA]")}
                 style={{ opacity: isExpanded ? 1 : 0 }}
               >Listas</span>

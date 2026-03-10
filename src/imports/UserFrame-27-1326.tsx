@@ -17,8 +17,8 @@ function IconFrame() {
 function ContentFrame() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start justify-center min-h-px min-w-px not-italic relative" data-name="Content Frame">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] relative shrink-0 text-[#27272a] text-[14px] w-full whitespace-pre-wrap">Raúl Fernandes</p>
-      <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis w-full whitespace-nowrap">917 898 413 | rfernandes84@gmail.com</p>
+      <p className="font-medium leading-[1.5] relative shrink-0 text-[#27272a] text-[14px] w-full whitespace-pre-wrap">Raúl Fernandes</p>
+      <p className="font-normal leading-[1.5] overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis w-full whitespace-nowrap">917 898 413 | rfernandes84@gmail.com</p>
     </div>
   );
 }

@@ -11,7 +11,7 @@ function TopFrame() {
         </div>
       </div>
       <div className="content-stretch flex flex-[1_0_0] items-center min-h-px min-w-px relative" data-name="Light Mode / Heading">
-        <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] text-left whitespace-pre-wrap">Informação geral</p>
+        <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] text-left whitespace-pre-wrap">Informação geral</p>
       </div>
       <div className="content-stretch flex items-center justify-center max-h-[24px] max-w-[24px] min-h-[24px] min-w-[24px] relative rounded-[6px] shrink-0 size-[24px]" data-name="Light Mode / Button">
         <div className="overflow-clip relative shrink-0 size-[16px]" data-name="Icon">
@@ -29,7 +29,7 @@ function TopFrame() {
 export default function VehicleDetailsFrame() {
   return (
     <div className="bg-white content-stretch flex flex-col gap-[16px] items-start relative size-full" data-name="Vehicle Details Frame">
-      <div className="bg-[rgba(39,39,42,0.15)] h-px shrink-0 w-full" data-name="Light Mode / Separator" />
+      <div className="bg-[#e5e5e5] h-px shrink-0 w-full" data-name="Light Mode / Separator" />
       <TopFrame />
     </div>
   );

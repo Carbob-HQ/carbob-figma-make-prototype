@@ -34,9 +34,9 @@ export default function ManualServiceFrame() {
                     <div className="bg-white relative rounded-[8px] shrink-0 w-full" data-name="Input">
                       <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[8px]" />
                       <div className="flex flex-row items-center size-full">
-                        <div className="content-stretch flex gap-[8px] items-center px-[12px] py-[6px] relative w-full">
-                          <div className="bg-[#60a5fa] content-stretch flex items-center justify-center relative shrink-0" data-name="Frame">
-                            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.25] not-italic relative shrink-0 text-[#3f3f46] text-[16px] text-left">Novo serviço</p>
+                        <div className="content-stretch flex gap-[8px] items-center px-[12px] py-[8px] relative w-full">
+                          <div className="content-stretch flex items-center justify-center relative shrink-0" data-name="Frame">
+                            <p className="font-medium leading-[1.25] not-italic relative shrink-0 text-[#27272a] text-[16px] text-left">Novo serviço</p>
                           </div>
                         </div>
                       </div>

@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Service Guide - Premium UI Preview</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f4f4f5;
+    --white: #ffffff;
+    --border: #e5e5e5;
+    --text: #27272a;
+    --text-muted: #71717a;
+    --text-faint: #a1a1aa;
+    --accent: #8270ff;
+    --accent-light: rgba(130, 112, 255, 0.08);
+    --accent-border: rgba(130, 112, 255, 0.3);
+    --red: #ef4444;
+    --blue-bg: rgba(96, 165, 250, 0.15);
+    --blue-text: #1e40af;
+    --green: #22c55e;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #27272a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 16px;
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Modal */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    animation: fadeIn 200ms ease-out;
+  }
+
+  .modal {
+    background: var(--bg);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+    position: relative;
+    animation: scaleIn 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes scaleIn { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+
+  /* Header */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+
+  .header-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .vehicle-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2px 10px 2px 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+
+  .vehicle-badge svg {
+    width: 14px;
+    height: 14px;
+    color: var(--text-faint);
+  }
+
+  .close-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    transition: all 150ms;
+  }
+  .close-btn:hover { background: var(--border); color: var(--text); }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .tab {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition: color 200ms;
+    white-space: nowrap;
+  }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--text); }
+  .tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 2px 2px 0 0;
+  }
+  .tab.disabled {
+    color: var(--text-faint);
+    cursor: not-allowed;
+  }
+
+  /* Content layout */
+  .content {
+    display: flex;
+    gap: 16px;
+    flex: 1;
+    min-height: 0;
+  }
+
+  /* Left frame */
+  .left-frame {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+  }
+
+  .main-area {
+    background: rgba(39,39,42,0.04);
+    border-radius: var(--radius);
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  /* Categories sidebar */
+  .categories {
+    width: 300px;
+    flex-shrink: 0;
+    background: var(--white);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .categories-header {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .categories-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .category-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    border: none;
+    background: transparent;
+    width: 100%;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .category-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    bottom: 4px;
+    width: 3px;
+    border-radius: 0 3px 3px 0;
+    background: var(--accent);
+    transform: scaleY(0);
+    transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .category-item:hover {
+    background: rgba(39,39,42,0.04);
+  }
+
+  .category-item.active {
+    background: rgba(130, 112, 255, 0.06);
+  }
+
+  .category-item.active::before {
+    transform: scaleY(1);
+  }
+
+  .category-label {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .category-count {
+    font-size: 11px;
+    color: var(--text-faint);
+    font-weight: 400;
+  }
+
+  .category-item.active .category-count {
+    color: var(--accent);
+  }
+
+  .category-chevron {
+    width: 16px;
+    height: 16px;
+    color: var(--text-faint);
+    transition: all 200ms;
+  }
+  .category-item.active .category-chevron {
+    color: var(--accent);
+    transform: translateX(2px);
+  }
+
+  /* Services list */
+  .services-list {
+    flex: 1;
+    min-width: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .service-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: default;
+    transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    transform: translateY(8px);
+    animation: cardSlideIn 300ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .service-card:hover {
+    border-color: var(--accent-border);
+    box-shadow: 0 2px 8px rgba(130, 112, 255, 0.08);
+  }
+
+  .service-card.selected {
+    border-color: var(--accent);
+    background: var(--accent-light);
+  }
+
+  @keyframes cardSlideIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .service-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .service-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  .service-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .service-time, .service-price-preview {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .service-price-preview {
+    color: var(--text-faint);
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .service-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--border);
+  }
+
+  .service-time svg {
+    width: 14px;
+    height: 14px;
+    color: var(--text-faint);
+  }
+
+  .add-btn {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--white);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 200ms;
+    color: var(--text-muted);
+  }
+  .add-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-light);
+  }
+  .add-btn.added {
+    border-color: var(--red);
+    color: var(--red);
+    background: rgba(239, 68, 68, 0.06);
+  }
+  .add-btn.added:hover {
+    background: rgba(239, 68, 68, 0.12);
+  }
+
+  .add-btn svg { width: 18px; height: 18px; }
+
+  /* Checkmark animation */
+  @keyframes checkPop {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+  .add-btn.just-added svg {
+    animation: checkPop 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Empty state */
+  .empty-state {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 40px;
+  }
+
+  .empty-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: rgba(130, 112, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+  }
+
+  .empty-icon svg { width: 28px; height: 28px; }
+
+  .empty-state p {
+    font-size: 14px;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.6;
+    max-width: 240px;
+  }
+
+  /* Right panel */
+  .right-panel {
+    width: 340px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .right-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    flex-shrink: 0;
+  }
+
+  .right-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .right-count {
+    background: var(--accent);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 1px 7px;
+    border-radius: 10px;
+    min-width: 20px;
+    text-align: center;
+    transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .clear-btn {
+    font-size: 12px;
+    color: var(--text-faint);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 150ms;
+  }
+  .clear-btn:hover { color: var(--red); background: rgba(239,68,68,0.06); }
+
+  .selected-services {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: 8px;
+  }
+
+  .selected-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    position: relative;
+    transition: all 200ms;
+    animation: selectedSlideIn 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    border-left: 3px solid var(--accent);
+  }
+
+  @keyframes selectedSlideIn {
+    from { opacity: 0; transform: translateX(12px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .selected-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .selected-card-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.4;
+    flex: 1;
+  }
+
+  .selected-card-price {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    margin-left: 12px;
+  }
+
+  .selected-card-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 10px;
+  }
+
+  .breakdown-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .breakdown-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .breakdown-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .breakdown-dot.labor { background: #818cf8; }
+  .breakdown-dot.parts { background: #f59e0b; }
+  .breakdown-dot.consumables { background: #22c55e; }
+
+  .remove-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-faint);
+    padding: 4px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 150ms;
+  }
+  .remove-btn:hover { color: var(--red); background: rgba(239,68,68,0.06); }
+  .remove-btn svg { width: 14px; height: 14px; }
+
+  .selected-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* Empty right panel */
+  .right-empty {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    transition: border-color 200ms;
+  }
+
+  .right-empty svg {
+    width: 32px;
+    height: 32px;
+    color: var(--text-faint);
+  }
+
+  .right-empty p {
+    font-size: 13px;
+    color: var(--text-faint);
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  /* Totals */
+  .totals {
+    flex-shrink: 0;
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .total-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .total-row.main {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .total-value {
+    transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* CTA button */
+  .cta-btn {
+    margin-top: 12px;
+    width: 100%;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    background: var(--text);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 200ms;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-btn:hover { background: #3f3f46; }
+  .cta-btn:active { transform: scale(0.98); }
+
+  .cta-btn:disabled {
+    background: var(--border);
+    color: var(--text-faint);
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .cta-detail {
+    font-size: 12px;
+    font-weight: 400;
+    opacity: 0.7;
+    margin-left: 4px;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-faint); }
+
+  /* Loading spinner */
+  .spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 600ms linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Number animation helper */
+  .num-animate {
+    display: inline-block;
+    transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .num-animate.bump {
+    transform: scale(1.1);
+  }
+</style>
+</head>
+<body>
+
+<div class="modal-backdrop">
+  <div class="modal">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="header-title">
+        Guia de servicos
+        <span class="vehicle-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 17h14M5 17a2 2 0 01-2-2V9a2 2 0 012-2h2l2-3h6l2 3h2a2 2 0 012 2v6a2 2 0 01-2 2M5 17v1a1 1 0 001 1h1a1 1 0 001-1v-1m8 0v1a1 1 0 001 1h1a1 1 0 001-1v-1"/>
+          </svg>
+          Renault Clio IV 1.5 dCi 75cv
+        </span>
+      </div>
+      <button class="close-btn">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M1 1l12 12M13 1L1 13"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+
+      <!-- Left Frame -->
+      <div class="left-frame">
+
+        <!-- Tabs -->
+        <div class="tabs">
+          <button class="tab active">Servicos da oficina</button>
+          <button class="tab disabled">Servicos diferidos</button>
+          <button class="tab">Manutencao programada</button>
+          <button class="tab">Pesquisa de servicos</button>
+          <button class="tab">Pesquisa grafica</button>
+        </div>
+
+        <!-- Main Area -->
+        <div class="main-area">
+
+          <!-- Categories -->
+          <div class="categories">
+            <div class="categories-header">Categorias</div>
+            <div class="categories-list" id="categoryList">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- Services -->
+          <div class="services-list" id="servicesList">
+            <div class="empty-state" id="emptyState">
+              <div class="empty-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
+                  <rect x="9" y="3" width="6" height="4" rx="1"/>
+                  <path d="M9 12h6M9 16h4"/>
+                </svg>
+              </div>
+              <p>Seleciona uma categoria para aceder aos servicos disponiveis</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right Panel -->
+      <div class="right-panel">
+        <div class="right-header">
+          <div class="right-title">
+            Servicos selecionados
+            <span class="right-count" id="rightCount" style="display:none">0</span>
+          </div>
+          <button class="clear-btn" id="clearBtn" style="display:none" onclick="clearAll()">Limpar</button>
+        </div>
+
+        <div id="selectedEmpty" class="right-empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+          <p>Adiciona servicos a partir<br>do guia de servicos</p>
+        </div>
+
+        <div class="selected-services" id="selectedList" style="display:none"></div>
+
+        <div class="totals" id="totals" style="display:none">
+          <div class="total-row">
+            <span>Subtotal</span>
+            <span class="total-value" id="subtotalValue">0,00 &#8364;</span>
+          </div>
+          <div class="total-row main">
+            <span>Total</span>
+            <span class="total-value" id="totalValue">0,00 &#8364;</span>
+          </div>
+        </div>
+
+        <button class="cta-btn" id="ctaBtn" disabled>
+          <span id="ctaText">Adicionar servicos</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+const CATEGORIES = [
+  {
+    id: 'gerais', name: 'Gerais', count: 4,
+    services: [
+      { id: 'gs-1', title: 'Check-up de verao / inverno', time: '00h40', pricePreview: '~28,50', price: 28.50, labor: 23.45, consumables: 5.05 },
+      { id: 'gs-2', title: 'Lavagem e aspiracao', time: '01h00', pricePreview: '~49,50', price: 49.50, labor: 35.00, consumables: 14.50 },
+      { id: 'gs-3', title: 'Polimento de farois', time: '00h45', pricePreview: '~48,80', price: 48.80, labor: 36.90, consumables: 11.90 },
+      { id: 'gs-4', title: 'Polimento de pintura', time: '03h00', pricePreview: '~196,80', price: 196.80, labor: 147.60, consumables: 49.20 },
+    ]
+  },
+  {
+    id: 'oleo', name: 'Mudanca de oleo', count: 5,
+    services: [
+      { id: 'os-1', title: 'Oleo de motor', subtitle: 'Substituir', time: '00h30', pricePreview: '~75,10', price: 75.10, labor: 21.53, parts: 51.66, consumables: 1.85 },
+      { id: 'os-2', title: 'Filtro de oleo do motor', subtitle: 'Substituir', time: '00h15', pricePreview: '~25,50', price: 25.50, labor: 10.76, parts: 14.76 },
+      { id: 'os-3', title: 'Filtro de ar', subtitle: 'Substituir', time: '00h30', pricePreview: '~40,60', price: 40.60, labor: 21.53, parts: 19.07 },
+      { id: 'os-4', title: 'Filtro de combustivel', subtitle: 'Substituir', time: '00h45', pricePreview: '~59,20', price: 59.20, labor: 32.29, parts: 27.06 },
+      { id: 'os-5', title: 'Filtro de habitaculo', subtitle: 'Substituir', time: '00h23', pricePreview: '~36,00', price: 36.00, labor: 16.36, parts: 19.68 },
+    ]
+  },
+  {
+    id: 'ac', name: 'Ar condicionado', count: 4,
+    services: [
+      { id: 'ac-1', title: 'Recarga de AC', time: '01h00', pricePreview: '~101,90', price: 101.90, labor: 49.20, consumables: 52.89 },
+      { id: 'ac-2', title: 'Limpeza do sistema de AC', time: '00h45', pricePreview: '~51,70', price: 51.66, labor: 36.90, consumables: 14.76 },
+    ]
+  },
+  {
+    id: 'pastilhas', name: 'Pastilhas e discos', count: 6,
+    services: [
+      { id: 'pd-1', title: 'Pastilhas dianteiras', subtitle: 'Substituir', time: '01h00', pricePreview: '~95,90', price: 95.94, labor: 49.20, parts: 46.74 },
+      { id: 'pd-2', title: 'Pastilhas traseiras', subtitle: 'Substituir', time: '01h00', pricePreview: '~88,60', price: 88.56, labor: 49.20, parts: 39.36 },
+    ]
+  },
+  { id: 'amort', name: 'Amortecedores', count: 4, services: [] },
+  { id: 'dist', name: 'Correia de distribuicao', count: 3, services: [] },
+  { id: 'embr', name: 'Embraiagem', count: 3, services: [] },
+];
+
+let selectedCategory = null;
+let selectedServices = new Map(); // id -> service data
+let loadingIds = new Set();
+
+function fmtCurrency(val) {
+  return val.toLocaleString('pt-PT', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' \u20AC';
+}
+
+function renderCategories() {
+  const list = document.getElementById('categoryList');
+  list.innerHTML = '';
+  CATEGORIES.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'category-item' + (selectedCategory === cat.id ? ' active' : '');
+    btn.innerHTML = `
+      <div class="category-label">
+        <span>${cat.name}</span>
+        <span class="category-count">${cat.count} servico${cat.count !== 1 ? 's' : ''}</span>
+      </div>
+      <svg class="category-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 18l6-6-6-6"/>
+      </svg>
+    `;
+    btn.onclick = () => {
+      selectedCategory = cat.id;
+      renderCategories();
+      renderServices(cat);
+    };
+    list.appendChild(btn);
+  });
+}
+
+function renderServices(cat) {
+  const list = document.getElementById('servicesList');
+  list.innerHTML = '';
+
+  if (!cat.services.length) {
+    list.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
+            <rect x="9" y="3" width="6" height="4" rx="1"/>
+            <path d="M9 12h6M9 16h4"/>
+          </svg>
+        </div>
+        <p>Sem servicos disponiveis nesta categoria</p>
+      </div>
+    `;
+    return;
+  }
+
+  cat.services.forEach((svc, i) => {
+    const card = document.createElement('div');
+    const isSelected = selectedServices.has(svc.id);
+    const isLoading = loadingIds.has(svc.id);
+    card.className = 'service-card' + (isSelected ? ' selected' : '');
+    card.style.animationDelay = (i * 40) + 'ms';
+
+    card.innerHTML = `
+      <div class="service-info">
+        <div class="service-title">${svc.title}</div>
+        <div class="service-meta">
+          <span class="service-time">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+            ${svc.time}
+          </span>
+          <span class="service-dot"></span>
+          <span class="service-price-preview">${svc.pricePreview} &#8364;</span>
+        </div>
+      </div>
+      ${isLoading ? '<div class="spinner"></div>' : `
+        <button class="add-btn ${isSelected ? 'added' : ''}" onclick="toggleService('${svc.id}', '${cat.id}')">
+          ${isSelected ? `
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M8 12h8"/>
+            </svg>
+          ` : `
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 8v8M8 12h8"/>
+            </svg>
+          `}
+        </button>
+      `}
+    `;
+    list.appendChild(card);
+  });
+}
+
+function toggleService(id, catId) {
+  if (selectedServices.has(id)) {
+    selectedServices.delete(id);
+    renderCurrentCategory();
+    renderSelectedPanel();
+    return;
+  }
+
+  // Loading state
+  loadingIds.add(id);
+  renderCurrentCategory();
+
+  setTimeout(() => {
+    loadingIds.delete(id);
+    const cat = CATEGORIES.find(c => c.id === catId);
+    const svc = cat.services.find(s => s.id === id);
+    selectedServices.set(id, svc);
+    renderCurrentCategory();
+    renderSelectedPanel();
+  }, 800);
+}
+
+function renderCurrentCategory() {
+  const cat = CATEGORIES.find(c => c.id === selectedCategory);
+  if (cat) renderServices(cat);
+}
+
+function removeService(id) {
+  selectedServices.delete(id);
+  renderCurrentCategory();
+  renderSelectedPanel();
+}
+
+function clearAll() {
+  selectedServices.clear();
+  renderCurrentCategory();
+  renderSelectedPanel();
+}
+
+function renderSelectedPanel() {
+  const empty = document.getElementById('selectedEmpty');
+  const list = document.getElementById('selectedList');
+  const totals = document.getElementById('totals');
+  const count = document.getElementById('rightCount');
+  const clearBtn = document.getElementById('clearBtn');
+  const ctaBtn = document.getElementById('ctaBtn');
+  const ctaText = document.getElementById('ctaText');
+
+  if (selectedServices.size === 0) {
+    empty.style.display = 'flex';
+    list.style.display = 'none';
+    totals.style.display = 'none';
+    count.style.display = 'none';
+    clearBtn.style.display = 'none';
+    ctaBtn.disabled = true;
+    ctaText.innerHTML = 'Adicionar servicos';
+    return;
+  }
+
+  empty.style.display = 'none';
+  list.style.display = 'flex';
+  totals.style.display = 'flex';
+  count.style.display = 'inline';
+  clearBtn.style.display = 'block';
+  ctaBtn.disabled = false;
+
+  count.textContent = selectedServices.size;
+
+  // Animate count
+  count.style.transform = 'scale(1.3)';
+  setTimeout(() => { count.style.transform = 'scale(1)'; }, 200);
+
+  list.innerHTML = '';
+  let subtotal = 0;
+  let totalTime = 0;
+
+  selectedServices.forEach((svc) => {
+    subtotal += svc.price;
+
+    // Parse time for summary
+    const match = svc.time.match(/(\d+)h(\d+)/);
+    if (match) totalTime += parseInt(match[1]) * 60 + parseInt(match[2]);
+
+    const card = document.createElement('div');
+    card.className = 'selected-card';
+    card.innerHTML = `
+      <div class="selected-card-header">
+        <div class="selected-card-title">${svc.title}</div>
+        <div class="selected-card-price">${fmtCurrency(svc.price)}</div>
+      </div>
+      <div class="selected-card-breakdown">
+        ${svc.labor ? `<div class="breakdown-line">
+          <span class="breakdown-label"><span class="breakdown-dot labor"></span>Mao de obra</span>
+          <span>${fmtCurrency(svc.labor)}</span>
+        </div>` : ''}
+        ${svc.parts ? `<div class="breakdown-line">
+          <span class="breakdown-label"><span class="breakdown-dot parts"></span>Pecas</span>
+          <span>${fmtCurrency(svc.parts)}</span>
+        </div>` : ''}
+        ${svc.consumables ? `<div class="breakdown-line">
+          <span class="breakdown-label"><span class="breakdown-dot consumables"></span>Consumiveis</span>
+          <span>${fmtCurrency(svc.consumables)}</span>
+        </div>` : ''}
+      </div>
+      <div class="selected-card-footer">
+        <button class="remove-btn" onclick="removeService('${svc.id}')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+          </svg>
+        </button>
+      </div>
+    `;
+    list.appendChild(card);
+  });
+
+  const total = subtotal * 1.23;
+  document.getElementById('subtotalValue').textContent = fmtCurrency(subtotal);
+  document.getElementById('totalValue').textContent = fmtCurrency(total);
+
+  // CTA summary
+  const h = Math.floor(totalTime / 60);
+  const m = totalTime % 60;
+  const timeStr = String(h).padStart(2, '0') + 'h' + String(m).padStart(2, '0');
+  const n = selectedServices.size;
+  ctaText.innerHTML = `Adicionar ${n} servico${n !== 1 ? 's' : ''}<span class="cta-detail">${timeStr} &middot; ${fmtCurrency(total)}</span>`;
+}
+
+// Init
+renderCategories();
+renderSelectedPanel();
+</script>
+
+</body>
+</html>

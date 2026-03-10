@@ -147,12 +147,12 @@ export function updateVehicleKm(vehicleId: string, km: string, noOdometer?: bool
 function VehicleResultFrame({ vehicle, onSelect }: { vehicle: Vehicle; onSelect?: (vehicle: Vehicle) => void }) {
   return (
     <div
-      className="bg-white content-stretch flex gap-[12px] items-center justify-center px-[8px] py-[6px] relative rounded-[6px] w-full cursor-pointer transition-colors hover:bg-[#e9ebef]"
+      className="bg-white content-stretch flex gap-[12px] items-center justify-center px-[8px] py-[8px] relative rounded-[6px] w-full cursor-pointer transition-colors hover:bg-[#f4f4f5]"
       data-name="Vehicle Frame"
       onClick={() => onSelect?.(vehicle)}
     >
       {/* Avatar with car icon */}
-      <div className="bg-white relative rounded-[9999px] shrink-0 size-[32px]" data-name="Light Mode / Avatar">
+      <div className="bg-[#e5e5e5] relative rounded-[9999px] shrink-0 size-[32px]" data-name="Light Mode / Avatar">
         <div className="content-stretch flex items-center justify-center overflow-clip relative rounded-[inherit] size-full">
           <div className="overflow-clip relative shrink-0 size-[14px]" data-name="car">
             <div className="absolute bottom-[16.67%] left-[4.17%] right-[4.17%] top-1/4" data-name="Vector (Stroke)">
@@ -165,7 +165,7 @@ function VehicleResultFrame({ vehicle, onSelect }: { vehicle: Vehicle; onSelect?
         <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[9999px]" />
       </div>
       {/* Content Frame */}
-      <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start min-h-px min-w-px relative" data-name="Content Frame">
+      <div className="content-stretch flex flex-[1_0_0] flex-col gap-[2px] items-start min-h-px min-w-px relative" data-name="Content Frame">
         {/* Line 1: Brand Model */}
         <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Vehicle">
           <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">
@@ -179,7 +179,7 @@ function VehicleResultFrame({ vehicle, onSelect }: { vehicle: Vehicle; onSelect?
           </p>
         </div>
         {/* Line 3: Owner */}
-        <div className="content-stretch flex gap-[6px] items-center relative shrink-0 w-full" data-name="User Frame">
+        <div className="content-stretch flex gap-[8px] items-center relative shrink-0 w-full" data-name="User Frame">
           <div className="overflow-clip relative shrink-0 size-[12px]" data-name="user-round">
             <div className="absolute inset-[8.33%_12.5%]" data-name="Vector (Stroke)">
               <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 9 10">
@@ -267,7 +267,7 @@ export default function VehicleSearchPopup({ onSelectVehicle, selectedVehicle, o
   };
 
   return (
-    <div className="content-stretch flex flex-col items-start relative shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1),0px_2px_4px_-1px_rgba(0,0,0,0.06)] w-[320px] rounded-[8px] border border-[#e5e5e5]" data-name="Light Mode / Context Popup">
+    <div className="content-stretch flex flex-col items-start relative shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1),0px_2px_4px_-1px_rgba(0,0,0,0.06)] w-[330px] rounded-[8px] border border-[#e5e5e5]" data-name="Light Mode / Context Popup">
 
       {/* Search Frame */}
       <div className="bg-white content-stretch flex flex-col items-start justify-center min-w-[192px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-name="Submenu 1">
@@ -294,7 +294,7 @@ export default function VehicleSearchPopup({ onSelectVehicle, selectedVehicle, o
                 {searchQuery && (
                   <button
                     onClick={handleClearSearch}
-                    className="flex items-center justify-center size-[24px] shrink-0 rounded-[4px] cursor-pointer hover:bg-[#e9ebef] transition-colors"
+                    className="flex items-center justify-center size-[24px] shrink-0 rounded-[4px] cursor-pointer hover:bg-[#f4f4f5] transition-colors"
                   >
                     <svg className="size-[16px]" fill="none" viewBox="0 0 16 16">
                       <path d="M12.4697 3.53033C12.7626 3.23744 12.7626 2.76256 12.4697 2.46967C12.1768 2.17678 11.7019 2.17678 11.409 2.46967L7.99935 5.87868L4.58968 2.46967C4.29679 2.17678 3.82191 2.17678 3.52902 2.46967C3.23613 2.76256 3.23613 3.23744 3.52902 3.53033L6.93869 6.94L3.52902 10.3497C3.23613 10.6426 3.23613 11.1174 3.52902 11.4103C3.82191 11.7032 4.29679 11.7032 4.58968 11.4103L7.99935 8.00132L11.409 11.4103C11.7019 11.7032 12.1768 11.7032 12.4697 11.4103C12.7626 11.1174 12.7626 10.6426 12.4697 10.3497L9.06001 6.94L12.4697 3.53033Z" fill="#A1A1AA" />
@@ -322,7 +322,7 @@ export default function VehicleSearchPopup({ onSelectVehicle, selectedVehicle, o
             <div className="bg-white min-w-[192px] relative shrink-0 w-full" data-name="Submenu 2">
               <div aria-hidden="true" className="absolute border-[#e5e5e5] border-l-0 border-r-0 border-solid border-t inset-0 pointer-events-none" />
               <div className="flex flex-col justify-center min-w-[inherit] size-full">
-                <div className="content-stretch flex flex-col items-start justify-center min-w-[inherit] p-[5px] relative w-full">
+                <div className="content-stretch flex flex-col items-start justify-center min-w-[inherit] p-[4px] relative w-full">
                   {filteredVehicles.map((vehicle) => (
                     <VehicleResultFrame key={vehicle.id} vehicle={vehicle} onSelect={onSelectVehicle} />
                   ))}
@@ -350,7 +350,7 @@ export default function VehicleSearchPopup({ onSelectVehicle, selectedVehicle, o
             <div className="bg-white min-w-[192px] relative shrink-0 w-full" data-name="Submenu 2">
               <div aria-hidden="true" className="absolute border-[#e5e5e5] border-l-0 border-r-0 border-solid border-t inset-0 pointer-events-none" />
               <div className="flex flex-col justify-center min-w-[inherit] size-full">
-                <div className="content-stretch flex flex-col items-start justify-center min-w-[inherit] p-[5px] relative w-full">
+                <div className="content-stretch flex flex-col items-start justify-center min-w-[inherit] p-[4px] relative w-full">
                   {associatedVehicles.map((vehicle) => (
                     <VehicleResultFrame key={vehicle.id} vehicle={vehicle} onSelect={onSelectVehicle} />
                   ))}
@@ -365,7 +365,7 @@ export default function VehicleSearchPopup({ onSelectVehicle, selectedVehicle, o
             <div className="bg-white min-w-[192px] relative shrink-0 w-full" data-name="Submenu 2">
               <div aria-hidden="true" className="absolute border-[#e5e5e5] border-l-0 border-r-0 border-solid border-t inset-0 pointer-events-none" />
               <div className="flex flex-col justify-center min-w-[inherit] size-full">
-                <div className="content-stretch flex flex-col items-start justify-center min-w-[inherit] p-[5px] relative w-full">
+                <div className="content-stretch flex flex-col items-start justify-center min-w-[inherit] p-[4px] relative w-full">
                   <VehicleResultFrame vehicle={selectedVehicle} onSelect={onSelectVehicle} />
                 </div>
               </div>
@@ -379,11 +379,11 @@ export default function VehicleSearchPopup({ onSelectVehicle, selectedVehicle, o
       <div className="bg-white min-w-[192px] relative rounded-bl-[8px] rounded-br-[8px] shrink-0 w-full" data-name="Submenu 3">
         <div aria-hidden="true" className="absolute border-[#e5e5e5] border-l-0 border-r-0 border-solid border-t inset-0 pointer-events-none" />
         <div className="flex flex-col justify-center min-w-[inherit] overflow-clip rounded-[inherit] size-full">
-          <div className="content-stretch flex flex-col items-start justify-center min-w-[inherit] p-[5px] relative w-full">
+          <div className="content-stretch flex flex-col items-start justify-center min-w-[inherit] p-[4px] relative w-full">
             <button onClick={onNewVehicle} className="content-stretch cursor-pointer flex items-start relative shrink-0 w-full" data-name="New Vehicle">
-              <div className="bg-white flex-[1_0_0] min-h-px min-w-[180px] relative rounded-[6px] w-full transition-colors hover:bg-[#e9ebef]" data-name="Context Button">
+              <div className="bg-white flex-[1_0_0] min-h-px min-w-[180px] relative rounded-[6px] w-full transition-colors hover:bg-[#f4f4f5]" data-name="Context Button">
                 <div className="flex flex-row items-center justify-center min-w-[inherit] size-full">
-                  <div className="content-stretch flex gap-[8px] items-center justify-center min-w-[inherit] px-[8px] py-[6px] relative w-full">
+                  <div className="content-stretch flex gap-[8px] items-center justify-center min-w-[inherit] px-[8px] py-[8px] relative w-full">
                     <CirclePlus className="w-5 h-5 text-[#8270ff] shrink-0" />
                     <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#8270ff] text-[14px] text-left whitespace-pre-wrap">Novo veículo</p>
                   </div>

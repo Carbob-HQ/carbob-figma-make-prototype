@@ -3,7 +3,7 @@ import svgPaths from "./svg-c4rcqzdi24";
 function Text() {
   return (
     <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Text">
-      <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Mão de obra</p>
+      <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Mão de obra</p>
     </div>
   );
 }
@@ -14,7 +14,7 @@ function Input() {
       <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[8px]" />
       <div className="flex flex-row items-center size-full">
         <div className="content-stretch flex gap-[8px] items-center px-[12px] py-[8px] relative size-full">
-          <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#d4d4d8] text-[14px] text-ellipsis">Designação</p>
+          <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#d4d4d8] text-[14px] text-ellipsis">Designação</p>
         </div>
       </div>
     </div>
@@ -24,7 +24,7 @@ function Input() {
 function Text1() {
   return (
     <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Text">
-      <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Horas</p>
+      <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Horas</p>
     </div>
   );
 }
@@ -35,7 +35,7 @@ function Input1() {
       <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[8px]" />
       <div className="flex flex-row items-center size-full">
         <div className="content-stretch flex gap-[8px] items-center px-[12px] py-[8px] relative size-full">
-          <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic relative shrink-0 text-[#3f3f46] text-[14px]">00h00</p>
+          <p className="font-normal leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px]">00h00</p>
         </div>
       </div>
     </div>
@@ -44,8 +44,8 @@ function Input1() {
 
 function Text2() {
   return (
-    <div className="content-stretch flex gap-[6px] items-center relative shrink-0 w-full" data-name="Text">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px]">Preço / Hora</p>
+    <div className="content-stretch flex gap-[8px] items-center relative shrink-0 w-full" data-name="Text">
+      <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px]">Preço / Hora</p>
     </div>
   );
 }
@@ -64,7 +64,7 @@ function Button() {
       <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[6px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)]" />
       <div className="flex flex-row items-center size-full">
         <div className="content-stretch flex gap-[8px] items-center pl-[12px] pr-[40px] py-[8px] relative size-full">
-          <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic relative text-[#3f3f46] text-[14px] whitespace-pre-wrap">50,00€/h</p>
+          <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">50,00€/h</p>
           <div className="-translate-y-1/2 absolute overflow-clip right-[12px] size-[16px] top-1/2" data-name="Right Icon">
             <div className="absolute inset-[33.33%_20.83%]" data-name="Vector (Stroke)">
               <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 9.33313 5.33323">
@@ -81,7 +81,7 @@ function Button() {
 function Text3() {
   return (
     <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Text">
-      <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Desconto</p>
+      <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Desconto</p>
     </div>
   );
 }
@@ -92,7 +92,7 @@ function Input2() {
       <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[8px]" />
       <div className="flex flex-row items-center size-full">
         <div className="content-stretch flex gap-[8px] items-center px-[12px] py-[8px] relative size-full">
-          <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic relative shrink-0 text-[#3f3f46] text-[14px]">0%</p>
+          <p className="font-normal leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px]">0%</p>
         </div>
       </div>
     </div>
@@ -102,7 +102,7 @@ function Input2() {
 function Text4() {
   return (
     <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Text">
-      <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Subtotal</p>
+      <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Subtotal</p>
     </div>
   );
 }
@@ -113,7 +113,7 @@ function Input3() {
       <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[8px]" />
       <div className="flex flex-row items-center size-full">
         <div className="content-stretch flex gap-[8px] items-center pl-[12px] pr-[40px] py-[8px] relative size-full">
-          <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic relative shrink-0 text-[#3f3f46] text-[14px]">0,00€</p>
+          <p className="font-normal leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px]">0,00€</p>
         </div>
       </div>
     </div>
@@ -122,8 +122,8 @@ function Input3() {
 
 function Text5() {
   return (
-    <div className="content-stretch flex gap-[6px] items-center relative shrink-0 w-full" data-name="Text">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px]">Taxa de IVA</p>
+    <div className="content-stretch flex gap-[8px] items-center relative shrink-0 w-full" data-name="Text">
+      <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px]">Taxa de IVA</p>
     </div>
   );
 }
@@ -142,7 +142,7 @@ function Button1() {
       <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[6px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)]" />
       <div className="flex flex-row items-center size-full">
         <div className="content-stretch flex gap-[8px] items-center pl-[12px] pr-[40px] py-[8px] relative size-full">
-          <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] text-left whitespace-pre-wrap">23%</p>
+          <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] text-left whitespace-pre-wrap">23%</p>
           <div className="-translate-y-1/2 absolute overflow-clip right-[12px] size-[16px] top-1/2" data-name="Right Icon">
             <div className="absolute inset-[33.33%_20.83%]" data-name="Vector (Stroke)">
               <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 9.33313 5.33323">
@@ -159,7 +159,7 @@ function Button1() {
 function Text6() {
   return (
     <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Text">
-      <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Total c/ IVA</p>
+      <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Total c/ IVA</p>
     </div>
   );
 }
@@ -170,7 +170,7 @@ function Input4() {
       <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[8px]" />
       <div className="flex flex-row items-center size-full">
         <div className="content-stretch flex gap-[8px] items-center pl-[12px] pr-[40px] py-[8px] relative size-full">
-          <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic relative shrink-0 text-[#3f3f46] text-[14px]">0,00€</p>
+          <p className="font-normal leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px]">0,00€</p>
         </div>
       </div>
     </div>

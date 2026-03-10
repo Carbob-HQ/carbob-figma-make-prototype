@@ -65,7 +65,7 @@ export function ExpandableSidebar({ isExpanded, onToggle }: ExpandableSidebarPro
   return (
     <div
       className={cn(
-        "bg-[#262124] flex flex-col gap-6 h-full items-center py-3 relative shadow-sm shrink-0 transition-[width] duration-200 ease-out",
+        "bg-[#27272a] flex flex-col gap-6 h-full items-center py-3 relative shadow-sm shrink-0 transition-[width] duration-200 ease-out",
         isExpanded ? "w-[240px]" : "w-[56px]"
       )}
       data-name="Sidebar"
@@ -75,12 +75,12 @@ export function ExpandableSidebar({ isExpanded, onToggle }: ExpandableSidebarPro
       {/* Logo Frame */}
       <div className="flex items-center relative shrink-0 w-full px-2">
         <div
-          className="bg-[#262124] h-10 relative rounded-lg w-full flex items-center overflow-hidden"
+          className="bg-[#27272a] h-10 relative rounded-lg w-full flex items-center overflow-hidden"
           data-name="Logo"
           onClick={isExpanded ? onToggle : undefined}
         >
           {/* Logo image — always rendered, anchored left, clip width animates */}
-          <div className="relative shrink-0 h-full flex items-center px-[10px] z-10 bg-[#262124]">
+          <div className="relative shrink-0 h-full flex items-center px-[10px] z-10 bg-[#27272a]">
             <div className={cn(
               "overflow-hidden h-[27.25px] transition-[width,opacity] duration-200 ease-out",
               isExpanded ? "w-[127px]" : "w-[20px]",
@@ -152,8 +152,8 @@ export function ExpandableSidebar({ isExpanded, onToggle }: ExpandableSidebarPro
               ref={newBtnRef}
               onClick={handleNewClick}
               className={cn(
-                "not-disabled:hover:bg-[#8270FF] text-white h-10 gap-2 cursor-pointer transition-colors duration-200 ease-out",
-                isNewPopupOpen ? "bg-[#8270FF]" : "bg-[rgba(130,112,255,0.5)]",
+                "not-disabled:hover:bg-[#8270ff] text-white h-10 gap-2 cursor-pointer transition-colors duration-200 ease-out",
+                isNewPopupOpen ? "bg-[#8270ff]" : "bg-[rgba(130,112,255,0.5)]",
                 isExpanded ? "w-full justify-start" : "w-10 px-0 justify-center"
               )}
             >

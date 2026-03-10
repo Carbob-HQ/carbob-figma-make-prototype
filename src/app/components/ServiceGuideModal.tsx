@@ -1,8 +1,7 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { createPortal } from "react-dom";
-import { X, ChevronRight, ChevronLeft, ChevronDown, CirclePlus, CircleMinus, Loader2, Trash2, Clock, Search } from "lucide-react";
+import { X, ChevronRight, ChevronLeft, ChevronDown, Plus, CirclePlus, CircleMinus, Loader2, Trash2, Clock, Search, ClipboardList, Car, Check } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
-import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Tooltip, TooltipTrigger, TooltipContent } from "./ui/tooltip";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
@@ -12,6 +11,10 @@ import type { QuoteService, ServiceItem, LaborItem, PartItem, ConsumableItem } f
 import { generateServiceId, generateItemId, calcItemTotal } from "./QuoteServicesData";
 import { showToast } from "./Toast";
 import imgTecAlliance from "figma:asset/aadee18dc44048d2f735deaf90da573856a589fc.png";
+/** Compute a price preview (total with VAT) for a guide service template */
+function computeTemplatePricePreview(items: ServiceItem[]): number {
+  return items.reduce((sum, item) => sum + calcItemTotal(item), 0);
+}
 
 // ─── SVG paths from Figma ────────────────────────────────────────────────────
 
@@ -110,14 +113,14 @@ const GUIDE_CATEGORIES: GuideCategory[] = [
     name: "Gerais",
     services: [
       {
-        id: "gs-1", title: "Check-up de verão / inverno", timeMinutes: 40,
+        id: "gs-1", title: "Check-up de verão / inverno", subtitle: "Inspeção geral de níveis, luzes, travões e pneus", timeMinutes: 40,
         items: [
           makeLabor("Check-up sazonal", 0.67, 35, 0, 0),
           makeConsumable("Líquido limpa-vidros", 1, 4.50, 0, 1),
         ],
       },
       {
-        id: "gs-2", title: "Lavagem e aspiração", timeMinutes: 60,
+        id: "gs-2", title: "Lavagem e aspiração", subtitle: "Lavagem exterior e interior com aspiração completa", timeMinutes: 60,
         items: [
           makeLabor("Lavagem e aspiração completa", 1, 35, 0, 0),
           makeConsumable("Produto de limpeza interior", 1, 6.00, 0, 1),
@@ -125,14 +128,14 @@ const GUIDE_CATEGORIES: GuideCategory[] = [
         ],
       },
       {
-        id: "gs-3", title: "Polimento de faróis", timeMinutes: 45,
+        id: "gs-3", title: "Polimento de faróis", subtitle: "Restauro da transparência das óticas", timeMinutes: 45,
         items: [
           makeLabor("Polimento de faróis", 0.75, 40, 0, 0),
           makeConsumable("Kit polimento faróis", 1, 12.00, 0, 1),
         ],
       },
       {
-        id: "gs-4", title: "Polimento de pintura", timeMinutes: 180,
+        id: "gs-4", title: "Polimento de pintura", subtitle: "Correção de riscos e brilho com compound e cera", timeMinutes: 180,
         items: [
           makeLabor("Polimento de pintura completo", 3, 40, 0, 0),
           makeConsumable("Compound de polimento", 1, 18.00, 0, 1),
@@ -828,7 +831,9 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
   const [loadingServiceIds, setLoadingServiceIds] = useState<Set<string>>(new Set());
+  const [addedServiceIds, setAddedServiceIds] = useState<Set<string>>(new Set());
   const loadingTimersRef = useRef<Map<string, ReturnType<typeof setTimeout>>>(new Map());
+  const addedTimersRef = useRef<Map<string, ReturnType<typeof setTimeout>>>(new Map());
   const [activeTab, setActiveTab] = useState("oficina");
   const [selectedDeferredQuoteId, setSelectedDeferredQuoteId] = useState<string | null>(null);
 
@@ -1055,7 +1060,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
       setMaintPlanExpanded(true);
       setMaintAdditionalExpanded(false);
       setMaintSearchState("results");
-    }, 1500);
+    }, 800);
   }, [maintGearbox, maintKm]);
 
   const handleMaintBack = useCallback(() => {
@@ -1091,31 +1096,26 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
   const selectedCategory = GUIDE_CATEGORIES.find((c) => c.id === selectedCategoryId) || null;
 
   const toggleService = useCallback((template: GuideServiceTemplate) => {
-    const alreadySelected = selectedServices.some((s) => s.templateId === template.id);
-    if (alreadySelected) {
-      // Remove immediately
-      setSelectedServices((prev) => prev.filter((s) => s.templateId !== template.id));
-      // Cancel any pending loading timer for this service
-      const existing = loadingTimersRef.current.get(template.id);
-      if (existing) {
-        clearTimeout(existing);
-        loadingTimersRef.current.delete(template.id);
-      }
-      setLoadingServiceIds((prev) => { const next = new Set(prev); next.delete(template.id); return next; });
-      return;
-    }
-    // Add with loading delay
+    // Always add — allow multiple instances of the same service
     if (loadingServiceIds.has(template.id)) return; // Already loading
     setLoadingServiceIds((prev) => new Set(prev).add(template.id));
     const timer = setTimeout(() => {
       const clonedItems = template.items.map((item) => ({ ...item, id: generateItemId() }));
       const totalWithVat = clonedItems.reduce((sum, item) => sum + calcItemTotal(item), 0);
-      setSelectedServices((prev) => [...prev, { templateId: template.id, title: template.title, subtitle: template.subtitle, totalWithVat, items: clonedItems }]);
+      const instanceId = `${template.id}-${Date.now()}`;
+      setSelectedServices((prev) => [...prev, { templateId: instanceId, title: template.title, subtitle: template.subtitle, totalWithVat, items: clonedItems }]);
       setLoadingServiceIds((prev) => { const next = new Set(prev); next.delete(template.id); return next; });
       loadingTimersRef.current.delete(template.id);
-    }, 1500);
+      // Show "Adicionado" briefly
+      setAddedServiceIds((prev) => new Set(prev).add(template.id));
+      const addedTimer = setTimeout(() => {
+        setAddedServiceIds((prev) => { const next = new Set(prev); next.delete(template.id); return next; });
+        addedTimersRef.current.delete(template.id);
+      }, 800);
+      addedTimersRef.current.set(template.id, addedTimer);
+    }, 800);
     loadingTimersRef.current.set(template.id, timer);
-  }, [selectedServices, loadingServiceIds]);
+  }, [loadingServiceIds]);
 
   const removeSelectedService = useCallback((templateId: string) => {
     setSelectedServices((prev) => prev.filter((s) => s.templateId !== templateId));
@@ -1196,15 +1196,19 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
         <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[12px]" />
 
         {/* Header */}
-        <div className="flex gap-[10px] items-start relative shrink-0 w-full">
-          <div className="flex flex-1 flex-col gap-[8px] items-center justify-center min-w-0 relative">
-            <p className="font-medium text-[16px] text-[#27272a] leading-[1.5] w-full">
-              Guia de serviços - {vehicleTitle}
+        <div className="flex gap-[12px] items-start relative shrink-0 w-full">
+          <div className="flex flex-1 items-center gap-[10px] min-w-0 relative">
+            <p className="font-medium text-[16px] text-[#27272a] leading-[1.5]">
+              Guia de serviços
             </p>
+            <span className="inline-flex items-center gap-[6px] bg-white border border-[#e5e5e5] rounded-[6px] px-[10px] py-[2px] text-[14px] font-medium text-[#71717a] leading-[1.5]">
+              <Car className="size-[14px] text-[#a1a1aa]" />
+              {vehicleTitle}
+            </span>
           </div>
           <button
             onClick={handleClose}
-            className="absolute right-[-8px] top-[-8px] flex items-center justify-center size-[32px] rounded-[6px] cursor-pointer not-disabled:hover:bg-[#e4e4e7] transition-colors duration-200 focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
+            className="absolute right-[-8px] top-[-8px] flex items-center justify-center size-[32px] rounded-[6px] cursor-pointer not-disabled:hover:bg-[#e5e5e5] transition-colors duration-200 focus:outline-none focus-visible:ring-ring/40 focus-visible:ring-[3px]"
           >
             <div className="overflow-clip relative shrink-0 size-[16px]">
               <div className="absolute inset-[20.83%]">
@@ -1277,7 +1281,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
             </Tabs>
 
             {/* Main area with bg */}
-            <div className="bg-[rgba(39,39,42,0.05)] flex-1 min-h-0 relative rounded-[16px] w-full">
+            <div className="bg-[rgba(39,39,42,0.05)] flex-1 min-h-0 relative rounded-[12px] w-full">
               <div
                 key={activeTab}
                 className="flex gap-[16px] items-start p-[16px] h-full"
@@ -1287,10 +1291,10 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                 {activeTab === "oficina" ? (
                   <>
                     {/* Navigation Frame (categories) */}
-                    <div className="bg-white flex flex-col h-full items-start overflow-clip relative rounded-[16px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] shrink-0 w-[320px]">
+                    <div className="bg-white flex flex-col h-full items-start overflow-clip relative rounded-[12px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] shrink-0 w-[320px]">
                       {/* Top Frame - header */}
-                      <div className="relative rounded-tl-[16px] rounded-tr-[16px] shrink-0 w-full">
-                        <div aria-hidden="true" className="absolute border-[#e5e5e5] border-l border-r border-solid border-t inset-0 pointer-events-none rounded-tl-[16px] rounded-tr-[16px]" />
+                      <div className="relative rounded-tl-[12px] rounded-tr-[12px] shrink-0 w-full">
+                        <div aria-hidden="true" className="absolute border-[#e5e5e5] border-l border-r border-solid border-t inset-0 pointer-events-none rounded-tl-[12px] rounded-tr-[12px]" />
                         <div className="flex flex-col items-start p-[16px] relative w-full border-b border-[#e5e5e5]">
                           <div className="flex items-center relative shrink-0 w-full">
                             <p className="flex-1 text-[14px] text-[#27272a] leading-[1.5] font-medium">Categorias</p>
@@ -1298,22 +1302,37 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                         </div>
                       </div>
                       {/* Bottom Frame - category list */}
-                      <div className="flex flex-1 flex-col items-start min-h-0 p-[16px] relative rounded-bl-[16px] rounded-br-[16px] w-full border border-t-0 border-[#e5e5e5]">
-                        <div className="flex flex-1 flex-col gap-[8px] items-start min-h-0 overflow-x-clip overflow-y-auto relative w-full">
+                      <div className="flex flex-1 flex-col items-start min-h-0 p-[16px] relative rounded-bl-[12px] rounded-br-[12px] w-full border border-t-0 border-[#e5e5e5]">
+                        <div className="flex flex-1 flex-col gap-[4px] items-start min-h-0 overflow-x-clip overflow-y-auto relative w-full">
                           {GUIDE_CATEGORIES.map((cat) => {
                             const isActive = selectedCategoryId === cat.id;
                             return (
-                              <Button
+                              <button
                                 key={cat.id}
-                                variant="ghost"
                                 onClick={() => setSelectedCategoryId(cat.id)}
-                                className={`h-[40px] min-h-[40px] rounded-[8px] shrink-0 w-full justify-between px-[16px] ${isActive ? "bg-[#e4e4e7] not-disabled:hover:bg-[#e4e4e7]" : ""}`}
+                                className={`relative flex items-center justify-between h-auto min-h-[44px] rounded-[8px] shrink-0 w-full px-[16px] py-[8px] cursor-pointer transition-colors duration-200 ${isActive ? "bg-[rgba(130,112,255,0.06)]" : "hover:bg-[rgba(39,39,42,0.04)]"}`}
                               >
-                                <span className="flex-1 text-[14px] text-[#27272a] leading-[1.5] text-left font-medium">
-                                  {cat.name}
+                                {/* Animated accent bar */}
+                                <span
+                                  className="absolute left-0 top-[6px] bottom-[6px] w-[3px] rounded-r-[3px] bg-[#8270ff] origin-center transition-transform duration-200"
+                                  style={{ transform: isActive ? "scaleY(1)" : "scaleY(0)" }}
+                                />
+                                <span className="flex flex-col gap-[1px] items-start flex-1 min-w-0">
+                                  <span className="text-[14px] text-[#27272a] leading-[1.5] text-left font-normal">
+                                    {cat.name}
+                                  </span>
+                                  <span className={`text-[11px] leading-[1.5] text-left font-normal transition-colors duration-200 ${isActive ? "text-[#8270ff]" : "text-[#a1a1aa]"}`}>
+                                    {cat.services.length} serviço{cat.services.length !== 1 ? "s" : ""}
+                                  </span>
                                 </span>
-                                <ChevronRight className="size-[16px] shrink-0" style={{ color: isActive ? "#27272A" : "#A1A1AA" }} />
-                              </Button>
+                                <ChevronRight
+                                  className="size-[16px] shrink-0 transition-all duration-200"
+                                  style={{
+                                    color: isActive ? "#8270ff" : "#A1A1AA",
+                                    transform: isActive ? "translateX(2px)" : "translateX(0)",
+                                  }}
+                                />
+                              </button>
                             );
                           })}
                         </div>
@@ -1324,73 +1343,67 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                     {/* Content area (services list) */}
                     <div className="flex flex-1 flex-col gap-[8px] h-full items-start min-w-[360px] overflow-x-clip overflow-y-auto">
                       {!selectedCategory ? (
-                        <div className="flex flex-1 flex-col items-center justify-center w-full">
-                          <p className="text-[14px] text-[#71717a] leading-[1.5] text-center">
+                        <div className="flex flex-1 flex-col items-center justify-center w-full gap-[16px]">
+                          <ClipboardList className="size-[24px] text-[#a1a1aa]" />
+                          <p className="text-[14px] text-[#71717a] leading-[1.5] text-center max-w-[240px]">
                             Seleciona uma categoria para aceder aos serviços
                           </p>
                         </div>
                       ) : (
-                        <div key={selectedCategoryId} className="flex flex-col gap-[8px] w-full" style={{ animation: "tabFadeIn 200ms ease-out" }}>
-                        {selectedCategory.services.map((svc) => {
+                        <div key={selectedCategoryId} className="flex flex-col gap-[8px] w-full">
+                        {selectedCategory.services.map((svc, svcIdx) => {
                           const selected = isServiceSelected(svc.id);
                           const loading = loadingServiceIds.has(svc.id);
+                          const pricePreview = computeTemplatePricePreview(svc.items);
                           return (
                             <div
                               key={svc.id}
-                              className="bg-white relative rounded-[16px] shrink-0 w-full"
+                              className={`bg-white relative rounded-[12px] shrink-0 w-full transition-all duration-200 shadow-[0_0_0_1px_#e5e5e5] hover:shadow-[0_0_0_1px_rgba(130,112,255,0.3),0_2px_8px_rgba(130,112,255,0.06)]`}
+                              style={{ animation: `cardSlideIn 250ms cubic-bezier(0.16,1,0.3,1) ${svcIdx * 40}ms both` }}
                             >
-                              <div aria-hidden="true" className={`absolute border border-solid inset-0 pointer-events-none rounded-[16px] ${selected ? "border-[#8270FF]" : "border-[#e5e5e5]"}`} />
-                              <div className="flex flex-row items-center w-full">
-                                <div className="flex gap-[12px] items-center p-[16px] relative w-full">
-                                  {/* Label – categories tab */}
-                                  <div className="flex flex-1 flex-col gap-[4px] items-start justify-center min-w-0">
-                                    <p className="text-[14px] text-[#27272a] leading-[1.5] truncate w-full">
-                                      {svc.title}
+                              <div className="flex gap-[12px] p-[14px_16px] w-full items-center">
+                                {/* Info */}
+                                <div className="flex flex-col gap-[2px] min-w-0 w-[45%]">
+                                  <p className="text-[14px] text-[#27272a] leading-[1.4] font-medium truncate w-full">
+                                    {svc.title}
+                                  </p>
+                                  {svc.subtitle && (
+                                    <p className="text-[13px] text-[#a1a1aa] leading-[1.4] truncate w-full" title={svc.subtitle}>
+                                      {svc.subtitle.length > 40 ? svc.subtitle.slice(0, 40) + "..." : svc.subtitle}
                                     </p>
-                                    {svc.subtitle && (
-                                      <p className="text-[12px] text-[#71717a] leading-[1.5]">
-                                        {svc.subtitle}
-                                      </p>
-                                    )}
-                                  </div>
-                                  {/* Time */}
-                                  <div className="flex gap-[8px] items-center justify-end shrink-0">
-                                    <div className="overflow-clip relative shrink-0 size-[16px]">
-                                      <div className="absolute inset-[4.17%]">
-                                        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 14.6667 14.6667">
-                                          <path d={CLOCK_PATH} fill="#71717A" />
-                                        </svg>
-                                      </div>
-                                    </div>
-                                    <p className="text-[14px] text-[#71717a] leading-[1.5]">
-                                      {formatTime(svc.timeMinutes)}
-                                    </p>
-                                  </div>
-                                  {/* Add/Remove button */}
+                                  )}
+                                </div>
+                                {/* Duration & Price */}
+                                <div className="flex items-center gap-[24px] flex-1 justify-center">
+                                  <span className="flex items-center gap-[5px] text-[13px] text-[#27272a] leading-[1.5]">
+                                    <Clock className="size-[14px] text-[#27272a]" />
+                                    {formatTime(svc.timeMinutes)}
+                                  </span>
+                                  <span className="size-[3px] rounded-full bg-[#e5e5e5] shrink-0" />
+                                  <span className="text-[13px] text-[#27272a] leading-[1.5] font-normal tabular-nums">
+                                    {fmtCurrency(pricePreview)}
+                                  </span>
+                                </div>
+                                {/* Add button */}
+                                <div className="w-[100px] shrink-0 flex items-center justify-end">
                                   {loading ? (
-                                    <div className="flex items-center justify-center size-[40px] min-w-[40px] min-h-[40px] shrink-0">
-                                      <Loader2 className="size-[16px] text-[#a1a1aa] animate-spin" />
+                                    <div className="flex items-center justify-center h-[32px] px-[12px]">
+                                      <Loader2 className="size-[16px] text-[#71717a] animate-spin" />
                                     </div>
+                                  ) : addedServiceIds.has(svc.id) ? (
+                                    <span className="text-[13px] text-[#a1a1aa] h-[32px] px-[12px] flex items-center animate-[fadeInOut_0.8s_ease-out_forwards] gap-[4px]">
+                                      <Check className="size-[14px]" />
+                                      Adicionado
+                                    </span>
                                   ) : (
-                                    <Tooltip>
-                                      <TooltipTrigger asChild>
-                                        <Button
-                                          variant="outline"
-                                          size="icon"
-                                          onClick={() => toggleService(svc)}
-                                          className="size-[40px] min-w-[40px] min-h-[40px] rounded-[8px] shrink-0"
-                                        >
-                                          {selected ? (
-                                            <CircleMinus className="size-[16px] text-[#FB2C36]" />
-                                          ) : (
-                                            <CirclePlus className="size-[16px] text-[#27272a]" />
-                                          )}
-                                        </Button>
-                                      </TooltipTrigger>
-                                      <TooltipContent side="top">
-                                        {selected ? "Remover" : "Adicionar"}
-                                      </TooltipContent>
-                                    </Tooltip>
+                                    <Button
+                                      variant="ghost"
+                                      size="sm"
+                                      onClick={() => toggleService(svc)}
+                                      className="h-[32px] min-h-[32px] rounded-[6px] px-[12px]"
+                                    >
+                                      <CirclePlus className="size-[16px] text-[#71717a]" />
+                                    </Button>
                                   )}
                                 </div>
                               </div>
@@ -1404,10 +1417,10 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                 ) : activeTab === "diferidos" ? (
                   <>
                     {/* Navigation Frame (previous quotes) */}
-                    <div className="bg-white flex flex-col h-full items-start overflow-clip relative rounded-[16px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] shrink-0 w-[320px]">
+                    <div className="bg-white flex flex-col h-full items-start overflow-clip relative rounded-[12px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] shrink-0 w-[320px]">
                       {/* Top Frame - header */}
-                      <div className="relative rounded-tl-[16px] rounded-tr-[16px] shrink-0 w-full">
-                        <div aria-hidden="true" className="absolute border-[#e5e5e5] border-l border-r border-solid border-t inset-0 pointer-events-none rounded-tl-[16px] rounded-tr-[16px]" />
+                      <div className="relative rounded-tl-[12px] rounded-tr-[12px] shrink-0 w-full">
+                        <div aria-hidden="true" className="absolute border-[#e5e5e5] border-l border-r border-solid border-t inset-0 pointer-events-none rounded-tl-[12px] rounded-tr-[12px]" />
                         <div className="flex flex-col items-start p-[16px] relative w-full border-b border-[#e5e5e5]">
                           <div className="flex items-center relative shrink-0 w-full">
                             <p className="flex-1 text-[14px] text-[#27272a] leading-[1.5] font-medium">Orçamentos anteriores</p>
@@ -1415,7 +1428,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                         </div>
                       </div>
                       {/* Bottom Frame - quotes list */}
-                      <div className="flex flex-1 flex-col items-start min-h-0 p-[16px] relative rounded-bl-[16px] rounded-br-[16px] w-full border border-t-0 border-[#e5e5e5]">
+                      <div className="flex flex-1 flex-col items-start min-h-0 p-[16px] relative rounded-bl-[12px] rounded-br-[12px] w-full border border-t-0 border-[#e5e5e5]">
                         <div className="flex flex-1 flex-col gap-[8px] items-start min-h-0 overflow-x-clip overflow-y-auto relative w-full">
                           {deferredQuotes.map((quote) => {
                             const isActive = selectedDeferredQuoteId === quote.id;
@@ -1424,7 +1437,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                 key={quote.id}
                                 variant="ghost"
                                 onClick={() => setSelectedDeferredQuoteId(quote.id)}
-                                className={`h-auto min-h-[60px] rounded-[8px] shrink-0 w-full justify-between px-[16px] py-[10px] ${isActive ? "bg-[#e4e4e7] not-disabled:hover:bg-[#e4e4e7]" : ""}`}
+                                className={`h-auto min-h-[60px] rounded-[8px] shrink-0 w-full justify-between px-[16px] py-[12px] ${isActive ? "bg-[#e5e5e5] not-disabled:hover:bg-[#e5e5e5]" : ""}`}
                               >
                                 <div className="flex flex-1 flex-col gap-[4px] items-start justify-center min-w-0">
                                   <span className="text-[14px] text-[#27272a] leading-[1.5] text-left font-medium">
@@ -1445,73 +1458,67 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                     {/* Content area (rejected services from selected quote) */}
                     <div className="flex flex-1 flex-col gap-[8px] h-full items-start min-w-[360px] overflow-x-clip overflow-y-auto">
                       {!selectedDeferredQuote ? (
-                        <div className="flex flex-1 flex-col items-center justify-center w-full">
-                          <p className="text-[14px] text-[#71717a] leading-[1.5] text-center">
+                        <div className="flex flex-1 flex-col items-center justify-center w-full gap-[16px]">
+                          <ClipboardList className="size-[24px] text-[#a1a1aa]" />
+                          <p className="text-[14px] text-[#71717a] leading-[1.5] text-center max-w-[240px]">
                             Seleciona um orçamento para aceder aos serviços
                           </p>
                         </div>
                       ) : (
-                        <div key={selectedDeferredQuoteId} className="flex flex-col gap-[8px] w-full" style={{ animation: "tabFadeIn 200ms ease-out" }}>
-                        {selectedDeferredQuote.rejectedServices.map((svc) => {
+                        <div key={selectedDeferredQuoteId} className="flex flex-col gap-[8px] w-full">
+                        {selectedDeferredQuote.rejectedServices.map((svc, svcIdx) => {
                           const selected = isServiceSelected(svc.id);
                           const loading = loadingServiceIds.has(svc.id);
+                          const pricePreview = computeTemplatePricePreview(svc.items);
                           return (
                             <div
                               key={svc.id}
-                              className="bg-white relative rounded-[16px] shrink-0 w-full"
+                              className={`bg-white relative rounded-[12px] shrink-0 w-full transition-all duration-200 shadow-[0_0_0_1px_#e5e5e5] hover:shadow-[0_0_0_1px_rgba(130,112,255,0.3),0_2px_8px_rgba(130,112,255,0.06)]`}
+                              style={{ animation: `cardSlideIn 250ms cubic-bezier(0.16,1,0.3,1) ${svcIdx * 40}ms both` }}
                             >
-                              <div aria-hidden="true" className={`absolute border border-solid inset-0 pointer-events-none rounded-[16px] ${selected ? "border-[#8270FF]" : "border-[#e5e5e5]"}`} />
-                              <div className="flex flex-row items-center w-full">
-                                <div className="flex gap-[12px] items-center p-[16px] relative w-full">
-                                  {/* Label */}
-                                  <div className="flex flex-1 flex-col gap-[4px] items-start justify-center min-w-0">
-                                    <p className="text-[14px] text-[#27272a] leading-[1.5] truncate w-full">
-                                      {svc.title}
+                              <div className="flex gap-[12px] p-[14px_16px] w-full items-center">
+                                {/* Info */}
+                                <div className="flex flex-col gap-[2px] min-w-0 w-[45%]">
+                                  <p className="text-[14px] text-[#27272a] leading-[1.4] font-medium truncate w-full">
+                                    {svc.title}
+                                  </p>
+                                  {svc.subtitle && (
+                                    <p className="text-[13px] text-[#a1a1aa] leading-[1.4] truncate w-full" title={svc.subtitle}>
+                                      {svc.subtitle.length > 40 ? svc.subtitle.slice(0, 40) + "..." : svc.subtitle}
                                     </p>
-                                    {svc.subtitle && (
-                                      <p className="text-[12px] text-[#71717a] leading-[1.5]">
-                                        {svc.subtitle}
-                                      </p>
-                                    )}
-                                  </div>
-                                  {/* Time */}
-                                  <div className="flex gap-[8px] items-center justify-end shrink-0">
-                                    <div className="overflow-clip relative shrink-0 size-[16px]">
-                                      <div className="absolute inset-[4.17%]">
-                                        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 14.6667 14.6667">
-                                          <path d={CLOCK_PATH} fill="#71717A" />
-                                        </svg>
-                                      </div>
-                                    </div>
-                                    <p className="text-[14px] text-[#71717a] leading-[1.5]">
-                                      {formatTime(svc.timeMinutes)}
-                                    </p>
-                                  </div>
-                                  {/* Add/Remove button */}
+                                  )}
+                                </div>
+                                {/* Duration & Price */}
+                                <div className="flex items-center gap-[24px] flex-1 justify-center">
+                                  <span className="flex items-center gap-[5px] text-[13px] text-[#27272a] leading-[1.5]">
+                                    <Clock className="size-[14px] text-[#27272a]" />
+                                    {formatTime(svc.timeMinutes)}
+                                  </span>
+                                  <span className="size-[3px] rounded-full bg-[#e5e5e5] shrink-0" />
+                                  <span className="text-[13px] text-[#27272a] leading-[1.5] font-normal tabular-nums">
+                                    {fmtCurrency(pricePreview)}
+                                  </span>
+                                </div>
+                                {/* Add button */}
+                                <div className="w-[100px] shrink-0 flex items-center justify-end">
                                   {loading ? (
-                                    <div className="flex items-center justify-center size-[40px] min-w-[40px] min-h-[40px] shrink-0">
-                                      <Loader2 className="size-[16px] text-[#a1a1aa] animate-spin" />
+                                    <div className="flex items-center justify-center h-[32px] px-[12px]">
+                                      <Loader2 className="size-[16px] text-[#71717a] animate-spin" />
                                     </div>
+                                  ) : addedServiceIds.has(svc.id) ? (
+                                    <span className="text-[13px] text-[#a1a1aa] h-[32px] px-[12px] flex items-center animate-[fadeInOut_0.8s_ease-out_forwards] gap-[4px]">
+                                      <Check className="size-[14px]" />
+                                      Adicionado
+                                    </span>
                                   ) : (
-                                    <Tooltip>
-                                      <TooltipTrigger asChild>
-                                        <Button
-                                          variant="outline"
-                                          size="icon"
-                                          onClick={() => toggleService(svc)}
-                                          className="size-[40px] min-w-[40px] min-h-[40px] rounded-[8px] shrink-0"
-                                        >
-                                          {selected ? (
-                                            <CircleMinus className="size-[16px] text-[#FB2C36]" />
-                                          ) : (
-                                            <CirclePlus className="size-[16px] text-[#27272a]" />
-                                          )}
-                                        </Button>
-                                      </TooltipTrigger>
-                                      <TooltipContent side="top">
-                                        {selected ? "Remover" : "Adicionar"}
-                                      </TooltipContent>
-                                    </Tooltip>
+                                    <Button
+                                      variant="ghost"
+                                      size="sm"
+                                      onClick={() => toggleService(svc)}
+                                      className="h-[32px] min-h-[32px] rounded-[6px] px-[12px]"
+                                    >
+                                      <CirclePlus className="size-[16px] text-[#71717a]" />
+                                    </Button>
                                   )}
                                 </div>
                               </div>
@@ -1525,10 +1532,10 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                 ) : activeTab === "manutencao" ? (
                   <>
                     {/* Navigation Frame (search / revisions) */}
-                    <div className="bg-white flex flex-col h-full items-start overflow-clip relative rounded-[16px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] shrink-0 w-[320px]">
+                    <div className="bg-white flex flex-col h-full items-start overflow-clip relative rounded-[12px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] shrink-0 w-[320px]">
                       {/* Top Frame - header */}
-                      <div className="relative rounded-tl-[16px] rounded-tr-[16px] shrink-0 w-full">
-                        <div aria-hidden="true" className="absolute border-[#e5e5e5] border-l border-r border-solid border-t inset-0 pointer-events-none rounded-tl-[16px] rounded-tr-[16px]" />
+                      <div className="relative rounded-tl-[12px] rounded-tr-[12px] shrink-0 w-full">
+                        <div aria-hidden="true" className="absolute border-[#e5e5e5] border-l border-r border-solid border-t inset-0 pointer-events-none rounded-tl-[12px] rounded-tr-[12px]" />
                         <div className="flex items-center h-[52px] px-[16px] relative w-full border-b border-[#e5e5e5]">
                           {maintSearchState === "results" ? (
                             <Button
@@ -1537,7 +1544,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                               onClick={handleMaintBack}
                               className="h-[32px] min-h-[32px] rounded-[6px] px-[12px]"
                             >
-                              <ChevronLeft className="size-[16px] text-[#a1a1aa]" />
+                              <ChevronLeft className="size-[16px] text-[#71717a]" />
                               <span className="text-[14px] text-[#27272a] leading-[1.5]">Revisões</span>
                             </Button>
                           ) : (
@@ -1548,48 +1555,68 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                         </div>
                       </div>
                       {/* Bottom Frame */}
-                      <div className="flex flex-1 flex-col items-start min-h-0 relative rounded-bl-[16px] rounded-br-[16px] w-full border border-t-0 border-[#e5e5e5]">
+                      <div className="flex flex-1 flex-col items-start min-h-0 relative rounded-bl-[12px] rounded-br-[12px] w-full border border-t-0 border-[#e5e5e5]">
                         <div className="overflow-clip rounded-[inherit] size-full">
                           <div className="flex flex-col gap-[16px] items-start p-[16px] relative size-full">
                             {maintSearchState === "results" && maintRevisions ? (
                               /* Revisions list */
                               <div className="flex flex-1 flex-col gap-[8px] items-start min-h-0 overflow-x-clip overflow-y-auto relative w-full">
                                 {/* Next revision */}
-                                <Button
-                                  variant="ghost"
+                                {(() => { const isActive = selectedRevisionId === maintRevisions.next.id; return (
+                                <button
                                   onClick={() => { setSelectedRevisionId(maintRevisions.next.id); setMaintPlanExpanded(true); setMaintAdditionalExpanded(false); }}
-                                  className={`h-auto min-h-[60px] rounded-[8px] shrink-0 w-full justify-between px-[16px] py-[10px] ${selectedRevisionId === maintRevisions.next.id ? "bg-[#e4e4e7] not-disabled:hover:bg-[#e4e4e7]" : ""}`}
+                                  className={`relative flex items-center justify-between h-auto min-h-[60px] rounded-[8px] shrink-0 w-full px-[16px] py-[12px] cursor-pointer transition-colors duration-200 ${isActive ? "bg-[rgba(130,112,255,0.06)]" : "hover:bg-[rgba(39,39,42,0.04)]"}`}
                                 >
+                                  <span
+                                    className="absolute left-0 top-[6px] bottom-[6px] w-[3px] rounded-r-[3px] bg-[#8270ff] origin-center transition-transform duration-200"
+                                    style={{ transform: isActive ? "scaleY(1)" : "scaleY(0)" }}
+                                  />
                                   <div className="flex flex-1 flex-col gap-[4px] items-start justify-center min-w-0">
                                     <div className="flex gap-[16px] items-center">
-                                      <span className="text-[14px] text-[#27272a] leading-[1.5] text-left font-medium">Próxima revisão</span>
+                                      <span className="text-[14px] text-[#27272a] leading-[1.5] text-left font-normal">Próxima revisão</span>
                                       {maintRevisions.recommendedId === maintRevisions.next.id && (
                                         <span className="bg-[rgba(96,165,250,0.2)] text-[#1e40af] text-[12px] leading-[1.5] px-[8px] py-[4px] rounded-[6px]">Recomendado</span>
                                       )}
                                     </div>
-                                    <span className="text-[12px] text-[#71717a] leading-[1.5] text-left font-normal">{maintRevisions.next.km.toLocaleString("pt-PT")} Kms</span>
+                                    <span className={`text-[12px] leading-[1.5] text-left font-normal transition-colors duration-200 ${isActive ? "text-[#8270ff]" : "text-[#71717a]"}`}>{maintRevisions.next.km.toLocaleString("pt-PT")} Kms</span>
                                   </div>
-                                  <ChevronRight className="size-[16px] shrink-0" style={{ color: selectedRevisionId === maintRevisions.next.id ? "#27272A" : "#A1A1AA" }} />
-                                </Button>
+                                  <ChevronRight
+                                    className="size-[16px] shrink-0 transition-all duration-200"
+                                    style={{
+                                      color: isActive ? "#8270ff" : "#A1A1AA",
+                                      transform: isActive ? "translateX(2px)" : "translateX(0)",
+                                    }}
+                                  />
+                                </button>
+                                ); })()}
                                 {/* Previous revision */}
-                                {maintRevisions.previous && (
-                                  <Button
-                                    variant="ghost"
+                                {maintRevisions.previous && (() => { const isActive = selectedRevisionId === maintRevisions.previous.id; return (
+                                  <button
                                     onClick={() => { setSelectedRevisionId(maintRevisions.previous!.id); setMaintPlanExpanded(true); setMaintAdditionalExpanded(false); }}
-                                    className={`h-auto min-h-[60px] rounded-[8px] shrink-0 w-full justify-between px-[16px] py-[10px] ${selectedRevisionId === maintRevisions.previous.id ? "bg-[#e4e4e7] not-disabled:hover:bg-[#e4e4e7]" : ""}`}
+                                    className={`relative flex items-center justify-between h-auto min-h-[60px] rounded-[8px] shrink-0 w-full px-[16px] py-[12px] cursor-pointer transition-colors duration-200 ${isActive ? "bg-[rgba(130,112,255,0.06)]" : "hover:bg-[rgba(39,39,42,0.04)]"}`}
                                   >
+                                    <span
+                                      className="absolute left-0 top-[6px] bottom-[6px] w-[3px] rounded-r-[3px] bg-[#8270ff] origin-center transition-transform duration-200"
+                                      style={{ transform: isActive ? "scaleY(1)" : "scaleY(0)" }}
+                                    />
                                     <div className="flex flex-1 flex-col gap-[4px] items-start justify-center min-w-0">
                                       <div className="flex gap-[16px] items-center">
-                                        <span className="text-[14px] text-[#27272a] leading-[1.5] text-left font-medium">Revisão anterior</span>
+                                        <span className="text-[14px] text-[#27272a] leading-[1.5] text-left font-normal">Revisão anterior</span>
                                         {maintRevisions.recommendedId === maintRevisions.previous.id && (
                                           <span className="bg-[rgba(96,165,250,0.2)] text-[#1e40af] text-[12px] leading-[1.5] px-[8px] py-[4px] rounded-[6px]">Recomendado</span>
                                         )}
                                       </div>
-                                      <span className="text-[12px] text-[#71717a] leading-[1.5] text-left font-normal">{maintRevisions.previous.km.toLocaleString("pt-PT")} Kms</span>
+                                      <span className={`text-[12px] leading-[1.5] text-left font-normal transition-colors duration-200 ${isActive ? "text-[#8270ff]" : "text-[#71717a]"}`}>{maintRevisions.previous.km.toLocaleString("pt-PT")} Kms</span>
                                     </div>
-                                    <ChevronRight className="size-[16px] shrink-0" style={{ color: selectedRevisionId === maintRevisions.previous.id ? "#27272A" : "#A1A1AA" }} />
-                                  </Button>
-                                )}
+                                    <ChevronRight
+                                      className="size-[16px] shrink-0 transition-all duration-200"
+                                      style={{
+                                        color: isActive ? "#8270ff" : "#A1A1AA",
+                                        transform: isActive ? "translateX(2px)" : "translateX(0)",
+                                      }}
+                                    />
+                                  </button>
+                                ); })()}
                               </div>
                             ) : (
                               /* Search form */
@@ -1603,7 +1630,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                 <div className="flex flex-col gap-[16px] items-start w-full shrink-0">
                                   {/* Gearbox select */}
                                   <div className="flex flex-col gap-[8px] items-start w-full">
-                                    <label className="text-[14px] text-[#27272a] leading-[1.5]">Caixa de velocidades</label>
+                                    <label className="text-[14px] text-[#27272a] leading-[1.5] font-normal">Caixa de velocidades</label>
                                     <Select value={maintGearbox} onValueChange={(v) => { setMaintGearbox(v); setTimeout(() => maintKmRef.current?.focus(), 0); }}>
                                       <SelectTrigger className="h-[40px] w-full rounded-[8px] font-normal bg-white">
                                         <SelectValue placeholder="Selecionar..." />
@@ -1616,7 +1643,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                   </div>
                                   {/* Km input */}
                                   <div className="flex flex-col gap-[8px] items-start w-full">
-                                    <label className="text-[14px] text-[#27272a] leading-[1.5]">Quilómetros</label>
+                                    <label className="text-[14px] text-[#27272a] leading-[1.5] font-normal">Quilómetros</label>
                                     <Input
                                       ref={maintKmRef}
                                       type="text"
@@ -1665,15 +1692,16 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                     {/* Content area */}
                     <div className="flex flex-1 flex-col gap-[16px] h-full items-start min-w-[360px] overflow-x-clip overflow-y-auto">
                       {!selectedRevision ? (
-                        <div className="flex flex-1 flex-col items-center justify-center w-full">
-                          <p className="text-[14px] text-[#71717a] leading-[1.5] text-center">
-                            Seleciona a revisão adequada de acordo com a quilometragem do veículo para aceder à respetiva manutenção programada
+                        <div className="flex flex-1 flex-col items-center justify-center w-full gap-[16px]">
+                          <ClipboardList className="size-[24px] text-[#a1a1aa]" />
+                          <p className="text-[14px] text-[#71717a] leading-[1.5] text-center max-w-[280px]">
+                            Introduz a quilometragem do veículo para aceder à manutenção programada.
                           </p>
                         </div>
                       ) : (
                         <div key={selectedRevisionId} className="flex flex-col gap-[16px] w-full" style={{ animation: "tabFadeIn 200ms ease-out" }}>
                           {/* Plano de manutenção oficial */}
-                          <div className="bg-white relative rounded-[16px] shrink-0 w-full border border-solid border-[#e5e5e5]">
+                          <div className="bg-white relative rounded-[12px] shrink-0 w-full border border-solid border-[#e5e5e5] hover:bg-[#fafafa] transition-colors duration-150">
                             <div className="flex flex-col items-start overflow-clip rounded-[inherit] w-full relative">
                               {/* Header */}
                               <div className="relative shrink-0 w-full">
@@ -1683,7 +1711,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                     className="flex flex-1 gap-[8px] items-center cursor-pointer"
                                   >
                                     <ChevronDown
-                                      className="size-[16px] text-[#a1a1aa] transition-transform duration-200"
+                                      className="size-[16px] text-[#71717a] transition-transform duration-200"
                                       style={{ transform: maintPlanExpanded ? "rotate(0deg)" : "rotate(-90deg)" }}
                                     />
                                     <span className="text-[14px] text-[#27272a] leading-[1.5] text-left">Plano de manutenção oficial</span>
@@ -1695,7 +1723,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                       onClick={() => removeAllFromSection(selectedRevision.maintenancePlan)}
                                       className="h-[32px] min-h-[32px] rounded-[6px] px-[12px] shrink-0"
                                     >
-                                      <CircleMinus className="size-[16px] text-[#FB2C36]" />
+                                      <CircleMinus className="size-[16px] text-[#ef4444]" />
                                       <span className="text-[14px] text-[#27272a] leading-[1.5]">Desselecionar todos</span>
                                     </Button>
                                   ) : (
@@ -1705,7 +1733,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                       onClick={() => addAllFromSection(selectedRevision.maintenancePlan)}
                                       className="h-[32px] min-h-[32px] rounded-[6px] px-[12px] shrink-0"
                                     >
-                                      <CirclePlus className="size-[16px] text-[#a1a1aa]" />
+                                      <CirclePlus className="size-[16px] text-[#71717a]" />
                                       <span className="text-[14px] text-[#27272a] leading-[1.5]">Adicionar todos</span>
                                     </Button>
                                   )}
@@ -1730,31 +1758,30 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                             <Clock className="size-[16px] text-[#71717a]" />
                                             <p className="text-[14px] text-[#71717a] leading-[1.5]">{formatTime(svc.timeMinutes)}</p>
                                           </div>
-                                          {loading ? (
-                                            <div className="flex items-center justify-center size-[40px] min-w-[40px] min-h-[40px] shrink-0">
-                                              <Loader2 className="size-[16px] text-[#a1a1aa] animate-spin" />
-                                            </div>
-                                          ) : (
-                                            <Tooltip>
-                                              <TooltipTrigger asChild>
-                                                <Button
-                                                  variant="outline"
-                                                  size="icon"
-                                                  onClick={() => toggleService(svc as GuideServiceTemplate)}
-                                                  className="size-[40px] min-w-[40px] min-h-[40px] rounded-[8px] shrink-0"
-                                                >
-                                                  {selected ? (
-                                                    <CircleMinus className="size-[16px] text-[#FB2C36]" />
-                                                  ) : (
-                                                    <CirclePlus className="size-[16px] text-[#27272a]" />
-                                                  )}
-                                                </Button>
-                                              </TooltipTrigger>
-                                              <TooltipContent side="top">
-                                                {selected ? "Remover" : "Adicionar"}
-                                              </TooltipContent>
-                                            </Tooltip>
-                                          )}
+                                          <div className="w-[100px] shrink-0 flex items-center justify-end">
+                                            {loading ? (
+                                              <div className="flex items-center justify-center h-[32px] px-[12px]">
+                                                <Loader2 className="size-[16px] text-[#71717a] animate-spin" />
+                                              </div>
+                                            ) : addedServiceIds.has(svc.id) ? (
+                                              <span className="text-[13px] text-[#a1a1aa] h-[32px] px-[12px] flex items-center animate-[fadeInOut_0.8s_ease-out_forwards] gap-[4px]">
+                                                <Check className="size-[14px]" />
+                                                Adicionado
+                                              </span>
+                                            ) : (
+                                              <Button
+                                                variant="ghost"
+                                                size="sm"
+                                                onClick={() => toggleService(svc as GuideServiceTemplate)}
+                                                className="h-[32px] min-h-[32px] rounded-[6px] px-[12px]"
+                                              >
+                                                <>
+                                                    <CirclePlus className="size-[16px] text-[#71717a]" />
+                                                    <span className="text-[14px] text-[#27272a] leading-[1.5]">Adicionar</span>
+                                                  </>
+                                              </Button>
+                                            )}
+                                          </div>
                                         </div>
                                       );
                                     })}
@@ -1765,7 +1792,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                           </div>
 
                           {/* Serviços adicionais */}
-                          <div className="bg-white relative rounded-[16px] shrink-0 w-full border border-solid border-[#e5e5e5]">
+                          <div className="bg-white relative rounded-[12px] shrink-0 w-full border border-solid border-[#e5e5e5] hover:bg-[#fafafa] transition-colors duration-150">
                             <div className="flex flex-col items-start overflow-clip rounded-[inherit] w-full relative">
                               {/* Header */}
                               <div className="relative shrink-0 w-full">
@@ -1775,7 +1802,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                     className="flex flex-1 gap-[8px] items-center cursor-pointer"
                                   >
                                     <ChevronDown
-                                      className="size-[16px] text-[#a1a1aa] transition-transform duration-200"
+                                      className="size-[16px] text-[#71717a] transition-transform duration-200"
                                       style={{ transform: maintAdditionalExpanded ? "rotate(0deg)" : "rotate(-90deg)" }}
                                     />
                                     <span className="text-[14px] text-[#27272a] leading-[1.5] text-left">Serviços adicionais</span>
@@ -1787,7 +1814,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                       onClick={() => removeAllFromSection(selectedRevision.additionalServices)}
                                       className="h-[32px] min-h-[32px] rounded-[6px] px-[12px] shrink-0"
                                     >
-                                      <CircleMinus className="size-[16px] text-[#FB2C36]" />
+                                      <CircleMinus className="size-[16px] text-[#ef4444]" />
                                       <span className="text-[14px] text-[#27272a] leading-[1.5]">Desselecionar todos</span>
                                     </Button>
                                   ) : (
@@ -1797,7 +1824,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                       onClick={() => addAllFromSection(selectedRevision.additionalServices)}
                                       className="h-[32px] min-h-[32px] rounded-[6px] px-[12px] shrink-0"
                                     >
-                                      <CirclePlus className="size-[16px] text-[#a1a1aa]" />
+                                      <CirclePlus className="size-[16px] text-[#71717a]" />
                                       <span className="text-[14px] text-[#27272a] leading-[1.5]">Adicionar todos</span>
                                     </Button>
                                   )}
@@ -1822,31 +1849,30 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                             <Clock className="size-[16px] text-[#71717a]" />
                                             <p className="text-[14px] text-[#71717a] leading-[1.5]">{formatTime(svc.timeMinutes)}</p>
                                           </div>
-                                          {loading ? (
-                                            <div className="flex items-center justify-center size-[40px] min-w-[40px] min-h-[40px] shrink-0">
-                                              <Loader2 className="size-[16px] text-[#a1a1aa] animate-spin" />
-                                            </div>
-                                          ) : (
-                                            <Tooltip>
-                                              <TooltipTrigger asChild>
-                                                <Button
-                                                  variant="outline"
-                                                  size="icon"
-                                                  onClick={() => toggleService(svc as GuideServiceTemplate)}
-                                                  className="size-[40px] min-w-[40px] min-h-[40px] rounded-[8px] shrink-0"
-                                                >
-                                                  {selected ? (
-                                                    <CircleMinus className="size-[16px] text-[#FB2C36]" />
-                                                  ) : (
-                                                    <CirclePlus className="size-[16px] text-[#27272a]" />
-                                                  )}
-                                                </Button>
-                                              </TooltipTrigger>
-                                              <TooltipContent side="top">
-                                                {selected ? "Remover" : "Adicionar"}
-                                              </TooltipContent>
-                                            </Tooltip>
-                                          )}
+                                          <div className="w-[100px] shrink-0 flex items-center justify-end">
+                                            {loading ? (
+                                              <div className="flex items-center justify-center h-[32px] px-[12px]">
+                                                <Loader2 className="size-[16px] text-[#71717a] animate-spin" />
+                                              </div>
+                                            ) : addedServiceIds.has(svc.id) ? (
+                                              <span className="text-[13px] text-[#a1a1aa] h-[32px] px-[12px] flex items-center animate-[fadeInOut_0.8s_ease-out_forwards] gap-[4px]">
+                                                <Check className="size-[14px]" />
+                                                Adicionado
+                                              </span>
+                                            ) : (
+                                              <Button
+                                                variant="ghost"
+                                                size="sm"
+                                                onClick={() => toggleService(svc as GuideServiceTemplate)}
+                                                className="h-[32px] min-h-[32px] rounded-[6px] px-[12px]"
+                                              >
+                                                <>
+                                                    <CirclePlus className="size-[16px] text-[#71717a]" />
+                                                    <span className="text-[14px] text-[#27272a] leading-[1.5]">Adicionar</span>
+                                                  </>
+                                              </Button>
+                                            )}
+                                          </div>
                                         </div>
                                       );
                                     })}
@@ -1865,10 +1891,10 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                   return (
                     <>
                       {/* Navigation Frame */}
-                      <div className="bg-white flex flex-col h-full items-start overflow-clip relative rounded-[16px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] shrink-0 w-[320px]">
+                      <div className="bg-white flex flex-col h-full items-start overflow-clip relative rounded-[12px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] shrink-0 w-[320px]">
                         {/* Top Frame - header */}
-                        <div className="relative rounded-tl-[16px] rounded-tr-[16px] shrink-0 w-full">
-                          <div aria-hidden="true" className="absolute border-[#e5e5e5] border-l border-r border-solid border-t inset-0 pointer-events-none rounded-tl-[16px] rounded-tr-[16px]" />
+                        <div className="relative rounded-tl-[12px] rounded-tr-[12px] shrink-0 w-full">
+                          <div aria-hidden="true" className="absolute border-[#e5e5e5] border-l border-r border-solid border-t inset-0 pointer-events-none rounded-tl-[12px] rounded-tr-[12px]" />
                           <div className="flex flex-col justify-center h-[52px] px-[16px] relative w-full border-b border-[#e5e5e5]">
                             {serviceSearchActive ? (
                               <Button
@@ -1877,7 +1903,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                   onClick={clearServiceSearch}
                                   className="h-[32px] min-h-[32px] rounded-[6px] px-[12px] self-start"
                                 >
-                                  <ChevronLeft className="size-[16px] text-[#a1a1aa]" />
+                                  <ChevronLeft className="size-[16px] text-[#71717a]" />
                                   <span className="text-[14px] text-[#27272a] leading-[1.5]">Resultados</span>
                                 </Button>
                             ) : searchCategoryId && searchCategory ? (
@@ -1887,7 +1913,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                 onClick={() => { setSearchCategoryId(null); setSearchSubcategoryId(null); }}
                                 className="h-[32px] min-h-[32px] rounded-[6px] px-[12px] self-start"
                               >
-                                <ChevronLeft className="size-[16px] text-[#a1a1aa]" />
+                                <ChevronLeft className="size-[16px] text-[#71717a]" />
                                 <span className="text-[14px] text-[#27272a] leading-[1.5]">{searchCategory.name}</span>
                               </Button>
                             ) : (
@@ -1898,32 +1924,41 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                           </div>
                         </div>
                         {/* Bottom Frame - list */}
-                        <div className="flex flex-1 flex-col items-start min-h-0 relative rounded-bl-[16px] rounded-br-[16px] w-full border border-t-0 border-[#e5e5e5]">
+                        <div className="flex flex-1 flex-col items-start min-h-0 relative rounded-bl-[12px] rounded-br-[12px] w-full border border-t-0 border-[#e5e5e5]">
                           <div className="overflow-clip rounded-[inherit] size-full">
                             <div className="flex flex-col gap-[16px] items-start p-[16px] relative size-full">
-                              <div key={serviceSearchActive ? `search-${serviceSearchFilterCatId || "all"}` : (searchCategoryId || "root")} className="flex flex-1 flex-col gap-[8px] items-start min-h-0 overflow-x-clip overflow-y-auto relative w-full" style={{ animation: "tabFadeIn 200ms ease-out" }}>
+                              <div key={serviceSearchActive ? `search-${serviceSearchFilterCatId || "all"}` : (searchCategoryId || "root")} className="flex flex-1 flex-col gap-[4px] items-start min-h-0 overflow-x-clip overflow-y-auto relative w-full" style={{ animation: "tabFadeIn 200ms ease-out" }}>
                                 {serviceSearchActive ? (
                                   /* Search results: matched categories with badge */
                                   searchMatchedCategories.length > 0 ? (
                                     searchMatchedCategories.map((cat) => {
                                       const isActive = serviceSearchFilterCatId === cat.id;
                                       return (
-                                        <Button
+                                        <button
                                           key={cat.id}
-                                          variant="ghost"
                                           onClick={() => setServiceSearchFilterCatId(isActive ? null : cat.id)}
-                                          className={`h-[40px] min-h-[40px] rounded-[8px] shrink-0 w-full justify-between px-[16px] ${isActive ? "bg-[#e4e4e7] not-disabled:hover:bg-[#e4e4e7]" : ""}`}
+                                          className={`relative flex items-center justify-between h-auto min-h-[44px] rounded-[8px] shrink-0 w-full px-[16px] py-[8px] cursor-pointer transition-colors duration-200 ${isActive ? "bg-[rgba(130,112,255,0.06)]" : "hover:bg-[rgba(39,39,42,0.04)]"}`}
                                         >
-                                          <span className="flex-1 text-[14px] text-[#27272a] leading-[1.5] text-left font-medium truncate">
+                                          <span
+                                            className="absolute left-0 top-[6px] bottom-[6px] w-[3px] rounded-r-[3px] bg-[#8270ff] origin-center transition-transform duration-200"
+                                            style={{ transform: isActive ? "scaleY(1)" : "scaleY(0)" }}
+                                          />
+                                          <span className="flex-1 text-[14px] text-[#27272a] leading-[1.5] text-left font-normal truncate">
                                             {cat.name}
                                           </span>
                                           <div className="flex items-center gap-[8px] shrink-0">
-                                            <Badge className="h-[20px] min-w-[20px] px-[6px] rounded-full bg-[#8270FF] text-[12px] text-white leading-[1.5] border-none not-disabled:hover:bg-[#8270FF]">
+                                            <span className="bg-[#8270ff] text-white text-[11px] font-semibold leading-[1] px-[7px] py-[3px] rounded-[10px] min-w-[20px] text-center tabular-nums">
                                               {cat.count}
-                                            </Badge>
-                                            <ChevronRight className="size-[16px] shrink-0 text-[#a1a1aa]" />
+                                            </span>
+                                            <ChevronRight
+                                              className="size-[16px] shrink-0 transition-all duration-200"
+                                              style={{
+                                                color: isActive ? "#8270ff" : "#A1A1AA",
+                                                transform: isActive ? "translateX(2px)" : "translateX(0)",
+                                              }}
+                                            />
                                           </div>
-                                        </Button>
+                                        </button>
                                       );
                                     })
                                   ) : (
@@ -1934,34 +1969,47 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                 ) : !searchCategory ? (
                                   /* Level 0: Categories */
                                   SEARCH_CATEGORIES.map((cat) => (
-                                    <Button
+                                    <button
                                       key={cat.id}
-                                      variant="ghost"
                                       onClick={() => { setSearchCategoryId(cat.id); setSearchSubcategoryId(null); }}
-                                      className="h-[40px] min-h-[40px] rounded-[8px] shrink-0 w-full justify-between px-[16px]"
+                                      className="relative flex items-center justify-between h-auto min-h-[44px] rounded-[8px] shrink-0 w-full px-[16px] py-[8px] cursor-pointer transition-colors duration-200 hover:bg-[rgba(39,39,42,0.04)]"
                                     >
-                                      <span className="flex-1 text-[14px] text-[#27272a] leading-[1.5] text-left font-medium">
+                                      <span className="text-[14px] text-[#27272a] leading-[1.5] text-left font-normal flex-1 min-w-0 truncate">
                                         {cat.name}
                                       </span>
-                                      <ChevronRight className="size-[16px] shrink-0" style={{ color: "#A1A1AA" }} />
-                                    </Button>
+                                      <ChevronRight className="size-[16px] shrink-0 text-[#A1A1AA] transition-all duration-200" />
+                                    </button>
                                   ))
                                 ) : (
                                   /* Level 1/2: Subcategories */
                                   searchCategory.subcategories.map((sub) => {
                                     const isActive = searchSubcategoryId === sub.id;
                                     return (
-                                      <Button
+                                      <button
                                         key={sub.id}
-                                        variant="ghost"
                                         onClick={() => setSearchSubcategoryId(sub.id)}
-                                        className={`h-[40px] min-h-[40px] rounded-[8px] shrink-0 w-full justify-between px-[16px] ${isActive ? "bg-[#e4e4e7] not-disabled:hover:bg-[#e4e4e7]" : ""}`}
+                                        className={`relative flex items-center justify-between h-auto min-h-[44px] rounded-[8px] shrink-0 w-full px-[16px] py-[8px] cursor-pointer transition-colors duration-200 ${isActive ? "bg-[rgba(130,112,255,0.06)]" : "hover:bg-[rgba(39,39,42,0.04)]"}`}
                                       >
-                                        <span className="flex-1 text-[14px] text-[#27272a] leading-[1.5] text-left font-medium">
-                                          {sub.name}
+                                        <span
+                                          className="absolute left-0 top-[6px] bottom-[6px] w-[3px] rounded-r-[3px] bg-[#8270ff] origin-center transition-transform duration-200"
+                                          style={{ transform: isActive ? "scaleY(1)" : "scaleY(0)" }}
+                                        />
+                                        <span className="flex flex-col gap-[1px] items-start flex-1 min-w-0">
+                                          <span className="text-[14px] text-[#27272a] leading-[1.5] text-left font-normal truncate w-full">
+                                            {sub.name}
+                                          </span>
+                                          <span className={`text-[11px] leading-[1.5] text-left font-normal transition-colors duration-200 ${isActive ? "text-[#8270ff]" : "text-[#a1a1aa]"}`}>
+                                            {sub.services.length} serviço{sub.services.length !== 1 ? "s" : ""}
+                                          </span>
                                         </span>
-                                        <ChevronRight className="size-[16px] shrink-0" style={{ color: isActive ? "#27272A" : "#A1A1AA" }} />
-                                      </Button>
+                                        <ChevronRight
+                                          className="size-[16px] shrink-0 transition-all duration-200"
+                                          style={{
+                                            color: isActive ? "#8270ff" : "#A1A1AA",
+                                            transform: isActive ? "translateX(2px)" : "translateX(0)",
+                                          }}
+                                        />
+                                      </button>
                                     );
                                   })
                                 )}
@@ -1987,14 +2035,14 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                             {/* Search input */}
                             <div className="w-full shrink-0">
                               <form onSubmit={handleServiceSearchSubmit}>
-                                <div className="group/search bg-white h-[40px] relative rounded-[8px] w-full transition-shadow duration-200 ease-out focus-within:ring-[3px] focus-within:ring-[#8270FF]/20">
-                                  <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[8px] transition-colors duration-200 ease-out group-focus-within/search:border-[#8270FF]" />
+                                <div className="group/search bg-white h-[40px] relative rounded-[8px] w-full transition-shadow duration-200 ease-out focus-within:ring-[3px] focus-within:ring-[#8270ff]/20">
+                                  <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[8px] transition-colors duration-200 ease-out group-focus-within/search:border-[#8270ff]" />
                                   <div className="flex flex-row items-center size-full">
                                     <div className="flex gap-[8px] items-center px-[12px] py-[8px] relative size-full">
                                       {serviceSearchLoading ? (
-                                        <Loader2 className="size-[20px] text-[#a1a1aa] animate-spin shrink-0" />
+                                        <Loader2 className="size-[20px] text-[#71717a] animate-spin shrink-0" />
                                       ) : (
-                                        <Search className="size-[20px] text-[#a1a1aa] shrink-0" />
+                                        <Search className="size-[20px] text-[#71717a] shrink-0" />
                                       )}
                                       <input
                                         ref={pesquisaSearchInputRef}
@@ -2010,8 +2058,9 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                 <button type="submit" hidden />
                               </form>
                             </div>
-                            <div className="flex flex-1 items-center justify-center w-full">
-                              <p className="text-[14px] text-[#71717a] leading-[1.5] text-center">
+                            <div className="flex flex-1 flex-col items-center justify-center w-full gap-[16px]">
+                              <ClipboardList className="size-[24px] text-[#a1a1aa]" />
+                              <p className="text-[14px] text-[#71717a] leading-[1.5] text-center max-w-[240px]">
                                 Seleciona uma categoria ou pesquisa para aceder aos serviços
                               </p>
                             </div>
@@ -2021,14 +2070,14 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                             {/* Search input - persistent at top */}
                             <div className="w-full shrink-0">
                               <form onSubmit={handleServiceSearchSubmit}>
-                                <div className="group/search bg-white h-[40px] relative rounded-[8px] w-full transition-shadow duration-200 ease-out focus-within:ring-[3px] focus-within:ring-[#8270FF]/20">
-                                  <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[8px] transition-colors duration-200 ease-out group-focus-within/search:border-[#8270FF]" />
+                                <div className="group/search bg-white h-[40px] relative rounded-[8px] w-full transition-shadow duration-200 ease-out focus-within:ring-[3px] focus-within:ring-[#8270ff]/20">
+                                  <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[8px] transition-colors duration-200 ease-out group-focus-within/search:border-[#8270ff]" />
                                   <div className="flex flex-row items-center size-full">
                                     <div className="flex gap-[8px] items-center px-[12px] py-[8px] relative size-full">
                                       {serviceSearchLoading ? (
-                                        <Loader2 className="size-[20px] text-[#a1a1aa] animate-spin shrink-0" />
+                                        <Loader2 className="size-[20px] text-[#71717a] animate-spin shrink-0" />
                                       ) : (
-                                        <Search className="size-[20px] text-[#a1a1aa] shrink-0" />
+                                        <Search className="size-[20px] text-[#71717a] shrink-0" />
                                       )}
                                       <input
                                         ref={pesquisaSearchInputRef}
@@ -2073,65 +2122,55 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                             {/* Results list */}
                             <div key={serviceSearchFilterCatId || "all"} className="flex flex-col gap-[8px] w-full flex-1 min-h-0 overflow-y-auto" style={{ animation: "tabFadeIn 200ms ease-out" }}>
                               {filteredSearchResults.length > 0 ? (
-                                filteredSearchResults.map((result) => {
+                                filteredSearchResults.map((result, svcIdx) => {
                                   const svc = result.service;
                                   const selected = isServiceSelected(svc.id);
                                   const loading = loadingServiceIds.has(svc.id);
                                   return (
                                     <div
                                       key={svc.id}
-                                      className="bg-white relative rounded-[16px] shrink-0 w-full"
+                                      className={`bg-white relative rounded-[12px] shrink-0 w-full transition-all duration-200 shadow-[0_0_0_1px_#e5e5e5] hover:shadow-[0_0_0_1px_rgba(130,112,255,0.3),0_2px_8px_rgba(130,112,255,0.06)]`}
+                                      style={{ animation: `cardSlideIn 250ms cubic-bezier(0.16,1,0.3,1) ${svcIdx * 40}ms both` }}
                                     >
-                                      <div aria-hidden="true" className={`absolute border border-solid inset-0 pointer-events-none rounded-[16px] ${selected ? "border-[#8270FF]" : "border-[#e5e5e5]"}`} />
-                                      <div className="flex flex-row items-center w-full">
-                                        <div className="flex gap-[12px] items-center p-[16px] relative w-full">
-                                          {/* Label */}
-                                          <div className="flex flex-1 flex-col gap-[4px] items-start justify-center min-w-0">
-                                            <p className="text-[14px] text-[#27272a] leading-[1.5] truncate w-full">
-                                              {svc.title}
+                                      <div className="flex gap-[12px] p-[14px_16px] w-full items-center">
+                                        {/* Info */}
+                                        <div className="flex flex-col gap-[2px] min-w-0 w-[45%]">
+                                          <p className="text-[14px] text-[#27272a] leading-[1.4] font-medium truncate w-full">
+                                            {svc.title}
+                                          </p>
+                                          {svc.subtitle && (
+                                            <p className="text-[13px] text-[#a1a1aa] leading-[1.4] truncate w-full" title={svc.subtitle}>
+                                              {svc.subtitle.length > 40 ? svc.subtitle.slice(0, 40) + "..." : svc.subtitle}
                                             </p>
-                                            <p className="text-[12px] text-[#71717a] leading-[1.5]">
-                                              {svc.subtitle?.includes("Substituir") || svc.subtitle?.includes("Substituição") ? "Substituição" : svc.subtitle?.includes("Desmontagem") ? "Desmontagem e montagem" : svc.subtitle?.includes("Pintu") || svc.subtitle?.includes("Pintar") ? "Pintura" : "Reparação"}
-                                            </p>
-                                          </div>
-                                          {/* Time */}
-                                          <div className="flex gap-[8px] items-center justify-end shrink-0">
-                                            <div className="overflow-clip relative shrink-0 size-[16px]">
-                                              <div className="absolute inset-[4.17%]">
-                                                <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 14.6667 14.6667">
-                                                  <path d={CLOCK_PATH} fill="#71717A" />
-                                                </svg>
-                                              </div>
-                                            </div>
-                                            <p className="text-[14px] text-[#71717a] leading-[1.5]">
-                                              {formatTime(svc.timeMinutes)}
-                                            </p>
-                                          </div>
-                                          {/* Add/Remove button */}
+                                          )}
+                                        </div>
+                                        {/* Duration */}
+                                        <div className="flex flex-1 justify-center">
+                                          <span className="flex items-center gap-[5px] text-[13px] text-[#27272a] leading-[1.5]">
+                                            <Clock className="size-[14px] text-[#27272a]" />
+                                            {formatTime(svc.timeMinutes)}
+                                          </span>
+                                        </div>
+                                        {/* Add button */}
+                                        <div className="w-[100px] shrink-0 flex items-center justify-end">
                                           {loading ? (
-                                            <div className="flex items-center justify-center size-[40px] min-w-[40px] min-h-[40px] shrink-0">
-                                              <Loader2 className="size-[16px] text-[#a1a1aa] animate-spin" />
+                                            <div className="flex items-center justify-center h-[32px] px-[12px]">
+                                              <Loader2 className="size-[16px] text-[#71717a] animate-spin" />
                                             </div>
+                                          ) : addedServiceIds.has(svc.id) ? (
+                                            <span className="text-[13px] text-[#a1a1aa] h-[32px] px-[12px] flex items-center animate-[fadeInOut_0.8s_ease-out_forwards] gap-[4px]">
+                                              <Check className="size-[14px]" />
+                                              Adicionado
+                                            </span>
                                           ) : (
-                                            <Tooltip>
-                                              <TooltipTrigger asChild>
-                                                <Button
-                                                  variant="outline"
-                                                  size="icon"
-                                                  onClick={() => toggleService(svc)}
-                                                  className="size-[40px] min-w-[40px] min-h-[40px] rounded-[8px] shrink-0"
-                                                >
-                                                  {selected ? (
-                                                    <CircleMinus className="size-[16px] text-[#FB2C36]" />
-                                                  ) : (
-                                                    <CirclePlus className="size-[16px] text-[#27272a]" />
-                                                  )}
-                                                </Button>
-                                              </TooltipTrigger>
-                                              <TooltipContent side="top">
-                                                {selected ? "Remover" : "Adicionar"}
-                                              </TooltipContent>
-                                            </Tooltip>
+                                            <Button
+                                              variant="ghost"
+                                              size="sm"
+                                              onClick={() => toggleService(svc)}
+                                              className="h-[32px] min-h-[32px] rounded-[6px] px-[12px]"
+                                            >
+                                              <CirclePlus className="size-[16px] text-[#71717a]" />
+                                            </Button>
                                           )}
                                         </div>
                                       </div>
@@ -2147,67 +2186,55 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                             </div>
                           </div>
                         ) : (
-                          <div key={searchSubcategoryId} className="flex flex-col gap-[8px] w-full" style={{ animation: "tabFadeIn 200ms ease-out" }}>
-                          {searchSubcategory.services.map((svc) => {
+                          <div key={searchSubcategoryId} className="flex flex-col gap-[8px] w-full">
+                          {searchSubcategory.services.map((svc, svcIdx) => {
                             const selected = isServiceSelected(svc.id);
                             const loading = loadingServiceIds.has(svc.id);
                             return (
                               <div
                                 key={svc.id}
-                                className="bg-white relative rounded-[16px] shrink-0 w-full"
+                                className={`bg-white relative rounded-[12px] shrink-0 w-full transition-all duration-200 shadow-[0_0_0_1px_#e5e5e5] hover:shadow-[0_0_0_1px_rgba(130,112,255,0.3),0_2px_8px_rgba(130,112,255,0.06)]`}
+                                style={{ animation: `cardSlideIn 250ms cubic-bezier(0.16,1,0.3,1) ${svcIdx * 40}ms both` }}
                               >
-                                <div aria-hidden="true" className={`absolute border border-solid inset-0 pointer-events-none rounded-[16px] ${selected ? "border-[#8270FF]" : "border-[#e5e5e5]"}`} />
-                                <div className="flex flex-row items-center w-full">
-                                  <div className="flex gap-[12px] items-center p-[16px] relative w-full">
-                                    {/* Label */}
-                                    <div className="flex flex-1 flex-col gap-[4px] items-start justify-center min-w-0">
-                                      <p className="text-[14px] text-[#27272a] leading-[1.5] truncate w-full">
-                                        {svc.title}
+                                <div className="flex gap-[12px] p-[14px_16px] w-full items-center">
+                                  {/* Info */}
+                                  <div className="flex flex-col gap-[2px] min-w-0 w-[45%]">
+                                    <p className="text-[14px] text-[#27272a] leading-[1.4] font-medium truncate w-full">
+                                      {svc.title}
+                                    </p>
+                                    {svc.subtitle && (
+                                      <p className="text-[13px] text-[#a1a1aa] leading-[1.4] truncate w-full" title={svc.subtitle}>
+                                        {svc.subtitle.length > 40 ? svc.subtitle.slice(0, 40) + "..." : svc.subtitle}
                                       </p>
-                                      {svc.subtitle && (
-                                        <p className="text-[12px] text-[#71717a] leading-[1.5]">
-                                          {svc.subtitle}
-                                        </p>
-                                      )}
-                                    </div>
-                                    {/* Time */}
-                                    <div className="flex gap-[8px] items-center justify-end shrink-0">
-                                      <div className="overflow-clip relative shrink-0 size-[16px]">
-                                        <div className="absolute inset-[4.17%]">
-                                          <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 14.6667 14.6667">
-                                            <path d={CLOCK_PATH} fill="#71717A" />
-                                          </svg>
-                                        </div>
-                                      </div>
-                                      <p className="text-[14px] text-[#71717a] leading-[1.5]">
-                                        {formatTime(svc.timeMinutes)}
-                                      </p>
-                                    </div>
-                                    {/* Add/Remove button */}
+                                    )}
+                                  </div>
+                                  {/* Duration */}
+                                  <div className="flex flex-1 justify-center">
+                                    <span className="flex items-center gap-[5px] text-[13px] text-[#27272a] leading-[1.5]">
+                                      <Clock className="size-[14px] text-[#27272a]" />
+                                      {formatTime(svc.timeMinutes)}
+                                    </span>
+                                  </div>
+                                  {/* Add button */}
+                                  <div className="w-[100px] shrink-0 flex items-center justify-end">
                                     {loading ? (
-                                      <div className="flex items-center justify-center size-[40px] min-w-[40px] min-h-[40px] shrink-0">
-                                        <Loader2 className="size-[16px] text-[#a1a1aa] animate-spin" />
+                                      <div className="flex items-center justify-center h-[32px] px-[12px]">
+                                        <Loader2 className="size-[16px] text-[#71717a] animate-spin" />
                                       </div>
+                                    ) : addedServiceIds.has(svc.id) ? (
+                                      <span className="text-[13px] text-[#a1a1aa] h-[32px] px-[12px] flex items-center animate-[fadeInOut_0.8s_ease-out_forwards] gap-[4px]">
+                                        <Check className="size-[14px]" />
+                                        Adicionado
+                                      </span>
                                     ) : (
-                                      <Tooltip>
-                                        <TooltipTrigger asChild>
-                                          <Button
-                                            variant="outline"
-                                            size="icon"
-                                            onClick={() => toggleService(svc)}
-                                            className="size-[40px] min-w-[40px] min-h-[40px] rounded-[8px] shrink-0"
-                                          >
-                                            {selected ? (
-                                              <CircleMinus className="size-[16px] text-[#FB2C36]" />
-                                            ) : (
-                                              <CirclePlus className="size-[16px] text-[#27272a]" />
-                                            )}
-                                          </Button>
-                                        </TooltipTrigger>
-                                        <TooltipContent side="top">
-                                          {selected ? "Remover" : "Adicionar"}
-                                        </TooltipContent>
-                                      </Tooltip>
+                                      <Button
+                                        variant="ghost"
+                                        size="sm"
+                                        onClick={() => toggleService(svc)}
+                                        className="h-[32px] min-h-[32px] rounded-[6px] px-[12px]"
+                                      >
+                                        <CirclePlus className="size-[16px] text-[#71717a]" />
+                                      </Button>
                                     )}
                                   </div>
                                 </div>
@@ -2230,74 +2257,94 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
 
             {/* Selected Services Frame */}
             <div className="flex flex-1 flex-col gap-[24px] items-start min-h-0 relative w-full">
-              <div className="flex flex-col h-[40px] items-start pt-[10px] relative shrink-0 w-full">
-                <div className="flex h-[24px] items-center relative shrink-0 w-full">
-                  <p className="flex-1 text-[16px] text-[#27272a] leading-[1.5] font-medium">
-                    Serviços selecionados
-                  </p>
+              <div className="flex flex-col h-[40px] items-start pt-[12px] relative shrink-0 w-full">
+                <div className="flex h-[24px] items-center justify-between relative shrink-0 w-full">
+                  <div className="flex items-center gap-[8px]">
+                    <p className="text-[16px] text-[#27272a] leading-[1.5] font-medium">
+                      Serviços selecionados
+                    </p>
+                    {selectedServices.length > 0 && (
+                      <span className="bg-[#8270ff] text-white text-[11px] font-semibold leading-[1] px-[7px] py-[3px] rounded-[10px] min-w-[20px] text-center tabular-nums">
+                        {selectedServices.length}
+                      </span>
+                    )}
+                  </div>
+                  {selectedServices.length > 0 && (
+                    <button
+                      onClick={() => setSelectedServices([])}
+                      className="text-[12px] text-[#a1a1aa] leading-[1.5] font-normal px-[8px] py-[2px] rounded-[4px] cursor-pointer hover:text-[#ef4444] hover:bg-[rgba(239,68,68,0.06)] transition-colors duration-150"
+                    >
+                      Limpar
+                    </button>
+                  )}
                 </div>
               </div>
 
               {/* Services list */}
-              <div className="flex flex-col gap-[16px] items-start w-full overflow-y-auto flex-1 min-h-0">
+              <div className="flex flex-col gap-[8px] items-start w-full overflow-y-auto flex-1 min-h-0">
                 {selectedServices.length === 0 ? (
-                  <div className="flex items-center relative shrink-0 w-full">
-                    <p className="flex-1 text-[14px] text-[#71717a] leading-[1.5]">
-                      Lista de serviços vazia.
+                  <div className="flex flex-1 flex-col items-center justify-center w-full gap-[12px] border-[2px] border-dashed border-[#e5e5e5] rounded-[12px] p-[32px]">
+                    <CirclePlus className="size-[28px] text-[#a1a1aa]" />
+                    <p className="text-[13px] text-[#a1a1aa] leading-[1.5] text-center">
+                      Adiciona serviços a partir<br />do guia de serviços
                     </p>
                   </div>
                 ) : (
-                  selectedServices.map((sel, idx) => {
+                  selectedServices.map((sel) => {
                     const bd = computeServiceBreakdown(sel.items);
                     return (
-                    <div key={sel.templateId} className="flex flex-col gap-[16px] items-start w-full shrink-0">
-                      {idx > 0 && (
-                        <div className="bg-[rgba(39,39,42,0.15)] h-px shrink-0 w-full" />
-                      )}
-                      <div className="flex gap-[16px] items-start w-full rounded-[8px]">
-                        {/* Left: details */}
-                        <div className="flex flex-1 flex-col gap-[4px] items-start justify-center min-w-0">
-                          <p className="text-[14px] text-[#27272a] leading-[1.5] line-clamp-2 w-full">
-                            {sel.title}
-                          </p>
-                          {sel.subtitle && (
-                            <p className="text-[12px] text-[#27272a] leading-[1.5]">
-                              {sel.subtitle}
-                            </p>
-                          )}
-                          {/* Breakdown */}
-                          <div className="flex flex-col gap-[4px] items-start w-full mt-[4px]">
-                            {bd.hasLabor && (
-                              <p className="text-[12px] text-[#71717a] leading-[1.5] w-full" style={{ display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden", wordBreak: "break-word" }}>
-                                Mão de obra: {fmtCurrency(bd.laborSubtotal)} ({bd.hoursStr} * {bd.rateStr}/h)
-                              </p>
-                            )}
-                            {bd.hasParts && (
-                              <p className="text-[12px] text-[#71717a] leading-[1.5] truncate w-full">
-                                Peças: {fmtCurrency(bd.partsSubtotal)}
-                              </p>
-                            )}
-                            {bd.hasConsumables && (
-                              <p className="text-[12px] text-[#71717a] leading-[1.5] truncate w-full">
-                                Consumíveis: {fmtCurrency(bd.consumablesSubtotal)}
-                              </p>
-                            )}
+                    <div
+                      key={sel.templateId}
+                      className="bg-white border border-[#e5e5e5] border-l-[3px] border-l-[#8270ff] rounded-[12px] p-[14px_16px] shrink-0 w-full"
+                      style={{ animation: "selectedSlideIn 300ms cubic-bezier(0.16,1,0.3,1) both" }}
+                    >
+                      {/* Header: title + price */}
+                      <div className="flex items-start justify-between gap-[12px] mb-[10px]">
+                        <p className="text-[14px] text-[#27272a] leading-[1.4] font-medium flex-1 min-w-0 line-clamp-2">
+                          {sel.title}
+                        </p>
+                        <p className="text-[14px] text-[#27272a] leading-[1.4] font-semibold tabular-nums whitespace-nowrap ml-[12px]">
+                          {fmtCurrency(sel.totalWithVat)}
+                        </p>
+                      </div>
+                      {/* Breakdown with colored dots */}
+                      <div className="flex flex-col gap-[4px] mb-[10px]">
+                        {bd.hasLabor && (
+                          <div className="flex items-center justify-between text-[12px] text-[#71717a] leading-[1.5]">
+                            <span className="flex items-center gap-[6px]">
+                              <span className="size-[6px] rounded-full bg-[#818cf8] shrink-0" />
+                              Mão de obra ({bd.hoursStr})
+                            </span>
+                            <span className="tabular-nums">{fmtCurrency(bd.laborSubtotal)}</span>
                           </div>
-                        </div>
-                        {/* Right: price + delete */}
-                        <div className="flex flex-col items-end justify-between self-stretch shrink-0">
-                          <p className="text-[14px] text-[#27272a] leading-[1.5] font-semibold">
-                            {fmtCurrency(bd.laborSubtotal + bd.partsSubtotal + bd.consumablesSubtotal)}
-                          </p>
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={() => removeSelectedService(sel.templateId)}
-                            className="size-[32px] min-w-[32px] min-h-[32px] rounded-[6px] shrink-0"
-                          >
-                            <Trash2 className="size-[16px] text-[#a1a1aa]" />
-                          </Button>
-                        </div>
+                        )}
+                        {bd.hasParts && (
+                          <div className="flex items-center justify-between text-[12px] text-[#71717a] leading-[1.5]">
+                            <span className="flex items-center gap-[6px]">
+                              <span className="size-[6px] rounded-full bg-[#f59e0b] shrink-0" />
+                              Peças
+                            </span>
+                            <span className="tabular-nums">{fmtCurrency(bd.partsSubtotal)}</span>
+                          </div>
+                        )}
+                        {bd.hasConsumables && (
+                          <div className="flex items-center justify-between text-[12px] text-[#71717a] leading-[1.5]">
+                            <span className="flex items-center gap-[6px]">
+                              <span className="size-[6px] rounded-full bg-[#22c55e] shrink-0" />
+                              Consumíveis
+                            </span>
+                            <span className="tabular-nums">{fmtCurrency(bd.consumablesSubtotal)}</span>
+                          </div>
+                        )}
+                      </div>
+                      {/* Footer: delete */}
+                      <div className="flex items-center justify-end">
+                        <button
+                          onClick={() => removeSelectedService(sel.templateId)}
+                          className="flex items-center justify-center p-[4px] rounded-[4px] cursor-pointer text-[#a1a1aa] hover:text-[#ef4444] hover:bg-[rgba(239,68,68,0.06)] transition-colors duration-150"
+                        >
+                          <Trash2 className="size-[14px]" />
+                        </button>
                       </div>
                     </div>
                     );
@@ -2308,8 +2355,9 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
 
             {/* Summary Frame */}
             <div className="flex flex-col gap-[16px] items-start relative shrink-0 w-full">
+              <div className="bg-[#e5e5e5] h-px shrink-0 w-full" />
               {/* Total */}
-              <div className="flex flex-col gap-[4px] items-start relative shrink-0 w-full">
+              <div className="flex flex-col gap-[8px] items-start relative shrink-0 w-full">
                 <div className="flex gap-[16px] items-start w-full">
                   <div className="flex flex-1 items-center min-w-0 relative">
                     <p className="flex-1 text-[14px] text-[#71717a] leading-[1.5]">Subtotal</p>

@@ -22,7 +22,7 @@ function LeftFrame() {
 
 export default function Logo() {
   return (
-    <div className="bg-[#262124] content-stretch flex items-center justify-center px-[8px] relative rounded-[8px] size-full" data-name="Logo">
+    <div className="bg-[#27272a] content-stretch flex items-center justify-center px-[8px] relative rounded-[8px] size-full" data-name="Logo">
       <LeftFrame />
     </div>
   );

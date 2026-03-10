@@ -34,7 +34,7 @@ export default function ColorSelectorFrame() {
   return (
     <div className="content-stretch flex flex-col gap-[12px] items-start relative size-full" data-name="Color Selector Frame">
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Heading">
-        <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Identificador de cor</p>
+        <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Identificador de cor</p>
       </div>
       <Frame5 />
     </div>

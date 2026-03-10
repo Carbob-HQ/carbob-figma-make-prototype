@@ -57,9 +57,9 @@ export function ListsPopup({ anchorRect, onClose }: ListsPopupProps) {
       className="fixed z-50 animate-in fade-in duration-200"
       style={{ top, left }}
     >
-      <div className="bg-[#262124] min-w-[192px] rounded-lg border border-white/10 shadow-[0px_4px_6px_0px_rgba(0,0,0,0.1),0px_2px_4px_0px_rgba(0,0,0,0.06)]">
-        <div className="flex flex-col p-[5px]">
-          <span className="px-3 pt-1.5 pb-1 text-[12px] font-medium text-[#a1a1aa] leading-[1.5]">Lista</span>
+      <div className="bg-[#27272a] min-w-[192px] rounded-lg border border-white/10 shadow-[0px_4px_6px_0px_rgba(0,0,0,0.1),0px_2px_4px_0px_rgba(0,0,0,0.06)]">
+        <div className="flex flex-col p-[4px]">
+          <span className="px-3 pt-1.5 pb-1 text-[12px] font-medium text-[#71717a] leading-[1.5]">Lista</span>
           {actions.map((action) => (
             <Button
               key={action.label}
@@ -69,14 +69,14 @@ export function ListsPopup({ anchorRect, onClose }: ListsPopupProps) {
             >
               {action.type === "svg" ? (
                 <svg
-                  className="shrink-0 size-4 text-[#8270FF] transition-colors duration-200 ease-out"
+                  className="shrink-0 size-4 text-[#8270ff] transition-colors duration-200 ease-out"
                   fill="none"
                   viewBox={action.svgViewBox}
                 >
                   <path d={action.svgPath} fill="currentColor" />
                 </svg>
               ) : (
-                <IdCardLanyard className="shrink-0 size-4 text-[#8270FF] transition-colors duration-200 ease-out" />
+                <IdCardLanyard className="shrink-0 size-4 text-[#8270ff] transition-colors duration-200 ease-out" />
               )}
               <span className="font-medium">{action.label}</span>
             </Button>

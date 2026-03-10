@@ -11,10 +11,10 @@ function TopFrame() {
         </div>
       </div>
       <div className="content-stretch flex flex-[1_0_0] items-center min-h-px min-w-px relative" data-name="Light Mode / Heading">
-        <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] text-left whitespace-pre-wrap">Histórico de serviços</p>
+        <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] text-left whitespace-pre-wrap">Histórico de serviços</p>
       </div>
-      <div className="bg-[rgba(161,161,170,0.15)] content-stretch flex gap-[6px] items-center justify-center px-[8px] py-[4px] relative rounded-[6px] shrink-0" data-name="Light Mode / Badge">
-        <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#3f3f46] text-[12px] text-left">5</p>
+      <div className="bg-[rgba(161,161,170,0.15)] content-stretch flex gap-[8px] items-center justify-center px-[8px] py-[4px] relative rounded-[6px] shrink-0" data-name="Light Mode / Badge">
+        <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[12px] text-left">5</p>
       </div>
       <div className="flex items-center justify-center max-h-[24px] max-w-[24px] min-h-[24px] min-w-[24px] relative shrink-0 size-[24px]" style={{ "--transform-inner-width": "123", "--transform-inner-height": "16" } as React.CSSProperties}>
         <div className="flex-none rotate-90">
@@ -39,11 +39,11 @@ function LinkFrame() {
       <div className="overflow-clip relative shrink-0 size-[12px]" data-name="external-link">
         <div className="absolute inset-[8.33%]" data-name="Vector (Stroke)">
           <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 10 10">
-            <path d={svgPaths.p101e9700} fill="var(--fill-0, #8270FF)" id="Vector (Stroke)" />
+            <path d={svgPaths.p101e9700} fill="var(--fill-0, #8270ff)" id="Vector (Stroke)" />
           </svg>
         </div>
       </div>
-      <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#8270ff] text-[12px] whitespace-pre-wrap">ORC #791</p>
+      <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#8270ff] text-[12px] whitespace-pre-wrap">ORC #791</p>
     </div>
   );
 }
@@ -51,7 +51,7 @@ function LinkFrame() {
 function ContentFrame() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start min-h-px min-w-px relative" data-name="Content Frame">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] w-full whitespace-pre-wrap">Revisão oficial</p>
+      <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] w-full whitespace-pre-wrap">Revisão oficial</p>
       <LinkFrame />
     </div>
   );
@@ -61,10 +61,10 @@ function Frame() {
   return (
     <div className="content-stretch flex flex-col gap-[4px] h-full items-end justify-center relative shrink-0">
       <div className="content-stretch flex items-center justify-end relative shrink-0" data-name="Light Mode / Text">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis text-right">23/09/2024</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis text-right">23/09/2024</p>
       </div>
       <div className="content-stretch flex items-center justify-end relative shrink-0" data-name="Light Mode / Text">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis text-right">50.232 kms</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis text-right">50.232 kms</p>
       </div>
     </div>
   );
@@ -87,11 +87,11 @@ function LinkFrame1() {
       <div className="overflow-clip relative shrink-0 size-[12px]" data-name="external-link">
         <div className="absolute inset-[8.33%]" data-name="Vector (Stroke)">
           <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 10 10">
-            <path d={svgPaths.p101e9700} fill="var(--fill-0, #8270FF)" id="Vector (Stroke)" />
+            <path d={svgPaths.p101e9700} fill="var(--fill-0, #8270ff)" id="Vector (Stroke)" />
           </svg>
         </div>
       </div>
-      <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#8270ff] text-[12px] whitespace-pre-wrap">ORC #723</p>
+      <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#8270ff] text-[12px] whitespace-pre-wrap">ORC #723</p>
     </div>
   );
 }
@@ -99,7 +99,7 @@ function LinkFrame1() {
 function ContentFrame1() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start min-h-px min-w-px relative" data-name="Content Frame">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] w-full whitespace-pre-wrap">Revisão simples</p>
+      <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] w-full whitespace-pre-wrap">Revisão simples</p>
       <LinkFrame1 />
     </div>
   );
@@ -109,10 +109,10 @@ function Frame1() {
   return (
     <div className="content-stretch flex flex-col gap-[4px] items-end justify-center relative shrink-0">
       <div className="content-stretch flex items-center justify-end relative shrink-0" data-name="Light Mode / Text">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis text-right">14/09/2023</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis text-right">14/09/2023</p>
       </div>
       <div className="content-stretch flex items-center justify-end relative shrink-0" data-name="Light Mode / Text">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis text-right">44.877 kms</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis text-right">44.877 kms</p>
       </div>
     </div>
   );
@@ -133,11 +133,11 @@ function LinkFrame2() {
       <div className="overflow-clip relative shrink-0 size-[12px]" data-name="external-link">
         <div className="absolute inset-[8.33%]" data-name="Vector (Stroke)">
           <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 10 10">
-            <path d={svgPaths.p101e9700} fill="var(--fill-0, #8270FF)" id="Vector (Stroke)" />
+            <path d={svgPaths.p101e9700} fill="var(--fill-0, #8270ff)" id="Vector (Stroke)" />
           </svg>
         </div>
       </div>
-      <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#8270ff] text-[12px] whitespace-pre-wrap">ORC #723</p>
+      <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#8270ff] text-[12px] whitespace-pre-wrap">ORC #723</p>
     </div>
   );
 }
@@ -145,7 +145,7 @@ function LinkFrame2() {
 function ContentFrame2() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start min-h-px min-w-px relative" data-name="Content Frame">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] w-full whitespace-pre-wrap">Amortecedores dianteiros (substituir)</p>
+      <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] w-full whitespace-pre-wrap">Amortecedores dianteiros (substituir)</p>
       <LinkFrame2 />
     </div>
   );
@@ -155,10 +155,10 @@ function Frame2() {
   return (
     <div className="content-stretch flex flex-col gap-[4px] items-end justify-center relative shrink-0">
       <div className="content-stretch flex items-center justify-end relative shrink-0" data-name="Light Mode / Text">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis text-right">14/09/2023</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis text-right">14/09/2023</p>
       </div>
       <div className="content-stretch flex items-center justify-end relative shrink-0" data-name="Light Mode / Text">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis text-right">44.877 kms</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis text-right">44.877 kms</p>
       </div>
     </div>
   );
@@ -179,11 +179,11 @@ function LinkFrame3() {
       <div className="overflow-clip relative shrink-0 size-[12px]" data-name="external-link">
         <div className="absolute inset-[8.33%]" data-name="Vector (Stroke)">
           <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 10 10">
-            <path d={svgPaths.p101e9700} fill="var(--fill-0, #8270FF)" id="Vector (Stroke)" />
+            <path d={svgPaths.p101e9700} fill="var(--fill-0, #8270ff)" id="Vector (Stroke)" />
           </svg>
         </div>
       </div>
-      <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#8270ff] text-[12px] whitespace-pre-wrap">ORC #673</p>
+      <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#8270ff] text-[12px] whitespace-pre-wrap">ORC #673</p>
     </div>
   );
 }
@@ -191,7 +191,7 @@ function LinkFrame3() {
 function ContentFrame3() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start min-h-px min-w-px relative" data-name="Content Frame">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis w-full whitespace-nowrap">Pastilhas de travão (substituir)</p>
+      <p className="font-medium leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis w-full whitespace-nowrap">Pastilhas de travão (substituir)</p>
       <LinkFrame3 />
     </div>
   );
@@ -201,10 +201,10 @@ function Frame3() {
   return (
     <div className="content-stretch flex flex-col gap-[4px] items-end justify-center relative shrink-0">
       <div className="content-stretch flex items-center justify-end relative shrink-0" data-name="Light Mode / Text">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis text-right">17/03/2023</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis text-right">17/03/2023</p>
       </div>
       <div className="content-stretch flex items-center justify-end relative shrink-0" data-name="Light Mode / Text">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis text-right">41.561 kms</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis text-right">41.561 kms</p>
       </div>
     </div>
   );
@@ -225,11 +225,11 @@ function LinkFrame4() {
       <div className="overflow-clip relative shrink-0 size-[12px]" data-name="external-link">
         <div className="absolute inset-[8.33%]" data-name="Vector (Stroke)">
           <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 10 10">
-            <path d={svgPaths.p101e9700} fill="var(--fill-0, #8270FF)" id="Vector (Stroke)" />
+            <path d={svgPaths.p101e9700} fill="var(--fill-0, #8270ff)" id="Vector (Stroke)" />
           </svg>
         </div>
       </div>
-      <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#8270ff] text-[12px] whitespace-pre-wrap">ORC #673</p>
+      <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#8270ff] text-[12px] whitespace-pre-wrap">ORC #673</p>
     </div>
   );
 }
@@ -237,7 +237,7 @@ function LinkFrame4() {
 function ContentFrame4() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start min-h-px min-w-px relative" data-name="Content Frame">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis w-full whitespace-nowrap">Disco de travão (substituir)</p>
+      <p className="font-medium leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis w-full whitespace-nowrap">Disco de travão (substituir)</p>
       <LinkFrame4 />
     </div>
   );
@@ -247,10 +247,10 @@ function Frame4() {
   return (
     <div className="content-stretch flex flex-col gap-[4px] items-end justify-center relative shrink-0">
       <div className="content-stretch flex items-center justify-end relative shrink-0" data-name="Light Mode / Text">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis text-right">17/03/2023</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis text-right">17/03/2023</p>
       </div>
       <div className="content-stretch flex items-center justify-end relative shrink-0" data-name="Light Mode / Text">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis text-right">41.561 kms</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis text-right">41.561 kms</p>
       </div>
     </div>
   );
@@ -280,7 +280,7 @@ function Appointments() {
 export default function ClientPastSchedulesFrame() {
   return (
     <div className="bg-white content-stretch flex flex-col gap-[16px] items-start relative size-full" data-name="Client Past Schedules Frame">
-      <div className="bg-[rgba(39,39,42,0.15)] h-px shrink-0 w-[399px]" data-name="Light Mode / Separator" />
+      <div className="bg-[#e5e5e5] h-px shrink-0 w-[399px]" data-name="Light Mode / Separator" />
       <TopFrame />
       <Appointments />
     </div>

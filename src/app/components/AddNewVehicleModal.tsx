@@ -294,13 +294,13 @@ export default function AddNewVehicleModal({ isOpen, onClose, onVehicleAdded, as
         <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[12px]" />
 
         {/* Header */}
-        <div className="flex gap-[10px] items-start relative shrink-0 w-full">
+        <div className="flex gap-[12px] items-start relative shrink-0 w-full">
           <div className="flex flex-[1_0_0] flex-col gap-[8px] items-center justify-center min-h-px min-w-px relative">
             <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[16px] w-full whitespace-pre-wrap">Adicionar novo veículo</p>
           </div>
           <button
             onClick={onClose}
-            className="absolute flex items-center justify-center max-h-[32px] max-w-[32px] min-h-[32px] min-w-[32px] right-[-8px] rounded-[6px] size-[32px] top-[-8px] cursor-pointer transition-colors duration-200 ease-out hover:bg-[#e4e4e7]"
+            className="absolute flex items-center justify-center max-h-[32px] max-w-[32px] min-h-[32px] min-w-[32px] right-[-8px] rounded-[6px] size-[32px] top-[-8px] cursor-pointer transition-colors duration-200 ease-out hover:bg-[#e5e5e5]"
           >
             <div className="overflow-clip relative shrink-0 size-[16px]">
               <div className="absolute inset-[20.83%]">
@@ -351,7 +351,7 @@ export default function AddNewVehicleModal({ isOpen, onClose, onVehicleAdded, as
                           </svg>
                         </div>
                       </div>
-                      <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-[6px] px-[10px] py-[6px] bg-[#27272a] text-white text-[12px] leading-[1.5] font-normal rounded-[6px] whitespace-nowrap opacity-0 pointer-events-none group-hover/tooltip:opacity-100 transition-opacity duration-200 ease-out">
+                      <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-[6px] px-[10px] py-[8px] bg-[#27272a] text-white text-[12px] leading-[1.5] font-normal rounded-[6px] whitespace-nowrap opacity-0 pointer-events-none group-hover/tooltip:opacity-100 transition-opacity duration-200 ease-out">
                         Apenas válido para veículos ligeiros nacionais
                       </div>
                     </div>
@@ -431,42 +431,42 @@ export default function AddNewVehicleModal({ isOpen, onClose, onVehicleAdded, as
                 {/* Outputs section - shown after identification */}
                 {identifiedData && (
                   <>
-                    <div className="bg-[rgba(39,39,42,0.15)] h-px shrink-0 w-full" />
+                    <div className="bg-[#e5e5e5] h-px shrink-0 w-full" />
                     <div
                       className="gap-x-[16px] gap-y-[16px] grid grid-cols-[repeat(2,minmax(0,1fr))] grid-rows-[repeat(3,minmax(0,1fr))] h-[248px] relative shrink-0 w-full transition-opacity duration-200 ease-out"
                     >
                       {/* Row 1 */}
-                      <div className="flex flex-col gap-[6px] items-start relative shrink-0">
+                      <div className="flex flex-col gap-[8px] items-start relative shrink-0">
                         <Label className="text-[14px] text-[#27272a]">Marca</Label>
-                        <Input readOnly disabled value={identifiedData.brand} className="h-[40px] bg-[rgba(39,39,42,0.1)] border-transparent text-[14px] text-[#3f3f46]" />
+                        <Input readOnly disabled value={identifiedData.brand} className="h-[40px] bg-[rgba(39,39,42,0.1)] border-transparent text-[14px] text-[#27272a]" />
                       </div>
-                      <div className="flex flex-col gap-[6px] items-start relative shrink-0">
+                      <div className="flex flex-col gap-[8px] items-start relative shrink-0">
                         <Label className="text-[14px] text-[#27272a]">Modelo</Label>
-                        <Input readOnly disabled value={identifiedData.model} className="h-[40px] bg-[rgba(39,39,42,0.1)] border-transparent text-[14px] text-[#3f3f46]" />
+                        <Input readOnly disabled value={identifiedData.model} className="h-[40px] bg-[rgba(39,39,42,0.1)] border-transparent text-[14px] text-[#27272a]" />
                       </div>
                       {/* Row 2 */}
-                      <div className="flex flex-col gap-[6px] items-start relative shrink-0">
+                      <div className="flex flex-col gap-[8px] items-start relative shrink-0">
                         <Label className="text-[14px] text-[#27272a]">Versão</Label>
-                        <Input readOnly disabled value={identifiedData.version} className="h-[40px] bg-[rgba(39,39,42,0.1)] border-transparent text-[14px] text-[#3f3f46]" />
+                        <Input readOnly disabled value={identifiedData.version} className="h-[40px] bg-[rgba(39,39,42,0.1)] border-transparent text-[14px] text-[#27272a]" />
                       </div>
-                      <div className="flex flex-col gap-[6px] items-start relative shrink-0">
+                      <div className="flex flex-col gap-[8px] items-start relative shrink-0">
                         <Label className="text-[14px] text-[#27272a]">Motorização</Label>
-                        <Input readOnly disabled value={identifiedData.engine} className="h-[40px] bg-[rgba(39,39,42,0.1)] border-transparent text-[14px] text-[#3f3f46]" />
+                        <Input readOnly disabled value={identifiedData.engine} className="h-[40px] bg-[rgba(39,39,42,0.1)] border-transparent text-[14px] text-[#27272a]" />
                       </div>
                       {/* Row 3 */}
-                      <div className="flex flex-col gap-[6px] items-start relative shrink-0">
+                      <div className="flex flex-col gap-[8px] items-start relative shrink-0">
                         <Label className="text-[14px] text-[#27272a]">Data de matrícula</Label>
-                        <Input readOnly disabled value={identifiedData.registrationDate} className="h-[40px] bg-[rgba(39,39,42,0.1)] border-transparent text-[14px] text-[#3f3f46]" />
+                        <Input readOnly disabled value={identifiedData.registrationDate} className="h-[40px] bg-[rgba(39,39,42,0.1)] border-transparent text-[14px] text-[#27272a]" />
                       </div>
                       {activeTab === "matricula" ? (
-                        <div className="flex flex-col gap-[6px] items-start relative shrink-0">
+                        <div className="flex flex-col gap-[8px] items-start relative shrink-0">
                           <Label className="text-[14px] text-[#27272a]">VIN</Label>
-                          <Input readOnly disabled value={identifiedData.vin} className="h-[40px] bg-[rgba(39,39,42,0.1)] border-transparent text-[14px] text-[#3f3f46]" />
+                          <Input readOnly disabled value={identifiedData.vin} className="h-[40px] bg-[rgba(39,39,42,0.1)] border-transparent text-[14px] text-[#27272a]" />
                         </div>
                       ) : (
-                        <div className="flex flex-col gap-[6px] items-start relative shrink-0">
+                        <div className="flex flex-col gap-[8px] items-start relative shrink-0">
                           <Label className="text-[14px] text-[#27272a]">Matrícula</Label>
-                          <Input readOnly disabled value={identifiedData.plate} className="h-[40px] bg-[rgba(39,39,42,0.1)] border-transparent text-[14px] text-[#3f3f46]" />
+                          <Input readOnly disabled value={identifiedData.plate} className="h-[40px] bg-[rgba(39,39,42,0.1)] border-transparent text-[14px] text-[#27272a]" />
                         </div>
                       )}
                     </div>
@@ -479,10 +479,10 @@ export default function AddNewVehicleModal({ isOpen, onClose, onVehicleAdded, as
                 <div className="flex items-center relative shrink-0 w-full">
                   <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Seleciona o ano, marca, modelo e versão do veículo</p>
                 </div>
-                <div className="gap-x-[16px] gap-y-[16px] grid grid-cols-[repeat(2,minmax(0,1fr))] grid-rows-[repeat(3,minmax(0,1fr))] h-[248px] relative shrink-0 w-full overflow-visible">
+                <div className="gap-x-[16px] gap-y-[16px] grid grid-cols-[repeat(2,minmax(0,1fr))] grid-rows-[repeat(3,auto)] relative shrink-0 w-full overflow-visible">
                   {/* Row 1, Col 1: Marca */}
                   <BrandCombobox
-                    label="Marca *"
+                    label="Marca"
                     value={manualBrand}
                     onChange={(brand) => {
                       setManualBrand(brand);
@@ -496,7 +496,7 @@ export default function AddNewVehicleModal({ isOpen, onClose, onVehicleAdded, as
                   />
                   {/* Row 1, Col 2: Ano */}
                   <YearCombobox
-                    label="Ano *"
+                    label="Ano"
                     value={manualYear}
                     onChange={(year) => {
                       setManualYear(year);
@@ -510,7 +510,7 @@ export default function AddNewVehicleModal({ isOpen, onClose, onVehicleAdded, as
                   />
                   {/* Row 2, Col 1: Modelo */}
                   <ModelCombobox
-                    label="Modelo *"
+                    label="Modelo"
                     brand={manualBrand}
                     value={manualModel}
                     onChange={(model) => {
@@ -524,7 +524,7 @@ export default function AddNewVehicleModal({ isOpen, onClose, onVehicleAdded, as
                   />
                   {/* Row 2, Col 2: Versão */}
                   <VersionCombobox
-                    label="Versão *"
+                    label="Versão"
                     model={manualModel}
                     year={manualYear}
                     value={manualVersion}
@@ -538,7 +538,7 @@ export default function AddNewVehicleModal({ isOpen, onClose, onVehicleAdded, as
                   />
                   {/* Row 3, Col 1: Motorização */}
                   <EngineCombobox
-                    label="Motorização *"
+                    label="Motorização"
                     version={manualVersion}
                     value={manualEngine}
                     onChange={(engine) => {
@@ -549,7 +549,7 @@ export default function AddNewVehicleModal({ isOpen, onClose, onVehicleAdded, as
                     error={manualErrors.has("engine")}
                   />
                   {/* Row 3, Col 2: Matrícula */}
-                  <div className="flex flex-col gap-[6px] items-start relative shrink-0">
+                  <div className="flex flex-col gap-[8px] items-start relative shrink-0">
                     <p className="font-medium leading-[1.5] not-italic text-[#27272a] text-[14px]">Matrícula</p>
                     <Input
                       type="text"

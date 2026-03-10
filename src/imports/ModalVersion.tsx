@@ -3,8 +3,8 @@ import svgPaths from "./svg-kcws562h2v";
 function LabelFrame() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[8px] items-center justify-center min-h-px min-w-px not-italic relative text-left whitespace-pre-wrap" data-name="Label Frame">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] relative shrink-0 text-[#27272a] text-[14px] w-full">Clio IV</p>
-      <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] relative shrink-0 text-[#71717a] text-[12px] w-full">{`11/2012 -> 08/2021`}</p>
+      <p className="font-medium leading-[1.5] relative shrink-0 text-[#27272a] text-[14px] w-full">Clio IV</p>
+      <p className="font-normal leading-[1.5] relative shrink-0 text-[#71717a] text-[12px] w-full">{`11/2012 -> 08/2021`}</p>
     </div>
   );
 }
@@ -23,8 +23,8 @@ function Frame() {
 function LabelFrame1() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[8px] items-center justify-center min-h-px min-w-px not-italic relative whitespace-pre-wrap" data-name="Label Frame">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] relative shrink-0 text-[#27272a] text-[14px] w-full">Clio IV Sport Tourer</p>
-      <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] relative shrink-0 text-[#71717a] text-[12px] w-full">{`11/2012 -> 08/2021`}</p>
+      <p className="font-medium leading-[1.5] relative shrink-0 text-[#27272a] text-[14px] w-full">Clio IV Sport Tourer</p>
+      <p className="font-normal leading-[1.5] relative shrink-0 text-[#71717a] text-[12px] w-full">{`11/2012 -> 08/2021`}</p>
     </div>
   );
 }
@@ -43,8 +43,8 @@ function Frame1() {
 function LabelFrame2() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[8px] items-center justify-center min-h-px min-w-px not-italic relative whitespace-pre-wrap" data-name="Label Frame">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] relative shrink-0 text-[#27272a] text-[14px] w-full">Clio V</p>
-      <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] relative shrink-0 text-[#71717a] text-[12px] w-full">{`06/2019 -> Hoje`}</p>
+      <p className="font-medium leading-[1.5] relative shrink-0 text-[#27272a] text-[14px] w-full">Clio V</p>
+      <p className="font-normal leading-[1.5] relative shrink-0 text-[#71717a] text-[12px] w-full">{`06/2019 -> Hoje`}</p>
     </div>
   );
 }
@@ -80,9 +80,9 @@ export default function ModalVersion() {
   return (
     <div className="bg-[#f4f4f5] content-stretch flex flex-col gap-[24px] items-start p-[24px] relative rounded-[12px] size-full" data-name="Modal / Version">
       <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[12px]" />
-      <div className="content-stretch flex gap-[10px] items-start relative shrink-0 w-full" data-name="Light Mode / Card Items / Header Block">
+      <div className="content-stretch flex gap-[12px] items-start relative shrink-0 w-full" data-name="Light Mode / Card Items / Header Block">
         <div className="content-stretch flex flex-[1_0_0] flex-col gap-[8px] items-center justify-center min-h-px min-w-px relative" data-name="Light Mode / Card Items / Header">
-          <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.25] not-italic relative shrink-0 text-[#27272a] text-[16px] w-full whitespace-pre-wrap">Seleciona a versão do veículo</p>
+          <p className="font-medium leading-[1.25] not-italic relative shrink-0 text-[#27272a] text-[16px] w-full whitespace-pre-wrap">Seleciona a versão do veículo</p>
         </div>
         <button className="absolute content-stretch cursor-pointer flex items-center justify-center max-h-[32px] max-w-[32px] min-h-[32px] min-w-[32px] right-[-8px] rounded-[6px] size-[32px] top-[-8px]" data-name="Light Mode / Button">
           <div className="overflow-clip relative shrink-0 size-[16px]" data-name="Icon">

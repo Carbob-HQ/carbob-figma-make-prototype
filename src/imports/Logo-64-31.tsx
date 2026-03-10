@@ -2,7 +2,7 @@ import svgPaths from "./svg-z9ghomg1fy";
 
 export default function Logo() {
   return (
-    <div className="bg-[#262124] content-stretch flex items-center justify-center px-[8px] relative rounded-[8px] size-full" data-name="Logo">
+    <div className="bg-[#27272a] content-stretch flex items-center justify-center px-[8px] relative rounded-[8px] size-full" data-name="Logo">
       <div className="content-stretch flex items-center p-[10px] relative shrink-0" data-name="Left Frame">
         <div className="opacity-50 overflow-clip relative shrink-0 size-[20px]" data-name="panel-right-close">
           <div className="absolute inset-[8.33%]" data-name="Vector (Stroke)">

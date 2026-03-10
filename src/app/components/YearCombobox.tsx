@@ -61,7 +61,7 @@ export function YearCombobox({ value, onChange, disabled, label, error }: YearCo
   };
 
   return (
-    <div className="flex flex-col gap-[6px] items-start relative shrink-0" ref={containerRef}>
+    <div className="flex flex-col gap-[8px] items-start relative shrink-0" ref={containerRef}>
       <p className="font-medium leading-[1.5] not-italic text-[#27272a] text-[14px]">{label ?? "Ano"}</p>
 
       {/* Trigger */}
@@ -70,15 +70,16 @@ export function YearCombobox({ value, onChange, disabled, label, error }: YearCo
         type="button"
         disabled={disabled}
         onClick={handleToggle}
-        className={`flex items-center justify-between w-full min-h-[40px] h-[40px] bg-white rounded-[8px] border px-[12px] text-[14px] font-normal transition-colors duration-200 ease-out not-disabled:hover:bg-[#e4e4e7] ${
+        className={`flex items-center justify-between w-full min-h-[40px] h-[40px] bg-white rounded-[8px] border px-[12px] text-[14px] font-normal transition-colors duration-200 ease-out not-disabled:hover:bg-[#e5e5e5] ${
           disabled ? "opacity-50 cursor-default border-[#e5e5e5]" : "cursor-pointer"
         } ${error && !disabled ? "border-[#ef4444]" : "border-[#e5e5e5]"}`}
       >
-        <span className={value ? "text-[#3f3f46]" : "text-[#a1a1aa]"}>
+        <span className={value ? "text-[#27272a]" : "text-[#71717a]"}>
           {value || "Ano do veículo"}
         </span>
-        <ChevronDown className="size-4 text-[#a1a1aa] shrink-0" />
+        <ChevronDown className="size-4 text-[#71717a] shrink-0" />
       </button>
+      {error && !disabled && <span className="text-[12px] text-[#ef4444] leading-[1.5]">Campo obrigatório</span>}
 
       {/* Dropdown */}
       {open && (
@@ -99,11 +100,11 @@ export function YearCombobox({ value, onChange, disabled, label, error }: YearCo
               key={DONT_KNOW}
               type="button"
               onClick={() => handleSelect(DONT_KNOW)}
-              className="flex items-center gap-[8px] w-full px-[12px] py-[8px] text-[14px] text-[#3f3f46] hover:bg-[#f4f4f5] cursor-pointer transition-colors duration-200 ease-out"
+              className="flex items-center gap-[8px] w-full px-[12px] py-[8px] text-[14px] text-[#27272a] hover:bg-[#f4f4f5] cursor-pointer transition-colors duration-200 ease-out"
             >
               <Check
                 className={`size-4 shrink-0 transition-opacity duration-200 ease-out ${
-                  value === DONT_KNOW ? "opacity-100 text-[#3f3f46]" : "opacity-0"
+                  value === DONT_KNOW ? "opacity-100 text-[#27272a]" : "opacity-0"
                 }`}
               />
               {DONT_KNOW}
@@ -114,11 +115,11 @@ export function YearCombobox({ value, onChange, disabled, label, error }: YearCo
                 key={year}
                 type="button"
                 onClick={() => handleSelect(String(year))}
-                className="flex items-center gap-[8px] w-full px-[12px] py-[8px] text-[14px] text-[#3f3f46] hover:bg-[#f4f4f5] cursor-pointer transition-colors duration-200 ease-out"
+                className="flex items-center gap-[8px] w-full px-[12px] py-[8px] text-[14px] text-[#27272a] hover:bg-[#f4f4f5] cursor-pointer transition-colors duration-200 ease-out"
               >
                 <Check
                   className={`size-4 shrink-0 transition-opacity duration-200 ease-out ${
-                    value === String(year) ? "opacity-100 text-[#3f3f46]" : "opacity-0"
+                    value === String(year) ? "opacity-100 text-[#27272a]" : "opacity-0"
                   }`}
                 />
                 {year}

@@ -6,7 +6,7 @@ export default function SupplyFrame() {
       <div className="overflow-clip relative shrink-0 size-[16px]" data-name="droplet">
         <div className="absolute inset-[8.33%_16.67%_4.17%_16.67%]" data-name="Vector (Stroke)">
           <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 10.6667 14">
-            <path d={svgPaths.p218d4700} fill="var(--fill-0, #262124)" id="Vector (Stroke)" />
+            <path d={svgPaths.p218d4700} fill="var(--fill-0, #27272a)" id="Vector (Stroke)" />
           </svg>
         </div>
       </div>

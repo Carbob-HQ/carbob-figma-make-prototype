@@ -6,7 +6,7 @@ export default function ServiceTable() {
       <div className="relative shrink-0 w-full" data-name="Bottom Frame">
         <div className="flex flex-row items-center size-full">
           <div className="content-stretch flex items-center justify-between pr-[20px] relative w-full">
-            <div className="bg-[rgba(39,39,42,0.05)] content-stretch flex h-[34px] items-start p-[3px] relative rounded-[8px] shrink-0" data-name="Light Mode / Tab Groups">
+            <div className="bg-[rgba(39,39,42,0.05)] content-stretch flex h-[32px] items-start p-[3px] relative rounded-[8px] shrink-0" data-name="Light Mode / Tab Groups">
               <button className="content-stretch cursor-pointer flex gap-[8px] items-center justify-center px-[12px] py-[4px] relative rounded-[6px] shrink-0" data-name="Tab 1">
                 <div className="overflow-clip relative shrink-0 size-[20px]" data-name="Left icon">
                   <div className="absolute inset-[20.83%_8.33%]" data-name="Vector (Stroke)">
@@ -38,7 +38,7 @@ export default function ServiceTable() {
                   </div>
                 </div>
                 <div className="content-stretch flex items-center justify-center relative shrink-0" data-name="Light Mode / Heading">
-                  <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px]">0,00€</p>
+                  <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px]">0,00€</p>
                 </div>
               </div>
               <div className="content-stretch flex gap-[8px] items-center relative shrink-0" data-name="Frame">
@@ -52,7 +52,7 @@ export default function ServiceTable() {
                   </div>
                 </div>
                 <div className="content-stretch flex items-center justify-center relative shrink-0" data-name="Light Mode / Heading">
-                  <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px]">0,00€</p>
+                  <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px]">0,00€</p>
                 </div>
               </div>
               <div className="content-stretch flex gap-[8px] items-center relative shrink-0" data-name="Frame">
@@ -60,13 +60,13 @@ export default function ServiceTable() {
                   <div className="overflow-clip relative shrink-0 size-[16px]" data-name="droplet">
                     <div className="absolute inset-[8.33%_16.67%_4.17%_16.67%]" data-name="Vector (Stroke)">
                       <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 10.6667 14">
-                        <path d={svgPaths.p218d4700} fill="var(--fill-0, #262124)" id="Vector (Stroke)" />
+                        <path d={svgPaths.p218d4700} fill="var(--fill-0, #27272a)" id="Vector (Stroke)" />
                       </svg>
                     </div>
                   </div>
                 </div>
                 <div className="content-stretch flex items-center justify-center relative shrink-0" data-name="Light Mode / Heading">
-                  <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px]">0,00€</p>
+                  <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px]">0,00€</p>
                 </div>
               </div>
               <div className="content-stretch flex gap-[8px] items-center relative shrink-0" data-name="Frame">
@@ -80,7 +80,7 @@ export default function ServiceTable() {
                   </div>
                 </div>
                 <div className="content-stretch flex items-center justify-center relative shrink-0" data-name="Light Mode / Heading">
-                  <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px]">0,00€</p>
+                  <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px]">0,00€</p>
                 </div>
               </div>
             </div>
@@ -92,11 +92,11 @@ export default function ServiceTable() {
           <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Table">
             <div className="content-stretch flex flex-[1_0_0] flex-col items-start min-h-px min-w-px relative rounded-bl-[16px] rounded-tl-[16px]" data-name="Column">
               <div className="relative shrink-0 w-full" data-name="Header">
-                <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+                <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
                 <div className="flex flex-row items-center size-full">
-                  <div className="content-stretch flex items-center pl-[20px] pr-[8px] py-[6px] relative w-full">
+                  <div className="content-stretch flex items-center pl-[20px] pr-[8px] py-[8px] relative w-full">
                     <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-                      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">MÃO DE OBRA</p>
+                      <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">MÃO DE OBRA</p>
                     </div>
                   </div>
                 </div>
@@ -105,7 +105,7 @@ export default function ServiceTable() {
                 <div className="flex flex-row items-center min-h-[inherit] size-full">
                   <div className="content-stretch flex gap-[8px] items-center min-h-[inherit] pl-[20px] pr-[8px] py-[8px] relative w-full">
                     <div className="content-stretch flex flex-[1_0_0] items-center min-h-px min-w-px relative" data-name="Light Mode / Text">
-                      <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Sem itens</p>
+                      <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Sem itens</p>
                     </div>
                   </div>
                 </div>
@@ -113,10 +113,10 @@ export default function ServiceTable() {
             </div>
             <div className="flex flex-row items-center self-stretch">
               <div className="content-stretch flex flex-col h-full items-start relative shrink-0 w-[60px]" data-name="Column">
-                <div className="content-stretch flex items-center px-[8px] py-[6px] relative shrink-0" data-name="Header">
-                  <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+                <div className="content-stretch flex items-center px-[8px] py-[8px] relative shrink-0" data-name="Header">
+                  <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
                   <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-                    <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">HORAS</p>
+                    <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">HORAS</p>
                   </div>
                 </div>
               </div>
@@ -124,11 +124,11 @@ export default function ServiceTable() {
             <div className="flex flex-row items-center self-stretch">
               <div className="content-stretch flex flex-col h-full items-start relative shrink-0 w-[102px]" data-name="Column">
                 <div className="relative shrink-0 w-full" data-name="Header">
-                  <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+                  <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
                   <div className="flex flex-row items-center size-full">
-                    <div className="content-stretch flex items-center px-[8px] py-[6px] relative w-full">
+                    <div className="content-stretch flex items-center px-[8px] py-[8px] relative w-full">
                       <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-                        <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">PREÇO / HORA</p>
+                        <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">PREÇO / HORA</p>
                       </div>
                     </div>
                   </div>
@@ -138,11 +138,11 @@ export default function ServiceTable() {
             <div className="flex flex-row items-center self-stretch">
               <div className="content-stretch flex flex-col h-full items-start relative shrink-0 w-[57px]" data-name="Column">
                 <div className="relative shrink-0 w-full" data-name="Header">
-                  <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+                  <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
                   <div className="flex flex-row items-center size-full">
-                    <div className="content-stretch flex items-center px-[8px] py-[6px] relative w-full">
+                    <div className="content-stretch flex items-center px-[8px] py-[8px] relative w-full">
                       <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-                        <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">Desc.</p>
+                        <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">Desc.</p>
                       </div>
                     </div>
                   </div>
@@ -152,11 +152,11 @@ export default function ServiceTable() {
             <div className="flex flex-row items-center self-stretch">
               <div className="content-stretch flex flex-col h-full items-start relative shrink-0 w-[82px]" data-name="Column">
                 <div className="relative shrink-0 w-full" data-name="Header">
-                  <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+                  <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
                   <div className="flex flex-row items-center justify-end size-full">
-                    <div className="content-stretch flex items-center justify-end px-[8px] py-[6px] relative w-full">
+                    <div className="content-stretch flex items-center justify-end px-[8px] py-[8px] relative w-full">
                       <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-                        <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">Subtotal</p>
+                        <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">Subtotal</p>
                       </div>
                     </div>
                   </div>
@@ -166,7 +166,7 @@ export default function ServiceTable() {
             <div className="flex flex-row items-center self-stretch">
               <div className="content-stretch flex flex-col h-full items-start relative rounded-br-[16px] rounded-tr-[16px] shrink-0 w-[32px]" data-name="Column">
                 <div className="h-[32px] relative shrink-0 w-full" data-name="Header">
-                  <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+                  <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
                 </div>
               </div>
             </div>
@@ -176,11 +176,11 @@ export default function ServiceTable() {
           <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Table">
             <div className="content-stretch flex flex-[1_0_0] flex-col items-start min-h-px min-w-px relative rounded-bl-[16px] rounded-tl-[16px]" data-name="Column">
               <div className="relative shrink-0 w-full" data-name="Header">
-                <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+                <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
                 <div className="flex flex-row items-center size-full">
-                  <div className="content-stretch flex items-center pl-[20px] pr-[8px] py-[6px] relative w-full">
+                  <div className="content-stretch flex items-center pl-[20px] pr-[8px] py-[8px] relative w-full">
                     <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-                      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">PEÇA</p>
+                      <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">PEÇA</p>
                     </div>
                   </div>
                 </div>
@@ -189,7 +189,7 @@ export default function ServiceTable() {
                 <div className="flex flex-row items-center min-h-[inherit] size-full">
                   <div className="content-stretch flex gap-[8px] items-center min-h-[inherit] pl-[20px] pr-[8px] py-[8px] relative w-full">
                     <div className="content-stretch flex flex-[1_0_0] items-center min-h-px min-w-px relative" data-name="Light Mode / Text">
-                      <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Sem itens</p>
+                      <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Sem itens</p>
                     </div>
                   </div>
                 </div>
@@ -198,11 +198,11 @@ export default function ServiceTable() {
             <div className="flex flex-[1_0_0] flex-row items-center self-stretch">
               <div className="content-stretch flex flex-[1_0_0] flex-col h-full items-start max-w-[200px] min-h-px min-w-px relative" data-name="Column">
                 <div className="relative shrink-0 w-full" data-name="Header">
-                  <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+                  <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
                   <div className="flex flex-row items-center size-full">
-                    <div className="content-stretch flex items-center px-[8px] py-[6px] relative w-full">
+                    <div className="content-stretch flex items-center px-[8px] py-[8px] relative w-full">
                       <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-                        <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">REF. OEM</p>
+                        <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">REF. OEM</p>
                       </div>
                     </div>
                   </div>
@@ -211,10 +211,10 @@ export default function ServiceTable() {
             </div>
             <div className="flex flex-row items-center self-stretch">
               <div className="content-stretch flex flex-col h-full items-start relative shrink-0" data-name="Column">
-                <div className="content-stretch flex items-center px-[8px] py-[6px] relative shrink-0" data-name="Header">
-                  <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+                <div className="content-stretch flex items-center px-[8px] py-[8px] relative shrink-0" data-name="Header">
+                  <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
                   <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-                    <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">QTD.</p>
+                    <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">QTD.</p>
                   </div>
                 </div>
               </div>
@@ -222,11 +222,11 @@ export default function ServiceTable() {
             <div className="flex flex-row items-center self-stretch">
               <div className="content-stretch flex flex-col h-full items-start relative shrink-0 w-[96px]" data-name="Column">
                 <div className="relative shrink-0 w-full" data-name="Header">
-                  <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+                  <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
                   <div className="flex flex-row items-center size-full">
-                    <div className="content-stretch flex items-center px-[8px] py-[6px] relative w-full">
+                    <div className="content-stretch flex items-center px-[8px] py-[8px] relative w-full">
                       <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-                        <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">CUSTO</p>
+                        <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">CUSTO</p>
                       </div>
                     </div>
                   </div>
@@ -236,11 +236,11 @@ export default function ServiceTable() {
             <div className="flex flex-row items-center self-stretch">
               <div className="content-stretch flex flex-col h-full items-start relative shrink-0 w-[96px]" data-name="Column">
                 <div className="relative shrink-0 w-full" data-name="Header">
-                  <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+                  <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
                   <div className="flex flex-row items-center size-full">
-                    <div className="content-stretch flex items-center px-[8px] py-[6px] relative w-full">
+                    <div className="content-stretch flex items-center px-[8px] py-[8px] relative w-full">
                       <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-                        <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">PREÇO</p>
+                        <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">PREÇO</p>
                       </div>
                     </div>
                   </div>
@@ -250,11 +250,11 @@ export default function ServiceTable() {
             <div className="flex flex-row items-center self-stretch">
               <div className="content-stretch flex flex-col h-full items-start relative shrink-0 w-[57px]" data-name="Column">
                 <div className="relative shrink-0 w-full" data-name="Header">
-                  <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+                  <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
                   <div className="flex flex-row items-center size-full">
-                    <div className="content-stretch flex items-center px-[8px] py-[6px] relative w-full">
+                    <div className="content-stretch flex items-center px-[8px] py-[8px] relative w-full">
                       <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-                        <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">Desc.</p>
+                        <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">Desc.</p>
                       </div>
                     </div>
                   </div>
@@ -264,11 +264,11 @@ export default function ServiceTable() {
             <div className="flex flex-row items-center self-stretch">
               <div className="content-stretch flex flex-col h-full items-start relative shrink-0 w-[82px]" data-name="Column">
                 <div className="relative shrink-0 w-full" data-name="Header">
-                  <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+                  <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
                   <div className="flex flex-row items-center justify-end size-full">
-                    <div className="content-stretch flex items-center justify-end px-[8px] py-[6px] relative w-full">
+                    <div className="content-stretch flex items-center justify-end px-[8px] py-[8px] relative w-full">
                       <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-                        <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">Subtotal</p>
+                        <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">Subtotal</p>
                       </div>
                     </div>
                   </div>
@@ -278,7 +278,7 @@ export default function ServiceTable() {
             <div className="flex flex-row items-center self-stretch">
               <div className="content-stretch flex flex-col h-full items-start relative rounded-br-[16px] rounded-tr-[16px] shrink-0 w-[32px]" data-name="Column">
                 <div className="h-[32px] relative shrink-0 w-full" data-name="Header">
-                  <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+                  <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
                 </div>
               </div>
             </div>
@@ -296,7 +296,7 @@ export default function ServiceTable() {
               </div>
             </div>
             <div className="content-stretch flex items-center justify-center relative shrink-0" data-name="Light Mode / Heading">
-              <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] text-left">Consumíveis</p>
+              <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] text-left">Consumíveis</p>
             </div>
           </button>
         </div>
@@ -312,7 +312,7 @@ export default function ServiceTable() {
               </div>
             </div>
             <div className="content-stretch flex items-center justify-center relative shrink-0" data-name="Light Mode / Heading">
-              <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] text-left">Encargos</p>
+              <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] text-left">Encargos</p>
             </div>
           </button>
         </div>
@@ -329,12 +329,12 @@ export default function ServiceTable() {
                     </svg>
                   </div>
                 </div>
-                <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px]">Novo item</p>
+                <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px]">Novo item</p>
               </div>
             </div>
             <div className="content-stretch flex gap-[4px] items-center justify-end relative shrink-0" data-name="Service Price Frame">
               <div className="content-stretch flex items-center justify-center relative shrink-0" data-name="Light Mode / Heading">
-                <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[16px]">0,00€</p>
+                <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[16px]">0,00€</p>
               </div>
               <div className="content-stretch flex items-start relative shrink-0 size-[16px]" data-name="Tooltip / Service Price Breakdown">
                 <div className="flex-[1_0_0] h-full min-h-px min-w-px overflow-clip relative" data-name="info">

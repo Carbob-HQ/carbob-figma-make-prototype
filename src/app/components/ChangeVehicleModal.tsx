@@ -58,7 +58,7 @@ export default function ChangeVehicleModal({
         />
 
         {/* Header */}
-        <div className="content-stretch flex gap-[10px] items-start relative shrink-0 w-full">
+        <div className="content-stretch flex gap-[12px] items-start relative shrink-0 w-full">
           <div className="content-stretch flex flex-[1_0_0] flex-col gap-[8px] items-center justify-center min-h-px min-w-px relative">
             <p className="font-medium leading-[1.25] not-italic relative shrink-0 text-[#27272a] text-[16px] w-full">
               Alterar veículo do orçamento?
@@ -66,7 +66,7 @@ export default function ChangeVehicleModal({
           </div>
           <button
             onClick={onClose}
-            className="absolute content-stretch cursor-pointer flex items-center justify-center max-h-[32px] max-w-[32px] min-h-[32px] min-w-[32px] right-[-8px] rounded-[6px] size-[32px] top-[-8px] transition-colors not-disabled:hover:bg-[#e4e4e7]"
+            className="absolute content-stretch cursor-pointer flex items-center justify-center max-h-[32px] max-w-[32px] min-h-[32px] min-w-[32px] right-[-8px] rounded-[6px] size-[32px] top-[-8px] transition-colors not-disabled:hover:bg-[#e5e5e5]"
           >
             <div className="overflow-clip relative shrink-0 size-[16px]">
               <div className="absolute inset-[20.83%]">

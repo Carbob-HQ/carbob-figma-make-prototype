@@ -240,20 +240,20 @@ export default function AddNewClientModal({ isOpen, onClose, onAddClient }: AddN
       style={{ opacity: isAnimating ? 1 : 0 }}
     >
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/20" onClick={onClose} />
+      <div className="absolute inset-0 bg-black/50" onClick={onClose} />
 
       {/* Modal */}
       <div className="bg-[#f4f4f5] flex flex-col gap-[24px] items-start p-[24px] relative rounded-[12px] w-[576px] max-h-[90vh] overflow-auto z-10">
-        <div aria-hidden="true" className="absolute border border-[#e4e4e7] border-solid inset-0 pointer-events-none rounded-[12px]" />
+        <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[12px]" />
 
         {/* Header */}
-        <div className="flex gap-[10px] items-start relative shrink-0 w-full">
+        <div className="flex gap-[12px] items-start relative shrink-0 w-full">
           <div className="flex flex-[1_0_0] flex-col gap-[8px] items-center justify-center min-h-px min-w-px relative">
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[16px] w-full whitespace-pre-wrap">Adicionar novo cliente</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[16px] w-full whitespace-pre-wrap">Adicionar novo cliente</p>
           </div>
           <button
             onClick={onClose}
-            className="absolute flex items-center justify-center max-h-[32px] max-w-[32px] min-h-[32px] min-w-[32px] right-[-8px] rounded-[6px] size-[32px] top-[-8px] cursor-pointer hover:bg-[#e4e4e7] transition-colors duration-200 ease-out"
+            className="absolute flex items-center justify-center max-h-[32px] max-w-[32px] min-h-[32px] min-w-[32px] right-[-8px] rounded-[6px] size-[32px] top-[-8px] cursor-pointer hover:bg-[#e5e5e5] transition-colors duration-200 ease-out"
           >
             <div className="overflow-clip relative shrink-0 size-[16px]">
               <div className="absolute inset-[20.83%]">
@@ -327,16 +327,16 @@ export default function AddNewClientModal({ isOpen, onClose, onAddClient }: AddN
         <div className="flex gap-[8px] items-start justify-end relative shrink-0 w-full">
           <button
             onClick={onClose}
-            className="flex gap-[8px] items-center justify-center max-h-[40px] min-h-[40px] px-[16px] relative rounded-[8px] shrink-0 cursor-pointer bg-transparent border-none hover:bg-[#e4e4e7] transition-colors duration-200 ease-out"
+            className="flex gap-[8px] items-center justify-center max-h-[40px] min-h-[40px] px-[16px] relative rounded-[8px] shrink-0 cursor-pointer bg-transparent border-none hover:bg-[#e5e5e5] transition-colors duration-200 ease-out"
           >
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] text-left">Cancelar</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] text-left">Cancelar</p>
           </button>
           <button
             onClick={handleAdd}
-            className="bg-[#262124] flex gap-[8px] items-center justify-center max-h-[40px] min-h-[40px] px-[16px] relative rounded-[8px] shrink-0 border-none cursor-pointer transition-colors duration-200 ease-out hover:bg-[#3f3f46]"
+            className="bg-[#27272a] flex gap-[8px] items-center justify-center max-h-[40px] min-h-[40px] px-[16px] relative rounded-[8px] shrink-0 border-none cursor-pointer transition-colors duration-200 ease-out hover:bg-[#3f3f46]"
           >
-            <div aria-hidden="true" className="absolute border border-[rgba(0,0,0,0.1)] border-solid inset-0 pointer-events-none rounded-[8px]" />
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[14px] text-white">Adicionar</p>
+            <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[8px]" />
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[14px] text-white">Adicionar</p>
             <div className="absolute inset-0 pointer-events-none rounded-[inherit] shadow-[inset_0px_1px_0px_0px_black,inset_0px_2px_0px_0px_rgba(255,255,255,0.2)]" />
           </button>
         </div>
@@ -474,7 +474,7 @@ function ContactoTab({
         className="flex flex-col gap-[8px] items-start relative shrink-0 w-full"
         {...(errorFields.has("name") ? { "data-client-field": "name" } : {})}
       >
-        <Label>Nome *</Label>
+        <Label>Nome</Label>
         <Input
           ref={nameInputRef}
           type="text"
@@ -482,11 +482,12 @@ function ContactoTab({
           onChange={(e) => { setName(e.target.value); clearError("name"); }}
           className={`h-[40px] bg-white${errorFields.has("name") ? " border-[#ef4444] focus-visible:border-[#ef4444] focus-visible:ring-[#ef4444]/20" : ""}`}
         />
+        {errorFields.has("name") && <span className="text-[12px] text-[#ef4444] leading-[1.5]">Campo obrigatório</span>}
       </div>
 
       {/* Método preferencial de contacto */}
       <div className="flex flex-col gap-[8px] items-start justify-center relative shrink-0 w-full">
-        <Label>Contacto preferencial *</Label>
+        <Label>Contacto preferencial</Label>
         <RadioGroup
           value={contactMethod}
           onValueChange={(v) => setContactMethod(v as ContactMethod)}
@@ -501,7 +502,7 @@ function ContactoTab({
                 aria-hidden="true"
                 className={`absolute border border-solid inset-0 pointer-events-none rounded-[8px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] transition-colors duration-200 ease-out ${contactMethod === value ? "border-[#8270ff]" : "border-[#e5e5e5]"}`}
               />
-              <span className="flex-1 font-['Inter:Medium',sans-serif] font-medium leading-[1.5] text-[#27272a] text-[14px]">{label}</span>
+              <span className="flex-1 font-medium leading-[1.5] text-[#27272a] text-[14px]">{label}</span>
               <RadioGroupItem value={value} className="size-[18px] border-[#e5e5e5] data-[state=checked]:border-[#27272a] data-[state=checked]:bg-[#27272a] data-[state=checked]:text-white shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)]" />
             </label>
           ))}
@@ -513,18 +514,18 @@ function ContactoTab({
         className="flex flex-col gap-[8px] items-start relative shrink-0 w-full"
         {...(errorFields.has("phone") ? { "data-client-field": "phone" } : {})}
       >
-        <Label>{`Número de telefone${isPhoneRequired ? " *" : ""}`}</Label>
-        <div className="flex flex-col gap-[6px] relative w-full">
-          <div className="relative w-full flex">
+        <Label>Número de telefone</Label>
+        <div className="flex flex-col gap-[8px] relative w-full">
+          <div className={`relative w-full flex rounded-md${phoneError || errorFields.has("phone") ? " ring-1 ring-[#ef4444]" : ""}`}>
             {/* Country code button */}
             <button
               ref={countryBtnRef}
               type="button"
               onClick={() => countryDropdownOpen ? closeCountryDropdown() : openCountryDropdown()}
-              className={`flex items-center gap-[6px] h-[40px] px-[12px] bg-white border border-[var(--input)] rounded-l-md border-r-0 cursor-pointer hover:bg-[#e4e4e7] transition-colors duration-200 ease-out shrink-0${errorFields.has("phone") ? " border-[#ef4444]" : ""}`}
+              className="flex items-center gap-[8px] h-[40px] px-[12px] bg-white border border-[var(--input)] rounded-l-md border-r-0 cursor-pointer hover:bg-[#e5e5e5] transition-colors duration-200 ease-out shrink-0"
             >
               <span className="text-[16px] leading-none">{selectedCountry.flag}</span>
-              <span className="font-['Inter:Regular',sans-serif] text-[14px] text-[#3f3f46] leading-[1.5]">{selectedCountry.dial}</span>
+              <span className="text-[14px] text-[#27272a] leading-[1.5]">{selectedCountry.dial}</span>
               <svg width="10" height="6" viewBox="0 0 10 6" fill="none" className="ml-[2px]">
                 <path d="M1 1L5 5L9 1" stroke="#A1A1AA" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
@@ -536,7 +537,7 @@ function ContactoTab({
               inputMode="numeric"
               value={phone}
               onChange={(e) => { handlePhoneChange(e); clearError("phone"); }}
-              className={`h-[40px] bg-white rounded-l-none flex-1${phoneError || errorFields.has("phone") ? " border-[#ef4444] focus-visible:border-[#ef4444] focus-visible:ring-[#ef4444]/20" : ""}`}
+              className="h-[40px] bg-white rounded-l-none flex-1"
             />
 
           </div>
@@ -545,19 +546,19 @@ function ContactoTab({
           {countryDropdownOpen && dropdownPos && createPortal(
             <div
               ref={countryDropdownRef}
-              className="fixed w-[280px] bg-white rounded-[8px] border border-[#e4e4e7] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] z-[200] flex flex-col transition-opacity duration-200 ease-out overflow-hidden"
+              className="fixed w-[280px] bg-white rounded-[8px] border border-[#e5e5e5] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] z-[200] flex flex-col transition-opacity duration-200 ease-out overflow-hidden"
               style={{ opacity: dropdownVisible ? 1 : 0, top: dropdownPos.top, left: dropdownPos.left }}
             >
               {/* Search */}
-              <div className="flex items-center gap-[8px] px-[12px] py-[8px] border-b border-[#e4e4e7]">
-                <Search className="size-4 text-[#a1a1aa] shrink-0" />
+              <div className="flex items-center gap-[8px] px-[12px] py-[8px] border-b border-[#e5e5e5]">
+                <Search className="size-4 text-[#71717a] shrink-0" />
                 <input
                   ref={countrySearchRef}
                   type="text"
                   value={countrySearch}
                   onChange={(e) => setCountrySearch(e.target.value)}
                   placeholder="Pesquisar país..."
-                  className="flex-1 text-[14px] text-[#3f3f46] placeholder:text-[#a1a1aa] outline-none bg-transparent"
+                  className="flex-1 text-[14px] text-[#27272a] placeholder:text-[#71717a] outline-none bg-transparent"
                 />
               </div>
               {/* List */}
@@ -571,16 +572,16 @@ function ContactoTab({
                         setSelectedCountry(c);
                         closeCountryDropdown();
                       }}
-                      className={`flex items-center gap-[10px] w-full px-[12px] py-[8px] cursor-pointer border-none bg-transparent hover:bg-[#f4f4f5] transition-colors duration-200 ease-out ${selectedCountry.code === c.code ? "bg-[rgba(39,39,42,0.05)]" : ""}`}
+                      className={`flex items-center gap-[12px] w-full px-[12px] py-[8px] cursor-pointer border-none bg-transparent hover:bg-[#f4f4f5] transition-colors duration-200 ease-out ${selectedCountry.code === c.code ? "bg-[rgba(39,39,42,0.05)]" : ""}`}
                     >
                       <span className="text-[16px] leading-none">{c.flag}</span>
-                      <span className="font-['Inter:Regular',sans-serif] text-[14px] text-[#27272a] leading-[1.5] flex-1 text-left">{c.name}</span>
-                      <span className="font-['Inter:Regular',sans-serif] text-[14px] text-[#a1a1aa] leading-[1.5]">{c.dial}</span>
+                      <span className="text-[14px] text-[#27272a] leading-[1.5] flex-1 text-left">{c.name}</span>
+                      <span className="text-[14px] text-[#71717a] leading-[1.5]">{c.dial}</span>
                     </button>
                   ))
                 ) : (
                   <div className="px-[12px] py-[8px]">
-                    <p className="font-['Inter:Regular',sans-serif] text-[14px] text-[#a1a1aa] leading-[1.5]">Sem resultados</p>
+                    <p className="text-[14px] text-[#71717a] leading-[1.5]">Sem resultados</p>
                   </div>
                 )}
               </div>
@@ -588,8 +589,9 @@ function ContactoTab({
             document.body
           )}
           {phoneError && (
-            <p className="font-['Inter:Regular',sans-serif] text-[13px] text-[#ef4444] leading-[1.5]">{phoneError}</p>
+            <p className="text-[13px] text-[#ef4444] leading-[1.5]">{phoneError}</p>
           )}
+          {!phoneError && errorFields.has("phone") && <span className="text-[12px] text-[#ef4444] leading-[1.5]">Campo obrigatório</span>}
         </div>
       </div>
 
@@ -598,8 +600,8 @@ function ContactoTab({
         className="flex flex-col gap-[8px] items-start relative shrink-0 w-full"
         {...(errorFields.has("email") ? { "data-client-field": "email" } : {})}
       >
-        <Label>{`Endereço de email${isEmailRequired ? " *" : ""}`}</Label>
-        <div className="flex flex-col gap-[6px] relative w-full">
+        <Label>Endereço de email</Label>
+        <div className="flex flex-col gap-[8px] relative w-full">
           <Input
             type="email"
             value={email}
@@ -607,8 +609,9 @@ function ContactoTab({
             className={`h-[40px] bg-white${emailError || errorFields.has("email") ? " border-[#ef4444] focus-visible:border-[#ef4444] focus-visible:ring-[#ef4444]/20" : ""}`}
           />
           {emailError && (
-            <p className="font-['Inter:Regular',sans-serif] text-[13px] text-[#ef4444] leading-[1.5]">{emailError}</p>
+            <p className="text-[13px] text-[#ef4444] leading-[1.5]">{emailError}</p>
           )}
+          {!emailError && errorFields.has("email") && <span className="text-[12px] text-[#ef4444] leading-[1.5]">Campo obrigatório</span>}
         </div>
       </div>
     </>
@@ -720,7 +723,7 @@ function FaturacaoTab({
           size="icon"
           onClick={onNifSearch}
           disabled={!isNifCompany || nifLoading}
-          className="size-[40px] shrink-0 border-[#e5e5e5] not-disabled:hover:bg-[#e4e4e7]"
+          className="size-[40px] shrink-0 border-[#e5e5e5] not-disabled:hover:bg-[#e5e5e5]"
         >
           <div className="overflow-clip relative shrink-0 size-[16px]">
             <div className="absolute inset-[8.33%]">
@@ -784,12 +787,12 @@ function FaturacaoTab({
             ref={countryBtnRef}
             type="button"
             onClick={() => countryDropdownOpen ? closeCountryDropdown() : openCountryDropdown()}
-            className="flex items-center gap-[8px] h-[40px] w-full px-[12px] bg-white border border-[var(--input)] rounded-md cursor-pointer hover:bg-[#e4e4e7] transition-colors duration-200 ease-out"
+            className="flex items-center gap-[8px] h-[40px] w-full px-[12px] bg-white border border-[var(--input)] rounded-md cursor-pointer hover:bg-[#e5e5e5] transition-colors duration-200 ease-out"
           >
             {selectedCountryObj && (
               <span className="text-[16px] leading-none">{selectedCountryObj.flag}</span>
             )}
-            <span className="flex-1 text-left font-['Inter:Regular',sans-serif] text-[14px] text-[#3f3f46] leading-[1.5]">{country}</span>
+            <span className="flex-1 text-left text-[14px] text-[#27272a] leading-[1.5]">{country}</span>
             <svg width="10" height="6" viewBox="0 0 10 6" fill="none" className="shrink-0">
               <path d="M1 1L5 5L9 1" stroke="#A1A1AA" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
@@ -801,19 +804,19 @@ function FaturacaoTab({
         {countryDropdownOpen && dropdownPos && createPortal(
           <div
             ref={countryDropdownRef}
-            className="fixed bg-white rounded-[8px] border border-[#e4e4e7] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] z-[200] flex flex-col transition-opacity duration-200 ease-out overflow-hidden"
+            className="fixed bg-white rounded-[8px] border border-[#e5e5e5] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] z-[200] flex flex-col transition-opacity duration-200 ease-out overflow-hidden"
             style={{ opacity: dropdownVisible ? 1 : 0, bottom: `calc(100vh - ${dropdownPos.top}px)`, left: dropdownPos.left, width: dropdownPos.width, maxHeight: "min(280px, calc(100vh - 100px))" }}
           >
             {/* Search */}
-            <div className="flex items-center gap-[8px] px-[12px] py-[8px] border-b border-[#e4e4e7] shrink-0">
-              <Search className="size-4 text-[#a1a1aa] shrink-0" />
+            <div className="flex items-center gap-[8px] px-[12px] py-[8px] border-b border-[#e5e5e5] shrink-0">
+              <Search className="size-4 text-[#71717a] shrink-0" />
               <input
                 ref={countrySearchRef}
                 type="text"
                 value={countrySearch}
                 onChange={(e) => setCountrySearch(e.target.value)}
                 placeholder="Pesquisar país..."
-                className="flex-1 text-[14px] text-[#3f3f46] placeholder:text-[#a1a1aa] outline-none bg-transparent"
+                className="flex-1 text-[14px] text-[#27272a] placeholder:text-[#71717a] outline-none bg-transparent"
               />
             </div>
             {/* List */}
@@ -827,15 +830,15 @@ function FaturacaoTab({
                       setCountry(c.name);
                       closeCountryDropdown();
                     }}
-                    className={`flex items-center gap-[10px] w-full px-[12px] py-[8px] cursor-pointer border-none bg-transparent hover:bg-[#f4f4f5] transition-colors duration-200 ease-out ${country === c.name ? "bg-[rgba(39,39,42,0.05)]" : ""}`}
+                    className={`flex items-center gap-[12px] w-full px-[12px] py-[8px] cursor-pointer border-none bg-transparent hover:bg-[#f4f4f5] transition-colors duration-200 ease-out ${country === c.name ? "bg-[rgba(39,39,42,0.05)]" : ""}`}
                   >
                     <span className="text-[16px] leading-none">{c.flag}</span>
-                    <span className="font-['Inter:Regular',sans-serif] text-[14px] text-[#27272a] leading-[1.5] flex-1 text-left">{c.name}</span>
+                    <span className="text-[14px] text-[#27272a] leading-[1.5] flex-1 text-left">{c.name}</span>
                   </button>
                 ))
               ) : (
                 <div className="px-[12px] py-[8px]">
-                  <p className="font-['Inter:Regular',sans-serif] text-[14px] text-[#a1a1aa] leading-[1.5]">Sem resultados</p>
+                  <p className="text-[14px] text-[#71717a] leading-[1.5]">Sem resultados</p>
                 </div>
               )}
             </div>

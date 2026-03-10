@@ -17,7 +17,7 @@ function IconFrame() {
 function LabelFrame() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col items-center justify-center min-h-px min-w-px relative" data-name="Label Frame">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] w-full whitespace-pre-wrap">Mão de obra</p>
+      <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] w-full whitespace-pre-wrap">Mão de obra</p>
     </div>
   );
 }
@@ -59,7 +59,7 @@ function IconFrame1() {
 function LabelFrame1() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col items-center justify-center min-h-px min-w-px relative" data-name="Label Frame">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] w-full whitespace-pre-wrap">Peça</p>
+      <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] w-full whitespace-pre-wrap">Peça</p>
     </div>
   );
 }
@@ -101,7 +101,7 @@ function IconFrame2() {
 function LabelFrame2() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col items-center justify-center min-h-px min-w-px relative" data-name="Label Frame">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] w-full whitespace-pre-wrap">Consumível</p>
+      <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] w-full whitespace-pre-wrap">Consumível</p>
     </div>
   );
 }
@@ -143,7 +143,7 @@ function IconFrame3() {
 function LabelFrame3() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col items-center justify-center min-h-px min-w-px relative" data-name="Label Frame">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] w-full whitespace-pre-wrap">Encargo</p>
+      <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] w-full whitespace-pre-wrap">Encargo</p>
     </div>
   );
 }
@@ -206,9 +206,9 @@ function Main() {
 export default function FlyoutLaborLineDetails() {
   return (
     <div className="bg-[#f4f4f5] content-stretch flex flex-col gap-[24px] items-start p-[32px] relative shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1),0px_2px_4px_-1px_rgba(0,0,0,0.06)] size-full" data-name="Flyout / Labor Line Details">
-      <div className="content-stretch flex gap-[10px] items-start relative shrink-0 w-full" data-name="Light Mode / Card Items / Header Block">
+      <div className="content-stretch flex gap-[12px] items-start relative shrink-0 w-full" data-name="Light Mode / Card Items / Header Block">
         <div className="content-stretch flex flex-[1_0_0] flex-col gap-[8px] items-center justify-center min-h-px min-w-px relative" data-name="Light Mode / Card Items / Header">
-          <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.25] not-italic relative shrink-0 text-[#27272a] text-[16px] w-full whitespace-pre-wrap">Novo item</p>
+          <p className="font-medium leading-[1.25] not-italic relative shrink-0 text-[#27272a] text-[16px] w-full whitespace-pre-wrap">Novo item</p>
         </div>
         <button className="absolute content-stretch cursor-pointer flex items-center justify-center max-h-[32px] max-w-[32px] min-h-[32px] min-w-[32px] right-[-8px] rounded-[6px] size-[32px] top-[-8px]" data-name="Light Mode / Button">
           <div className="overflow-clip relative shrink-0 size-[16px]" data-name="Icon">
@@ -223,11 +223,11 @@ export default function FlyoutLaborLineDetails() {
       <Main />
       <div className="content-stretch flex gap-[16px] items-center justify-end relative shrink-0 w-full" data-name="Light Mode / Card Items / Buttons Block">
         <button className="content-stretch cursor-pointer flex gap-[8px] items-center justify-center max-h-[40px] min-h-[40px] px-[16px] relative rounded-[8px] shrink-0" data-name="Button 2">
-          <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] text-left">Cancelar</p>
+          <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] text-left">Cancelar</p>
         </button>
-        <div className="bg-[#262124] content-stretch flex gap-[8px] items-center justify-center max-h-[40px] min-h-[40px] opacity-50 px-[16px] relative rounded-[8px] shrink-0" data-name="Button 1">
-          <div aria-hidden="true" className="absolute border border-[rgba(0,0,0,0.1)] border-solid inset-0 pointer-events-none rounded-[8px]" />
-          <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[14px] text-white">Guardar</p>
+        <div className="bg-[#27272a] content-stretch flex gap-[8px] items-center justify-center max-h-[40px] min-h-[40px] opacity-50 px-[16px] relative rounded-[8px] shrink-0" data-name="Button 1">
+          <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[8px]" />
+          <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[14px] text-white">Guardar</p>
           <div className="absolute inset-0 pointer-events-none rounded-[inherit] shadow-[inset_0px_1px_0px_0px_black,inset_0px_2px_0px_0px_rgba(255,255,255,0.2)]" />
         </div>
       </div>

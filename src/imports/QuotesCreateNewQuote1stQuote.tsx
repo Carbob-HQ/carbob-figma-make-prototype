@@ -1,5 +1,6 @@
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "../app/components/ui/tabs";
 import { Button } from "../app/components/ui/button";
+import { Tooltip, TooltipTrigger, TooltipContent } from "../app/components/ui/tooltip";
 import svgPaths from "./svg-x1e5d9e6rz";
 import svgPathsClose from "./svg-oov7nas6ko";
 import imgCarbobPurple from "figma:asset/da77b88fbb65a545dcbf78e285437190486af8fa.png";
@@ -147,7 +148,7 @@ function LeftFrame() {
 
 function Logo() {
   return (
-    <div className="bg-[#262124] content-stretch flex h-[40px] items-center justify-center px-[8px] relative rounded-[8px] shrink-0" data-name="Logo">
+    <div className="bg-[#27272a] content-stretch flex h-[40px] items-center justify-center px-[8px] relative rounded-[8px] shrink-0" data-name="Logo">
       <LeftFrame />
     </div>
   );
@@ -360,7 +361,7 @@ function BottomButtons() {
 
 function Sidebar() {
   return (
-    <div className="bg-[#262124] content-stretch flex flex-col gap-[24px] h-full items-center py-[12px] relative shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] shrink-0 w-[56px]" data-name="Sidebar">
+    <div className="bg-[#27272a] content-stretch flex flex-col gap-[24px] h-full items-center py-[12px] relative shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] shrink-0 w-[56px]" data-name="Sidebar">
       <LogoFrame />
       <AddButton />
       <MainButtons />
@@ -387,7 +388,7 @@ function LightModeButton() {
       <div className="flex flex-row items-center max-h-[inherit] min-h-[inherit] size-full">
         <div className="content-stretch flex gap-[8px] items-center max-h-[inherit] min-h-[inherit] px-[16px] relative w-full">
           <LeftIcon />
-          <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#a1a1aa] text-[14px]">Pesquisar</p>
+          <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[14px]">Pesquisar</p>
         </div>
       </div>
     </div>
@@ -437,7 +438,7 @@ function LightModeButton1() {
 
 function LightModeButton2() {
   return (
-    <div className="absolute bg-[#fb2c36] content-stretch flex gap-[8px] items-center justify-center left-[28px] px-[4px] rounded-[100px] top-[-4px]" data-name="Light Mode / Button">
+    <div className="absolute bg-[#fb2c36] content-stretch flex gap-[8px] items-center justify-center left-[28px] px-[4px] rounded-[9999px] top-[-4px]" data-name="Light Mode / Button">
       <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[12px] text-white">4</p>
     </div>
   );
@@ -445,7 +446,7 @@ function LightModeButton2() {
 
 function NotificationsButton() {
   return (
-    <div className="content-stretch flex flex-col gap-[10px] items-start relative shrink-0" data-name="Notifications Button">
+    <div className="content-stretch flex flex-col gap-[12px] items-start relative shrink-0" data-name="Notifications Button">
       <LightModeButton1 />
       <LightModeButton2 />
     </div>
@@ -613,15 +614,16 @@ function Search() {
 }
 
 function UserFrame({ isOpen, selectedClient, onClearClient, associationHint }: { isOpen?: boolean; selectedClient?: SelectedClient | null; onClearClient?: () => void; associationHint?: string | null }) {
+  const borderClass = isOpen ? "border-[#e5e5e5]" : "border-[#e5e5e5] group-hover:border-[#71717a]";
   if (selectedClient) {
     return (
-      <div className="bg-white content-stretch flex gap-[12px] h-[64px] items-center p-[12px] relative rounded-[12px] shrink-0 w-[320px] group cursor-pointer" data-name="User Frame">
-        <div aria-hidden="true" className="absolute border border-solid inset-0 pointer-events-none rounded-[12px] transition-[border-color] duration-200 ease-out border-[#e5e5e5] group-hover:border-[#71717a]" />
+      <div className="bg-white content-stretch flex gap-[12px] h-[64px] items-center p-[12px] relative rounded-[12px] shrink-0 w-[330px] group cursor-pointer" data-name="User Frame">
+        <div aria-hidden="true" className={`absolute border border-solid inset-0 pointer-events-none rounded-[12px] transition-[border-color] duration-200 ease-out ${borderClass}`} />
         <IconFrame1 />
         <div className="content-stretch flex flex-[1_0_0] flex-col items-start justify-center min-h-px min-w-px not-italic relative" data-name="Content Frame">
-          <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] relative shrink-0 text-[#27272a] text-[14px] w-full whitespace-pre-wrap">{selectedClient.name}</p>
+          <p className="font-medium leading-[1.5] relative shrink-0 text-[#27272a] text-[14px] w-full whitespace-pre-wrap">{selectedClient.name}</p>
           {!selectedClient.isEndConsumer && (
-            <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis w-full whitespace-nowrap mt-[4px]">
+            <p className="font-normal leading-[1.5] overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis w-full whitespace-nowrap mt-[4px]">
               {[
                 selectedClient.phone ? selectedClient.phone.replace(/(\d{3})(\d{3})(\d{3})/, "$1 $2 $3") : "",
                 selectedClient.email || "",
@@ -631,13 +633,13 @@ function UserFrame({ isOpen, selectedClient, onClearClient, associationHint }: {
         </div>
         <button
           onClick={(e) => { e.stopPropagation(); onClearClient?.(); }}
-          className="hidden group-hover:flex items-center justify-center max-h-[32px] max-w-[32px] min-h-[32px] min-w-[32px] rounded-[6px] shrink-0 transition-colors duration-200 ease-out hover:bg-[#e4e4e7] group/close-btn cursor-pointer"
+          className="hidden group-hover:flex items-center justify-center max-h-[32px] max-w-[32px] min-h-[32px] min-w-[32px] rounded-[6px] shrink-0 transition-colors duration-200 ease-out hover:bg-[#e5e5e5] group/close-btn cursor-pointer"
           data-name="Light Mode / Button"
         >
           <div className="overflow-clip relative shrink-0 size-[16px]" data-name="Icon">
             <div className="absolute inset-[20.83%]" data-name="Vector (Stroke)">
               <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 9.33323 9.33323">
-                <path d={svgPathsClose.p2bd57f80} fill="currentColor" className="text-[#a1a1aa] group-hover/close-btn:text-[#27272a] transition-colors duration-200 ease-out" />
+                <path d={svgPathsClose.p2bd57f80} fill="currentColor" className="text-[#71717a] group-hover/close-btn:text-[#27272a] transition-colors duration-200 ease-out" />
               </svg>
             </div>
           </div>
@@ -647,8 +649,8 @@ function UserFrame({ isOpen, selectedClient, onClearClient, associationHint }: {
   }
 
   return (
-    <div className="bg-white content-stretch flex gap-[12px] h-[64px] items-center p-[12px] relative rounded-[12px] shrink-0 w-[320px] group cursor-pointer" data-name="User Frame">
-      <div aria-hidden="true" className="absolute border border-solid inset-0 pointer-events-none rounded-[12px] transition-[border-color] duration-200 ease-out border-[#e5e5e5] group-hover:border-[#71717a]" />
+    <div className="bg-white content-stretch flex gap-[12px] h-[64px] items-center p-[12px] relative rounded-[12px] shrink-0 w-[330px] group cursor-pointer" data-name="User Frame">
+      <div aria-hidden="true" className={`absolute border border-solid inset-0 pointer-events-none rounded-[12px] transition-[border-color] duration-200 ease-out ${borderClass}`} />
       <IconFrame1 />
       <div className="content-stretch flex flex-[1_0_0] items-center min-h-px min-w-px relative" data-name="Content Frame">
         <div className="content-stretch flex items-center relative shrink-0" data-name="Light Mode / Text">
@@ -711,10 +713,11 @@ function Search1() {
 }
 
 function VehicleFrame({ isOpen, selectedVehicle, onClearVehicle, associationHint }: { isOpen?: boolean; selectedVehicle?: Vehicle | null; onClearVehicle?: () => void; associationHint?: string | null }) {
+  const borderClass = isOpen ? "border-[#e5e5e5]" : "border-[#e5e5e5] group-hover:border-[#71717a]";
   if (selectedVehicle) {
     return (
-      <div className="bg-white content-stretch flex gap-[12px] h-[64px] items-center p-[12px] relative rounded-[12px] shrink-0 w-[320px] group cursor-pointer" data-name="Vehicle Frame">
-        <div aria-hidden="true" className="absolute border border-solid inset-0 pointer-events-none rounded-[12px] transition-[border-color] duration-200 ease-out border-[#e5e5e5] group-hover:border-[#71717a]" />
+      <div className="bg-white content-stretch flex gap-[12px] h-[64px] items-center p-[12px] relative rounded-[12px] shrink-0 w-[330px] group cursor-pointer" data-name="Vehicle Frame">
+        <div aria-hidden="true" className={`absolute border border-solid inset-0 pointer-events-none rounded-[12px] transition-[border-color] duration-200 ease-out ${borderClass}`} />
         <IconFrame2 />
         <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start justify-center min-h-px min-w-px not-italic relative" data-name="Content Frame">
           <p className="font-medium leading-[1.5] relative shrink-0 text-[#27272a] text-[14px] w-full whitespace-pre-wrap">{selectedVehicle.brand} {selectedVehicle.model}</p>
@@ -724,13 +727,13 @@ function VehicleFrame({ isOpen, selectedVehicle, onClearVehicle, associationHint
         </div>
         <button
           onClick={(e) => { e.stopPropagation(); onClearVehicle?.(); }}
-          className="flex items-center justify-center max-h-[32px] max-w-[32px] min-h-[32px] min-w-[32px] rounded-[6px] shrink-0 opacity-0 group-hover:opacity-100 transition-[opacity,background-color] duration-200 ease-out hover:bg-[#e4e4e7] group/close-btn cursor-pointer"
+          className="flex items-center justify-center max-h-[32px] max-w-[32px] min-h-[32px] min-w-[32px] rounded-[6px] shrink-0 opacity-0 group-hover:opacity-100 transition-[opacity,background-color] duration-200 ease-out hover:bg-[#e5e5e5] group/close-btn cursor-pointer"
           data-name="Light Mode / Button"
         >
           <div className="overflow-clip relative shrink-0 size-[16px]" data-name="Icon">
             <div className="absolute inset-[20.83%]" data-name="Vector (Stroke)">
               <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 9.33323 9.33323">
-                <path d={svgPathsClose.p2bd57f80} fill="currentColor" className="text-[#a1a1aa] group-hover/close-btn:text-[#27272a] transition-colors duration-200 ease-out" />
+                <path d={svgPathsClose.p2bd57f80} fill="currentColor" className="text-[#71717a] group-hover/close-btn:text-[#27272a] transition-colors duration-200 ease-out" />
               </svg>
             </div>
           </div>
@@ -740,8 +743,8 @@ function VehicleFrame({ isOpen, selectedVehicle, onClearVehicle, associationHint
   }
 
   return (
-    <div className="bg-white content-stretch flex gap-[12px] h-[64px] items-center p-[12px] relative rounded-[12px] shrink-0 w-[320px] group cursor-pointer" data-name="Vehicle Frame">
-      <div aria-hidden="true" className="absolute border border-solid inset-0 pointer-events-none rounded-[12px] transition-[border-color] duration-200 ease-out border-[#e5e5e5] group-hover:border-[#71717a]" />
+    <div className="bg-white content-stretch flex gap-[12px] h-[64px] items-center p-[12px] relative rounded-[12px] shrink-0 w-[330px] group cursor-pointer" data-name="Vehicle Frame">
+      <div aria-hidden="true" className={`absolute border border-solid inset-0 pointer-events-none rounded-[12px] transition-[border-color] duration-200 ease-out ${borderClass}`} />
       <IconFrame2 />
       <div className="content-stretch flex flex-[1_0_0] flex-col items-start justify-center min-h-px min-w-px relative" data-name="Content Frame">
         <div className="content-stretch flex items-center relative shrink-0" data-name="Light Mode / Text">
@@ -865,7 +868,7 @@ function ClientDetails({ selectedClient, setSelectedClient, selectedVehicle, set
   }, [selectedClient, selectedVehicle, associatedClient]);
 
   return (
-    <div className="content-stretch flex gap-[16px] items-center relative shrink-0 w-full" data-name="Client Details">
+    <div className="content-stretch flex gap-[24px] items-center relative shrink-0 w-full" data-name="Client Details">
       <ClientSelectionDropdown
         selectedClient={selectedClient}
         onSelectedClientChange={(client) => {
@@ -1013,19 +1016,24 @@ function Wrench1() {
   );
 }
 
-function LightModeText2() {
+function LightModeText2({ hasVehicle }: { hasVehicle?: boolean }) {
   return (
-    <div className="content-stretch flex items-center justify-center relative shrink-0 w-full" data-name="Light Mode / Text">
-      <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[14px] text-center text-ellipsis whitespace-nowrap">Adiciona um serviço para iniciar</p>
+    <div className="content-stretch flex flex-col gap-[4px] items-center justify-center relative shrink-0 w-full" data-name="Light Mode / Text">
+      <p className="font-medium leading-[1.5] text-[#71717a] text-[16px] text-center">Ainda não existem serviços.</p>
+      <p className="font-normal leading-[1.5] text-[#71717a] text-[14px] text-center">
+        {hasVehicle
+          ? "Adicione um serviço do guia ou comece um do zero."
+          : "Seleciona um veículo para poder adicionar serviços."}
+      </p>
     </div>
   );
 }
 
-function TopFrame() {
+function TopFrame({ hasVehicle }: { hasVehicle?: boolean }) {
   return (
     <div className="content-stretch flex flex-col gap-[16px] items-center relative shrink-0 w-full" data-name="Top Frame">
       <Wrench1 />
-      <LightModeText2 />
+      <LightModeText2 hasVehicle={hasVehicle} />
     </div>
   );
 }
@@ -1043,9 +1051,31 @@ function Plus() {
 }
 
 function LightModeButton5({ disabled, onClick }: { disabled?: boolean; onClick?: () => void }) {
+  const [tooltipOpen, setTooltipOpen] = useState(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  if (disabled) {
+    return (
+      <Tooltip open={tooltipOpen} onOpenChange={setTooltipOpen}>
+        <TooltipTrigger asChild>
+          <Button variant="outline" size="sm" className="cursor-pointer gap-[8px] opacity-50" onClick={() => {
+            if (timeoutRef.current) clearTimeout(timeoutRef.current);
+            setTooltipOpen(true);
+            timeoutRef.current = setTimeout(() => setTooltipOpen(false), 2500);
+          }}>
+            <Plus className="size-[16px]" />
+            <span className="text-[14px] text-[#27272a]">Novo serviço</span>
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent side="bottom">
+          Selecione um veículo para poder adicionar serviços.
+        </TooltipContent>
+      </Tooltip>
+    );
+  }
   return (
-    <Button variant="outline" size="sm" className="cursor-pointer gap-[8px]" disabled={disabled} onClick={onClick}>
-      <Plus />
+    <Button variant="outline" size="sm" className="cursor-pointer gap-[8px]" onClick={onClick}>
+      <Plus className="size-[16px]" />
       <span className="text-[14px] text-[#27272a]">Novo serviço</span>
     </Button>
   );
@@ -1064,8 +1094,30 @@ function LeftIcon2() {
 }
 
 function LightModeButton6({ disabled, onClick }: { disabled?: boolean; onClick?: () => void }) {
+  const [tooltipOpen, setTooltipOpen] = useState(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  if (disabled) {
+    return (
+      <Tooltip open={tooltipOpen} onOpenChange={setTooltipOpen}>
+        <TooltipTrigger asChild>
+          <Button variant="outline" size="sm" className="cursor-pointer gap-[8px] opacity-50" onClick={() => {
+            if (timeoutRef.current) clearTimeout(timeoutRef.current);
+            setTooltipOpen(true);
+            timeoutRef.current = setTimeout(() => setTooltipOpen(false), 2500);
+          }}>
+            <LeftIcon2 />
+            <span className="text-[14px] text-[#27272a]">Guia de serviços</span>
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent side="bottom">
+          Selecione um veículo para poder adicionar serviços.
+        </TooltipContent>
+      </Tooltip>
+    );
+  }
   return (
-    <Button variant="outline" size="sm" className="cursor-pointer gap-[8px]" disabled={disabled} onClick={onClick}>
+    <Button variant="outline" size="sm" className="cursor-pointer gap-[8px]" onClick={onClick}>
       <LeftIcon2 />
       <span className="text-[14px] text-[#27272a]">Guia de serviços</span>
     </Button>
@@ -1083,12 +1135,12 @@ function ButtonsFrame1({ disabled, onNewService, onServiceGuide }: { disabled?: 
 
 function EmptyServiceFrame({ hasVehicle, onNewService, onServiceGuide }: { hasVehicle?: boolean; onNewService?: () => void; onServiceGuide?: () => void }) {
   return (
-    <div className="bg-white h-[360px] relative rounded-[16px] shrink-0 w-full" data-name="Empty Service Frame">
-      <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[16px]" />
-      <div className="flex flex-col items-center justify-center size-full">
-        <div className="content-stretch flex flex-col gap-[24px] items-center justify-center p-[16px] relative size-full">
-          <TopFrame />
-          <ButtonsFrame1 disabled={!hasVehicle} onNewService={onNewService} onServiceGuide={onServiceGuide} />
+    <div className="h-[360px] relative rounded-[16px] shrink-0 w-full" data-name="Empty Service Frame">
+      <div className="flex flex-col gap-[24px] items-center justify-center size-full">
+        <TopFrame hasVehicle={hasVehicle} />
+        <div className="flex gap-[8px] items-center">
+          <LightModeButton5 disabled={!hasVehicle} onClick={onNewService} />
+          <LightModeButton6 disabled={!hasVehicle} onClick={onServiceGuide} />
         </div>
       </div>
     </div>
@@ -1114,17 +1166,7 @@ function ContentFrame2({ hasVehicle, selectedVehicle, clientId, services, onAddS
   onNewServiceScrolled?: () => void;
 }) {
   const sortedServices = [...services].sort((a, b) => a.order - b.order);
-  const [isRightSlotExiting, setIsRightSlotExiting] = useState(false);
   const [serviceGuideOpen, setServiceGuideOpen] = useState(false);
-  const prevServicesLength = useRef(services.length);
-
-  // Reset exiting state only when going from 0 back to >0 services
-  useEffect(() => {
-    if (prevServicesLength.current === 0 && services.length > 0) {
-      setIsRightSlotExiting(false);
-    }
-    prevServicesLength.current = services.length;
-  }, [services.length]);
 
   const handleOpenServiceGuide = useCallback(() => {
     if (selectedVehicle) setServiceGuideOpen(true);
@@ -1135,10 +1177,10 @@ function ContentFrame2({ hasVehicle, selectedVehicle, clientId, services, onAddS
       <div className="sticky top-0 z-10 bg-[#f4f4f5] w-full pb-[1px]">
         <SubheaderFrame />
       </div>
-      <NotesSection rightSlotExiting={isRightSlotExiting} rightSlot={services.length > 0 ? (
+      <NotesSection rightSlot={services.length > 0 ? (
         <>
-          <LightModeButton5 disabled={!hasVehicle} onClick={onAddService} />
-          <LightModeButton6 disabled={!hasVehicle} onClick={handleOpenServiceGuide} />
+          <LightModeButton5 onClick={onAddService} />
+          <LightModeButton6 onClick={handleOpenServiceGuide} />
         </>
       ) : undefined} />
       {services.length === 0 ? (
@@ -1152,7 +1194,7 @@ function ContentFrame2({ hasVehicle, selectedVehicle, clientId, services, onAddS
                 index={index}
                 onTitleChange={(title) => onUpdateServiceTitle(service.id, title)}
                 onDelete={() => onDeleteService(service.id)}
-                onDeleteAnimationStart={services.length === 1 ? () => setIsRightSlotExiting(true) : undefined}
+                onDeleteAnimationStart={undefined}
                 onMoveService={onMoveService}
                 onDropService={onDropService}
                 onAddItem={(item) => onAddItem(service.id, item)}
@@ -1487,7 +1529,7 @@ function UserFrame1() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button ref={btnRef} variant="link" size={null} className="flex flex-[1_0_0] @max-[308px]:flex-none gap-[4px] items-center justify-end @max-[308px]:justify-start min-h-px min-w-px h-auto no-underline hover:no-underline cursor-pointer focus-visible:ring-0 focus-visible:border-transparent border-none ring-0 outline-none !p-0">
+        <Button ref={btnRef} variant="link" size={null} className="flex flex-[1_0_0] @max-[308px]:flex-none gap-[4px] items-center justify-end @max-[308px]:justify-start min-h-px min-w-px h-auto no-underline hover:no-underline cursor-pointer focus-visible:ring-ring/40 focus-visible:ring-[3px] border-none !p-0">
           <span className="overflow-hidden text-[14px] font-normal leading-[1.5] text-[#8270ff] text-ellipsis text-right whitespace-pre-wrap">{selected}</span>
         </Button>
       </DropdownMenuTrigger>
@@ -1591,7 +1633,7 @@ function ClientTabEmptyState() {
 function VehicleTabEmptyState() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[16px] items-center min-h-px min-w-px overflow-clip relative w-full" data-name="Main Frame">
-      <CarIcon className="size-[24px] text-[#a1a1aa] shrink-0" />
+      <CarIcon className="size-[24px] text-[#71717a] shrink-0" />
       <div className="content-stretch flex items-center justify-center relative shrink-0 w-full" data-name="Light Mode / Text">
         <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[14px] text-center text-ellipsis whitespace-pre-wrap">Sem veículo selecionado</p>
       </div>
@@ -1615,24 +1657,22 @@ function VehicleInfoSection({ vehicle }: { vehicle: Vehicle }) {
   ];
 
   return (
-    <div className="bg-white content-stretch flex flex-col gap-[16px] items-start overflow-clip relative shrink-0 w-full" data-name="Vehicle Details Frame">
-      <div className="bg-[rgba(39,39,42,0.15)] h-px shrink-0 w-full" data-name="Light Mode / Separator" />
+    <div className="bg-white content-stretch flex flex-col gap-[12px] items-start overflow-clip relative shrink-0 w-full" data-name="Vehicle Details Frame">
+      <div className="bg-[#e5e5e5] h-px shrink-0 w-full" data-name="Light Mode / Separator" />
       <div className="flex flex-col w-full">
         <button
           onClick={() => setIsExpanded((prev) => !prev)}
           className="content-stretch cursor-pointer flex gap-[8px] items-center relative shrink-0 w-full"
           data-name="Top Frame"
         >
-          <InfoIcon className="size-[16px] text-[#a1a1aa] shrink-0" />
+          <InfoIcon className="size-[16px] text-[#71717a] shrink-0" />
           <div className="content-stretch flex flex-[1_0_0] items-center min-h-px min-w-px relative">
             <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] text-left whitespace-pre-wrap">Informação geral</p>
           </div>
-          <div className="content-stretch flex items-center justify-center max-h-[24px] max-w-[24px] min-h-[24px] min-w-[24px] relative rounded-[6px] shrink-0 size-[24px]">
-            <ChevronRightIcon
-              className="size-[16px] text-[#27272a] transition-transform duration-200 ease-out"
-              style={{ transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)" }}
-            />
-          </div>
+          <ChevronRightIcon
+            className="size-[16px] text-[#27272a] shrink-0 transition-transform duration-200 ease-out"
+            style={{ transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)" }}
+          />
         </button>
         {/* Expandable info details — smart animate via CSS grid */}
         <div
@@ -1698,27 +1738,25 @@ function VehicleServiceHistorySection({ vehicleId }: { vehicleId: string }) {
   if (entries.length === 0) return null;
 
   return (
-    <div className="bg-white content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full" data-name="Vehicle Service History Frame">
-      <div className="bg-[rgba(39,39,42,0.15)] h-px shrink-0 w-full" data-name="Light Mode / Separator" />
+    <div className="bg-white content-stretch flex flex-col gap-[12px] items-start relative shrink-0 w-full" data-name="Vehicle Service History Frame">
+      <div className="bg-[#e5e5e5] h-px shrink-0 w-full" data-name="Light Mode / Separator" />
       <div className="flex flex-col w-full">
         <button
           onClick={() => setIsExpanded((prev) => !prev)}
           className="content-stretch cursor-pointer flex gap-[8px] items-center relative shrink-0 w-full"
           data-name="Top Frame"
         >
-          <HistoryIcon className="size-[16px] text-[#a1a1aa] shrink-0" />
+          <HistoryIcon className="size-[16px] text-[#71717a] shrink-0" />
           <div className="content-stretch flex flex-[1_0_0] items-center min-h-px min-w-px relative">
             <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] text-left whitespace-pre-wrap">Histórico de serviços</p>
           </div>
-          <span className="bg-[#8270FF] text-white text-[12px] font-medium leading-[1.5] h-[22px] min-w-[22px] px-2 flex items-center justify-center rounded-full shrink-0">
+          <span className="bg-[#8270ff] text-white text-[11px] font-medium leading-none h-[20px] min-w-[20px] px-1.5 flex items-center justify-center rounded-full shrink-0">
             {entries.length}
           </span>
-          <div className="content-stretch flex items-center justify-center max-h-[24px] max-w-[24px] min-h-[24px] min-w-[24px] relative rounded-[6px] shrink-0 size-[24px]">
-            <ChevronRightIcon
-              className="size-[16px] text-[#27272a] transition-transform duration-200 ease-out"
-              style={{ transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)" }}
-            />
-          </div>
+          <ChevronRightIcon
+            className="size-[16px] text-[#27272a] shrink-0 transition-transform duration-200 ease-out"
+            style={{ transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)" }}
+          />
         </button>
         {/* Expandable service list — smart animate via CSS grid */}
         <div
@@ -1851,7 +1889,7 @@ function UpdateKmModal({ isOpen, onClose, currentKm, currentNoOdometer, onSave }
 
         {/* Input field + toggle */}
         <div className="flex flex-col gap-[16px] w-full">
-          <div className="flex flex-col gap-[6px] w-full">
+          <div className="flex flex-col gap-[8px] w-full">
             <Label htmlFor="km-input" className="text-[14px] text-[#27272a]">Quilometragem</Label>
             <Input
               ref={inputRef}
@@ -1958,8 +1996,8 @@ function VehicleTabContent({ vehicle, onVehicleUpdate, containerRef }: { vehicle
     .filter((t): t is NonNullable<typeof t> => t != null);
 
   return (
-    <div className="flex flex-[1_0_0] flex-col min-h-px min-w-px relative w-full" style={{ overflow: 'clip', overflowClipMargin: '3px' }}>
-    <div className="visible-scrollbar content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px relative w-full -mx-[3px] px-[3px]" data-name="Main Frame">
+    <div className="flex flex-[1_0_0] flex-col min-h-px min-w-px relative w-full" style={{ overflow: 'clip', overflowClipMargin: '4px' }}>
+    <div className="visible-scrollbar content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px relative w-full -mx-[4px] px-[4px]" data-name="Main Frame">
       {/* Header Frame */}
       <div className="content-stretch flex flex-col gap-[16px] items-center relative shrink-0 w-full" data-name="Header Frame">
         {/* Header: Name + Shortcut Button */}
@@ -1992,12 +2030,12 @@ function VehicleTabContent({ vehicle, onVehicleUpdate, containerRef }: { vehicle
                   ref={tagsTriggerRef}
                   variant="ghost"
                   size={null}
-                  className={`bg-[rgba(161,161,170,0.15)] rounded-[6px] h-auto not-disabled:hover:bg-[rgba(161,161,170,0.25)] cursor-pointer ${selectedTags.length >= 1 ? '!p-[4px]' : 'gap-[6px] !px-[8px] !py-[4px]'}`}
+                  className={`bg-[rgba(161,161,170,0.15)] rounded-[6px] h-auto not-disabled:hover:bg-[rgba(161,161,170,0.25)] cursor-pointer ${selectedTags.length >= 1 ? '!p-[4px]' : 'gap-[8px] !px-[8px] !py-[4px]'}`}
                   onClick={openTagsPopup}
                 >
-                  <PlusIcon className="size-[16px] text-[#3f3f46]" />
+                  <PlusIcon className="size-[16px] text-[#27272a]" />
                   {selectedTags.length < 1 && (
-                    <span className="font-medium leading-[1.5] text-[#3f3f46] text-[12px]">Adicionar</span>
+                    <span className="font-medium leading-[1.5] text-[#27272a] text-[12px]">Adicionar</span>
                   )}
                 </Button>
               </div>
@@ -2008,7 +2046,7 @@ function VehicleTabContent({ vehicle, onVehicleUpdate, containerRef }: { vehicle
             <Button
               variant="ghost"
               size="icon"
-              className="max-h-[32px] max-w-[32px] min-h-[32px] min-w-[32px] size-[32px] rounded-[6px] cursor-pointer not-disabled:hover:bg-[#e4e4e7]"
+              className="max-h-[32px] max-w-[32px] min-h-[32px] min-w-[32px] size-[32px] rounded-[6px] cursor-pointer not-disabled:hover:bg-[#e5e5e5]"
             >
               <ExternalLink className="size-[16px] text-[#27272a]" />
             </Button>
@@ -2033,7 +2071,7 @@ function VehicleTabContent({ vehicle, onVehicleUpdate, containerRef }: { vehicle
           placeholder="Notas sobre o veículo"
           defaultValue={vehicle.notes || ""}
           onChange={handleNotesChange}
-          className="min-h-[64px] h-[64px] text-[14px] leading-[1.5] font-normal resize-none bg-white"
+          className="min-h-[64px] h-[64px] text-[14px] leading-[1.5] font-normal resize-none bg-[#fafafa]"
         />
       </div>
 
@@ -2054,7 +2092,7 @@ function VehicleTabContent({ vehicle, onVehicleUpdate, containerRef }: { vehicle
       </div>
 
       {/* Expandable sections */}
-      <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full" data-name="Expandable Items">
+      <div className="content-stretch flex flex-col gap-[12px] items-start relative shrink-0 w-full" data-name="Expandable Items">
         {/* Informação geral */}
         <VehicleInfoSection vehicle={vehicle} />
         {/* Histórico de serviços */}
@@ -2105,27 +2143,25 @@ function ClientVehiclesSection({ clientName }: { clientName: string }) {
   if (vehicles.length === 0) return null;
 
   return (
-    <div className="bg-white content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full" data-name="Client Vehicles Frame">
-      <div className="bg-[rgba(39,39,42,0.15)] h-px shrink-0 w-full" data-name="Light Mode / Separator" />
+    <div className="bg-white content-stretch flex flex-col gap-[12px] items-start relative shrink-0 w-full" data-name="Client Vehicles Frame">
+      <div className="bg-[#e5e5e5] h-px shrink-0 w-full" data-name="Light Mode / Separator" />
       <div className="flex flex-col w-full">
         <button
           onClick={() => setIsExpanded((prev) => !prev)}
           className="content-stretch cursor-pointer flex gap-[8px] items-center relative shrink-0 w-full"
           data-name="Top Frame"
         >
-          <CarIcon className="size-[16px] text-[#a1a1aa] shrink-0" />
+          <CarIcon className="size-[16px] text-[#71717a] shrink-0" />
           <div className="content-stretch flex flex-[1_0_0] items-center min-h-px min-w-px relative">
             <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] text-left whitespace-pre-wrap">Veículos</p>
           </div>
-          <span className="bg-[#8270FF] text-white text-[12px] font-medium leading-[1.5] h-[22px] min-w-[22px] px-2 flex items-center justify-center rounded-full shrink-0">
+          <span className="bg-[#8270ff] text-white text-[11px] font-medium leading-none h-[20px] min-w-[20px] px-1.5 flex items-center justify-center rounded-full shrink-0">
             {vehicles.length}
           </span>
-          <div className="content-stretch flex items-center justify-center max-h-[24px] max-w-[24px] min-h-[24px] min-w-[24px] relative rounded-[6px] shrink-0 size-[24px]">
-            <ChevronRightIcon
-              className="size-[16px] text-[#27272a] transition-transform duration-200 ease-out"
-              style={{ transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)" }}
-            />
-          </div>
+          <ChevronRightIcon
+            className="size-[16px] text-[#27272a] shrink-0 transition-transform duration-200 ease-out"
+            style={{ transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)" }}
+          />
         </button>
         {/* Expandable vehicle list — smart animate via CSS grid */}
         <div
@@ -2217,27 +2253,25 @@ function ClientAppointmentsSection({ clientName }: { clientName: string }) {
   if (appointments.length === 0) return null;
 
   return (
-    <div className="bg-white content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full" data-name="Client Past Schedules Frame">
-      <div className="bg-[rgba(39,39,42,0.15)] h-px shrink-0 w-full" data-name="Light Mode / Separator" />
+    <div className="bg-white content-stretch flex flex-col gap-[12px] items-start relative shrink-0 w-full" data-name="Client Past Schedules Frame">
+      <div className="bg-[#e5e5e5] h-px shrink-0 w-full" data-name="Light Mode / Separator" />
       <div className="flex flex-col w-full">
         <button
           onClick={() => setIsExpanded((prev) => !prev)}
           className="content-stretch cursor-pointer flex gap-[8px] items-center relative shrink-0 w-full"
           data-name="Top Frame"
         >
-          <CalendarIcon className="size-[16px] text-[#a1a1aa] shrink-0" />
+          <CalendarIcon className="size-[16px] text-[#71717a] shrink-0" />
           <div className="content-stretch flex flex-[1_0_0] items-center min-h-px min-w-px relative">
             <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] text-left whitespace-pre-wrap">Marcações</p>
           </div>
-          <span className="bg-[#8270FF] text-white text-[12px] font-medium leading-[1.5] h-[22px] min-w-[22px] px-2 flex items-center justify-center rounded-full shrink-0">
+          <span className="bg-[#8270ff] text-white text-[11px] font-medium leading-none h-[20px] min-w-[20px] px-1.5 flex items-center justify-center rounded-full shrink-0">
             {appointments.length}
           </span>
-          <div className="content-stretch flex items-center justify-center max-h-[24px] max-w-[24px] min-h-[24px] min-w-[24px] relative rounded-[6px] shrink-0 size-[24px]">
-            <ChevronRightIcon
-              className="size-[16px] text-[#27272a] transition-transform duration-200 ease-out"
-              style={{ transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)" }}
-            />
-          </div>
+          <ChevronRightIcon
+            className="size-[16px] text-[#27272a] shrink-0 transition-transform duration-200 ease-out"
+            style={{ transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)" }}
+          />
         </button>
         {/* Expandable appointment list — smart animate via CSS grid */}
         <div
@@ -2408,7 +2442,7 @@ function TagsPopup({ selectedTagIds, onToggleTag, onClose, triggerRect, containe
   return createPortal(
     <div
       ref={popupRef}
-      className="fixed bg-white rounded-[10px] shadow-lg border border-[#e5e5e5] flex flex-col z-[9999]"
+      className="fixed bg-white rounded-[8px] shadow-lg border border-[#e5e5e5] flex flex-col z-[9999]"
       style={{
         top: triggerRect.bottom + 8,
         left: containerRect.left,
@@ -2423,10 +2457,10 @@ function TagsPopup({ selectedTagIds, onToggleTag, onClose, triggerRect, containe
           <div className="px-[13px] pt-[13px] pb-[5px]">
             <p className="font-normal leading-[1.5] text-[#71717a] text-[14px]">Tags guardados</p>
           </div>
-          <div className="content-stretch flex flex-col items-start justify-center min-w-[inherit] p-[5px] relative w-full">
+          <div className="content-stretch flex flex-col items-start justify-center min-w-[inherit] p-[4px] relative w-full">
             {savedTags.map((tag) => (
               <div key={tag.id} className="content-stretch flex items-center relative shrink-0 w-full">
-                <label className="flex items-center gap-[8px] cursor-pointer w-full px-[8px] py-[6px] rounded-[6px] transition-colors hover:bg-[#f4f4f5]">
+                <label className="flex items-center gap-[8px] cursor-pointer w-full px-[8px] py-[8px] rounded-[6px] transition-colors hover:bg-[#f4f4f5]">
                   <Checkbox
                     checked={selectedTagIds.includes(tag.id)}
                     onCheckedChange={() => onToggleTag(tag.id)}
@@ -2450,7 +2484,7 @@ function TagsPopup({ selectedTagIds, onToggleTag, onClose, triggerRect, containe
         <div aria-hidden="true" className="absolute border-[#e5e5e5] border-l-0 border-r-0 border-solid border-t inset-0 pointer-events-none" />
         <div className="flex flex-col justify-center min-w-[inherit] overflow-clip rounded-[inherit] size-full">
 
-          <div className="content-stretch flex flex-col items-start justify-center min-w-[inherit] p-[5px] relative w-full">
+          <div className="content-stretch flex flex-col items-start justify-center min-w-[inherit] p-[4px] relative w-full">
             {/* Button - smart animate */}
             <div
               className="grid w-full transition-all duration-200 ease-out"
@@ -2461,7 +2495,7 @@ function TagsPopup({ selectedTagIds, onToggleTag, onClose, triggerRect, containe
             >
               <div className="overflow-hidden">
                 <div className="content-stretch flex items-center relative shrink-0 w-full">
-                  <button onClick={handleStartCreating} className="flex items-center gap-[8px] px-[8px] py-[6px] rounded-[6px] cursor-pointer transition-colors hover:bg-[#f4f4f5] w-full">
+                  <button onClick={handleStartCreating} className="flex items-center gap-[8px] px-[8px] py-[8px] rounded-[6px] cursor-pointer transition-colors hover:bg-[#f4f4f5] w-full">
                     <CirclePlus className="w-5 h-5 text-[#8270ff] shrink-0" />
                     <p className="font-medium leading-[1.5] text-[#8270ff] text-[14px]">Novo tag</p>
                   </button>
@@ -2477,9 +2511,9 @@ function TagsPopup({ selectedTagIds, onToggleTag, onClose, triggerRect, containe
               }}
             >
               <div className="overflow-hidden">
-                <div className="flex flex-col gap-[16px] w-full px-[8px] py-[6px]">
+                <div className="flex flex-col gap-[16px] w-full px-[8px] py-[8px]">
                 {/* Input with color selector */}
-                <div className="flex flex-col gap-[6px] w-full">
+                <div className="flex flex-col gap-[8px] w-full">
                   <p className="font-medium leading-[1.5] text-[#27272a] text-[14px]">Tag</p>
                   <div className="relative w-full flex">
                     {/* Color selector button */}
@@ -2487,13 +2521,13 @@ function TagsPopup({ selectedTagIds, onToggleTag, onClose, triggerRect, containe
                       ref={colorBtnRef}
                       type="button"
                       onClick={() => colorDropdownOpen ? closeColorDropdown() : openColorDropdown()}
-                      className="flex items-center gap-[6px] h-9 px-[10px] bg-white border border-[var(--input)] rounded-l-md border-r-0 cursor-pointer hover:bg-[#e4e4e7] transition-colors duration-200 ease-out shrink-0"
+                      className="flex items-center gap-[8px] h-9 px-[10px] bg-white border border-[var(--input)] rounded-l-md border-r-0 cursor-pointer hover:bg-[#e5e5e5] transition-colors duration-200 ease-out shrink-0"
                     >
                       <span
                         className="size-[14px] rounded-full shrink-0"
                         style={{ backgroundColor: (TAG_COLORS.find(c => c.id === selectedColor) || TAG_COLORS[0]).hex }}
                       />
-                      <ChevronDownIcon className="w-3.5 h-3.5 text-[#a1a1aa]" />
+                      <ChevronDownIcon className="w-3.5 h-3.5 text-[#71717a]" />
                     </button>
 
                     {/* Tag name input */}
@@ -2510,7 +2544,7 @@ function TagsPopup({ selectedTagIds, onToggleTag, onClose, triggerRect, containe
                     {colorDropdownOpen && (
                       <div
                         ref={colorDropdownRef}
-                        className="absolute top-[calc(100%+4px)] left-0 bg-white rounded-[8px] border border-[#e4e4e7] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] z-50 flex flex-row items-center gap-[6px] transition-opacity duration-200 ease-out overflow-hidden p-[6px]"
+                        className="absolute top-[calc(100%+4px)] left-0 bg-white rounded-[8px] border border-[#e5e5e5] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] z-50 flex flex-row items-center gap-[8px] transition-opacity duration-200 ease-out overflow-hidden p-[6px]"
                         style={{ opacity: colorDropdownVisible ? 1 : 0 }}
                       >
                         {TAG_COLORS.map((color) => (
@@ -2639,8 +2673,8 @@ function ClientTabContent({ client, onClientUpdate, containerRef }: { client: Se
     .filter((t): t is NonNullable<typeof t> => t != null);
 
   return (
-    <div className="flex flex-[1_0_0] flex-col min-h-px min-w-px relative w-full" style={{ overflow: 'clip', overflowClipMargin: '3px' }}>
-    <div className="visible-scrollbar content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px relative w-full -mx-[3px] px-[3px]" data-name="Main Frame">
+    <div className="flex flex-[1_0_0] flex-col min-h-px min-w-px relative w-full" style={{ overflow: 'clip', overflowClipMargin: '4px' }}>
+    <div className="visible-scrollbar content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start min-h-px min-w-px relative w-full -mx-[4px] px-[4px]" data-name="Main Frame">
       {/* Header Frame */}
       <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full" data-name="Header Frame">
         {/* Header: Name + Shortcut Button */}
@@ -2673,12 +2707,12 @@ function ClientTabContent({ client, onClientUpdate, containerRef }: { client: Se
                   ref={tagsTriggerRef}
                   variant="ghost"
                   size={null}
-                  className={`bg-[rgba(161,161,170,0.15)] rounded-[6px] h-auto not-disabled:hover:bg-[rgba(161,161,170,0.25)] cursor-pointer ${selectedTags.length >= 1 ? '!p-[4px]' : 'gap-[6px] !px-[8px] !py-[4px]'}`}
+                  className={`bg-[rgba(161,161,170,0.15)] rounded-[6px] h-auto not-disabled:hover:bg-[rgba(161,161,170,0.25)] cursor-pointer ${selectedTags.length >= 1 ? '!p-[4px]' : 'gap-[8px] !px-[8px] !py-[4px]'}`}
                   onClick={openTagsPopup}
                 >
-                  <PlusIcon className="size-[16px] text-[#3f3f46]" />
+                  <PlusIcon className="size-[16px] text-[#27272a]" />
                   {selectedTags.length < 1 && (
-                    <span className="font-medium leading-[1.5] text-[#3f3f46] text-[12px]">Adicionar</span>
+                    <span className="font-medium leading-[1.5] text-[#27272a] text-[12px]">Adicionar</span>
                   )}
                 </Button>
               </div>
@@ -2689,20 +2723,20 @@ function ClientTabContent({ client, onClientUpdate, containerRef }: { client: Se
             <Button
               variant="ghost"
               size="icon"
-              className="max-h-[32px] max-w-[32px] min-h-[32px] min-w-[32px] size-[32px] rounded-[6px] cursor-pointer not-disabled:hover:bg-[#e4e4e7]"
+              className="max-h-[32px] max-w-[32px] min-h-[32px] min-w-[32px] size-[32px] rounded-[6px] cursor-pointer not-disabled:hover:bg-[#e5e5e5]"
             >
               <ExternalLink className="size-[16px] text-[#27272a]" />
             </Button>
           </div>
         </div>
         {/* Client notes textarea */}
-        <div className="content-stretch flex flex-col gap-[12px] items-start relative shrink-0 w-full" data-name="Light Mode / Field">
+        <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full" data-name="Light Mode / Field">
           <Textarea
             key={client.id}
             placeholder="Notas sobre o cliente"
             defaultValue={client.notes || ""}
             onChange={handleNotesChange}
-            className="min-h-[64px] h-[64px] text-[14px] leading-[1.5] font-normal resize-none bg-white"
+            className="min-h-[64px] h-[64px] text-[14px] leading-[1.5] font-normal resize-none bg-[#fafafa]"
           />
         </div>
       </div>
@@ -2716,7 +2750,7 @@ function ClientTabContent({ client, onClientUpdate, containerRef }: { client: Se
       </div>
 
       {/* Expandable sections */}
-      <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full" data-name="Expandable Items">
+      <div className="content-stretch flex flex-col gap-[12px] items-start relative shrink-0 w-full" data-name="Expandable Items">
         {/* Veículos */}
         <ClientVehiclesSection clientName={client.name} />
         {/* Marcações */}
@@ -2776,7 +2810,7 @@ function SideMenuFrame({ selectedClient, onClientUpdate, selectedVehicle, onVehi
 }
 
 function LightModeSeparator() {
-  return <div className="bg-[rgba(39,39,42,0.15)] h-px shrink-0 w-full" data-name="Light Mode / Separator" />;
+  return <div className="bg-[#e5e5e5] h-px shrink-0 w-full" data-name="Light Mode / Separator" />;
 }
 
 function LightModeText9() {
@@ -2941,7 +2975,7 @@ function ContentFrame4({ services }: { services?: QuoteService[] }) {
   }, [services]);
 
   return (
-    <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full" data-name="Content Frame">
+    <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full" data-name="Content Frame">
       <TopFrame1 subtotal={subtotal} />
       <BottomFrame total={total} services={services} />
     </div>
@@ -2962,7 +2996,7 @@ function ActionButtons({ selectedClient, selectedVehicle, services }: { selected
     <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full" data-name="Action Buttons">
       <ContentFrame4 services={services} />
       <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full" data-name="Buttons Frame">
-        <Button className="w-full h-[40px] bg-[#262124] text-white not-disabled:hover:bg-[#3f3f46] cursor-pointer" disabled={!canFinalize}>
+        <Button className="w-full h-[40px] bg-[#27272a] text-white not-disabled:hover:bg-[#3f3f46] cursor-pointer" disabled={!canFinalize}>
           Finalizar orçamento
         </Button>
         <Button variant="outline" className="w-full h-[40px] cursor-pointer" onClick={() => setIsCancelModalOpen(true)}>
@@ -2985,7 +3019,7 @@ function ActionButtons({ selectedClient, selectedVehicle, services }: { selected
 
 function RightFrame({ selectedClient, onClientUpdate, selectedVehicle, onVehicleUpdate, services }: { selectedClient?: SelectedClient | null; onClientUpdate?: (client: SelectedClient) => void; selectedVehicle?: Vehicle | null; onVehicleUpdate?: (vehicle: Vehicle) => void; services?: QuoteService[] }) {
   return (
-    <div className="bg-white content-stretch flex flex-col gap-[24px] h-full items-start p-[16px] relative shrink-0 w-[clamp(320px,28vw,360px)]" data-name="Right Frame">
+    <div className="bg-white content-stretch flex flex-col gap-[24px] h-full items-start p-[20px] relative shrink-0 w-[clamp(320px,28vw,360px)]" data-name="Right Frame">
       <div aria-hidden="true" className="absolute border-[#e5e5e5] border-l border-solid inset-0 pointer-events-none" />
       <SideMenuFrame selectedClient={selectedClient} onClientUpdate={onClientUpdate} selectedVehicle={selectedVehicle} onVehicleUpdate={onVehicleUpdate} services={services} />
     </div>

@@ -17,7 +17,7 @@ function TopFrame() {
                     </svg>
                   </div>
                 </div>
-                <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Accionamento</p>
+                <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Accionamento</p>
               </div>
             </div>
           </div>
@@ -33,7 +33,7 @@ function Main1() {
       <div className="max-h-[40px] min-h-[40px] relative rounded-[8px] shrink-0 w-full" data-name="Light Mode / Button">
         <div className="flex flex-row items-center justify-center max-h-[inherit] min-h-[inherit] size-full">
           <div className="content-stretch flex gap-[8px] items-center justify-center max-h-[inherit] min-h-[inherit] px-[16px] relative w-full">
-            <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Motor completo</p>
+            <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Motor completo</p>
             <div className="overflow-clip relative shrink-0 size-[16px]" data-name="Right Icon">
               <div className="absolute inset-[20.83%_33.33%]" data-name="Vector (Stroke)">
                 <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 5.33323 9.33313">
@@ -47,7 +47,7 @@ function Main1() {
       <div className="max-h-[40px] min-h-[40px] relative rounded-[8px] shrink-0 w-full" data-name="Light Mode / Button">
         <div className="flex flex-row items-center justify-center max-h-[inherit] min-h-[inherit] size-full">
           <div className="content-stretch flex gap-[8px] items-center justify-center max-h-[inherit] min-h-[inherit] px-[16px] relative w-full">
-            <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Embraiagem</p>
+            <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Embraiagem</p>
             <div className="overflow-clip relative shrink-0 size-[16px]" data-name="Right Icon">
               <div className="absolute inset-[20.83%_33.33%]" data-name="Vector (Stroke)">
                 <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 5.33323 9.33313">
@@ -61,7 +61,7 @@ function Main1() {
       <div className="max-h-[40px] min-h-[40px] relative rounded-[8px] shrink-0 w-full" data-name="Light Mode / Button">
         <div className="flex flex-row items-center justify-center max-h-[inherit] min-h-[inherit] size-full">
           <div className="content-stretch flex gap-[8px] items-center justify-center max-h-[inherit] min-h-[inherit] px-[16px] relative w-full">
-            <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Caixa de velocidades</p>
+            <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Caixa de velocidades</p>
             <div className="overflow-clip relative shrink-0 size-[16px]" data-name="Right Icon">
               <div className="absolute inset-[20.83%_33.33%]" data-name="Vector (Stroke)">
                 <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 5.33323 9.33313">
@@ -75,7 +75,7 @@ function Main1() {
       <div className="max-h-[40px] min-h-[40px] relative rounded-[8px] shrink-0 w-full" data-name="Light Mode / Button">
         <div className="flex flex-row items-center justify-center max-h-[inherit] min-h-[inherit] size-full">
           <div className="content-stretch flex gap-[8px] items-center justify-center max-h-[inherit] min-h-[inherit] px-[16px] relative w-full">
-            <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Diferencial atrás</p>
+            <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Diferencial atrás</p>
             <div className="overflow-clip relative shrink-0 size-[16px]" data-name="Right Icon">
               <div className="absolute inset-[20.83%_33.33%]" data-name="Vector (Stroke)">
                 <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 5.33323 9.33313">
@@ -89,7 +89,7 @@ function Main1() {
       <div className="max-h-[40px] min-h-[40px] relative rounded-[8px] shrink-0 w-full" data-name="Light Mode / Button">
         <div className="flex flex-row items-center justify-center max-h-[inherit] min-h-[inherit] size-full">
           <div className="content-stretch flex gap-[8px] items-center justify-center max-h-[inherit] min-h-[inherit] px-[16px] relative w-full">
-            <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Cablagem de accionamento</p>
+            <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Cablagem de accionamento</p>
             <div className="overflow-clip relative shrink-0 size-[16px]" data-name="Right Icon">
               <div className="absolute inset-[20.83%_33.33%]" data-name="Vector (Stroke)">
                 <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 5.33323 9.33313">
@@ -103,7 +103,7 @@ function Main1() {
       <div className="max-h-[40px] min-h-[40px] relative rounded-[8px] shrink-0 w-full" data-name="Light Mode / Button">
         <div className="flex flex-row items-center justify-center max-h-[inherit] min-h-[inherit] size-full">
           <div className="content-stretch flex gap-[8px] items-center justify-center max-h-[inherit] min-h-[inherit] px-[16px] relative w-full">
-            <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Sistema de aspiração</p>
+            <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Sistema de aspiração</p>
             <div className="overflow-clip relative shrink-0 size-[16px]" data-name="Right Icon">
               <div className="absolute inset-[20.83%_33.33%]" data-name="Vector (Stroke)">
                 <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 5.33323 9.33313">
@@ -117,7 +117,7 @@ function Main1() {
       <div className="max-h-[40px] min-h-[40px] relative rounded-[8px] shrink-0 w-full" data-name="Light Mode / Button">
         <div className="flex flex-row items-center justify-center max-h-[inherit] min-h-[inherit] size-full">
           <div className="content-stretch flex gap-[8px] items-center justify-center max-h-[inherit] min-h-[inherit] px-[16px] relative w-full">
-            <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Sistema de escape</p>
+            <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Sistema de escape</p>
             <div className="overflow-clip relative shrink-0 size-[16px]" data-name="Right Icon">
               <div className="absolute inset-[20.83%_33.33%]" data-name="Vector (Stroke)">
                 <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 5.33323 9.33313">
@@ -131,7 +131,7 @@ function Main1() {
       <div className="max-h-[40px] min-h-[40px] relative rounded-[8px] shrink-0 w-full" data-name="Light Mode / Button">
         <div className="flex flex-row items-center justify-center max-h-[inherit] min-h-[inherit] size-full">
           <div className="content-stretch flex gap-[8px] items-center justify-center max-h-[inherit] min-h-[inherit] px-[16px] relative w-full">
-            <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Sistema elétrico do motor</p>
+            <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Sistema elétrico do motor</p>
             <div className="overflow-clip relative shrink-0 size-[16px]" data-name="Right Icon">
               <div className="absolute inset-[20.83%_33.33%]" data-name="Vector (Stroke)">
                 <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 5.33323 9.33313">
@@ -145,7 +145,7 @@ function Main1() {
       <div className="max-h-[40px] min-h-[40px] relative rounded-[8px] shrink-0 w-full" data-name="Light Mode / Button">
         <div className="flex flex-row items-center justify-center max-h-[inherit] min-h-[inherit] size-full">
           <div className="content-stretch flex gap-[8px] items-center justify-center max-h-[inherit] min-h-[inherit] px-[16px] relative w-full">
-            <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Preparação da mistura</p>
+            <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Preparação da mistura</p>
             <div className="overflow-clip relative shrink-0 size-[16px]" data-name="Right Icon">
               <div className="absolute inset-[20.83%_33.33%]" data-name="Vector (Stroke)">
                 <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 5.33323 9.33313">
@@ -159,7 +159,7 @@ function Main1() {
       <div className="max-h-[40px] min-h-[40px] relative rounded-[8px] shrink-0 w-full" data-name="Light Mode / Button">
         <div className="flex flex-row items-center justify-center max-h-[inherit] min-h-[inherit] size-full">
           <div className="content-stretch flex gap-[8px] items-center justify-center max-h-[inherit] min-h-[inherit] px-[16px] relative w-full">
-            <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Alimentação de combustível</p>
+            <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Alimentação de combustível</p>
             <div className="overflow-clip relative shrink-0 size-[16px]" data-name="Right Icon">
               <div className="absolute inset-[20.83%_33.33%]" data-name="Vector (Stroke)">
                 <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 5.33323 9.33313">
@@ -170,10 +170,10 @@ function Main1() {
           </div>
         </div>
       </div>
-      <div className="bg-[#e4e4e7] max-h-[40px] min-h-[40px] relative rounded-[8px] shrink-0 w-full" data-name="Light Mode / Button">
+      <div className="bg-[#e5e5e5] max-h-[40px] min-h-[40px] relative rounded-[8px] shrink-0 w-full" data-name="Light Mode / Button">
         <div className="flex flex-row items-center justify-center max-h-[inherit] min-h-[inherit] size-full">
           <div className="content-stretch flex gap-[8px] items-center justify-center max-h-[inherit] min-h-[inherit] px-[16px] relative w-full">
-            <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Refrigeração</p>
+            <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Refrigeração</p>
             <div className="overflow-clip relative shrink-0 size-[16px]" data-name="Right Icon">
               <div className="absolute inset-[20.83%_33.33%]" data-name="Vector (Stroke)">
                 <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 5.33323 9.33313">
@@ -187,7 +187,7 @@ function Main1() {
       <div className="max-h-[40px] min-h-[40px] relative rounded-[8px] shrink-0 w-full" data-name="Light Mode / Button">
         <div className="flex flex-row items-center justify-center max-h-[inherit] min-h-[inherit] size-full">
           <div className="content-stretch flex gap-[8px] items-center justify-center max-h-[inherit] min-h-[inherit] px-[16px] relative w-full">
-            <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Aquecimento / ar condicionado</p>
+            <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Aquecimento / ar condicionado</p>
             <div className="overflow-clip relative shrink-0 size-[16px]" data-name="Right Icon">
               <div className="absolute inset-[20.83%_33.33%]" data-name="Vector (Stroke)">
                 <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 5.33323 9.33313">
@@ -207,7 +207,7 @@ function BrandingFrame() {
     <div className="relative rounded-[8px] shrink-0 w-full" data-name="Branding Frame">
       <div className="flex flex-col justify-center size-full">
         <div className="content-stretch flex flex-col gap-[8px] items-start justify-center px-[16px] py-[8px] relative w-full">
-          <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-w-full not-italic relative shrink-0 text-[#71717a] text-[12px] w-[min-content] whitespace-pre-wrap">Com tecnologia</p>
+          <p className="font-normal leading-[1.5] min-w-full not-italic relative shrink-0 text-[#71717a] text-[12px] w-[min-content] whitespace-pre-wrap">Com tecnologia</p>
           <div className="h-[24px] relative shrink-0 w-[105px]" data-name="image 324">
             <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgImage324} />
           </div>
@@ -253,7 +253,7 @@ function Input() {
               </svg>
             </div>
           </div>
-          <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#d4d4d8] text-[14px] text-ellipsis whitespace-nowrap">Pesquisar por grupo funcional ou por peça</p>
+          <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#d4d4d8] text-[14px] text-ellipsis whitespace-nowrap">Pesquisar por grupo funcional ou por peça</p>
         </div>
       </div>
     </div>
@@ -264,10 +264,10 @@ function LabelFrame() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start justify-center min-h-px min-w-px relative" data-name="Label Frame">
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Radiador</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Radiador</p>
       </div>
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Desmontagem e montagem</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Desmontagem e montagem</p>
       </div>
     </div>
   );
@@ -284,7 +284,7 @@ function TimeFrame() {
         </div>
       </div>
       <div className="content-stretch flex items-center relative shrink-0" data-name="Time">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">01h00</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">01h00</p>
       </div>
     </div>
   );
@@ -294,10 +294,10 @@ function LabelFrame1() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start justify-center min-h-px min-w-px relative" data-name="Label Frame">
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Radiador</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Radiador</p>
       </div>
       <div className="content-stretch flex items-center relative shrink-0 w-[324px]" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Substituir</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Substituir</p>
       </div>
     </div>
   );
@@ -314,7 +314,7 @@ function TimeFrame1() {
         </div>
       </div>
       <div className="content-stretch flex items-center relative shrink-0" data-name="Time">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">01h00</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">01h00</p>
       </div>
     </div>
   );
@@ -324,10 +324,10 @@ function LabelFrame2() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start justify-center min-h-px min-w-px relative" data-name="Label Frame">
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Recipiente de compensação do agente de refrigeração</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Recipiente de compensação do agente de refrigeração</p>
       </div>
       <div className="content-stretch flex items-center relative shrink-0 w-[324px]" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Substituir</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Substituir</p>
       </div>
     </div>
   );
@@ -344,7 +344,7 @@ function TimeFrame2() {
         </div>
       </div>
       <div className="content-stretch flex items-center relative shrink-0" data-name="Time">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">00h30</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">00h30</p>
       </div>
     </div>
   );
@@ -354,10 +354,10 @@ function LabelFrame3() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start justify-center min-h-px min-w-px relative" data-name="Label Frame">
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Sensor de temperatura do líquido de refrigeração</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Sensor de temperatura do líquido de refrigeração</p>
       </div>
       <div className="content-stretch flex items-center relative shrink-0 w-[324px]" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Substituir</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Substituir</p>
       </div>
     </div>
   );
@@ -374,7 +374,7 @@ function TimeFrame3() {
         </div>
       </div>
       <div className="content-stretch flex items-center relative shrink-0" data-name="Time">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">00h10</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">00h10</p>
       </div>
     </div>
   );
@@ -384,10 +384,10 @@ function LabelFrame4() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start justify-center min-h-px min-w-px relative" data-name="Label Frame">
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Encaixe do ventilador</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Encaixe do ventilador</p>
       </div>
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Desmontagem e montagem</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Desmontagem e montagem</p>
       </div>
     </div>
   );
@@ -404,7 +404,7 @@ function TimeFrame4() {
         </div>
       </div>
       <div className="content-stretch flex items-center relative shrink-0" data-name="Time">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">00h30</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">00h30</p>
       </div>
     </div>
   );
@@ -414,10 +414,10 @@ function LabelFrame5() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start justify-center min-h-px min-w-px relative" data-name="Label Frame">
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Encaixe do ventilador</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Encaixe do ventilador</p>
       </div>
       <div className="content-stretch flex items-center relative shrink-0 w-[324px]" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Substituir</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Substituir</p>
       </div>
     </div>
   );
@@ -434,7 +434,7 @@ function TimeFrame5() {
         </div>
       </div>
       <div className="content-stretch flex items-center relative shrink-0" data-name="Time">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">00h30</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">00h30</p>
       </div>
     </div>
   );
@@ -444,10 +444,10 @@ function LabelFrame6() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start justify-center min-h-px min-w-px relative" data-name="Label Frame">
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Bomba de água</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Bomba de água</p>
       </div>
       <div className="content-stretch flex items-center relative shrink-0 w-[324px]" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Substituir</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Substituir</p>
       </div>
     </div>
   );
@@ -464,7 +464,7 @@ function TimeFrame6() {
         </div>
       </div>
       <div className="content-stretch flex items-center relative shrink-0" data-name="Time">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">02h30</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">02h30</p>
       </div>
     </div>
   );
@@ -474,10 +474,10 @@ function LabelFrame7() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start justify-center min-h-px min-w-px relative" data-name="Label Frame">
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Junta da bomba de água</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Junta da bomba de água</p>
       </div>
       <div className="content-stretch flex items-center relative shrink-0 w-[324px]" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Substituir</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Substituir</p>
       </div>
     </div>
   );
@@ -494,7 +494,7 @@ function TimeFrame7() {
         </div>
       </div>
       <div className="content-stretch flex items-center relative shrink-0" data-name="Time">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">01h45</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">01h45</p>
       </div>
     </div>
   );
@@ -504,10 +504,10 @@ function LabelFrame8() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start justify-center min-h-px min-w-px relative" data-name="Label Frame">
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Termóstato do agente de refrigeração</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Termóstato do agente de refrigeração</p>
       </div>
       <div className="content-stretch flex items-center relative shrink-0 w-[324px]" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Substituir</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Substituir</p>
       </div>
     </div>
   );
@@ -524,7 +524,7 @@ function TimeFrame8() {
         </div>
       </div>
       <div className="content-stretch flex items-center relative shrink-0" data-name="Time">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">00h30</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">00h30</p>
       </div>
     </div>
   );
@@ -534,10 +534,10 @@ function LabelFrame9() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start justify-center min-h-px min-w-px relative" data-name="Label Frame">
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Junta do termóstato do líquido de refrigeração</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Junta do termóstato do líquido de refrigeração</p>
       </div>
       <div className="content-stretch flex items-center relative shrink-0 w-[324px]" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Substituir</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Substituir</p>
       </div>
     </div>
   );
@@ -554,7 +554,7 @@ function TimeFrame9() {
         </div>
       </div>
       <div className="content-stretch flex items-center relative shrink-0" data-name="Time">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">01h30</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">01h30</p>
       </div>
     </div>
   );
@@ -564,10 +564,10 @@ function LabelFrame10() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start justify-center min-h-px min-w-px relative" data-name="Label Frame">
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Radiador de óleo da caixa de velocidades automática</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Radiador de óleo da caixa de velocidades automática</p>
       </div>
       <div className="content-stretch flex items-center relative shrink-0 w-[324px]" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Substituir</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Substituir</p>
       </div>
     </div>
   );
@@ -584,7 +584,7 @@ function TimeFrame10() {
         </div>
       </div>
       <div className="content-stretch flex items-center relative shrink-0" data-name="Time">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">01h30</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">01h30</p>
       </div>
     </div>
   );

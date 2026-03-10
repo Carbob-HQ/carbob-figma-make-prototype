@@ -8,21 +8,21 @@ export default function SideMenuEstPending() {
           <button className="cursor-pointer flex-[1_0_0] min-h-px min-w-px relative rounded-[6px]" data-name="Tab 1">
             <div className="flex flex-row items-center justify-center size-full">
               <div className="content-stretch flex gap-[8px] items-center justify-center px-[12px] py-[4px] relative w-full">
-                <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#52525b] text-[14px] text-left">Orçamento</p>
+                <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] text-left">Orçamento</p>
               </div>
             </div>
           </button>
           <div className="bg-white flex-[1_0_0] min-h-px min-w-px relative rounded-[6px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)]" data-name="Tab 2">
             <div className="flex flex-row items-center justify-center size-full">
               <div className="content-stretch flex gap-[8px] items-center justify-center px-[12px] py-[4px] relative w-full">
-                <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px]">Cliente</p>
+                <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px]">Cliente</p>
               </div>
             </div>
           </div>
           <button className="cursor-pointer flex-[1_0_0] min-h-px min-w-px relative rounded-[6px]" data-name="Tab 3">
             <div className="flex flex-row items-center justify-center size-full">
               <div className="content-stretch flex gap-[8px] items-center justify-center px-[12px] py-[4px] relative w-full">
-                <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#52525b] text-[14px] text-left">Veículo</p>
+                <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] text-left">Veículo</p>
               </div>
             </div>
           </button>
@@ -37,7 +37,7 @@ export default function SideMenuEstPending() {
           </div>
         </div>
         <div className="content-stretch flex items-center justify-center relative shrink-0 w-full" data-name="Light Mode / Text">
-          <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[14px] text-center text-ellipsis whitespace-pre-wrap">Sem cliente selecionado</p>
+          <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[14px] text-center text-ellipsis whitespace-pre-wrap">Sem cliente selecionado</p>
         </div>
       </div>
     </div>

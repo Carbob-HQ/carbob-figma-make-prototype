@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import svgPaths from "../../imports/svg-wfav1bxa5s";
 import svgPathsClientFrame from "../../imports/svg-84svbglmnm";
-import { Loader2, CirclePlus } from "lucide-react";
+import { Loader2, CirclePlus, Phone, Mail } from "lucide-react";
 
 interface Client {
   id: string;
@@ -109,26 +109,60 @@ function UserRound() {
 
 function ClientFrame({ client, onSelect }: { client: Client; onSelect?: (client: Client) => void }) {
   return (
-    <div className="bg-white content-stretch flex gap-[12px] items-center min-w-[180px] px-[8px] py-[6px] relative rounded-[6px] w-full cursor-pointer transition-colors hover:bg-[#e9ebef]" data-name="Client Frame" onClick={() => onSelect?.(client)}>
+    <div className="bg-white content-stretch flex gap-[12px] items-center min-w-[180px] px-[8px] py-[8px] relative rounded-[6px] w-full cursor-pointer transition-colors hover:bg-[#f4f4f5]" data-name="Client Frame" onClick={() => onSelect?.(client)}>
       {/* Icon Frame - circle with initials */}
-      <div className="bg-white relative rounded-[9999px] shrink-0 size-[32px]" data-name="Left Icon">
+      <div className="bg-[#e5e5e5] relative rounded-[9999px] shrink-0 size-[32px]" data-name="Left Icon">
         <div className="content-stretch flex items-center justify-center overflow-clip relative rounded-[inherit] size-full">
           <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[12px]">{client.initials}</p>
         </div>
         <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[9999px]" />
       </div>
       {/* Content Frame */}
-      <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start min-h-px min-w-px relative" data-name="Content Frame">
+      <div className="content-stretch flex flex-[1_0_0] flex-col gap-[2px] items-start min-h-px min-w-px relative" data-name="Content Frame">
         <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Name">
           <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">{client.name}</p>
         </div>
-        <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Description">
-          <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis">
-            {[
-              client.phone ? client.phone.replace(/(\d{3})(\d{3})(\d{3})/, "$1 $2 $3") : "",
-              client.email || "",
-            ].filter(Boolean).join(" | ")}
-          </p>
+        <div className="flex items-center gap-[8px] relative shrink-0 w-full" data-name="Description">
+          {client.phone && (
+            <span className="flex items-center gap-[4px] text-[#71717a] text-[12px] leading-[1.5] font-normal">
+              <Phone className="size-[12px] shrink-0" />
+              {client.phone.replace(/(\d{3})(\d{3})(\d{3})/, "$1 $2 $3")}
+            </span>
+          )}
+          {client.phone && client.email && (
+            <span className="text-[#d4d4d8] text-[12px]">|</span>
+          )}
+          {client.email && (
+            <span className="flex items-center gap-[4px] text-[#71717a] text-[12px] leading-[1.5] font-normal overflow-hidden">
+              <Mail className="size-[12px] shrink-0" />
+              <span className="truncate">{client.email}</span>
+            </span>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function EndConsumerFrame({ onSelect }: { onSelect: () => void }) {
+  return (
+    <div className="bg-white content-stretch flex gap-[12px] items-center min-w-[180px] px-[8px] py-[8px] relative rounded-[6px] w-full cursor-pointer transition-colors hover:bg-[#f4f4f5]" data-name="End Consumer Frame" onClick={onSelect}>
+      {/* Icon Frame - circle with user icon */}
+      <div className="bg-[#e5e5e5] relative rounded-[9999px] shrink-0 size-[32px]" data-name="Left Icon">
+        <div className="content-stretch flex items-center justify-center overflow-clip relative rounded-[inherit] size-full">
+          <svg className="size-[14px]" fill="none" viewBox="0 0 20 20">
+            <path d={svgPaths.p112cb400} fill="#71717a" />
+          </svg>
+        </div>
+        <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[9999px]" />
+      </div>
+      {/* Content Frame */}
+      <div className="content-stretch flex flex-[1_0_0] flex-col gap-[2px] items-start min-h-px min-w-px relative" data-name="Content Frame">
+        <div className="content-stretch flex items-center relative shrink-0 w-full">
+          <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Consumidor final</p>
+        </div>
+        <div className="flex items-center relative shrink-0 w-full">
+          <span className="text-[#71717a] text-[12px] leading-[1.5] font-normal">Sem dados de cliente</span>
         </div>
       </div>
     </div>
@@ -208,7 +242,7 @@ export default function ClientSearchPopup({ onSelectClient, selectedClient, onNe
   };
 
   return (
-    <div className="content-stretch flex flex-col items-start relative shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1),0px_2px_4px_-1px_rgba(0,0,0,0.06)] w-[320px] rounded-[8px] border border-[#e5e5e5]" data-name="Light Mode / Context Popup">
+    <div className="content-stretch flex flex-col items-start relative shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1),0px_2px_4px_-1px_rgba(0,0,0,0.06)] w-[330px] rounded-[8px] border border-[#e5e5e5]" data-name="Light Mode / Context Popup">
 
       {/* Search Frame */}
       <div className="bg-white content-stretch flex flex-col items-start justify-center min-w-[192px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-name="Submenu 1">
@@ -226,7 +260,7 @@ export default function ClientSearchPopup({ onSelectClient, selectedClient, onNe
                   className="flex-[1_0_0] min-h-px min-w-px font-normal leading-[1.5] not-italic text-[14px] bg-transparent border-none outline-none text-[#27272a] placeholder:text-[#d4d4d8]"
                 />
                 {searchQuery && (
-                  <div className="content-stretch flex items-center justify-center size-[24px] shrink-0 rounded-[4px] cursor-pointer hover:bg-[#e9ebef] transition-colors" data-name="Light Mode / Button">
+                  <div className="content-stretch flex items-center justify-center size-[24px] shrink-0 rounded-[4px] cursor-pointer hover:bg-[#f4f4f5] transition-colors" data-name="Light Mode / Button">
                     <X onClick={handleClearSearch} />
                   </div>
                 )}
@@ -247,49 +281,35 @@ export default function ClientSearchPopup({ onSelectClient, selectedClient, onNe
         <div className="overflow-hidden min-h-0">
           {isLoading && <LoadingState />}
 
-          {showResults && filteredClients.length > 0 && (
+          {showResults && (
             <div className="bg-white min-w-[192px] relative shrink-0 w-full" data-name="Submenu 2">
               <div aria-hidden="true" className="absolute border-[#e5e5e5] border-l-0 border-r-0 border-solid border-t inset-0 pointer-events-none" />
               <div className="flex flex-col justify-center min-w-[inherit] size-full">
-                <div className="content-stretch flex flex-col items-start justify-center min-w-[inherit] p-[5px] relative w-full">
+                <div className="content-stretch flex flex-col items-start justify-center min-w-[inherit] p-[4px] relative w-full">
                   {filteredClients.map((client) => (
                     <ClientFrame key={client.id} client={client} onSelect={onSelectClient} />
                   ))}
+                  <EndConsumerFrame onSelect={handleSelectEndConsumer} />
                 </div>
-              </div>
-            </div>
-          )}
-
-          {showResults && filteredClients.length === 0 && (
-            <div className="bg-white min-w-[192px] relative shrink-0 w-full h-[62px]" data-name="No Results">
-              <div aria-hidden="true" className="absolute border-[#e5e5e5] border-l-0 border-r-0 border-solid border-t inset-0 pointer-events-none" />
-              <div className="flex flex-col justify-center items-center min-w-[inherit] size-full">
-                <p className="font-normal leading-[1.5] not-italic text-[#71717a] text-[14px]">Nenhum cliente encontrado</p>
               </div>
             </div>
           )}
         </div>
       </div>
 
-      {/* Show currently selected client when search is empty */}
-      {!isLoading && !showResults && selectedClient && !selectedClient.isEndConsumer && searchQuery.trim() === "" && (
+      {/* Show currently selected client or associated client when search is empty */}
+      {!isLoading && !showResults && searchQuery.trim() === "" && (
         <div className="bg-white min-w-[192px] relative shrink-0 w-full" data-name="Submenu 2">
           <div aria-hidden="true" className="absolute border-[#e5e5e5] border-l-0 border-r-0 border-solid border-t inset-0 pointer-events-none" />
           <div className="flex flex-col justify-center min-w-[inherit] size-full">
-            <div className="content-stretch flex flex-col items-start justify-center min-w-[inherit] p-[5px] relative w-full">
-              <ClientFrame key={selectedClient.id} client={selectedClient} onSelect={onSelectClient} />
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Show associated client when no search, no selected client, and there is an associated client */}
-      {!isLoading && !showResults && !selectedClient && associatedClient && searchQuery.trim() === "" && (
-        <div className="bg-white min-w-[192px] relative shrink-0 w-full" data-name="Submenu 2">
-          <div aria-hidden="true" className="absolute border-[#e5e5e5] border-l-0 border-r-0 border-solid border-t inset-0 pointer-events-none" />
-          <div className="flex flex-col justify-center min-w-[inherit] size-full">
-            <div className="content-stretch flex flex-col items-start justify-center min-w-[inherit] p-[5px] relative w-full">
-              <ClientFrame key={associatedClient.id} client={associatedClient} onSelect={onSelectClient} />
+            <div className="content-stretch flex flex-col items-start justify-center min-w-[inherit] p-[4px] relative w-full">
+              {selectedClient && !selectedClient.isEndConsumer && (
+                <ClientFrame key={selectedClient.id} client={selectedClient} onSelect={onSelectClient} />
+              )}
+              {!selectedClient && associatedClient && (
+                <ClientFrame key={associatedClient.id} client={associatedClient} onSelect={onSelectClient} />
+              )}
+              <EndConsumerFrame onSelect={handleSelectEndConsumer} />
             </div>
           </div>
         </div>
@@ -299,19 +319,12 @@ export default function ClientSearchPopup({ onSelectClient, selectedClient, onNe
       <div className="bg-white min-w-[192px] relative rounded-bl-[8px] rounded-br-[8px] shrink-0 w-full" data-name="Submenu 3">
         <div aria-hidden="true" className="absolute border-[#e5e5e5] border-l-0 border-r-0 border-solid border-t inset-0 pointer-events-none" />
         <div className="flex flex-col justify-center min-w-[inherit] overflow-clip rounded-[inherit] size-full">
-          <div className="content-stretch flex flex-col items-start justify-center min-w-[inherit] p-[5px] relative w-full">
-            {/* Consumidor final */}
-            <div className="content-stretch flex items-start relative shrink-0 w-full" data-name="End Consumer">
-              <div onClick={handleSelectEndConsumer} className="bg-white content-stretch flex gap-[8px] items-center justify-center min-w-[180px] px-[8px] py-[6px] relative rounded-[6px] shrink-0 w-full cursor-pointer transition-colors hover:bg-[#e9ebef]" data-name="Context Button 2.2">
-                <UserRound />
-                <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Consumidor final</p>
-              </div>
-            </div>
+          <div className="content-stretch flex flex-col items-start justify-center min-w-[inherit] p-[4px] relative w-full">
             {/* Novo cliente */}
             <button onClick={onNewClient} className="content-stretch cursor-pointer flex items-start relative shrink-0 w-full" data-name="New Client">
-              <div className="bg-white flex-[1_0_0] min-h-px min-w-[180px] relative rounded-[6px] w-full transition-colors hover:bg-[#e9ebef]" data-name="Context Button 2.1">
+              <div className="bg-white flex-[1_0_0] min-h-px min-w-[180px] relative rounded-[6px] w-full transition-colors hover:bg-[#f4f4f5]" data-name="Context Button 2.1">
                 <div className="flex flex-row items-center justify-center min-w-[inherit] size-full">
-                  <div className="content-stretch flex gap-[8px] items-center justify-center min-w-[inherit] px-[8px] py-[6px] relative w-full">
+                  <div className="content-stretch flex gap-[8px] items-center justify-center min-w-[inherit] px-[8px] py-[8px] relative w-full">
                     <CirclePlus className="w-5 h-5 text-[#8270ff] shrink-0" />
                     <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#8270ff] text-[14px] text-left whitespace-pre-wrap">Novo cliente</p>
                   </div>

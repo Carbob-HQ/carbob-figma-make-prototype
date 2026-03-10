@@ -13,7 +13,7 @@ function Input() {
               </svg>
             </div>
           </div>
-          <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[20px] min-h-px min-w-px not-italic overflow-hidden relative text-[#d4d4d8] text-[14px] text-ellipsis whitespace-nowrap">Pesquisar por grupo funcional ou por peça</p>
+          <p className="flex-[1_0_0] font-normal leading-[20px] min-h-px min-w-px not-italic overflow-hidden relative text-[#d4d4d8] text-[14px] text-ellipsis whitespace-nowrap">Pesquisar por grupo funcional ou por peça</p>
         </div>
       </div>
     </div>

@@ -633,7 +633,7 @@ export function EngineCombobox({ value, onChange, version, disabled, label, erro
   };
 
   return (
-    <div className="flex flex-col gap-[6px] items-start relative shrink-0" ref={containerRef}>
+    <div className="flex flex-col gap-[8px] items-start relative shrink-0" ref={containerRef}>
       <p className="font-medium leading-[1.5] not-italic text-[#27272a] text-[14px]">{label ?? "Motorização"}</p>
 
       <button
@@ -641,15 +641,16 @@ export function EngineCombobox({ value, onChange, version, disabled, label, erro
         type="button"
         disabled={disabled}
         onClick={handleToggle}
-        className={`flex items-center justify-between w-full min-h-[40px] h-[40px] bg-white rounded-[8px] border px-[12px] text-[14px] font-normal transition-colors duration-200 ease-out not-disabled:hover:bg-[#e4e4e7] ${
+        className={`flex items-center justify-between w-full min-h-[40px] h-[40px] bg-white rounded-[8px] border px-[12px] text-[14px] font-normal transition-colors duration-200 ease-out not-disabled:hover:bg-[#e5e5e5] ${
           disabled ? "opacity-50 cursor-default border-[#e5e5e5]" : "cursor-pointer"
         } ${error && !disabled ? "border-[#ef4444]" : "border-[#e5e5e5]"}`}
       >
-        <span className={`truncate ${value ? "text-[#3f3f46]" : "text-[#a1a1aa]"}`}>
+        <span className={`truncate ${value ? "text-[#27272a]" : "text-[#71717a]"}`}>
           {value || "Motorização do veículo"}
         </span>
-        <ChevronDown className="size-4 text-[#a1a1aa] shrink-0" />
+        <ChevronDown className="size-4 text-[#71717a] shrink-0" />
       </button>
+      {error && !disabled && <span className="text-[12px] text-[#ef4444] leading-[1.5]">Campo obrigatório</span>}
 
       {open && (
         <div
@@ -663,15 +664,15 @@ export function EngineCombobox({ value, onChange, version, disabled, label, erro
           }}
         >
           {/* Search */}
-          <div className="flex items-center gap-[8px] px-[12px] py-[8px] border-b border-[#e4e4e7]">
-            <Search className="size-4 text-[#a1a1aa] shrink-0" />
+          <div className="flex items-center gap-[8px] px-[12px] py-[8px] border-b border-[#e5e5e5]">
+            <Search className="size-4 text-[#71717a] shrink-0" />
             <input
               ref={inputRef}
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Pesquisar motorização..."
-              className="flex-1 text-[14px] text-[#3f3f46] placeholder:text-[#a1a1aa] outline-none bg-transparent"
+              className="flex-1 text-[14px] text-[#27272a] placeholder:text-[#71717a] outline-none bg-transparent"
             />
           </div>
 
@@ -687,7 +688,7 @@ export function EngineCombobox({ value, onChange, version, disabled, label, erro
               <div key={group.fuel}>
                 {/* Separator between sections */}
                 {groupIdx > 0 && (
-                  <div className="h-px bg-[#e4e4e7] mx-[12px]" />
+                  <div className="h-px bg-[#e5e5e5] mx-[12px]" />
                 )}
 
                 {/* Fuel type heading */}
@@ -701,11 +702,11 @@ export function EngineCombobox({ value, onChange, version, disabled, label, erro
                     key={engine}
                     type="button"
                     onClick={() => handleSelect(engine)}
-                    className="flex items-center gap-[8px] w-full px-[12px] py-[8px] text-[14px] text-[#3f3f46] hover:bg-[#f4f4f5] cursor-pointer transition-colors duration-200 ease-out"
+                    className="flex items-center gap-[8px] w-full px-[12px] py-[8px] text-[14px] text-[#27272a] hover:bg-[#f4f4f5] cursor-pointer transition-colors duration-200 ease-out"
                   >
                     <Check
                       className={`size-4 shrink-0 transition-opacity duration-200 ease-out ${
-                        value === engine ? "opacity-100 text-[#3f3f46]" : "opacity-0"
+                        value === engine ? "opacity-100 text-[#27272a]" : "opacity-0"
                       }`}
                     />
                     {engine}

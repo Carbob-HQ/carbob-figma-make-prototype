@@ -3,7 +3,7 @@ import svgPaths from "./svg-mperoew8r7";
 function Frame() {
   return (
     <div className="content-stretch flex items-center justify-center relative shrink-0" data-name="Frame">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.25] not-italic relative shrink-0 text-[#3f3f46] text-[16px]">Bateria + checkup</p>
+      <p className="font-medium leading-[1.25] not-italic relative shrink-0 text-[#27272a] text-[16px]">Bateria + checkup</p>
     </div>
   );
 }
@@ -12,7 +12,7 @@ function Input() {
   return (
     <div className="relative rounded-[8px] shrink-0 w-full" data-name="Input">
       <div className="flex flex-row items-center size-full">
-        <div className="content-stretch flex gap-[8px] items-center px-[12px] py-[6px] relative w-full">
+        <div className="content-stretch flex gap-[8px] items-center px-[12px] py-[8px] relative w-full">
           <Frame />
         </div>
       </div>
@@ -89,11 +89,11 @@ function HeaderFrame() {
 function Header() {
   return (
     <div className="relative shrink-0 w-full" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
       <div className="flex flex-row items-center size-full">
-        <div className="content-stretch flex items-center pl-[20px] pr-[8px] py-[6px] relative w-full">
+        <div className="content-stretch flex items-center pl-[20px] pr-[8px] py-[8px] relative w-full">
           <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">ITEM</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">ITEM</p>
           </div>
         </div>
       </div>
@@ -122,7 +122,7 @@ function Row() {
         <div className="content-stretch flex gap-[8px] items-center min-h-[inherit] pl-[20px] pr-[8px] py-[8px] relative w-full">
           <LaborFrame />
           <div className="content-stretch flex flex-[1_0_0] items-center min-h-px min-w-px relative" data-name="Light Mode / Text">
-            <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Substituir bateria</p>
+            <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Substituir bateria</p>
           </div>
         </div>
       </div>
@@ -142,11 +142,11 @@ function Column() {
 function Header1() {
   return (
     <div className="relative shrink-0 w-full" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
       <div className="flex flex-row items-center size-full">
-        <div className="content-stretch flex items-center px-[8px] py-[6px] relative w-full">
+        <div className="content-stretch flex items-center px-[8px] py-[8px] relative w-full">
           <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">REF. OEM</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">REF. OEM</p>
           </div>
         </div>
       </div>
@@ -160,7 +160,7 @@ function Row1() {
       <div className="flex flex-row items-center min-h-[inherit] size-full">
         <div className="content-stretch flex items-center min-h-[inherit] p-[8px] relative size-full">
           <div className="content-stretch flex items-center relative shrink-0" data-name="Light Mode / Text">
-            <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">-</p>
+            <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">-</p>
           </div>
         </div>
       </div>
@@ -179,10 +179,10 @@ function Column1() {
 
 function Header2() {
   return (
-    <div className="content-stretch flex items-center px-[8px] py-[6px] relative shrink-0" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+    <div className="content-stretch flex items-center px-[8px] py-[8px] relative shrink-0" data-name="Header">
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
       <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-        <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">QTD. / HORAS</p>
+        <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">QTD. / HORAS</p>
       </div>
     </div>
   );
@@ -194,7 +194,7 @@ function Row2() {
       <div className="flex flex-row items-center min-h-[inherit] size-full">
         <div className="content-stretch flex items-center min-h-[inherit] p-[8px] relative size-full">
           <div className="content-stretch flex items-center relative shrink-0" data-name="Light Mode / Text">
-            <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">00h15</p>
+            <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">00h15</p>
           </div>
         </div>
       </div>
@@ -214,11 +214,11 @@ function Column2() {
 function Header3() {
   return (
     <div className="relative shrink-0 w-full" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
       <div className="flex flex-row items-center size-full">
-        <div className="content-stretch flex items-center px-[8px] py-[6px] relative w-full">
+        <div className="content-stretch flex items-center px-[8px] py-[8px] relative w-full">
           <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">CUSTO</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">CUSTO</p>
           </div>
         </div>
       </div>
@@ -232,7 +232,7 @@ function Row3() {
       <div className="flex flex-row items-center min-h-[inherit] size-full">
         <div className="content-stretch flex items-center min-h-[inherit] p-[8px] relative size-full">
           <div className="content-stretch flex items-center relative shrink-0" data-name="Light Mode / Text">
-            <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">-</p>
+            <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">-</p>
           </div>
         </div>
       </div>
@@ -252,11 +252,11 @@ function Column3() {
 function Header4() {
   return (
     <div className="relative shrink-0 w-full" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
       <div className="flex flex-row items-center size-full">
-        <div className="content-stretch flex items-center px-[8px] py-[6px] relative w-full">
+        <div className="content-stretch flex items-center px-[8px] py-[8px] relative w-full">
           <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">PREÇO</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">PREÇO</p>
           </div>
         </div>
       </div>
@@ -270,7 +270,7 @@ function Row4() {
       <div className="flex flex-row items-center min-h-[inherit] size-full">
         <div className="content-stretch flex items-center min-h-[inherit] p-[8px] relative size-full">
           <div className="content-stretch flex items-center relative shrink-0" data-name="Light Mode / Text">
-            <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">50,00€/h</p>
+            <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">50,00€/h</p>
           </div>
         </div>
       </div>
@@ -290,11 +290,11 @@ function Column4() {
 function Header5() {
   return (
     <div className="relative shrink-0 w-full" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
       <div className="flex flex-row items-center size-full">
-        <div className="content-stretch flex items-center px-[8px] py-[6px] relative w-full">
+        <div className="content-stretch flex items-center px-[8px] py-[8px] relative w-full">
           <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">Desc.</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">Desc.</p>
           </div>
         </div>
       </div>
@@ -308,7 +308,7 @@ function Row5() {
       <div className="flex flex-row items-center min-h-[inherit] size-full">
         <div className="content-stretch flex items-center min-h-[inherit] p-[8px] relative size-full">
           <div className="content-stretch flex flex-[1_0_0] items-center min-h-px min-w-px relative" data-name="Light Mode / Text">
-            <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">0%</p>
+            <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">0%</p>
           </div>
         </div>
       </div>
@@ -328,11 +328,11 @@ function Column5() {
 function Header6() {
   return (
     <div className="relative shrink-0 w-full" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
       <div className="flex flex-row items-center justify-end size-full">
-        <div className="content-stretch flex items-center justify-end px-[8px] py-[6px] relative w-full">
+        <div className="content-stretch flex items-center justify-end px-[8px] py-[8px] relative w-full">
           <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">Subtotal</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">Subtotal</p>
           </div>
         </div>
       </div>
@@ -346,7 +346,7 @@ function Row6() {
       <div className="flex flex-row items-center min-h-[inherit] size-full">
         <div className="content-stretch flex items-center min-h-[inherit] p-[8px] relative size-full">
           <div className="content-stretch flex flex-[1_0_0] items-center justify-end min-h-px min-w-px relative" data-name="Light Mode / Text">
-            <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis text-right whitespace-pre-wrap">12,50€</p>
+            <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis text-right whitespace-pre-wrap">12,50€</p>
           </div>
         </div>
       </div>
@@ -366,7 +366,7 @@ function Column6() {
 function Header7() {
   return (
     <div className="h-[32px] relative shrink-0 w-full" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
     </div>
   );
 }
@@ -375,7 +375,7 @@ function Row7() {
   return (
     <div className="flex-[1_0_0] min-h-[48px] min-w-px relative w-full" data-name="Row">
       <div className="flex flex-row items-center min-h-[inherit] size-full">
-        <div className="content-stretch flex items-center min-h-[inherit] py-[6px] relative size-full">
+        <div className="content-stretch flex items-center min-h-[inherit] py-[8px] relative size-full">
           <div className="content-stretch flex items-center justify-center max-h-[32px] max-w-[32px] min-h-[32px] min-w-[32px] relative rounded-[6px] shrink-0 size-[32px]" data-name="Light Mode / Button">
             <div className="overflow-clip relative shrink-0 size-[16px]" data-name="Icon">
               <div className="absolute inset-[20.83%]" data-name="Vector (Stroke)">
@@ -443,7 +443,7 @@ function Tables() {
                 </svg>
               </div>
             </div>
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#a1a1aa] text-[12px]">Novo item</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px]">Novo item</p>
           </div>
         </div>
       </div>
@@ -455,7 +455,7 @@ function ServicePriceFrame() {
   return (
     <div className="content-stretch flex gap-[4px] items-center justify-end relative shrink-0" data-name="Service Price Frame">
       <div className="content-stretch flex items-center justify-center relative shrink-0" data-name="Light Mode / Heading">
-        <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.25] not-italic relative shrink-0 text-[#27272a] text-[16px]">12,50€</p>
+        <p className="font-medium leading-[1.25] not-italic relative shrink-0 text-[#27272a] text-[16px]">12,50€</p>
       </div>
       <div className="content-stretch flex items-start relative shrink-0 size-[16px]" data-name="Tooltip / Service Price Breakdown">
         <div className="flex-[1_0_0] h-full min-h-px min-w-px overflow-clip relative" data-name="info">
@@ -475,7 +475,7 @@ function BottomFrame() {
     <div className="relative shrink-0 w-full" data-name="Bottom Frame">
       <div className="flex flex-row items-center size-full">
         <div className="content-stretch flex items-center justify-between pr-[20px] relative w-full">
-          <div className="bg-[rgba(39,39,42,0.05)] content-stretch flex h-[34px] items-start p-[3px] relative rounded-[8px] shrink-0" data-name="Light Mode / Tab Groups">
+          <div className="bg-[rgba(39,39,42,0.05)] content-stretch flex h-[32px] items-start p-[3px] relative rounded-[8px] shrink-0" data-name="Light Mode / Tab Groups">
             <div className="bg-white content-stretch flex gap-[8px] items-center justify-center px-[12px] py-[4px] relative rounded-[6px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] shrink-0" data-name="Tab 1">
               <div className="overflow-clip relative shrink-0 size-[20px]" data-name="Left icon">
                 <div className="absolute inset-[20.83%_8.33%]" data-name="Vector (Stroke)">

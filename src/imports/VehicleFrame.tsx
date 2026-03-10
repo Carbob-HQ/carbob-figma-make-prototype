@@ -15,7 +15,7 @@ export default function VehicleFrame() {
       </div>
       <div className="content-stretch flex flex-[1_0_0] flex-col items-start justify-center min-h-px min-w-px relative" data-name="Content Frame">
         <div className="content-stretch flex items-center relative shrink-0" data-name="Placeholder">
-          <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[14px] text-ellipsis">Selecionar veículo</p>
+          <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[14px] text-ellipsis">Selecionar veículo</p>
         </div>
       </div>
       <div className="overflow-clip relative shrink-0 size-[16px]" data-name="Icon">

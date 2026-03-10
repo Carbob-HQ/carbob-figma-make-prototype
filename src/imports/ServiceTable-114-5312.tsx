@@ -3,11 +3,11 @@ import svgPaths from "./svg-a0cif4e0n4";
 function Header() {
   return (
     <div className="relative shrink-0 w-full" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
       <div className="flex flex-row items-center size-full">
-        <div className="content-stretch flex items-center pl-[20px] pr-[8px] py-[6px] relative w-full">
+        <div className="content-stretch flex items-center pl-[20px] pr-[8px] py-[8px] relative w-full">
           <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">MÃO DE OBRA</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">MÃO DE OBRA</p>
           </div>
         </div>
       </div>
@@ -25,10 +25,10 @@ function Column() {
 
 function Header1() {
   return (
-    <div className="content-stretch flex items-center px-[8px] py-[6px] relative shrink-0" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+    <div className="content-stretch flex items-center px-[8px] py-[8px] relative shrink-0" data-name="Header">
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
       <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-        <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">HORAS</p>
+        <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">HORAS</p>
       </div>
     </div>
   );
@@ -45,11 +45,11 @@ function Column1() {
 function Header2() {
   return (
     <div className="relative shrink-0 w-full" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
       <div className="flex flex-row items-center size-full">
-        <div className="content-stretch flex items-center px-[8px] py-[6px] relative w-full">
+        <div className="content-stretch flex items-center px-[8px] py-[8px] relative w-full">
           <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">PREÇO / HORA</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">PREÇO / HORA</p>
           </div>
         </div>
       </div>
@@ -68,11 +68,11 @@ function Column2() {
 function Header3() {
   return (
     <div className="relative shrink-0 w-full" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
       <div className="flex flex-row items-center size-full">
-        <div className="content-stretch flex items-center px-[8px] py-[6px] relative w-full">
+        <div className="content-stretch flex items-center px-[8px] py-[8px] relative w-full">
           <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">Desc.</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">Desc.</p>
           </div>
         </div>
       </div>
@@ -91,11 +91,11 @@ function Column3() {
 function Header4() {
   return (
     <div className="relative shrink-0 w-full" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
       <div className="flex flex-row items-center justify-end size-full">
-        <div className="content-stretch flex items-center justify-end px-[8px] py-[6px] relative w-full">
+        <div className="content-stretch flex items-center justify-end px-[8px] py-[8px] relative w-full">
           <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">Subtotal</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">Subtotal</p>
           </div>
         </div>
       </div>
@@ -114,7 +114,7 @@ function Column4() {
 function Header5() {
   return (
     <div className="h-[32px] relative shrink-0 w-full" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
     </div>
   );
 }
@@ -153,11 +153,11 @@ function Table() {
 function Header6() {
   return (
     <div className="relative shrink-0 w-full" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
       <div className="flex flex-row items-center size-full">
-        <div className="content-stretch flex items-center pl-[20px] pr-[8px] py-[6px] relative w-full">
+        <div className="content-stretch flex items-center pl-[20px] pr-[8px] py-[8px] relative w-full">
           <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">PEÇA</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">PEÇA</p>
           </div>
         </div>
       </div>
@@ -176,11 +176,11 @@ function Column6() {
 function Header7() {
   return (
     <div className="relative shrink-0 w-full" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
       <div className="flex flex-row items-center size-full">
-        <div className="content-stretch flex items-center px-[8px] py-[6px] relative w-full">
+        <div className="content-stretch flex items-center px-[8px] py-[8px] relative w-full">
           <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">REF. OEM</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">REF. OEM</p>
           </div>
         </div>
       </div>
@@ -198,10 +198,10 @@ function Column7() {
 
 function Header8() {
   return (
-    <div className="content-stretch flex items-center px-[8px] py-[6px] relative shrink-0" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+    <div className="content-stretch flex items-center px-[8px] py-[8px] relative shrink-0" data-name="Header">
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
       <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-        <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">QTD.</p>
+        <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">QTD.</p>
       </div>
     </div>
   );
@@ -218,11 +218,11 @@ function Column8() {
 function Header9() {
   return (
     <div className="relative shrink-0 w-full" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
       <div className="flex flex-row items-center size-full">
-        <div className="content-stretch flex items-center px-[8px] py-[6px] relative w-full">
+        <div className="content-stretch flex items-center px-[8px] py-[8px] relative w-full">
           <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">CUSTO</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">CUSTO</p>
           </div>
         </div>
       </div>
@@ -241,11 +241,11 @@ function Column9() {
 function Header10() {
   return (
     <div className="relative shrink-0 w-full" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
       <div className="flex flex-row items-center size-full">
-        <div className="content-stretch flex items-center px-[8px] py-[6px] relative w-full">
+        <div className="content-stretch flex items-center px-[8px] py-[8px] relative w-full">
           <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">PREÇO</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">PREÇO</p>
           </div>
         </div>
       </div>
@@ -264,11 +264,11 @@ function Column10() {
 function Header11() {
   return (
     <div className="relative shrink-0 w-full" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
       <div className="flex flex-row items-center size-full">
-        <div className="content-stretch flex items-center px-[8px] py-[6px] relative w-full">
+        <div className="content-stretch flex items-center px-[8px] py-[8px] relative w-full">
           <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">Desc.</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">Desc.</p>
           </div>
         </div>
       </div>
@@ -287,11 +287,11 @@ function Column11() {
 function Header12() {
   return (
     <div className="relative shrink-0 w-full" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
       <div className="flex flex-row items-center justify-end size-full">
-        <div className="content-stretch flex items-center justify-end px-[8px] py-[6px] relative w-full">
+        <div className="content-stretch flex items-center justify-end px-[8px] py-[8px] relative w-full">
           <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">Subtotal</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">Subtotal</p>
           </div>
         </div>
       </div>
@@ -310,7 +310,7 @@ function Column12() {
 function Header13() {
   return (
     <div className="h-[32px] relative shrink-0 w-full" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
     </div>
   );
 }
@@ -355,11 +355,11 @@ function Table1() {
 function Header14() {
   return (
     <div className="relative shrink-0 w-full" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
       <div className="flex flex-row items-center size-full">
-        <div className="content-stretch flex items-center pl-[20px] pr-[8px] py-[6px] relative w-full">
+        <div className="content-stretch flex items-center pl-[20px] pr-[8px] py-[8px] relative w-full">
           <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">CONSUMÍVEL / ENCARGO</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">CONSUMÍVEL / ENCARGO</p>
           </div>
         </div>
       </div>
@@ -377,10 +377,10 @@ function Column14() {
 
 function Header15() {
   return (
-    <div className="content-stretch flex items-center px-[8px] py-[6px] relative shrink-0" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+    <div className="content-stretch flex items-center px-[8px] py-[8px] relative shrink-0" data-name="Header">
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
       <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-        <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">QTD.</p>
+        <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">QTD.</p>
       </div>
     </div>
   );
@@ -397,11 +397,11 @@ function Column15() {
 function Header16() {
   return (
     <div className="relative shrink-0 w-full" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
       <div className="flex flex-row items-center size-full">
-        <div className="content-stretch flex items-center px-[8px] py-[6px] relative w-full">
+        <div className="content-stretch flex items-center px-[8px] py-[8px] relative w-full">
           <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">PREÇO</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">PREÇO</p>
           </div>
         </div>
       </div>
@@ -420,11 +420,11 @@ function Column16() {
 function Header17() {
   return (
     <div className="relative shrink-0 w-full" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
       <div className="flex flex-row items-center size-full">
-        <div className="content-stretch flex items-center px-[8px] py-[6px] relative w-full">
+        <div className="content-stretch flex items-center px-[8px] py-[8px] relative w-full">
           <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">Desc.</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">Desc.</p>
           </div>
         </div>
       </div>
@@ -443,11 +443,11 @@ function Column17() {
 function Header18() {
   return (
     <div className="relative shrink-0 w-full" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
       <div className="flex flex-row items-center justify-end size-full">
-        <div className="content-stretch flex items-center justify-end px-[8px] py-[6px] relative w-full">
+        <div className="content-stretch flex items-center justify-end px-[8px] py-[8px] relative w-full">
           <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Column 1 Item">
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">Subtotal</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] uppercase">Subtotal</p>
           </div>
         </div>
       </div>
@@ -466,7 +466,7 @@ function Column18() {
 function Header19() {
   return (
     <div className="h-[32px] relative shrink-0 w-full" data-name="Header">
-      <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
+      <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
     </div>
   );
 }
@@ -516,7 +516,7 @@ function Tables() {
                 </svg>
               </div>
             </div>
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#a1a1aa] text-[12px]">Novo item</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px]">Novo item</p>
           </div>
         </div>
       </div>
@@ -531,7 +531,7 @@ function Tables() {
                 </svg>
               </div>
             </div>
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#a1a1aa] text-[12px]">Novo item</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px]">Novo item</p>
           </div>
         </div>
       </div>
@@ -546,7 +546,7 @@ function Tables() {
                 </svg>
               </div>
             </div>
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#a1a1aa] text-[12px]">Novo item</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px]">Novo item</p>
           </div>
         </div>
       </div>
@@ -558,7 +558,7 @@ function ServicePriceFrame() {
   return (
     <div className="content-stretch flex gap-[4px] items-center justify-end relative shrink-0" data-name="Service Price Frame">
       <div className="content-stretch flex items-center justify-center relative shrink-0" data-name="Light Mode / Heading">
-        <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[16px]">0,00€</p>
+        <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[16px]">0,00€</p>
       </div>
       <div className="content-stretch flex items-start relative shrink-0 size-[16px]" data-name="Tooltip / Service Price Breakdown">
         <div className="flex-[1_0_0] h-full min-h-px min-w-px overflow-clip relative" data-name="info">
@@ -578,7 +578,7 @@ function BottomFrame() {
     <div className="relative shrink-0 w-full" data-name="Bottom Frame">
       <div className="flex flex-row items-center size-full">
         <div className="content-stretch flex items-center justify-between pr-[20px] relative w-full">
-          <div className="bg-[rgba(39,39,42,0.05)] content-stretch flex h-[34px] items-start p-[3px] relative rounded-[8px] shrink-0" data-name="Light Mode / Tab Groups">
+          <div className="bg-[rgba(39,39,42,0.05)] content-stretch flex h-[32px] items-start p-[3px] relative rounded-[8px] shrink-0" data-name="Light Mode / Tab Groups">
             <button className="content-stretch cursor-pointer flex gap-[8px] items-center justify-center px-[12px] py-[4px] relative rounded-[6px] shrink-0" data-name="Tab 1">
               <div className="overflow-clip relative shrink-0 size-[20px]" data-name="Left icon">
                 <div className="absolute inset-[20.83%_8.33%]" data-name="Vector (Stroke)">

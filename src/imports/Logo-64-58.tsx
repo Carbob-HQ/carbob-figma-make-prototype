@@ -3,7 +3,7 @@ import imgLogo from "figma:asset/335bae29933abbce2529018c6b80d0d1b6f73b66.png";
 
 export default function Logo() {
   return (
-    <div className="bg-[#262124] content-stretch flex items-center justify-between px-[8px] relative rounded-[8px] size-full" data-name="Logo">
+    <div className="bg-[#27272a] content-stretch flex items-center justify-between px-[8px] relative rounded-[8px] size-full" data-name="Logo">
       <div className="flex-[1_0_0] h-full min-h-px min-w-px relative" data-name="Left Frame">
         <div className="flex flex-row items-center size-full">
           <div className="content-stretch flex items-center p-[10px] relative size-full">

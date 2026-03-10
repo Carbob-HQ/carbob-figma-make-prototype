@@ -2,7 +2,6 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 import {
   Table,
   TableHeader,
@@ -141,7 +140,7 @@ function DraggableItemRow({
     <tr
       ref={rowRef}
       data-slot="table-row"
-      className="border-b border-[rgba(39,39,42,0.1)] cursor-pointer group/item transition-colors hover:bg-muted/50"
+      className="border-b border-[#e5e5e5] cursor-pointer group/item transition-colors hover:bg-muted/50"
       style={{ opacity: isDragging ? 0.4 : 1 }}
       onClick={onClick}
     >
@@ -384,7 +383,7 @@ export function ServiceFrame({
                 onClick={() => setIsExpanded(!isExpanded)}
               >
                 <ChevronRight
-                  className="size-[16px] text-[#a1a1aa] transition-transform duration-200 ease-out"
+                  className="size-[16px] text-[#71717a] transition-transform duration-200 ease-out"
                   style={{
                     transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)",
                   }}
@@ -415,7 +414,7 @@ export function ServiceFrame({
                     }
                   }}
                   placeholder="Novo serviço"
-                  className="flex w-full h-[36px] min-w-0 border border-transparent bg-transparent !text-[16px] text-[#27272a] font-semibold shadow-none rounded-md px-3 py-1 outline-none transition-[color,box-shadow,border-color] duration-200 ease-out focus-visible:border-ring focus-visible:ring-ring/20 focus-visible:ring-[3px] placeholder:text-muted-foreground"
+                  className="flex w-full h-[40px] min-w-0 border border-transparent bg-transparent !text-[16px] text-[#27272a] font-semibold shadow-none rounded-md px-3 py-1 outline-none transition-[color,box-shadow,border-color] duration-200 ease-out focus-visible:border-ring focus-visible:ring-ring/40 focus-visible:ring-[3px] placeholder:text-muted-foreground"
                 />
               </div>
             </div>
@@ -437,7 +436,7 @@ export function ServiceFrame({
               </AlertDialogTrigger>
               <AlertDialogContent className="bg-[#f4f4f5] flex flex-col gap-[24px] p-[24px] rounded-[12px] border border-[#e5e5e5] max-w-[400px]">
                 {/* Header */}
-                <div className="flex items-start gap-[10px] relative w-full">
+                <div className="flex items-start gap-[8px] relative w-full">
                   <AlertDialogTitle className="flex-1 text-[16px] text-[#27272a]">
                     Eliminar serviço
                   </AlertDialogTitle>
@@ -445,7 +444,7 @@ export function ServiceFrame({
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="size-[32px] cursor-pointer absolute right-[-8px] top-[-8px] !border-0 !shadow-none !bg-transparent hover:!bg-[#e4e4e7]"
+                      className="size-[32px] cursor-pointer absolute right-[-8px] top-[-8px] !border-0 !shadow-none !bg-transparent hover:!bg-[#e5e5e5]"
                     >
                       <X className="size-[16px] text-[#27272a]" />
                     </Button>
@@ -453,7 +452,7 @@ export function ServiceFrame({
                 </div>
                 {/* Description */}
                 <div className="flex items-center w-full">
-                  <AlertDialogDescription className="flex-1 text-[14px] text-[#71717a] font-normal">
+                  <AlertDialogDescription className="flex-1 text-[14px] text-[#27272a] font-normal">
                     Tens a certeza que queres eliminar este serviço?
                   </AlertDialogDescription>
                 </div>
@@ -462,7 +461,7 @@ export function ServiceFrame({
                   <AlertDialogCancel asChild>
                     <Button
                       variant="ghost"
-                      className="cursor-pointer h-[40px] px-[16px] text-[14px] text-[#27272a] !border-0 !shadow-none !bg-transparent hover:!bg-[#e4e4e7]"
+                      className="cursor-pointer h-[40px] px-[16px] text-[14px] text-[#27272a] !border-0 !shadow-none !bg-transparent hover:!bg-[#e5e5e5]"
                     >
                       Cancelar
                     </Button>
@@ -488,7 +487,7 @@ export function ServiceFrame({
           }}
         >
           <div className="overflow-hidden">
-          <div className="p-[16px] pt-0 border-t border-[#e5e5e5]">
+          <div className="p-[16px] pt-0">
             <div className="flex flex-col gap-[16px] items-end w-full pt-[16px]">
               {/* Items table / Grid view with crossfade */}
               <div
@@ -499,7 +498,7 @@ export function ServiceFrame({
                   <div className="flex flex-col gap-[4px] w-full">
                     <Table>
                       <TableHeader>
-                        <TableRow className="hover:bg-transparent border-b border-[rgba(39,39,42,0.1)]">
+                        <TableRow className="hover:bg-transparent border-b border-[#e5e5e5]">
                           <TableHead className="pl-[20px] pr-[16px] py-[8px] h-auto text-[12px] text-[#a1a1aa] uppercase">
                             Item
                           </TableHead>
@@ -545,9 +544,7 @@ export function ServiceFrame({
                                   <div className="flex items-center">
                                     {grip}
                                     <div className="flex items-center gap-[8px]">
-                                      <div className="flex items-center p-[4px] rounded-[8px] shrink-0" style={{ backgroundImage: "linear-gradient(90deg, rgba(232, 168, 56, 0.15) 0%, rgba(232, 168, 56, 0.15) 100%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)" }}>
-                                        <Wrench className="size-[16px] text-[#E8A838]" />
-                                      </div>
+                                      <span className="shrink-0 size-[24px] flex items-center justify-center rounded-[6px] bg-[#f4f4f5]"><Wrench className="size-[14px] text-[#a1a1aa]" /></span>
                                       <span className="text-[14px] text-[#27272a] font-normal truncate">
                                         {labor.designation || "Mão de obra"}
                                       </span>
@@ -564,10 +561,10 @@ export function ServiceFrame({
                                 <TableCell className="px-[16px] py-[8px] text-[14px] text-[#27272a] font-normal w-[82px] text-right">{fmtCurrency(calcItemSubtotal(labor))}</TableCell>
                                 <TableCell className="w-[24px] !p-0">
                                   <button
-                                    className="flex items-center justify-center size-[24px] rounded-[6px] cursor-pointer transition-colors duration-200 ease-out not-disabled:hover:bg-[#e4e4e7]"
+                                    className="flex items-center justify-center size-[24px] rounded-[6px] cursor-pointer transition-colors duration-200 ease-out not-disabled:hover:bg-[#e5e5e5]"
                                     onClick={(e) => { e.stopPropagation(); handleDeleteItem(item.id); }}
                                   >
-                                    <Trash2 className="size-[14px] text-[#a1a1aa]" />
+                                    <Trash2 className="size-[14px] text-[#71717a]" />
                                   </button>
                                 </TableCell>
                                 </>)}
@@ -591,19 +588,19 @@ export function ServiceFrame({
                                 <TableCell className="pl-0 pr-[16px] py-[8px]">
                                   <div className="flex items-center">
                                     {grip}
-                                    <div className="flex items-center gap-[8px]">
-                                      <div className="flex items-center p-[4px] rounded-[8px] shrink-0" style={{ backgroundImage: "linear-gradient(90deg, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)" }}>
-                                        <span className="text-[#3B82F6]">{PART_ICON}</span>
-                                      </div>
+                                    <div className="flex items-center gap-[8px] flex-1 min-w-0">
+                                      <span className="shrink-0 size-[24px] flex items-center justify-center rounded-[6px] bg-[#f4f4f5] text-[#a1a1aa]">{PART_ICON}</span>
                                       <span className="text-[14px] text-[#27272a] font-normal truncate">
                                         {part.designation || "Peça"}
                                       </span>
-                                      {part.partType === "OEM" && (
-                                        <span className="inline-flex items-center px-[6px] py-[1px] rounded-[4px] bg-[#27272a] text-white text-[11px] leading-[1.5] shrink-0">OEM</span>
-                                      )}
-                                      {part.partType === "IAM" && (
-                                        <span className="inline-flex items-center px-[6px] py-[1px] rounded-[4px] bg-[#8270FF] text-white text-[11px] leading-[1.5] shrink-0">IAM</span>
-                                      )}
+                                      <span className="ml-auto shrink-0">
+                                        {part.partType === "OEM" && (
+                                          <span className="inline-flex items-center px-[6px] py-[1px] rounded-[4px] bg-[#e5e5e5] text-[#71717a] text-[11px] leading-[1.5]">OEM</span>
+                                        )}
+                                        {part.partType === "IAM" && (
+                                          <span className="inline-flex items-center px-[6px] py-[1px] rounded-[4px] bg-[#dbeafe] text-[#3B82F6] text-[11px] leading-[1.5]">IAM</span>
+                                        )}
+                                      </span>
                                     </div>
                                   </div>
                                 </TableCell>
@@ -627,10 +624,10 @@ export function ServiceFrame({
                                 </TableCell>
                                 <TableCell className="w-[24px] !p-0">
                                   <button
-                                    className="flex items-center justify-center size-[24px] rounded-[6px] cursor-pointer transition-colors duration-200 ease-out not-disabled:hover:bg-[#e4e4e7]"
+                                    className="flex items-center justify-center size-[24px] rounded-[6px] cursor-pointer transition-colors duration-200 ease-out not-disabled:hover:bg-[#e5e5e5]"
                                     onClick={(e) => { e.stopPropagation(); handleDeleteItem(item.id); }}
                                   >
-                                    <Trash2 className="size-[14px] text-[#a1a1aa]" />
+                                    <Trash2 className="size-[14px] text-[#71717a]" />
                                   </button>
                                 </TableCell>
                                 </>)}
@@ -656,9 +653,7 @@ export function ServiceFrame({
                                   <div className="flex items-center">
                                     {grip}
                                     <div className="flex items-center gap-[8px]">
-                                      <div className="flex items-center p-[4px] rounded-[8px] shrink-0" style={{ backgroundImage: "linear-gradient(90deg, rgba(38, 33, 36, 0.15) 0%, rgba(38, 33, 36, 0.15) 100%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)" }}>
-                                        <Droplet className="size-[16px] text-[#262124]" />
-                                      </div>
+                                      <span className="shrink-0 size-[24px] flex items-center justify-center rounded-[6px] bg-[#f4f4f5]"><Droplet className="size-[14px] text-[#a1a1aa]" /></span>
                                       <span className="text-[14px] text-[#27272a] font-normal truncate">
                                         {cons.designation || "Consumível"}
                                       </span>
@@ -675,10 +670,10 @@ export function ServiceFrame({
                                 <TableCell className="px-[16px] py-[8px] text-[14px] text-[#27272a] font-normal w-[82px] text-right">{fmtCurrency(calcItemSubtotal(cons))}</TableCell>
                                 <TableCell className="w-[24px] !p-0">
                                   <button
-                                    className="flex items-center justify-center size-[24px] rounded-[6px] cursor-pointer transition-colors duration-200 ease-out not-disabled:hover:bg-[#e4e4e7]"
+                                    className="flex items-center justify-center size-[24px] rounded-[6px] cursor-pointer transition-colors duration-200 ease-out not-disabled:hover:bg-[#e5e5e5]"
                                     onClick={(e) => { e.stopPropagation(); handleDeleteItem(item.id); }}
                                   >
-                                    <Trash2 className="size-[14px] text-[#a1a1aa]" />
+                                    <Trash2 className="size-[14px] text-[#71717a]" />
                                   </button>
                                 </TableCell>
                                 </>)}
@@ -703,9 +698,7 @@ export function ServiceFrame({
                                   <div className="flex items-center">
                                     {grip}
                                     <div className="flex items-center gap-[8px]">
-                                      <div className="flex items-center p-[4px] rounded-[8px] shrink-0" style={{ backgroundImage: "linear-gradient(90deg, rgba(12, 173, 134, 0.15) 0%, rgba(12, 173, 134, 0.15) 100%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)" }}>
-                                        <Euro className="size-[16px] text-[#0CAD86]" />
-                                      </div>
+                                      <span className="shrink-0 size-[24px] flex items-center justify-center rounded-[6px] bg-[#f4f4f5]"><Euro className="size-[14px] text-[#a1a1aa]" /></span>
                                       <span className="text-[14px] text-[#27272a] font-normal truncate">
                                         {fee.designation || "Encargo"}
                                       </span>
@@ -720,10 +713,10 @@ export function ServiceFrame({
                                 <TableCell className="px-[16px] py-[8px] text-[14px] text-[#27272a] font-normal w-[82px] text-right">{fmtCurrency(calcItemSubtotal(fee))}</TableCell>
                                 <TableCell className="w-[24px] !p-0">
                                   <button
-                                    className="flex items-center justify-center size-[24px] rounded-[6px] cursor-pointer transition-colors duration-200 ease-out not-disabled:hover:bg-[#e4e4e7]"
+                                    className="flex items-center justify-center size-[24px] rounded-[6px] cursor-pointer transition-colors duration-200 ease-out not-disabled:hover:bg-[#e5e5e5]"
                                     onClick={(e) => { e.stopPropagation(); handleDeleteItem(item.id); }}
                                   >
-                                    <Trash2 className="size-[14px] text-[#a1a1aa]" />
+                                    <Trash2 className="size-[14px] text-[#71717a]" />
                                   </button>
                                 </TableCell>
                                 </>)}
@@ -734,7 +727,7 @@ export function ServiceFrame({
                         })}
                         {sortedAllItems.length === 0 && (
                           <TableRow className="hover:bg-transparent">
-                            <TableCell colSpan={8} className="px-[20px] py-[8px] text-[14px] text-[#71717a] font-normal">
+                            <TableCell colSpan={8} className="px-[20px] py-[8px] text-[13px] text-[#71717a] font-normal">
                               Sem itens
                             </TableCell>
                           </TableRow>
@@ -748,7 +741,7 @@ export function ServiceFrame({
                     <div className="flex flex-col gap-[4px] w-full">
                       <Table>
                         <TableHeader>
-                          <TableRow className="hover:bg-transparent border-b border-[rgba(39,39,42,0.1)]">
+                          <TableRow className="hover:bg-transparent border-b border-[#e5e5e5]">
                             <TableHead className="pl-[20px] pr-[16px] py-[8px] h-auto text-[12px] text-[#a1a1aa] uppercase">
                               Mão de obra
                             </TableHead>
@@ -787,9 +780,7 @@ export function ServiceFrame({
                                   <div className="flex items-center">
                                     {grip}
                                     <div className="flex items-center gap-[8px]">
-                                      <div className="flex items-center p-[4px] rounded-[8px] shrink-0" style={{ backgroundImage: "linear-gradient(90deg, rgba(232, 168, 56, 0.15) 0%, rgba(232, 168, 56, 0.15) 100%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)" }}>
-                                        <Wrench className="size-[16px] text-[#E8A838]" />
-                                      </div>
+                                      <span className="shrink-0 size-[24px] flex items-center justify-center rounded-[6px] bg-[#f4f4f5]"><Wrench className="size-[14px] text-[#a1a1aa]" /></span>
                                       <span className="text-[14px] text-[#27272a] font-normal truncate">
                                         {labor.designation || "Mão de obra"}
                                       </span>
@@ -810,10 +801,10 @@ export function ServiceFrame({
                                 </TableCell>
                                 <TableCell className="w-[24px] !p-0">
                                   <button
-                                    className="flex items-center justify-center size-[24px] rounded-[6px] cursor-pointer transition-colors duration-200 ease-out not-disabled:hover:bg-[#e4e4e7]"
+                                    className="flex items-center justify-center size-[24px] rounded-[6px] cursor-pointer transition-colors duration-200 ease-out not-disabled:hover:bg-[#e5e5e5]"
                                     onClick={(e) => { e.stopPropagation(); handleDeleteItem(item.id); }}
                                   >
-                                    <Trash2 className="size-[14px] text-[#a1a1aa]" />
+                                    <Trash2 className="size-[14px] text-[#71717a]" />
                                   </button>
                                 </TableCell>
                                 </>)}
@@ -822,7 +813,7 @@ export function ServiceFrame({
                           })}
                           {sortedLaborItems.length === 0 && (
                             <TableRow className="hover:bg-transparent">
-                              <TableCell colSpan={6} className="px-[20px] py-[8px] text-[14px] text-[#71717a] font-normal">
+                              <TableCell colSpan={6} className="px-[20px] py-[8px] text-[13px] text-[#71717a] font-normal">
                                 Sem itens
                               </TableCell>
                             </TableRow>
@@ -835,7 +826,7 @@ export function ServiceFrame({
                     <div className="flex flex-col gap-[4px] w-full">
                       <Table>
                         <TableHeader>
-                          <TableRow className="hover:bg-transparent border-b border-[rgba(39,39,42,0.1)]">
+                          <TableRow className="hover:bg-transparent border-b border-[#e5e5e5]">
                             <TableHead className="pl-[20px] pr-[16px] py-[8px] h-auto text-[12px] text-[#a1a1aa] uppercase">
                               Peça
                             </TableHead>
@@ -879,19 +870,19 @@ export function ServiceFrame({
                                 <TableCell className="pl-0 pr-[16px] py-[8px]">
                                   <div className="flex items-center">
                                     {grip}
-                                    <div className="flex items-center gap-[8px]">
-                                      <div className="flex items-center p-[4px] rounded-[8px] shrink-0" style={{ backgroundImage: "linear-gradient(90deg, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)" }}>
-                                        <span className="text-[#3B82F6]">{PART_ICON}</span>
-                                      </div>
+                                    <div className="flex items-center gap-[8px] flex-1 min-w-0">
+                                      <span className="shrink-0 size-[24px] flex items-center justify-center rounded-[6px] bg-[#f4f4f5] text-[#a1a1aa]">{PART_ICON}</span>
                                       <span className="text-[14px] text-[#27272a] font-normal truncate">
                                         {part.designation || "Peça"}
                                       </span>
-                                      {part.partType === "OEM" && (
-                                        <span className="inline-flex items-center px-[6px] py-[1px] rounded-[4px] bg-[#27272a] text-white text-[11px] leading-[1.5] shrink-0">OEM</span>
-                                      )}
-                                      {part.partType === "IAM" && (
-                                        <span className="inline-flex items-center px-[6px] py-[1px] rounded-[4px] bg-[#8270FF] text-white text-[11px] leading-[1.5] shrink-0">IAM</span>
-                                      )}
+                                      <span className="ml-auto shrink-0">
+                                        {part.partType === "OEM" && (
+                                          <span className="inline-flex items-center px-[6px] py-[1px] rounded-[4px] bg-[#e5e5e5] text-[#71717a] text-[11px] leading-[1.5]">OEM</span>
+                                        )}
+                                        {part.partType === "IAM" && (
+                                          <span className="inline-flex items-center px-[6px] py-[1px] rounded-[4px] bg-[#dbeafe] text-[#3B82F6] text-[11px] leading-[1.5]">IAM</span>
+                                        )}
+                                      </span>
                                     </div>
                                   </div>
                                 </TableCell>
@@ -915,10 +906,10 @@ export function ServiceFrame({
                                 </TableCell>
                                 <TableCell className="w-[24px] !p-0">
                                   <button
-                                    className="flex items-center justify-center size-[24px] rounded-[6px] cursor-pointer transition-colors duration-200 ease-out not-disabled:hover:bg-[#e4e4e7]"
+                                    className="flex items-center justify-center size-[24px] rounded-[6px] cursor-pointer transition-colors duration-200 ease-out not-disabled:hover:bg-[#e5e5e5]"
                                     onClick={(e) => { e.stopPropagation(); handleDeleteItem(item.id); }}
                                   >
-                                    <Trash2 className="size-[14px] text-[#a1a1aa]" />
+                                    <Trash2 className="size-[14px] text-[#71717a]" />
                                   </button>
                                 </TableCell>
                                 </>)}
@@ -927,7 +918,7 @@ export function ServiceFrame({
                           })}
                           {sortedPartItems.length === 0 && (
                             <TableRow className="hover:bg-transparent">
-                              <TableCell colSpan={8} className="px-[20px] py-[8px] text-[14px] text-[#71717a] font-normal">
+                              <TableCell colSpan={8} className="px-[20px] py-[8px] text-[13px] text-[#71717a] font-normal">
                                 Sem itens
                               </TableCell>
                             </TableRow>
@@ -940,7 +931,7 @@ export function ServiceFrame({
                     <div className="flex flex-col gap-[4px] w-full">
                       <Table>
                         <TableHeader>
-                          <TableRow className="hover:bg-transparent border-b border-[rgba(39,39,42,0.1)]">
+                          <TableRow className="hover:bg-transparent border-b border-[#e5e5e5]">
                             <TableHead className="pl-[20px] pr-[16px] py-[8px] h-auto text-[12px] text-[#a1a1aa] uppercase">
                               Consumível / Encargo
                             </TableHead>
@@ -984,18 +975,9 @@ export function ServiceFrame({
                                   <div className="flex items-center">
                                     {grip}
                                     <div className="flex items-center gap-[8px]">
-                                      <div
-                                        className="flex items-center p-[4px] rounded-[8px] shrink-0"
-                                        style={{
-                                          backgroundImage: isConsumable
-                                            ? "linear-gradient(90deg, rgba(38, 33, 36, 0.15) 0%, rgba(38, 33, 36, 0.15) 100%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)"
-                                            : "linear-gradient(90deg, rgba(12, 173, 134, 0.15) 0%, rgba(12, 173, 134, 0.15) 100%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)",
-                                        }}
-                                      >
-                                        {isConsumable
-                                          ? <Droplet className="size-[16px] text-[#262124]" />
-                                          : <Euro className="size-[16px] text-[#0CAD86]" />}
-                                      </div>
+                                      {isConsumable
+                                        ? <span className="shrink-0 size-[24px] flex items-center justify-center rounded-[6px] bg-[#f4f4f5]"><Droplet className="size-[14px] text-[#a1a1aa]" /></span>
+                                        : <span className="shrink-0 size-[24px] flex items-center justify-center rounded-[6px] bg-[#f4f4f5]"><Euro className="size-[14px] text-[#a1a1aa]" /></span>}
                                       <span className="text-[14px] text-[#27272a] font-normal truncate">
                                         {item.designation || (isConsumable ? "Consumível" : "Encargo")}
                                       </span>
@@ -1016,10 +998,10 @@ export function ServiceFrame({
                                 </TableCell>
                                 <TableCell className="w-[24px] !p-0">
                                   <button
-                                    className="flex items-center justify-center size-[24px] rounded-[6px] cursor-pointer transition-colors duration-200 ease-out not-disabled:hover:bg-[#e4e4e7]"
+                                    className="flex items-center justify-center size-[24px] rounded-[6px] cursor-pointer transition-colors duration-200 ease-out not-disabled:hover:bg-[#e5e5e5]"
                                     onClick={(e) => { e.stopPropagation(); handleDeleteItem(item.id); }}
                                   >
-                                    <Trash2 className="size-[14px] text-[#a1a1aa]" />
+                                    <Trash2 className="size-[14px] text-[#71717a]" />
                                   </button>
                                 </TableCell>
                                 </>)}
@@ -1028,7 +1010,7 @@ export function ServiceFrame({
                           })}
                           {sortedConsChargeItems.length === 0 && (
                             <TableRow className="hover:bg-transparent">
-                              <TableCell colSpan={6} className="px-[20px] py-[8px] text-[14px] text-[#71717a] font-normal">
+                              <TableCell colSpan={6} className="px-[20px] py-[8px] text-[13px] text-[#71717a] font-normal">
                                 Sem itens
                               </TableCell>
                             </TableRow>
@@ -1041,29 +1023,34 @@ export function ServiceFrame({
               </div>
 
               {/* Bottom frame: view toggle + service price */}
-              <div className="flex items-center justify-between w-full pl-[0px] pr-[4px] py-[0px]">
+              <div className="flex items-center justify-between w-full pl-[12px] pr-[4px] py-[0px]">
                 <div className="flex items-center gap-[8px]">
                 {/* New item button */}
                 <Button
                   variant="outline"
                   size="sm"
-                  className="cursor-pointer gap-[8px] text-[#27272a]"
+                  className="cursor-pointer gap-[4px] text-[14px] text-[#27272a]"
                   onClick={() => setNewItemSheetOpen(true)}
                 >
                   <Plus className="size-[16px]" />
                   Novo item
                 </Button>
                 {/* View toggle tabs */}
-                <Tabs value={viewMode} onValueChange={(v) => setViewMode(v as "list" | "grid")} className="gap-0">
-                  <TabsList className="h-[32px] p-[3px]">
-                    <TabsTrigger value="list" className="h-[26px] px-[8px]">
-                      <AlignJustify className="size-[16px]" />
-                    </TabsTrigger>
-                    <TabsTrigger value="grid" className="h-[26px] px-[8px]">
-                      <LayoutGrid className="size-[16px]" />
-                    </TabsTrigger>
-                  </TabsList>
-                </Tabs>
+                <Tooltip delayDuration={500}>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="size-[32px] cursor-pointer"
+                      onClick={() => setViewMode(viewMode === "list" ? "grid" : "list")}
+                    >
+                      {viewMode === "list"
+                        ? <LayoutGrid className="size-[16px] text-[#27272a]" />
+                        : <AlignJustify className="size-[16px] text-[#27272a]" />}
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>{viewMode === "list" ? "Ver separado" : "Ver junto"}</TooltipContent>
+                </Tooltip>
                 </div>
 
                 {/* Service price */}
@@ -1074,7 +1061,7 @@ export function ServiceFrame({
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <button className="cursor-pointer flex items-center justify-center">
-                        <Info className="size-[16px] text-[#a1a1aa]" />
+                        <Info className="size-[16px] text-[#71717a]" />
                       </button>
                     </TooltipTrigger>
                     <TooltipContent
@@ -1086,11 +1073,11 @@ export function ServiceFrame({
                         {/* Subtotal + IVA */}
                         <div className="flex flex-col gap-[4px] w-full">
                           <div className="flex gap-[4px] items-center justify-between w-full">
-                            <span className="flex-1 text-[12px] text-[#a1a1aa] font-normal">Subtotal</span>
+                            <span className="flex-1 text-[13px] text-[#71717a] font-normal">Subtotal</span>
                             <span className="text-[12px] text-primary-foreground font-normal">{formattedSubtotal} €</span>
                           </div>
                           <div className="flex gap-[4px] items-center justify-between w-full">
-                            <span className="flex-1 text-[12px] text-[#a1a1aa] font-normal">IVA (23%)</span>
+                            <span className="flex-1 text-[13px] text-[#71717a] font-normal">IVA (23%)</span>
                             <span className="text-[12px] text-primary-foreground font-normal">{formattedVat} €</span>
                           </div>
                         </div>

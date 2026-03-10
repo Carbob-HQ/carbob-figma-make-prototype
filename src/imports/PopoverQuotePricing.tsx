@@ -15,12 +15,12 @@ function fmt(val: number): string {
 
 function PricingRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="content-stretch flex gap-[4px] items-start relative shrink-0 w-full" data-name="Frame">
+    <div className="content-stretch flex gap-[16px] items-start relative shrink-0 w-full" data-name="Frame">
       <div className="content-stretch flex flex-[1_0_0] items-center min-h-px min-w-px relative" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">{label}</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">{label}</p>
       </div>
       <div className="content-stretch flex items-center relative shrink-0" data-name="Light Mode / Text">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">{value}</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">{value}</p>
       </div>
     </div>
   );
@@ -30,10 +30,10 @@ function Frame5({ value }: { value: string }) {
   return (
     <div className="content-stretch flex gap-[16px] items-center relative shrink-0 w-full" data-name="Frame">
       <div className="content-stretch flex flex-[1_0_0] items-center min-h-px min-w-px relative" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[14px] text-ellipsis whitespace-pre-wrap">Lucro em peças</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[14px] text-ellipsis whitespace-pre-wrap">Lucro em peças</p>
       </div>
-      <div className="bg-[rgba(74,222,128,0.2)] content-stretch flex gap-[6px] items-center justify-center px-[8px] py-[4px] relative rounded-[6px] shrink-0" data-name="Light Mode / Badge">
-        <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#166534] text-[12px]">{value}</p>
+      <div className="bg-[rgba(74,222,128,0.2)] content-stretch flex gap-[8px] items-center justify-center px-[8px] py-[4px] relative rounded-[6px] shrink-0" data-name="Light Mode / Badge">
+        <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#166534] text-[12px]">{value}</p>
       </div>
     </div>
   );
@@ -41,9 +41,9 @@ function Frame5({ value }: { value: string }) {
 
 function Frame9() {
   return (
-    <div className="content-stretch flex flex-[1_0_0] gap-[6px] items-center min-h-px min-w-px relative">
+    <div className="content-stretch flex flex-[1_0_0] gap-[8px] items-center min-h-px min-w-px relative">
       <div className="content-stretch flex items-center relative shrink-0" data-name="Light Mode / Text">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[14px] text-ellipsis">Margem do orçamento</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[14px] text-ellipsis">Margem do orçamento</p>
       </div>
       <div className="content-stretch flex items-start relative shrink-0" data-name="Tooltip / Margin Explanation">
         <TooltipProvider disableHoverableContent>
@@ -71,8 +71,8 @@ function Frame6({ value }: { value: string }) {
   return (
     <div className="content-stretch flex gap-[16px] items-center relative shrink-0 w-full" data-name="Frame">
       <Frame9 />
-      <div className="bg-[rgba(74,222,128,0.2)] content-stretch flex gap-[6px] items-center justify-center px-[8px] py-[4px] relative rounded-[6px] shrink-0" data-name="Light Mode / Badge">
-        <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#166534] text-[12px]">{value}</p>
+      <div className="bg-[rgba(74,222,128,0.2)] content-stretch flex gap-[8px] items-center justify-center px-[8px] py-[4px] relative rounded-[6px] shrink-0" data-name="Light Mode / Badge">
+        <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#166534] text-[12px]">{value}</p>
       </div>
     </div>
   );
@@ -109,7 +109,7 @@ export default function PopoverQuotePricing({ services = [] }: { services?: Quot
     <div className="bg-white content-stretch flex flex-col gap-[24px] items-start p-[16px] relative rounded-[12px] size-full" data-name="Popover / Quote Pricing">
       <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[12px] shadow-[0px_10px_15px_0px_rgba(0,0,0,0.1),0px_4px_6px_0px_rgba(0,0,0,0.05)]" />
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Heading">
-        <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[16px] whitespace-pre-wrap">Resumo do orçamento</p>
+        <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[16px] whitespace-pre-wrap">Resumo do orçamento</p>
       </div>
       <div className="content-stretch flex flex-col gap-[16px] items-start overflow-x-clip overflow-y-auto relative shrink-0 w-full" data-name="Years">
         {/* Typology breakdown */}
@@ -119,13 +119,13 @@ export default function PopoverQuotePricing({ services = [] }: { services?: Quot
           <PricingRow label="Consumíveis" value={fmt(consumablesSum)} />
           <PricingRow label="Encargos" value={fmt(additionalSum)} />
         </div>
-        <div className="bg-[rgba(39,39,42,0.15)] h-px shrink-0 w-full" data-name="Light Mode / Separator" />
+        <div className="bg-[#e5e5e5] h-px shrink-0 w-full" data-name="Light Mode / Separator" />
         {/* Subtotal + IVA */}
         <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full">
           <PricingRow label="Subtotal" value={fmt(subtotal)} />
           <PricingRow label="IVA" value={fmt(vat)} />
         </div>
-        <div className="bg-[rgba(39,39,42,0.15)] h-px shrink-0 w-full" data-name="Light Mode / Separator" />
+        <div className="bg-[#e5e5e5] h-px shrink-0 w-full" data-name="Light Mode / Separator" />
         {/* Total */}
         <PricingRow label="Total" value={fmt(total)} />
         {/* Margins */}

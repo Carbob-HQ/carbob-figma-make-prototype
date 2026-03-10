@@ -41,7 +41,7 @@ function RightFrame() {
 
 function Logo() {
   return (
-    <div className="bg-[#262124] flex-[1_0_0] h-[40px] min-h-px min-w-px relative rounded-[8px]" data-name="Logo">
+    <div className="bg-[#27272a] flex-[1_0_0] h-[40px] min-h-px min-w-px relative rounded-[8px]" data-name="Logo">
       <div className="flex flex-row items-center size-full">
         <div className="content-stretch flex items-center justify-between px-[8px] relative size-full">
           <LeftFrame />
@@ -78,7 +78,7 @@ function DarkModeButton() {
       <div className="flex flex-row items-center max-h-[inherit] min-h-[inherit] size-full">
         <div className="content-stretch flex gap-[8px] items-center max-h-[inherit] min-h-[inherit] px-[12px] relative w-full">
           <LeftIcon />
-          <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[14px] text-white">Criar</p>
+          <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[14px] text-white">Criar</p>
         </div>
       </div>
     </div>
@@ -111,7 +111,7 @@ function DarkModeButton1() {
       <div className="flex flex-row items-center max-h-[inherit] min-h-[inherit] size-full">
         <div className="content-stretch flex gap-[8px] items-center max-h-[inherit] min-h-[inherit] px-[12px] relative w-full">
           <LeftIcon1 />
-          <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[14px] text-white">Início</p>
+          <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[14px] text-white">Início</p>
         </div>
       </div>
     </div>
@@ -144,7 +144,7 @@ function DarkModeButton2() {
       <div className="flex flex-row items-center max-h-[inherit] min-h-[inherit] size-full">
         <div className="content-stretch flex gap-[8px] items-center max-h-[inherit] min-h-[inherit] px-[12px] relative w-full">
           <LeftIcon2 />
-          <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[14px] text-white">Agendamentos</p>
+          <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[14px] text-white">Agendamentos</p>
         </div>
       </div>
     </div>
@@ -181,7 +181,7 @@ function DarkModeButton3() {
       <div className="flex flex-row items-center max-h-[inherit] min-h-[inherit] size-full">
         <div className="content-stretch flex gap-[8px] items-center max-h-[inherit] min-h-[inherit] px-[12px] relative w-full">
           <LeftIcon3 />
-          <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[14px] text-left text-white">Quadro de trabalho</p>
+          <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[14px] text-left text-white">Quadro de trabalho</p>
         </div>
       </div>
     </div>
@@ -238,7 +238,7 @@ function DarkModeButton4() {
       <div className="flex flex-row items-center max-h-[inherit] min-h-[inherit] size-full">
         <div className="content-stretch flex gap-[8px] items-center max-h-[inherit] min-h-[inherit] px-[12px] relative w-full">
           <LeftIcon4 />
-          <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[14px] text-white">Ajuda</p>
+          <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[14px] text-white">Ajuda</p>
         </div>
       </div>
     </div>
@@ -275,7 +275,7 @@ function DarkModeButton5() {
       <div className="flex flex-row items-center max-h-[inherit] min-h-[inherit] size-full">
         <div className="content-stretch flex gap-[8px] items-center max-h-[inherit] min-h-[inherit] px-[12px] relative w-full">
           <LeftIcon5 />
-          <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[14px] text-white">Definições</p>
+          <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[14px] text-white">Definições</p>
         </div>
       </div>
     </div>
@@ -305,7 +305,7 @@ function BottomButtons() {
 
 export default function Sidebar() {
   return (
-    <div className="bg-[#262124] content-stretch flex flex-col gap-[24px] items-start py-[12px] relative shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] size-full" data-name="Sidebar">
+    <div className="bg-[#27272a] content-stretch flex flex-col gap-[24px] items-start py-[12px] relative shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] size-full" data-name="Sidebar">
       <LogoFrame />
       <AddButton />
       <MainButtons />

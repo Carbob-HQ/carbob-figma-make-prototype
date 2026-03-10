@@ -17,7 +17,7 @@ function TextFrame() {
         </div>
       </div>
       <div className="content-stretch flex flex-[1_0_0] items-center min-h-px min-w-px relative" data-name="Light Mode / Heading">
-        <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] text-left whitespace-pre-wrap">Serviços adicionais</p>
+        <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] text-left whitespace-pre-wrap">Serviços adicionais</p>
       </div>
     </button>
   );
@@ -40,7 +40,7 @@ function ServiceFrame() {
                 </svg>
               </div>
             </div>
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px]">Adicionar todos</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px]">Adicionar todos</p>
           </div>
         </div>
       </div>
@@ -52,10 +52,10 @@ function LabelFrame() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-center justify-center min-h-px min-w-px relative" data-name="Label Frame">
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Trabalho suplementar da revisão</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Trabalho suplementar da revisão</p>
       </div>
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">A primeira vez após 4 anos, depois a cada 2 anos</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">A primeira vez após 4 anos, depois a cada 2 anos</p>
       </div>
     </div>
   );
@@ -72,7 +72,7 @@ function TimeFrame() {
         </div>
       </div>
       <div className="content-stretch flex items-center relative shrink-0" data-name="Time">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">01h00</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">01h00</p>
       </div>
     </div>
   );
@@ -82,10 +82,10 @@ function LabelFrame1() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-center justify-center min-h-px min-w-px relative" data-name="Label Frame">
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Correia dos agregados</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Correia dos agregados</p>
       </div>
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">A cada 120.000 km / 6 anos</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">A cada 120.000 km / 6 anos</p>
       </div>
     </div>
   );
@@ -102,7 +102,7 @@ function TimeFrame1() {
         </div>
       </div>
       <div className="content-stretch flex items-center relative shrink-0" data-name="Time">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">00h45</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">00h45</p>
       </div>
     </div>
   );
@@ -112,10 +112,10 @@ function LabelFrame2() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-center justify-center min-h-px min-w-px relative" data-name="Label Frame">
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Filtro de partículas de fuligem</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Filtro de partículas de fuligem</p>
       </div>
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Primeiramente em 180.000 km depois todos 30.000 km</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Primeiramente em 180.000 km depois todos 30.000 km</p>
       </div>
     </div>
   );
@@ -132,7 +132,7 @@ function TimeFrame2() {
         </div>
       </div>
       <div className="content-stretch flex items-center relative shrink-0" data-name="Time">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">00h15</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">00h15</p>
       </div>
     </div>
   );
@@ -142,10 +142,10 @@ function LabelFrame3() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-center justify-center min-h-px min-w-px relative" data-name="Label Frame">
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Polia tensora - correia dos agregados</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Polia tensora - correia dos agregados</p>
       </div>
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Todos 180.000 km / 10 anos</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Todos 180.000 km / 10 anos</p>
       </div>
     </div>
   );
@@ -162,7 +162,7 @@ function TimeFrame3() {
         </div>
       </div>
       <div className="content-stretch flex items-center relative shrink-0" data-name="Time">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">00h30</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">00h30</p>
       </div>
     </div>
   );
@@ -172,10 +172,10 @@ function LabelFrame4() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-center justify-center min-h-px min-w-px relative" data-name="Label Frame">
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Substituição da correia dentada, polia tensora, polia de desvio e bomba do líquido de refrigeração</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Substituição da correia dentada, polia tensora, polia de desvio e bomba do líquido de refrigeração</p>
       </div>
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Todos 180.000 km / 10 anos</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Todos 180.000 km / 10 anos</p>
       </div>
     </div>
   );
@@ -192,7 +192,7 @@ function TimeFrame4() {
         </div>
       </div>
       <div className="content-stretch flex items-center relative shrink-0" data-name="Time">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">01h15</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">01h15</p>
       </div>
     </div>
   );
@@ -202,10 +202,10 @@ function LabelFrame5() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-center justify-center min-h-px min-w-px relative" data-name="Label Frame">
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Líquido de travões</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Líquido de travões</p>
       </div>
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Todos 2 anos</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Todos 2 anos</p>
       </div>
     </div>
   );
@@ -222,7 +222,7 @@ function TimeFrame5() {
         </div>
       </div>
       <div className="content-stretch flex items-center relative shrink-0" data-name="Time">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">01h15</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">01h15</p>
       </div>
     </div>
   );
@@ -232,10 +232,10 @@ function LabelFrame6() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-center justify-center min-h-px min-w-px relative" data-name="Label Frame">
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Anticongelante</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis whitespace-pre-wrap">Anticongelante</p>
       </div>
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">A primeira vez com 120.000 km / 4 anos e, em seguida, a cada 30.000 km / 1 anos</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">A primeira vez com 120.000 km / 4 anos e, em seguida, a cada 30.000 km / 1 anos</p>
       </div>
     </div>
   );
@@ -252,7 +252,7 @@ function TimeFrame6() {
         </div>
       </div>
       <div className="content-stretch flex items-center relative shrink-0" data-name="Time">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">01h15</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">01h15</p>
       </div>
     </div>
   );

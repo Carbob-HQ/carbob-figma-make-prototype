@@ -6,7 +6,7 @@ function TopFrame() {
       <div aria-hidden="true" className="absolute border-[#e5e5e5] border-l border-r border-solid border-t inset-0 pointer-events-none rounded-tl-[16px] rounded-tr-[16px]" />
       <div className="content-stretch flex flex-col items-start p-[16px] relative w-full">
         <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Heading">
-          <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Orçamentos anteriores</p>
+          <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Orçamentos anteriores</p>
         </div>
       </div>
     </div>
@@ -16,8 +16,8 @@ function TopFrame() {
 function LabelFrame() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-center justify-center min-h-px min-w-px not-italic relative whitespace-pre-wrap" data-name="Label Frame">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] relative shrink-0 text-[#27272a] text-[14px] w-full">OS-2025/11</p>
-      <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] relative shrink-0 text-[#71717a] text-[12px] w-full">13/01/2025</p>
+      <p className="font-medium leading-[1.5] relative shrink-0 text-[#27272a] text-[14px] w-full">OS-2025/11</p>
+      <p className="font-normal leading-[1.5] relative shrink-0 text-[#71717a] text-[12px] w-full">13/01/2025</p>
     </div>
   );
 }
@@ -44,8 +44,8 @@ function ButtonFrame() {
 function LabelFrame1() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-center justify-center min-h-px min-w-px not-italic relative whitespace-pre-wrap" data-name="Label Frame">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] relative shrink-0 text-[#27272a] text-[14px] w-full">OS-2024/43</p>
-      <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] relative shrink-0 text-[#71717a] text-[12px] w-full">02/03/2024</p>
+      <p className="font-medium leading-[1.5] relative shrink-0 text-[#27272a] text-[14px] w-full">OS-2024/43</p>
+      <p className="font-normal leading-[1.5] relative shrink-0 text-[#71717a] text-[12px] w-full">02/03/2024</p>
     </div>
   );
 }
@@ -104,7 +104,7 @@ function Content() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col h-full items-center justify-center min-h-px min-w-[360px] overflow-x-clip overflow-y-auto relative" data-name="Content">
       <div className="content-stretch flex items-center justify-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[14px] text-center text-ellipsis whitespace-pre-wrap">Seleciona um orçamento para aceder aos serviços</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[14px] text-center text-ellipsis whitespace-pre-wrap">Seleciona um orçamento para aceder aos serviços</p>
       </div>
     </div>
   );

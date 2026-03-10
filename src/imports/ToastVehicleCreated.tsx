@@ -17,14 +17,14 @@ function Icon() {
 function Text() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="font-['Inter:Medium',sans-serif] font-medium h-[20px] leading-[1.5] not-italic relative shrink-0 text-[14px] text-white w-full whitespace-pre-wrap">Veículo adicionado com sucesso</p>
+      <p className="font-medium h-[20px] leading-[1.5] not-italic relative shrink-0 text-[14px] text-white w-full whitespace-pre-wrap">Veículo adicionado com sucesso</p>
     </div>
   );
 }
 
 function Content() {
   return (
-    <div className="content-stretch flex gap-[8px] items-start min-h-[20px] px-[10px] py-[6px] relative shrink-0" data-name="Content">
+    <div className="content-stretch flex gap-[8px] items-start min-h-[20px] px-[10px] py-[8px] relative shrink-0" data-name="Content">
       <Icon />
       <Text />
     </div>
@@ -33,8 +33,8 @@ function Content() {
 
 function Input() {
   return (
-    <div className="bg-[#262124] content-stretch flex gap-[16px] items-start p-[8px] relative rounded-[8px] shrink-0" data-name="Input">
-      <div aria-hidden="true" className="absolute border border-[#52525b] border-solid inset-[-1px] pointer-events-none rounded-[9px] shadow-[0px_10px_15px_0px_rgba(0,0,0,0.1),0px_4px_6px_0px_rgba(0,0,0,0.05)]" />
+    <div className="bg-[#27272a] content-stretch flex gap-[16px] items-start p-[8px] relative rounded-[8px] shrink-0" data-name="Input">
+      <div aria-hidden="true" className="absolute border border-[#52525b] border-solid inset-[-1px] pointer-events-none rounded-[8px] shadow-[0px_10px_15px_0px_rgba(0,0,0,0.1),0px_4px_6px_0px_rgba(0,0,0,0.05)]" />
       <Content />
       <div className="content-stretch flex items-center justify-center max-h-[32px] max-w-[32px] min-h-[32px] min-w-[32px] relative rounded-[6px] shrink-0 size-[32px]" data-name="Dark Mode / Button">
         <div className="overflow-clip relative shrink-0 size-[16px]" data-name="Icon">

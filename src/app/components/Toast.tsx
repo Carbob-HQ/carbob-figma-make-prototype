@@ -68,12 +68,12 @@ export function ToastContainer() {
             opacity: toast.animating && !toast.exiting ? 1 : toast.exiting ? 0 : 0,
           }}
         >
-          <div className="bg-[#262124] flex gap-[16px] items-start p-[8px] relative rounded-[8px] shrink-0">
+          <div className="bg-[#27272a] flex gap-[16px] items-start p-[8px] relative rounded-[8px] shrink-0">
             <div
               aria-hidden="true"
               className="absolute border border-[#52525b] border-solid inset-[-1px] pointer-events-none rounded-[9px] shadow-[0px_10px_15px_0px_rgba(0,0,0,0.1),0px_4px_6px_0px_rgba(0,0,0,0.05)]"
             />
-            <div className="flex gap-[8px] items-start min-h-[20px] px-[10px] py-[6px] relative shrink-0">
+            <div className="flex gap-[8px] items-start min-h-[20px] px-[10px] py-[8px] relative shrink-0">
               <div className="flex items-center pt-[2px] relative shrink-0">
                 {toast.type === "info" ? (
                   <Info size={16} className="text-[#3b82f6] shrink-0" />
@@ -93,7 +93,7 @@ export function ToastContainer() {
                 )}
               </div>
               <div className="flex flex-col items-start relative shrink-0">
-                <p className="font-['Inter:Medium',sans-serif] font-medium h-[20px] leading-[1.5] not-italic relative shrink-0 text-[14px] text-white whitespace-nowrap">
+                <p className="font-medium h-[20px] leading-[1.5] not-italic relative shrink-0 text-[14px] text-white whitespace-nowrap">
                   {toast.message}
                 </p>
               </div>

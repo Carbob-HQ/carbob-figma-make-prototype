@@ -17,7 +17,7 @@ function TopFrame() {
                     </svg>
                   </div>
                 </div>
-                <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Revisões</p>
+                <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Revisões</p>
               </div>
             </div>
           </div>
@@ -30,9 +30,9 @@ function TopFrame() {
 function TopFrame1() {
   return (
     <div className="content-stretch flex gap-[16px] items-center relative shrink-0 w-full" data-name="Top Frame">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px]">Próxima revisão</p>
-      <div className="bg-[rgba(96,165,250,0.2)] content-stretch flex gap-[6px] items-center justify-center px-[8px] py-[4px] relative rounded-[6px] shrink-0" data-name="Light Mode / Badge">
-        <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#1e40af] text-[12px]">Recomendado</p>
+      <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px]">Próxima revisão</p>
+      <div className="bg-[rgba(96,165,250,0.2)] content-stretch flex gap-[8px] items-center justify-center px-[8px] py-[4px] relative rounded-[6px] shrink-0" data-name="Light Mode / Badge">
+        <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#1e40af] text-[12px]">Recomendado</p>
       </div>
     </div>
   );
@@ -42,7 +42,7 @@ function LabelFrame() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-center justify-center min-h-px min-w-px relative" data-name="Label Frame">
       <TopFrame1 />
-      <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] w-full whitespace-pre-wrap">60000KM</p>
+      <p className="font-normal leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[12px] w-full whitespace-pre-wrap">60000KM</p>
     </div>
   );
 }
@@ -68,9 +68,9 @@ function ButtonFrame() {
 
 function LabelFrame1() {
   return (
-    <div className="content-stretch flex flex-[1_0_0] flex-col gap-[6px] items-center justify-center min-h-px min-w-px not-italic relative whitespace-pre-wrap" data-name="Label Frame">
-      <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] relative shrink-0 text-[#27272a] text-[14px] w-[228px]">Revisão anterior</p>
-      <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-w-full relative shrink-0 text-[#71717a] text-[12px] w-[min-content]">50000KM</p>
+    <div className="content-stretch flex flex-[1_0_0] flex-col gap-[8px] items-center justify-center min-h-px min-w-px not-italic relative whitespace-pre-wrap" data-name="Label Frame">
+      <p className="font-medium leading-[1.5] relative shrink-0 text-[#27272a] text-[14px] w-[228px]">Revisão anterior</p>
+      <p className="font-normal leading-[1.5] min-w-full relative shrink-0 text-[#71717a] text-[12px] w-[min-content]">50000KM</p>
     </div>
   );
 }
@@ -108,7 +108,7 @@ function BrandingFrame() {
     <div className="relative rounded-[8px] shrink-0 w-full" data-name="Branding Frame">
       <div className="flex flex-col justify-center size-full">
         <div className="content-stretch flex flex-col gap-[8px] items-start justify-center px-[16px] py-[8px] relative w-full">
-          <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-w-full not-italic relative shrink-0 text-[#71717a] text-[12px] w-[min-content] whitespace-pre-wrap">Com tecnologia</p>
+          <p className="font-normal leading-[1.5] min-w-full not-italic relative shrink-0 text-[#71717a] text-[12px] w-[min-content] whitespace-pre-wrap">Com tecnologia</p>
           <div className="h-[24px] relative shrink-0 w-[105px]" data-name="image 324">
             <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgImage324} />
           </div>
@@ -158,7 +158,7 @@ function TextFrame() {
         </div>
       </div>
       <div className="content-stretch flex flex-[1_0_0] items-center min-h-px min-w-px relative" data-name="Light Mode / Heading">
-        <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] text-left whitespace-pre-wrap">Plano de manutenção oficial</p>
+        <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] text-left whitespace-pre-wrap">Plano de manutenção oficial</p>
       </div>
     </div>
   );
@@ -181,7 +181,7 @@ function ServiceFrame() {
                 </svg>
               </div>
             </div>
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] text-left">Adicionar todos</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] text-left">Adicionar todos</p>
           </div>
         </div>
       </div>
@@ -193,7 +193,7 @@ function LabelFrame2() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-center justify-center min-h-px min-w-px relative" data-name="Label Frame">
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis text-left whitespace-pre-wrap">Serviços a cada 30.000 km / 1 ano(s)</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis text-left whitespace-pre-wrap">Serviços a cada 30.000 km / 1 ano(s)</p>
       </div>
     </div>
   );
@@ -210,7 +210,7 @@ function TimeFrame() {
         </div>
       </div>
       <div className="content-stretch flex items-center relative shrink-0" data-name="Time">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis text-left">01h18</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis text-left">01h18</p>
       </div>
     </div>
   );
@@ -220,10 +220,10 @@ function LabelFrame3() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-center justify-center min-h-px min-w-px relative" data-name="Label Frame">
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis text-left whitespace-pre-wrap">Substituir conjunto de filtros do habitáculo</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis text-left whitespace-pre-wrap">Substituir conjunto de filtros do habitáculo</p>
       </div>
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis text-left whitespace-pre-wrap">A cada 30.000 km / 1 ano(s)</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis text-left whitespace-pre-wrap">A cada 30.000 km / 1 ano(s)</p>
       </div>
     </div>
   );
@@ -240,7 +240,7 @@ function TimeFrame1() {
         </div>
       </div>
       <div className="content-stretch flex items-center relative shrink-0" data-name="Time">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis text-left">00h15</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis text-left">00h15</p>
       </div>
     </div>
   );
@@ -250,10 +250,10 @@ function LabelFrame4() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-center justify-center min-h-px min-w-px relative" data-name="Label Frame">
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis text-left whitespace-pre-wrap">Executar teste de estrada</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis text-left whitespace-pre-wrap">Executar teste de estrada</p>
       </div>
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis text-left whitespace-pre-wrap">Todos os 60.000 km</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis text-left whitespace-pre-wrap">Todos os 60.000 km</p>
       </div>
     </div>
   );
@@ -270,7 +270,7 @@ function TimeFrame2() {
         </div>
       </div>
       <div className="content-stretch flex items-center relative shrink-0" data-name="Time">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis text-left">00h10</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis text-left">00h10</p>
       </div>
     </div>
   );
@@ -280,10 +280,10 @@ function LabelFrame5() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-center justify-center min-h-px min-w-px relative" data-name="Label Frame">
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis text-left whitespace-pre-wrap">Substituir filtro de combustível</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis text-left whitespace-pre-wrap">Substituir filtro de combustível</p>
       </div>
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis text-left whitespace-pre-wrap">Todos os 60.000 km / 4 anos</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis text-left whitespace-pre-wrap">Todos os 60.000 km / 4 anos</p>
       </div>
     </div>
   );
@@ -300,7 +300,7 @@ function TimeFrame3() {
         </div>
       </div>
       <div className="content-stretch flex items-center relative shrink-0" data-name="Time">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis text-left">00h20</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis text-left">00h20</p>
       </div>
     </div>
   );
@@ -310,10 +310,10 @@ function LabelFrame6() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-center justify-center min-h-px min-w-px relative" data-name="Label Frame">
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis text-left whitespace-pre-wrap">Substituir filtro de ar</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#27272a] text-[14px] text-ellipsis text-left whitespace-pre-wrap">Substituir filtro de ar</p>
       </div>
       <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis text-left whitespace-pre-wrap">Todos os 60.000 km / 4 anos</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis text-left whitespace-pre-wrap">Todos os 60.000 km / 4 anos</p>
       </div>
     </div>
   );
@@ -330,7 +330,7 @@ function TimeFrame4() {
         </div>
       </div>
       <div className="content-stretch flex items-center relative shrink-0" data-name="Time">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis text-left">00h10</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis text-left">00h10</p>
       </div>
     </div>
   );
@@ -428,7 +428,7 @@ function TextFrame1() {
         </div>
       </div>
       <div className="content-stretch flex flex-[1_0_0] items-center min-h-px min-w-px relative" data-name="Light Mode / Heading">
-        <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] text-left whitespace-pre-wrap">Serviços adicionais</p>
+        <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] text-left whitespace-pre-wrap">Serviços adicionais</p>
       </div>
     </div>
   );
@@ -451,7 +451,7 @@ function ServiceFrame1() {
                 </svg>
               </div>
             </div>
-            <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] text-left">Adicionar todos</p>
+            <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] text-left">Adicionar todos</p>
           </div>
         </div>
       </div>

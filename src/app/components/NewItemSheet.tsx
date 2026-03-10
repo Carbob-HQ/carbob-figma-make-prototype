@@ -8,7 +8,6 @@ import {
 } from "./ui/sheet";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
-import { Separator } from "./ui/separator";
 import {
   Select,
   SelectContent,
@@ -74,16 +73,16 @@ interface NewItemSheetProps {
 }
 
 const PART_ICON = (
-  <svg className="size-[14px]" fill="none" viewBox="0 0 13.3333 14.6641">
+  <svg className="size-[16px]" fill="none" viewBox="0 0 13.3333 14.6641">
     <path d={svgPaths.p475cc00} fill="currentColor" />
   </svg>
 );
 
-const ITEM_TYPES: { type: ItemType; label: string; icon: React.ReactNode }[] = [
-  { type: "labor", label: "Mão de obra", icon: <Wrench className="size-[14px]" /> },
-  { type: "part", label: "Peça", icon: PART_ICON },
-  { type: "consumable", label: "Consumível", icon: <Droplet className="size-[14px]" /> },
-  { type: "fee", label: "Encargo", icon: <Euro className="size-[14px]" /> },
+const ITEM_TYPES: { type: ItemType; label: string; description: string; icon: React.ReactNode }[] = [
+  { type: "labor", label: "Mão de obra", description: "Tempo e custo de trabalho", icon: <Wrench className="size-[16px]" /> },
+  { type: "part", label: "Peça", description: "Peças e componentes", icon: PART_ICON },
+  { type: "consumable", label: "Consumível", description: "Materiais e consumíveis", icon: <Droplet className="size-[16px]" /> },
+  { type: "fee", label: "Encargo", description: "Taxas e encargos adicionais", icon: <Euro className="size-[16px]" /> },
 ];
 
 const PRICE_OPTIONS = [
@@ -185,7 +184,7 @@ function TimeInput({
   const segmentClass = "bg-transparent border-none outline-none text-center p-0 m-0 text-[14px] min-w-0 transition-none";
 
   return (
-    <div className={`flex items-center border rounded-[8px] bg-white transition-[color,box-shadow] focus-within:border-ring focus-within:ring-ring/20 focus-within:ring-[3px] ${className ?? ""}`}>
+    <div className={`flex items-center border rounded-[8px] bg-white transition-[color,box-shadow] focus-within:border-ring focus-within:ring-ring/40 focus-within:ring-[3px] ${className ?? ""}`}>
       <input ref={hhRef} inputMode="numeric" value={hhVal} placeholder="00" onChange={handleHhChange} onBlur={handleHhBlur} onKeyDown={handleHhKeyDown} onFocus={handleHhFocus} onMouseUp={handleHhMouseUp} style={{ width: `${Math.max(2, hhVal.length)}ch` }} className={`${segmentClass} text-[#3f3f46] placeholder:text-[#3f3f46]`} />
       <span className="text-[14px] select-none text-[#3f3f46]">h</span>
       <input ref={mmRef} inputMode="numeric" value={mmVal} placeholder="00" onChange={handleMmChange} onBlur={handleMmBlur} onFocus={handleMmFocus} onMouseUp={handleMmMouseUp} style={{ width: `${Math.max(2, mmVal.length)}ch` }} className={`${segmentClass} text-[#3f3f46] placeholder:text-[#3f3f46]`} />
@@ -196,7 +195,7 @@ function TimeInput({
 /** Reusable discount input (percentage, max 100) */
 function DiscountInput({ value, onChange, error }: { value: string; onChange: (v: string) => void; error?: boolean }) {
   return (
-    <div className={`flex items-center h-[40px] rounded-[8px] border ${error ? "border-[#ef4444]" : "border-[#e5e5e5]"} bg-white px-[12px] transition-[color,box-shadow] focus-within:border-ring focus-within:ring-ring/20 focus-within:ring-[3px]`}>
+    <div className={`flex items-center h-[40px] rounded-[8px] border ${error ? "border-[#ef4444]" : "border-[#e5e5e5]"} bg-white px-[12px] transition-[color,box-shadow] focus-within:border-ring focus-within:ring-ring/40 focus-within:ring-[3px]`}>
       <input
         inputMode="numeric"
         value={value}
@@ -209,7 +208,7 @@ function DiscountInput({ value, onChange, error }: { value: string; onChange: (v
         }}
         className="bg-transparent border-none outline-none text-[14px] text-[#3f3f46] placeholder:text-[#3f3f46] p-0 m-0 w-full min-w-0 transition-none"
       />
-      <span className="text-[14px] text-[#3f3f46] select-none shrink-0">%</span>
+      <span className="text-[14px] text-[#27272a] select-none shrink-0">%</span>
     </div>
   );
 }
@@ -230,17 +229,23 @@ function VatSelect({ value, onChange }: { value: string; onChange: (v: string) =
           >
             <span className="flex size-4 shrink-0 items-center justify-center">
               <SelectPrimitive.ItemIndicator>
-                <Check className="size-4 text-[#3f3f46]" />
+                <Check className="size-4 text-[#27272a]" />
               </SelectPrimitive.ItemIndicator>
             </span>
             <SelectPrimitive.ItemText>
-              <span className="text-[14px] text-[#3f3f46]">{opt.label}</span>
+              <span className="text-[14px] text-[#27272a]">{opt.label}</span>
             </SelectPrimitive.ItemText>
           </SelectPrimitive.Item>
         ))}
       </SelectContent>
     </Select>
   );
+}
+
+/** Inline error message */
+function ErrorMessage({ show }: { show: boolean }) {
+  if (!show) return null;
+  return <span className="text-[12px] text-[#ef4444] leading-[1.5]">Campo obrigatório</span>;
 }
 
 /** Readonly currency input */
@@ -251,7 +256,7 @@ function ReadonlyField({ label, value }: { label: string; value: string }) {
       <Input
         readOnly
         value={value}
-        className="h-[40px] rounded-[8px] border-[#e5e5e5] bg-[rgba(39,39,42,0.05)] text-[14px] text-[#3f3f46] px-[12px] cursor-default"
+        className="h-[40px] rounded-[8px] border-[#e5e5e5] bg-[#eaeaeb] text-[14px] text-[#27272a] font-normal px-[12px] cursor-default"
       />
     </div>
   );
@@ -282,19 +287,21 @@ function LaborFields({
   return (
     <div className="flex flex-col gap-[16px] w-full">
       <div className="flex flex-col gap-[8px] w-full" data-field="designation">
-        <Label className="text-[14px] text-[#27272a]">Mão de obra *</Label>
+        <Label className="text-[14px] text-[#27272a]">Mão de obra</Label>
         <Input placeholder="Designação" value={designation} onChange={(e) => { setDesignation(e.target.value); clearError("designation"); }} autoFocus className={`h-[40px] rounded-[8px] ${errorFields.has("designation") ? "border-[#ef4444]" : "border-[#e5e5e5]"} bg-white text-[14px] text-[#27272a] placeholder:text-[#d4d4d8] px-[12px]`} />
+        <ErrorMessage show={errorFields.has("designation")} />
       </div>
 
       <div className="flex flex-col gap-[8px] w-full" data-field="hours">
-        <Label className="text-[14px] text-[#27272a]">Horas *</Label>
+        <Label className="text-[14px] text-[#27272a]">Horas</Label>
         <TimeInput value={hours} onChange={(v) => { setHours(v); clearError("hours"); }} className={`h-[40px] rounded-[8px] ${errorFields.has("hours") ? "border-[#ef4444]" : "border-[#e5e5e5]"} bg-white text-[14px] text-[#3f3f46] placeholder:text-[#3f3f46] px-[12px]`} />
+        <ErrorMessage show={errorFields.has("hours")} />
       </div>
 
       <div className="flex flex-col gap-[8px] w-full">
         <Label className="text-[14px] text-[#27272a]">Preço unitário</Label>
         <Select value={pricePerHour} onValueChange={setPricePerHour}>
-          <SelectTrigger className="h-[40px] rounded-[8px] border-[#e5e5e5] bg-white text-[14px] text-[#3f3f46] font-normal px-[12px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)]">
+          <SelectTrigger className="h-[40px] rounded-[8px] border-[#e5e5e5] bg-white text-[14px] text-[#27272a] font-normal px-[12px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)]">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -306,14 +313,14 @@ function LaborFields({
               >
                 <span className="flex size-4 shrink-0 items-center justify-center mt-[2px]">
                   <SelectPrimitive.ItemIndicator>
-                    <Check className="size-4 text-[#3f3f46]" />
+                    <Check className="size-4 text-[#27272a]" />
                   </SelectPrimitive.ItemIndicator>
                 </span>
                 <div className="flex flex-col items-start gap-[2px]">
                   <SelectPrimitive.ItemText>
-                    <span className="text-[14px] text-[#3f3f46] leading-[1.5]">{opt.label}</span>
+                    <span className="text-[14px] text-[#27272a] leading-[1.5]">{opt.label}</span>
                   </SelectPrimitive.ItemText>
-                  <span className="text-[12px] text-[#a1a1aa] leading-[1.5]">{opt.description}</span>
+                  <span className="text-[12px] text-[#71717a] leading-[1.5]">{opt.description}</span>
                 </div>
               </SelectPrimitive.Item>
             ))}
@@ -512,7 +519,7 @@ function PartFields({
     <div className="flex flex-col gap-[16px] w-full">
       {/* Peça (designation) */}
       <div className="flex flex-col gap-[8px] w-full" data-field="designation">
-        <Label className="text-[14px] text-[#27272a]">Peça *</Label>
+        <Label className="text-[14px] text-[#27272a]">Peça</Label>
         <Input
           placeholder="Designação"
           value={designation}
@@ -520,6 +527,7 @@ function PartFields({
           autoFocus
           className={`h-[40px] rounded-[8px] ${errorFields.has("designation") ? "border-[#ef4444]" : "border-[#e5e5e5]"} bg-white text-[14px] text-[#27272a] placeholder:text-[#d4d4d8] px-[12px]`}
         />
+        <ErrorMessage show={errorFields.has("designation")} />
       </div>
 
       {/* Referência */}
@@ -540,7 +548,7 @@ function PartFields({
 
       {/* Qtd. */}
       <div className="flex flex-col gap-[8px] w-full">
-        <Label className="text-[14px] text-[#27272a]">Quantidade *</Label>
+        <Label className="text-[14px] text-[#27272a]">Quantidade</Label>
         <input
           type="text"
           inputMode="numeric"
@@ -557,13 +565,13 @@ function PartFields({
             const num = parseInt(quantity.replace(/\s/g, ""), 10);
             setQuantity(String(num).replace(/\B(?=(\d{3})+(?!\d))/g, " "));
           }}
-          className="flex h-[40px] w-full rounded-[8px] border border-[#e5e5e5] bg-white text-[14px] text-[#3f3f46] px-[12px] outline-none min-w-0 transition-none focus-visible:border-ring focus-visible:ring-ring/20 focus-visible:ring-[3px]"
+          className="flex h-[40px] w-full rounded-[8px] border border-[#e5e5e5] bg-white text-[14px] text-[#27272a] px-[12px] outline-none min-w-0 transition-[color,box-shadow] focus-visible:border-ring focus-visible:ring-ring/40 focus-visible:ring-[3px]"
         />
       </div>
 
       {/* Tipo de peça */}
       <div className="flex flex-col gap-[8px] w-full">
-        <Label className="text-[14px] text-[#27272a]">Tipo de peça *</Label>
+        <Label className="text-[14px] text-[#27272a]">Tipo de peça</Label>
         <Select value={partType} onValueChange={(v) => setPartType(v as "OEM" | "IAM" | "generic")}>
           <SelectTrigger className="h-[40px] rounded-[8px] border-[#e5e5e5] bg-white text-[14px] text-[#27272a] font-normal px-[12px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)]">
             <SelectValue placeholder="Tipo de peça" />
@@ -579,9 +587,9 @@ function PartFields({
       {/* Custo unitário */}
       <div className="flex flex-col gap-[16px] w-full">
         <div className="flex flex-col gap-[8px] w-full" data-field="partUnitCost">
-          <Label className="text-[14px] text-[#27272a]">Custo unitário *</Label>
+          <Label className="text-[14px] text-[#27272a]">Custo unitário</Label>
           <div className="relative">
-            <div className={`flex items-center h-[40px] rounded-[8px] border ${errorFields.has("partUnitCost") ? "border-[#ef4444]" : "border-[#e5e5e5]"} bg-white pl-[12px] pr-[56px] transition-[color,box-shadow] focus-within:border-ring focus-within:ring-ring/20 focus-within:ring-[3px]`}>
+            <div className={`flex items-center h-[40px] rounded-[8px] border ${errorFields.has("partUnitCost") ? "border-[#ef4444]" : "border-[#e5e5e5]"} bg-white pl-[12px] pr-[56px] transition-[color,box-shadow] focus-within:border-ring focus-within:ring-ring/40 focus-within:ring-[3px]`}>
               <input
                 type="text"
                 inputMode="decimal"
@@ -603,7 +611,7 @@ function PartFields({
               className={`absolute right-[4px] top-1/2 -translate-y-1/2 flex items-center justify-center size-[32px] rounded-[6px] border shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] cursor-pointer transition-colors duration-200 ease-out ${
                 calcOpen
                   ? "bg-[rgba(130,112,255,0.15)] border-[#e5e5e5]"
-                  : "bg-white border-[#e5e5e5] not-disabled:hover:bg-[#e4e4e7]"
+                  : "bg-white border-[#e5e5e5] not-disabled:hover:bg-[#e5e5e5]"
               }`}
               title="Calculadora"
             >
@@ -612,6 +620,7 @@ function PartFields({
               </svg>
             </button>
           </div>
+          <ErrorMessage show={errorFields.has("partUnitCost")} />
           {oemCost > 0 && (
             <span className="text-[12px] text-[#71717a] font-normal leading-[1.5]">
               Custo unitário OEM: {oemCost.toFixed(2).replace(".", ",")} €
@@ -626,7 +635,7 @@ function PartFields({
               {/* Preço de retalho */}
               <div className="flex flex-col gap-[8px] flex-1 min-w-0">
                 <span className="text-[14px] text-[#27272a] font-normal leading-[1.5]">Preço de retalho</span>
-                <div className="flex items-center h-[40px] rounded-[8px] border border-[#e5e5e5] bg-white px-[12px] transition-[color,box-shadow] focus-within:border-ring focus-within:ring-ring/20 focus-within:ring-[3px]">
+                <div className="flex items-center h-[40px] rounded-[8px] border border-[#e5e5e5] bg-white px-[12px] transition-[color,box-shadow] focus-within:border-ring focus-within:ring-ring/40 focus-within:ring-[3px]">
                   <input
                     type="text"
                     inputMode="decimal"
@@ -651,7 +660,7 @@ function PartFields({
               {/* Desconto */}
               <div className="flex flex-col gap-[8px] flex-1 min-w-0">
                 <span className="text-[14px] text-[#27272a] font-normal leading-[1.5]">Desconto</span>
-                <div className="flex items-center h-[40px] rounded-[8px] border border-[#e5e5e5] bg-white px-[12px] transition-[color,box-shadow] focus-within:border-ring focus-within:ring-ring/20 focus-within:ring-[3px]">
+                <div className="flex items-center h-[40px] rounded-[8px] border border-[#e5e5e5] bg-white px-[12px] transition-[color,box-shadow] focus-within:border-ring focus-within:ring-ring/40 focus-within:ring-[3px]">
                   <input
                     type="text"
                     inputMode="numeric"
@@ -660,7 +669,7 @@ function PartFields({
                     onChange={(e) => handleRetailDiscountChange(e.target.value)}
                     className="bg-transparent border-none outline-none text-[14px] text-[#3f3f46] placeholder:text-[#3f3f46] p-0 m-0 w-full min-w-0 transition-none"
                   />
-                  <span className="text-[14px] text-[#3f3f46] select-none shrink-0">%</span>
+                  <span className="text-[14px] text-[#27272a] select-none shrink-0">%</span>
                 </div>
               </div>
             </div>
@@ -675,7 +684,7 @@ function PartFields({
           <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Info className="size-[12px] text-[#a1a1aa] cursor-help" />
+                  <Info className="size-[12px] text-[#71717a] cursor-help" />
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>Markup(%): Lucro de venda / Preço de compra</p>
@@ -698,7 +707,7 @@ function PartFields({
             </TabsList>
           </Tabs>
           <div className="w-[64px] shrink-0">
-            <div className="flex items-center h-[34px] rounded-[8px] border border-[#e5e5e5] bg-white px-[12px] transition-[color,box-shadow] focus-within:border-ring focus-within:ring-ring/20 focus-within:ring-[3px]">
+            <div className="flex items-center h-[40px] rounded-[8px] border border-[#e5e5e5] bg-white px-[12px] transition-[color,box-shadow] focus-within:border-ring focus-within:ring-ring/40 focus-within:ring-[3px]">
               <input
                 inputMode="numeric"
                 value={activePreset !== null ? "" : customMarkup}
@@ -774,7 +783,7 @@ function ConsumableFields({
     <div className="flex flex-col gap-[16px] w-full">
       {/* Designação */}
       <div className="flex flex-col gap-[8px] w-full" data-field="designation">
-        <Label className="text-[14px] text-[#27272a]">Consumível *</Label>
+        <Label className="text-[14px] text-[#27272a]">Consumível</Label>
         <Input
           placeholder="Designação"
           value={designation}
@@ -782,11 +791,12 @@ function ConsumableFields({
           autoFocus
           className={`h-[40px] rounded-[8px] ${errorFields.has("designation") ? "border-[#ef4444]" : "border-[#e5e5e5]"} bg-white text-[14px] text-[#27272a] placeholder:text-[#d4d4d8] px-[12px]`}
         />
+        <ErrorMessage show={errorFields.has("designation")} />
       </div>
 
       {/* Tipo (Radio Group) */}
       <div className="flex flex-col gap-[8px] w-full">
-        <Label className="text-[14px] text-[#27272a]">Tipo *</Label>
+        <Label className="text-[14px] text-[#27272a]">Tipo</Label>
         <RadioGroup
           value={calcType}
           onValueChange={(v) => setCalcType(v as ConsumableCalcType)}
@@ -813,7 +823,7 @@ function ConsumableFields({
           <div className="flex flex-col gap-[16px] w-full animate-in fade-in duration-200">
             {/* Quantidade */}
             <div className="flex flex-col gap-[8px] w-full">
-              <Label className="text-[14px] text-[#27272a]">Quantidade *</Label>
+              <Label className="text-[14px] text-[#27272a]">Quantidade</Label>
               <input
                 type="text"
                 inputMode="decimal"
@@ -841,14 +851,14 @@ function ConsumableFields({
                   const formattedInt = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
                   setQuantity(decPart ? `${formattedInt},${decPart}` : formattedInt);
                 }}
-                className="flex h-[40px] w-full rounded-[8px] border border-[#e5e5e5] bg-white text-[14px] text-[#3f3f46] px-[12px] outline-none min-w-0 transition-none focus-visible:border-ring focus-visible:ring-ring/20 focus-visible:ring-[3px]"
+                className="flex h-[40px] w-full rounded-[8px] border border-[#e5e5e5] bg-white text-[14px] text-[#27272a] px-[12px] outline-none min-w-0 transition-[color,box-shadow] focus-visible:border-ring focus-visible:ring-ring/40 focus-visible:ring-[3px]"
               />
             </div>
 
             {/* Preço unitário */}
             <div className="flex flex-col gap-[8px] w-full" data-field="consUnitPrice">
-              <Label className="text-[14px] text-[#27272a]">Preço unitário *</Label>
-              <div className={`flex items-center h-[40px] rounded-[8px] border ${errorFields.has("consUnitPrice") ? "border-[#ef4444]" : "border-[#e5e5e5]"} bg-white px-[12px] transition-[color,box-shadow] focus-within:border-ring focus-within:ring-ring/20 focus-within:ring-[3px]`}>
+              <Label className="text-[14px] text-[#27272a]">Preço unitário</Label>
+              <div className={`flex items-center h-[40px] rounded-[8px] border ${errorFields.has("consUnitPrice") ? "border-[#ef4444]" : "border-[#e5e5e5]"} bg-white px-[12px] transition-[color,box-shadow] focus-within:border-ring focus-within:ring-ring/40 focus-within:ring-[3px]`}>
                 <input
                   type="text"
                   inputMode="decimal"
@@ -870,6 +880,7 @@ function ConsumableFields({
                 />
                 <span className="text-[14px] text-[#71717a] shrink-0 ml-[8px]">€</span>
               </div>
+              <ErrorMessage show={errorFields.has("consUnitPrice")} />
             </div>
           </div>
         )}
@@ -878,14 +889,14 @@ function ConsumableFields({
           <div className="flex flex-col gap-[16px] w-full animate-in fade-in duration-200">
             {/* Incidir sobre */}
             <div className="flex flex-col gap-[8px] w-full" data-field="consTargetItemId">
-              <Label className="text-[14px] text-[#27272a]">Incidir sobre *</Label>
+              <Label className="text-[14px] text-[#27272a]">Incidir sobre</Label>
               <Select value={targetItemId} onValueChange={(v) => { setTargetItemId(v); clearError("consTargetItemId"); }}>
                 <SelectTrigger className={`h-[40px] rounded-[8px] ${errorFields.has("consTargetItemId") ? "border-[#ef4444]" : "border-[#e5e5e5]"} bg-white text-[14px] text-[#27272a] font-normal px-[12px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)]`}>
                   <SelectValue placeholder="Item" />
                 </SelectTrigger>
                 <SelectContent>
                   {targetableItems.length === 0 ? (
-                    <div className="px-[12px] py-[8px] text-[14px] text-[#a1a1aa]">
+                    <div className="px-[12px] py-[8px] text-[14px] text-[#71717a]">
                       Sem itens disponíveis
                     </div>
                   ) : (
@@ -897,11 +908,11 @@ function ConsumableFields({
                       >
                         <span className="flex size-4 shrink-0 items-center justify-center">
                           <SelectPrimitive.ItemIndicator>
-                            <Check className="size-4 text-[#3f3f46]" />
+                            <Check className="size-4 text-[#27272a]" />
                           </SelectPrimitive.ItemIndicator>
                         </span>
                         <SelectPrimitive.ItemText>
-                          <span className="text-[14px] text-[#3f3f46]">
+                          <span className="text-[14px] text-[#27272a]">
                             {item.designation || (item.type === "labor" ? "Mão de obra" : "Peça")}
                           </span>
                         </SelectPrimitive.ItemText>
@@ -910,12 +921,14 @@ function ConsumableFields({
                   )}
                 </SelectContent>
               </Select>
+              <ErrorMessage show={errorFields.has("consTargetItemId")} />
             </div>
 
             {/* Percentagem */}
             <div className="flex flex-col gap-[8px] w-full" data-field="consPercentage">
-              <Label className="text-[14px] text-[#27272a]">Percentagem *</Label>
+              <Label className="text-[14px] text-[#27272a]">Percentagem</Label>
               <DiscountInput value={percentage} onChange={(v) => { setPercentage(v); clearError("consPercentage"); }} error={errorFields.has("consPercentage")} />
+              <ErrorMessage show={errorFields.has("consPercentage")} />
             </div>
 
             {/* Preço unitário (readonly, calculated) */}
@@ -927,8 +940,9 @@ function ConsumableFields({
           <div className="flex flex-col gap-[16px] w-full animate-in fade-in duration-200">
             {/* Percentagem */}
             <div className="flex flex-col gap-[8px] w-full" data-field="consPercentage">
-              <Label className="text-[14px] text-[#27272a]">Percentagem *</Label>
+              <Label className="text-[14px] text-[#27272a]">Percentagem</Label>
               <DiscountInput value={percentage} onChange={(v) => { setPercentage(v); clearError("consPercentage"); }} error={errorFields.has("consPercentage")} />
+              <ErrorMessage show={errorFields.has("consPercentage")} />
             </div>
 
             {/* Preço unitário (readonly, calculated) */}
@@ -996,7 +1010,7 @@ function ChargeFields({
     <div className="flex flex-col gap-[16px] w-full">
       {/* Designação */}
       <div className="flex flex-col gap-[8px] w-full" data-field="designation">
-        <Label className="text-[14px] text-[#27272a]">Encargo *</Label>
+        <Label className="text-[14px] text-[#27272a]">Encargo</Label>
         <Input
           placeholder="Designação"
           value={designation}
@@ -1004,6 +1018,7 @@ function ChargeFields({
           autoFocus
           className={`h-[40px] rounded-[8px] ${errorFields.has("designation") ? "border-[#ef4444]" : "border-[#e5e5e5]"} bg-white text-[14px] text-[#27272a] placeholder:text-[#d4d4d8] px-[12px]`}
         />
+        <ErrorMessage show={errorFields.has("designation")} />
       </div>
 
       {/* Tipo de cálculo (Radio Group) */}
@@ -1035,8 +1050,8 @@ function ChargeFields({
           <div className="flex flex-col gap-[16px] w-full animate-in fade-in duration-200">
             {/* Preço */}
             <div className="flex flex-col gap-[8px] w-full" data-field="chargeUnitPrice">
-              <Label className="text-[14px] text-[#27272a]">Preço unitário *</Label>
-              <div className={`flex items-center h-[40px] rounded-[8px] border ${errorFields.has("chargeUnitPrice") ? "border-[#ef4444]" : "border-[#e5e5e5]"} bg-white px-[12px] transition-[color,box-shadow] focus-within:border-ring focus-within:ring-ring/20 focus-within:ring-[3px]`}>
+              <Label className="text-[14px] text-[#27272a]">Preço unitário</Label>
+              <div className={`flex items-center h-[40px] rounded-[8px] border ${errorFields.has("chargeUnitPrice") ? "border-[#ef4444]" : "border-[#e5e5e5]"} bg-white px-[12px] transition-[color,box-shadow] focus-within:border-ring focus-within:ring-ring/40 focus-within:ring-[3px]`}>
                 <input
                   type="text"
                   inputMode="decimal"
@@ -1058,6 +1073,7 @@ function ChargeFields({
                 />
                 <span className="text-[14px] text-[#71717a] shrink-0 ml-[8px]">€</span>
               </div>
+              <ErrorMessage show={errorFields.has("chargeUnitPrice")} />
             </div>
           </div>
         )}
@@ -1066,14 +1082,14 @@ function ChargeFields({
           <div className="flex flex-col gap-[16px] w-full animate-in fade-in duration-200">
             {/* Incidir sobre */}
             <div className="flex flex-col gap-[8px] w-full" data-field="chargeTargetItemId">
-              <Label className="text-[14px] text-[#27272a]">Incidir sobre *</Label>
+              <Label className="text-[14px] text-[#27272a]">Incidir sobre</Label>
               <Select value={targetItemId} onValueChange={(v) => { setTargetItemId(v); clearError("chargeTargetItemId"); }}>
                 <SelectTrigger className={`h-[40px] rounded-[8px] ${errorFields.has("chargeTargetItemId") ? "border-[#ef4444]" : "border-[#e5e5e5]"} bg-white text-[14px] text-[#27272a] font-normal px-[12px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)]`}>
                   <SelectValue placeholder="Item" />
                 </SelectTrigger>
                 <SelectContent>
                   {targetableItems.length === 0 ? (
-                    <div className="px-[12px] py-[8px] text-[14px] text-[#a1a1aa]">
+                    <div className="px-[12px] py-[8px] text-[14px] text-[#71717a]">
                       Sem itens disponíveis
                     </div>
                   ) : (
@@ -1085,11 +1101,11 @@ function ChargeFields({
                       >
                         <span className="flex size-4 shrink-0 items-center justify-center">
                           <SelectPrimitive.ItemIndicator>
-                            <Check className="size-4 text-[#3f3f46]" />
+                            <Check className="size-4 text-[#27272a]" />
                           </SelectPrimitive.ItemIndicator>
                         </span>
                         <SelectPrimitive.ItemText>
-                          <span className="text-[14px] text-[#3f3f46]">
+                          <span className="text-[14px] text-[#27272a]">
                             {item.designation || (item.type === "labor" ? "Mão de obra" : "Peça")}
                           </span>
                         </SelectPrimitive.ItemText>
@@ -1098,12 +1114,14 @@ function ChargeFields({
                   )}
                 </SelectContent>
               </Select>
+              <ErrorMessage show={errorFields.has("chargeTargetItemId")} />
             </div>
 
             {/* Percentagem */}
             <div className="flex flex-col gap-[8px] w-full" data-field="chargePercentage">
-              <Label className="text-[14px] text-[#27272a]">Percentagem *</Label>
+              <Label className="text-[14px] text-[#27272a]">Percentagem</Label>
               <DiscountInput value={percentage} onChange={(v) => { setPercentage(v); clearError("chargePercentage"); }} error={errorFields.has("chargePercentage")} />
+              <ErrorMessage show={errorFields.has("chargePercentage")} />
             </div>
 
             {/* Preço unitário (readonly, calculated) */}
@@ -1115,8 +1133,9 @@ function ChargeFields({
           <div className="flex flex-col gap-[16px] w-full animate-in fade-in duration-200">
             {/* Percentagem */}
             <div className="flex flex-col gap-[8px] w-full" data-field="chargePercentage">
-              <Label className="text-[14px] text-[#27272a]">Percentagem *</Label>
+              <Label className="text-[14px] text-[#27272a]">Percentagem</Label>
               <DiscountInput value={percentage} onChange={(v) => { setPercentage(v); clearError("chargePercentage"); }} error={errorFields.has("chargePercentage")} />
+              <ErrorMessage show={errorFields.has("chargePercentage")} />
             </div>
 
             {/* Preço unitário (readonly, calculated) */}
@@ -1631,10 +1650,10 @@ export function NewItemSheet({ open, onOpenChange, onSave, preselectedType, edit
     <Sheet open={open} onOpenChange={handleOpenChange}>
       <SheetContent
         side="right"
-        className="bg-[#f4f4f5] flex flex-col gap-[24px] px-[16px] py-[24px] w-[clamp(320px,28vw,360px)] sm:max-w-[clamp(320px,28vw,360px)] border-l border-[#e5e5e5] shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1),0px_2px_4px_-1px_rgba(0,0,0,0.06)] data-[state=open]:duration-200 data-[state=closed]:duration-200 data-[state=open]:ease-out data-[state=closed]:ease-out [&>button:last-of-type]:hidden"
+        className="bg-[#f4f4f5] flex flex-col gap-[24px] px-[20px] py-[24px] w-[clamp(320px,28vw,360px)] sm:max-w-[clamp(320px,28vw,360px)] border-l border-[#e5e5e5] shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1),0px_2px_4px_-1px_rgba(0,0,0,0.06)] data-[state=open]:duration-200 data-[state=closed]:duration-200 data-[state=open]:ease-out data-[state=closed]:ease-out [&>button:last-of-type]:hidden"
       >
         {/* Header */}
-        <div className="flex gap-[10px] items-start relative w-full shrink-0">
+        <div className="flex gap-[12px] items-start relative w-full shrink-0">
           <SheetTitle className="flex-1 text-[16px] text-[#27272a]">
             {isEditMode && selectedType ? EDIT_TITLE_MAP[selectedType] : "Novo item"}
           </SheetTitle>
@@ -1644,7 +1663,7 @@ export function NewItemSheet({ open, onOpenChange, onSave, preselectedType, edit
           <Button
             variant="ghost"
             size="icon"
-            className="size-[32px] cursor-pointer absolute right-[-8px] top-[-8px] !border-0 !shadow-none !bg-transparent hover:!bg-[#e4e4e7] focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
+            className="size-[32px] cursor-pointer absolute right-[-8px] top-[-8px] !border-0 !shadow-none !bg-transparent hover:!bg-[#e5e5e5] focus-visible:ring-ring/40 focus-visible:ring-[3px]"
             onClick={handleCancel}
           >
             <X className="size-[16px] text-[#27272a]" />
@@ -1654,7 +1673,7 @@ export function NewItemSheet({ open, onOpenChange, onSave, preselectedType, edit
         {/* Content */}
         <div
             ref={scrollRef}
-            className="flex-1 min-h-0 overflow-y-auto px-[4px] -mx-[4px] py-[3px] -my-[3px]"
+            className="flex-1 min-h-0 overflow-y-auto px-[4px] -mx-[4px] py-[4px] -my-[4px]"
             style={{
               maskImage: scrollMask,
               WebkitMaskImage: scrollMask,
@@ -1671,18 +1690,18 @@ export function NewItemSheet({ open, onOpenChange, onSave, preselectedType, edit
                 {ITEM_TYPES.map(({ type, label, icon }) => (
                   <label
                     key={type}
-                    className={`relative flex gap-[8px] items-center h-[40px] rounded-[8px] cursor-pointer bg-white px-[16px] border transition-all duration-200 ease-out has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-[#8270FF]/20 ${
+                    className={`relative flex gap-[10px] items-center h-[40px] rounded-[8px] cursor-pointer px-[12px] border transition-all duration-200 ease-out has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-[#8270ff]/20 ${
                       selectedType === type
-                        ? "border-[#8270FF] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] hover:bg-[#e9ebef]"
-                        : "border-[#e5e5e5] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] hover:border-[#a1a1aa] hover:bg-[#e9ebef]"
+                        ? "border-[#8270ff] bg-[rgba(130,112,255,0.04)] shadow-[0px_1px_3px_0px_rgba(0,0,0,0.06)]"
+                        : "border-[#e5e5e5] bg-white shadow-[0px_1px_2px_0px_rgba(0,0,0,0.04)] hover:border-[#a1a1aa] hover:shadow-[0px_2px_4px_0px_rgba(0,0,0,0.06)]"
                     }`}
                   >
                     <RadioGroupItem
                       value={type}
                       className="absolute opacity-0 pointer-events-none"
                     />
-                    <span className="shrink-0 size-[16px] flex items-center justify-center">{icon}</span>
-                    <span className="text-[14px] text-[#27272a]">{label}</span>
+                    <span className={`shrink-0 size-[24px] flex items-center justify-center rounded-[6px] ${selectedType === type ? "bg-[rgba(130,112,255,0.1)] text-[#8270ff]" : "bg-[#f4f4f5] text-[#a1a1aa]"} transition-colors duration-200`}>{icon}</span>
+                    <span className="text-[14px] font-medium text-[#27272a] leading-[1.3]">{label}</span>
                   </label>
                 ))}
               </RadioGroup>
@@ -1772,13 +1791,13 @@ export function NewItemSheet({ open, onOpenChange, onSave, preselectedType, edit
         <div className="flex gap-[16px] items-center justify-end w-full shrink-0">
           <Button
             variant="ghost"
-            className="cursor-pointer h-[40px] px-[16px] text-[14px] text-[#27272a] !border-0 !shadow-none !bg-transparent hover:!bg-[#e4e4e7]"
+            className="cursor-pointer h-[40px] px-[16px] text-[14px] text-[#27272a] !border-0 !shadow-none !bg-transparent hover:!bg-[#e5e5e5] transition-colors duration-200"
             onClick={handleCancel}
           >
             Cancelar
           </Button>
           <Button
-            className="cursor-pointer h-[40px] px-[16px] text-[14px] text-white bg-[#27272a] rounded-[8px] shadow-[inset_0px_1px_0px_0px_#27272a,inset_0px_2px_0px_0px_rgba(255,255,255,0.15)] transition-colors duration-200 ease-out hover:bg-[#3f3f46] disabled:opacity-50 disabled:pointer-events-none"
+            className="cursor-pointer h-[40px] px-[16px] text-[14px] text-white bg-[#27272a] rounded-[8px] shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.15)] transition-colors duration-200 ease-out hover:bg-[#3f3f46] disabled:opacity-50 disabled:pointer-events-none"
             disabled={!selectedType}
             onClick={handleSave}
           >

@@ -4,7 +4,7 @@ function TextFrame() {
   return (
     <div className="content-stretch flex gap-[4px] items-center relative shrink-0 w-full" data-name="Text Frame">
       <div className="content-stretch flex items-center relative shrink-0" data-name="Light Mode / Text">
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">Introduz a matrícula do veículo</p>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#27272a] text-[14px] text-ellipsis">Introduz a matrícula do veículo</p>
       </div>
       <div className="content-stretch flex items-start relative shrink-0" data-name="Tooltip / Vehicle Search Context">
         <div className="overflow-clip relative shrink-0 size-[12px]" data-name="info">
@@ -25,7 +25,7 @@ function Input() {
       <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[8px]" />
       <div className="flex flex-row items-center size-full">
         <div className="content-stretch flex gap-[8px] items-center px-[12px] py-[8px] relative size-full">
-          <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic relative text-[#3f3f46] text-[14px] whitespace-pre-wrap">AV-59-ZZ</p>
+          <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">AV-59-ZZ</p>
         </div>
       </div>
     </div>
@@ -38,9 +38,9 @@ function InputsFrame1() {
       <div className="content-stretch flex flex-col gap-[12px] items-start relative shrink-0 w-[360px]" data-name="Column 1 Item">
         <Input />
       </div>
-      <div className="bg-[#262124] content-stretch flex gap-[8px] items-center justify-center max-h-[40px] min-h-[40px] px-[16px] relative rounded-[8px] shrink-0" data-name="Light Mode / Button">
-        <div aria-hidden="true" className="absolute border border-[rgba(0,0,0,0.1)] border-solid inset-0 pointer-events-none rounded-[8px]" />
-        <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[14px] text-white">Identificar</p>
+      <div className="bg-[#27272a] content-stretch flex gap-[8px] items-center justify-center max-h-[40px] min-h-[40px] px-[16px] relative rounded-[8px] shrink-0" data-name="Light Mode / Button">
+        <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[8px]" />
+        <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[14px] text-white">Identificar</p>
         <div className="absolute inset-0 pointer-events-none rounded-[inherit] shadow-[inset_0px_1px_0px_0px_black,inset_0px_2px_0px_0px_rgba(255,255,255,0.2)]" />
       </div>
     </div>
@@ -58,7 +58,7 @@ function InfoFrame() {
         </div>
       </div>
       <div className="content-stretch flex flex-[1_0_0] items-center min-h-px min-w-px relative" data-name="Light Mode / Text">
-        <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Iremos identificar o veículo automaticamente com base na sua matrícula</p>
+        <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">Iremos identificar o veículo automaticamente com base na sua matrícula</p>
       </div>
     </div>
   );
@@ -76,8 +76,8 @@ function InputsFrame() {
 
 function Text() {
   return (
-    <div className="content-stretch flex gap-[6px] items-center relative shrink-0 w-full" data-name="Text">
-      <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Data de matrícula</p>
+    <div className="content-stretch flex gap-[8px] items-center relative shrink-0 w-full" data-name="Text">
+      <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Data de matrícula</p>
     </div>
   );
 }
@@ -95,7 +95,7 @@ function Input1() {
     <div className="bg-[rgba(39,39,42,0.05)] h-[40px] relative rounded-[8px] shrink-0 w-full" data-name="Input">
       <div className="flex flex-row items-center size-full">
         <div className="content-stretch flex gap-[8px] items-center pl-[12px] pr-[40px] py-[8px] relative size-full">
-          <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic relative text-[#3f3f46] text-[14px] whitespace-pre-wrap">03/2020</p>
+          <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">03/2020</p>
         </div>
       </div>
     </div>
@@ -104,8 +104,8 @@ function Input1() {
 
 function Text1() {
   return (
-    <div className="content-stretch flex gap-[6px] items-center relative shrink-0 w-full" data-name="Text">
-      <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Marca</p>
+    <div className="content-stretch flex gap-[8px] items-center relative shrink-0 w-full" data-name="Text">
+      <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Marca</p>
     </div>
   );
 }
@@ -123,7 +123,7 @@ function Input2() {
     <div className="bg-[rgba(39,39,42,0.05)] h-[40px] relative rounded-[8px] shrink-0 w-full" data-name="Input">
       <div className="flex flex-row items-center size-full">
         <div className="content-stretch flex gap-[8px] items-center pl-[12px] pr-[40px] py-[8px] relative size-full">
-          <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic relative text-[#3f3f46] text-[14px] whitespace-pre-wrap">Renault</p>
+          <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Renault</p>
         </div>
       </div>
     </div>
@@ -132,8 +132,8 @@ function Input2() {
 
 function Text2() {
   return (
-    <div className="content-stretch flex gap-[6px] items-center relative shrink-0 w-full" data-name="Text">
-      <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Modelo</p>
+    <div className="content-stretch flex gap-[8px] items-center relative shrink-0 w-full" data-name="Text">
+      <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Modelo</p>
     </div>
   );
 }
@@ -151,7 +151,7 @@ function Input3() {
     <div className="bg-[rgba(39,39,42,0.05)] h-[40px] relative rounded-[8px] shrink-0 w-full" data-name="Input">
       <div className="flex flex-row items-center size-full">
         <div className="content-stretch flex gap-[8px] items-center pl-[12px] pr-[40px] py-[8px] relative size-full">
-          <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic relative text-[#3f3f46] text-[14px] whitespace-pre-wrap">Clio</p>
+          <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Clio</p>
         </div>
       </div>
     </div>
@@ -160,8 +160,8 @@ function Input3() {
 
 function Text3() {
   return (
-    <div className="content-stretch flex gap-[6px] items-center relative shrink-0 w-full" data-name="Text">
-      <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Versão</p>
+    <div className="content-stretch flex gap-[8px] items-center relative shrink-0 w-full" data-name="Text">
+      <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Versão</p>
     </div>
   );
 }
@@ -179,7 +179,7 @@ function Input4() {
     <div className="bg-[rgba(39,39,42,0.05)] h-[40px] relative rounded-[8px] shrink-0 w-full" data-name="Input">
       <div className="flex flex-row items-center size-full">
         <div className="content-stretch flex gap-[8px] items-center pl-[12px] pr-[40px] py-[8px] relative size-full">
-          <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic relative text-[#3f3f46] text-[14px] whitespace-pre-wrap">Clio IV</p>
+          <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Clio IV</p>
         </div>
       </div>
     </div>
@@ -188,8 +188,8 @@ function Input4() {
 
 function Text4() {
   return (
-    <div className="content-stretch flex gap-[6px] items-center relative shrink-0 w-full" data-name="Text">
-      <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Motorização</p>
+    <div className="content-stretch flex gap-[8px] items-center relative shrink-0 w-full" data-name="Text">
+      <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Motorização</p>
     </div>
   );
 }
@@ -207,7 +207,7 @@ function Input5() {
     <div className="bg-[rgba(39,39,42,0.05)] h-[40px] relative rounded-[8px] shrink-0 w-full" data-name="Input">
       <div className="flex flex-row items-center size-full">
         <div className="content-stretch flex gap-[8px] items-center pl-[12px] pr-[40px] py-[8px] relative size-full">
-          <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic relative text-[#3f3f46] text-[14px] whitespace-pre-wrap">1.5 dCi 75cv</p>
+          <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">1.5 dCi 75cv</p>
         </div>
       </div>
     </div>
@@ -216,8 +216,8 @@ function Input5() {
 
 function Text5() {
   return (
-    <div className="content-stretch flex gap-[6px] items-center relative shrink-0 w-full" data-name="Text">
-      <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">VIN</p>
+    <div className="content-stretch flex gap-[8px] items-center relative shrink-0 w-full" data-name="Text">
+      <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">VIN</p>
     </div>
   );
 }
@@ -235,7 +235,7 @@ function Input6() {
     <div className="bg-[rgba(39,39,42,0.05)] h-[40px] relative rounded-[8px] shrink-0 w-full" data-name="Input">
       <div className="flex flex-row items-center size-full">
         <div className="content-stretch flex gap-[8px] items-center pl-[12px] pr-[40px] py-[8px] relative size-full">
-          <p className="flex-[1_0_0] font-['Inter:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic relative text-[#3f3f46] text-[14px] whitespace-pre-wrap">VF3LBBHYBJS191939</p>
+          <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">VF3LBBHYBJS191939</p>
         </div>
       </div>
     </div>
@@ -289,7 +289,7 @@ function Main() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[16px] items-start min-h-px min-w-px relative w-full" data-name="Main">
       <InputsFrame />
-      <div className="bg-[rgba(39,39,42,0.15)] h-px shrink-0 w-full" data-name="Light Mode / Separator" />
+      <div className="bg-[#e5e5e5] h-px shrink-0 w-full" data-name="Light Mode / Separator" />
       <OutputsFrame />
     </div>
   );
@@ -299,16 +299,16 @@ function AddVehicleFrame() {
   return (
     <div className="content-stretch flex flex-col gap-[24px] h-[453px] items-start relative shrink-0 w-full" data-name="Add Vehicle Frame">
       <div className="content-stretch flex gap-[16px] items-start relative shrink-0 w-full" data-name="Column 1 Item">
-        <div aria-hidden="true" className="absolute border-[rgba(39,39,42,0.1)] border-b border-solid inset-0 pointer-events-none" />
-        <div className="content-stretch flex gap-[8px] items-center justify-center px-[8px] py-[10px] relative shrink-0" data-name="Tab 1">
+        <div aria-hidden="true" className="absolute border-[#e5e5e5] border-b border-solid inset-0 pointer-events-none" />
+        <div className="content-stretch flex gap-[8px] items-center justify-center px-[8px] py-[12px] relative shrink-0" data-name="Tab 1">
           <div aria-hidden="true" className="absolute border-b-2 border-black border-solid inset-0 pointer-events-none" />
-          <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] text-center">Matrícula</p>
+          <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] text-center">Matrícula</p>
         </div>
-        <div className="content-stretch flex gap-[8px] items-center justify-center px-[8px] py-[10px] relative shrink-0" data-name="Tab 2">
-          <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#a1a1aa] text-[14px] text-center">VIN</p>
+        <div className="content-stretch flex gap-[8px] items-center justify-center px-[8px] py-[12px] relative shrink-0" data-name="Tab 2">
+          <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[14px] text-center">VIN</p>
         </div>
-        <div className="content-stretch flex gap-[8px] items-center justify-center px-[8px] py-[10px] relative shrink-0" data-name="Tab 3">
-          <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#a1a1aa] text-[14px] text-center">Seleção manual</p>
+        <div className="content-stretch flex gap-[8px] items-center justify-center px-[8px] py-[12px] relative shrink-0" data-name="Tab 3">
+          <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[14px] text-center">Seleção manual</p>
         </div>
       </div>
       <Main />
@@ -320,11 +320,11 @@ function RightFrame() {
   return (
     <div className="content-stretch flex gap-[8px] items-center relative shrink-0" data-name="Right Frame">
       <button className="content-stretch cursor-pointer flex gap-[8px] items-center justify-center max-h-[40px] min-h-[40px] px-[16px] relative rounded-[8px] shrink-0" data-name="Light Mode / Button">
-        <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] text-left">Cancelar</p>
+        <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[14px] text-left">Cancelar</p>
       </button>
-      <div className="bg-[#262124] content-stretch flex gap-[8px] items-center justify-center max-h-[40px] min-h-[40px] px-[16px] relative rounded-[8px] shrink-0" data-name="Light Mode / Button">
-        <div aria-hidden="true" className="absolute border border-[rgba(0,0,0,0.1)] border-solid inset-0 pointer-events-none rounded-[8px]" />
-        <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[14px] text-white">Adicionar</p>
+      <div className="bg-[#27272a] content-stretch flex gap-[8px] items-center justify-center max-h-[40px] min-h-[40px] px-[16px] relative rounded-[8px] shrink-0" data-name="Light Mode / Button">
+        <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[8px]" />
+        <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[14px] text-white">Adicionar</p>
         <div className="absolute inset-0 pointer-events-none rounded-[inherit] shadow-[inset_0px_1px_0px_0px_black,inset_0px_2px_0px_0px_rgba(255,255,255,0.2)]" />
       </div>
     </div>
@@ -343,9 +343,9 @@ export default function ModalAddVehicle() {
   return (
     <div className="bg-[#f4f4f5] content-stretch flex flex-col gap-[24px] items-start p-[24px] relative rounded-[12px] size-full" data-name="Modal / Add Vehicle">
       <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[12px]" />
-      <div className="content-stretch flex gap-[10px] items-start relative shrink-0 w-full" data-name="Light Mode / Card Items / Header Block">
+      <div className="content-stretch flex gap-[12px] items-start relative shrink-0 w-full" data-name="Light Mode / Card Items / Header Block">
         <div className="content-stretch flex flex-[1_0_0] flex-col gap-[8px] items-center justify-center min-h-px min-w-px relative" data-name="Light Mode / Card Items / Header">
-          <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.25] not-italic relative shrink-0 text-[#27272a] text-[16px] w-full whitespace-pre-wrap">Adicionar novo veículo</p>
+          <p className="font-medium leading-[1.25] not-italic relative shrink-0 text-[#27272a] text-[16px] w-full whitespace-pre-wrap">Adicionar novo veículo</p>
         </div>
         <button className="absolute content-stretch cursor-pointer flex items-center justify-center max-h-[32px] max-w-[32px] min-h-[32px] min-w-[32px] right-[-8px] rounded-[6px] size-[32px] top-[-8px]" data-name="Light Mode / Button">
           <div className="overflow-clip relative shrink-0 size-[16px]" data-name="Icon">

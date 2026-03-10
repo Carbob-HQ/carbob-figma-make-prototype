@@ -22,7 +22,7 @@ function Text() {
     <input
       type="text"
       placeholder="Pesquisar por nome, telefone ou email"
-      className="flex-[1_0_0] min-h-px min-w-px font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic text-[14px] bg-transparent border-none outline-none text-[#27272a] placeholder:text-[#d4d4d8] pr-[5px]"
+      className="flex-[1_0_0] min-h-px min-w-px font-normal leading-[1.5] not-italic text-[14px] bg-transparent border-none outline-none text-[#27272a] placeholder:text-[#d4d4d8] pr-[5px]"
     />
   );
 }
@@ -67,11 +67,11 @@ function UserRound() {
 function ContextButton1() {
   return (
     <div 
-      className="bg-white content-stretch flex gap-[8px] items-center justify-center min-w-[180px] px-[8px] py-[6px] relative rounded-[6px] shrink-0 w-full transition-colors hover:bg-[#f4f4f5] cursor-pointer" 
+      className="bg-white content-stretch flex gap-[8px] items-center justify-center min-w-[180px] px-[8px] py-[8px] relative rounded-[6px] shrink-0 w-full transition-colors hover:bg-[#f4f4f5] cursor-pointer" 
       data-name="Context Button 2.2"
     >
       <UserRound />
-      <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Consumidor final</p>
+      <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] whitespace-pre-wrap">Consumidor final</p>
     </div>
   );
 }
@@ -86,9 +86,9 @@ function EndConsumer() {
 
 function ContextButton() {
   return (
-    <button className="bg-white content-stretch flex gap-[8px] items-center justify-center min-w-[180px] relative rounded-[6px] transition-all hover:bg-[#f4f4f5] hover:scale-[1.02] cursor-pointer border-none w-full px-[8px] py-[6px]" data-name="Context Button 2.1">
+    <button className="bg-white content-stretch flex gap-[8px] items-center justify-center min-w-[180px] relative rounded-[6px] transition-all hover:bg-[#f4f4f5] hover:scale-[1.02] cursor-pointer border-none w-full px-[8px] py-[8px]" data-name="Context Button 2.1">
       <CirclePlus className="w-5 h-5 text-[#8270ff] shrink-0" />
-      <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#8270ff] text-[14px] text-left whitespace-pre-wrap">Novo cliente</p>
+      <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#8270ff] text-[14px] text-left whitespace-pre-wrap">Novo cliente</p>
     </button>
   );
 }
@@ -105,7 +105,7 @@ function Submenu1() {
   return (
     <div className="bg-white min-w-[192px] relative rounded-bl-[8px] rounded-br-[8px] shrink-0 w-full" data-name="Submenu 3">
       <div className="flex flex-col justify-center min-w-[inherit] overflow-clip rounded-[inherit] size-full">
-        <div className="content-stretch flex flex-col items-start justify-center min-w-[inherit] p-[5px] relative w-full border border-zinc-300 rounded-bl-[8px] rounded-br-[8px] overflow-clip">
+        <div className="content-stretch flex flex-col items-start justify-center min-w-[inherit] p-[4px] relative w-full border border-zinc-300 rounded-bl-[8px] rounded-br-[8px] overflow-clip">
           <EndConsumer />
           <NewClient />
         </div>

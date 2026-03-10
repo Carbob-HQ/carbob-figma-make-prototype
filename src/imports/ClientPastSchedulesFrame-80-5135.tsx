@@ -11,10 +11,10 @@ function TopFrame() {
         </div>
       </div>
       <div className="content-stretch flex flex-[1_0_0] items-center min-h-px min-w-px relative" data-name="Light Mode / Heading">
-        <p className="flex-[1_0_0] font-['Inter:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] text-left whitespace-pre-wrap">Histórico de serviços</p>
+        <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] text-left whitespace-pre-wrap">Histórico de serviços</p>
       </div>
-      <div className="bg-[rgba(161,161,170,0.15)] content-stretch flex gap-[6px] items-center justify-center px-[8px] py-[4px] relative rounded-[6px] shrink-0" data-name="Light Mode / Badge">
-        <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] not-italic relative shrink-0 text-[#3f3f46] text-[12px] text-left">5</p>
+      <div className="bg-[rgba(161,161,170,0.15)] content-stretch flex gap-[8px] items-center justify-center px-[8px] py-[4px] relative rounded-[6px] shrink-0" data-name="Light Mode / Badge">
+        <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#27272a] text-[12px] text-left">5</p>
       </div>
       <div className="content-stretch flex items-center justify-center max-h-[24px] max-w-[24px] min-h-[24px] min-w-[24px] relative rounded-[6px] shrink-0 size-[24px]" data-name="Light Mode / Button">
         <div className="overflow-clip relative shrink-0 size-[16px]" data-name="Icon">
@@ -32,7 +32,7 @@ function TopFrame() {
 export default function ClientPastSchedulesFrame() {
   return (
     <div className="bg-white content-stretch flex flex-col gap-[16px] items-start relative size-full" data-name="Client Past Schedules Frame">
-      <div className="bg-[rgba(39,39,42,0.15)] h-px shrink-0 w-full" data-name="Light Mode / Separator" />
+      <div className="bg-[#e5e5e5] h-px shrink-0 w-full" data-name="Light Mode / Separator" />
       <TopFrame />
     </div>
   );

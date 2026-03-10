@@ -30,7 +30,8 @@ export default function App() {
   }, []);
 
   return (
-    <div ref={rootRef} className="bg-[#f4f4f5] content-stretch flex items-center relative size-full">
+    <div ref={rootRef} className="bg-[#f4f4f5] content-stretch flex items-center justify-center relative size-full min-w-0">
+      <div className="flex size-full max-w-[1600px] min-w-0">
       {rootEl && (
         <DndProvider backend={HTML5Backend} options={{ rootElement: rootEl }}>
           <ExpandableSidebar
@@ -49,6 +50,7 @@ export default function App() {
           <ToastContainer />
         </DndProvider>
       )}
+      </div>
     </div>
   );
 }

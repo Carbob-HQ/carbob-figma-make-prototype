@@ -1147,7 +1147,7 @@ function EmptyServiceFrame({ hasVehicle, onNewService, onServiceGuide }: { hasVe
   );
 }
 
-function ContentFrame2({ hasVehicle, selectedVehicle, clientId, services, onAddService, onUpdateServiceTitle, onDeleteService, onMoveService, onDropService, onAddItem, onDeleteItem, onUpdateItem, onReorderItems, onAddGuideServices, newServiceId, onNewServiceScrolled }: {
+function ContentFrame2({ hasVehicle, selectedVehicle, clientId, services, onAddService, onUpdateServiceTitle, onDeleteService, onMoveService, onDropService, onAddItem, onDeleteItem, onUpdateItem, onReorderItems, onAddGuideServices, highlightedServiceIds, newServiceId, onNewServiceScrolled }: {
   hasVehicle?: boolean;
   selectedVehicle?: Vehicle | null;
   clientId?: string;
@@ -1162,6 +1162,7 @@ function ContentFrame2({ hasVehicle, selectedVehicle, clientId, services, onAddS
   onUpdateItem: (serviceId: string, item: ServiceItem) => void;
   onReorderItems: (serviceId: string, items: ServiceItem[]) => void;
   onAddGuideServices: (services: QuoteService[]) => void;
+  highlightedServiceIds?: Set<string>;
   newServiceId?: string | null;
   onNewServiceScrolled?: () => void;
 }) {
@@ -1202,8 +1203,9 @@ function ContentFrame2({ hasVehicle, selectedVehicle, clientId, services, onAddS
                 onUpdateItem={(item) => onUpdateItem(service.id, item)}
                 onReorderItems={(items) => onReorderItems(service.id, items)}
                 autoFocus={service.id === newServiceId}
-                autoScroll={service.id === newServiceId}
+                autoScroll={service.id === newServiceId || (highlightedServiceIds?.has(service.id) && service.id === [...(highlightedServiceIds || [])][0])}
                 onAutoScrollDone={onNewServiceScrolled}
+                highlight={highlightedServiceIds?.has(service.id)}
               />
             ))}
         </div>
@@ -1231,6 +1233,7 @@ function Main1({ selectedClient, setSelectedClient, selectedVehicle, setSelected
 }) {
 
   const [newServiceId, setNewServiceId] = useState<string | null>(null);
+  const [highlightedServiceIds, setHighlightedServiceIds] = useState<Set<string>>(new Set());
 
   const handleAddService = useCallback(() => {
     setServices((prev) => {
@@ -1316,11 +1319,14 @@ function Main1({ selectedClient, setSelectedClient, selectedVehicle, setSelected
   }, []);
 
   const handleAddGuideServices = useCallback((guideServices: QuoteService[]) => {
+    const newIds = new Set(guideServices.map((s) => s.id));
     setServices((prev) => {
       const startOrder = prev.length;
       const withOrders = guideServices.map((s, i) => ({ ...s, order: startOrder + i }));
       return [...prev, ...withOrders];
     });
+    setHighlightedServiceIds(newIds);
+    setTimeout(() => setHighlightedServiceIds(new Set()), 2000);
   }, []);
 
   return (
@@ -1341,6 +1347,7 @@ function Main1({ selectedClient, setSelectedClient, selectedVehicle, setSelected
         onUpdateItem={handleUpdateItem}
         onReorderItems={handleReorderItems}
         onAddGuideServices={handleAddGuideServices}
+        highlightedServiceIds={highlightedServiceIds}
         newServiceId={newServiceId}
         onNewServiceScrolled={() => setNewServiceId(null)}
       />

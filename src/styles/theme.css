@@ -281,6 +281,17 @@
   100% { opacity: 0; }
 }
 
+@keyframes rowHighlight {
+  0% { background-color: rgba(130,112,255,0.15); }
+  100% { background-color: transparent; }
+}
+
+@keyframes highlightPulse {
+  0% { border-color: #8270ff; box-shadow: 0 0 0 1px #8270ff, 0 0 12px rgba(130,112,255,0.15); }
+  40% { border-color: #8270ff; box-shadow: 0 0 0 1px #8270ff, 0 0 12px rgba(130,112,255,0.15); }
+  100% { border-color: #e5e5e5; box-shadow: none; }
+}
+
 /* Visible thin scrollbar */
 .visible-scrollbar {
   overflow-y: auto;

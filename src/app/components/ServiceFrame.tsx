@@ -85,6 +85,7 @@ interface ServiceFrameProps {
   autoFocus?: boolean;
   autoScroll?: boolean;
   onAutoScrollDone?: () => void;
+  highlight?: boolean;
 }
 
 type ViewMode = "list" | "grid";
@@ -96,6 +97,7 @@ function DraggableItemRow({
   dragType,
   onMove,
   onClick,
+  highlighted,
   children,
 }: {
   item: ServiceItem;
@@ -103,6 +105,7 @@ function DraggableItemRow({
   dragType: string;
   onMove: (dragIndex: number, hoverIndex: number) => void;
   onClick: () => void;
+  highlighted?: boolean;
   children: (grip: React.ReactNode) => React.ReactNode;
 }) {
   const rowRef = useRef<HTMLTableRowElement>(null);
@@ -140,7 +143,7 @@ function DraggableItemRow({
     <tr
       ref={rowRef}
       data-slot="table-row"
-      className="border-b border-[#e5e5e5] cursor-pointer group/item transition-colors hover:bg-muted/50"
+      className={`border-b border-[#e5e5e5] cursor-pointer group/item transition-colors hover:bg-muted/50 ${highlighted ? "animate-[rowHighlight_1.5s_ease-out_forwards]" : ""}`}
       style={{ opacity: isDragging ? 0.4 : 1 }}
       onClick={onClick}
     >
@@ -164,6 +167,7 @@ export function ServiceFrame({
   autoFocus = false,
   autoScroll = false,
   onAutoScrollDone,
+  highlight = false,
 }: ServiceFrameProps) {
   const [isExpanded, setIsExpanded] = useState(true);
   const [viewMode, setViewMode] = useState<ViewMode>("list");
@@ -174,6 +178,8 @@ export function ServiceFrame({
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [newItemSheetOpen, setNewItemSheetOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<ServiceItem | null>(null);
+  const [highlightedItemId, setHighlightedItemId] = useState<string | null>(null);
+  const [deleteItemId, setDeleteItemId] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const [localTitle, setLocalTitle] = useState(service.title);
   const frameRef = useRef<HTMLDivElement>(null);
@@ -286,6 +292,8 @@ export function ServiceFrame({
     (item: ServiceItem) => {
       if (onAddItem) {
         onAddItem({ ...item, order: service.items.length });
+        setHighlightedItemId(item.id);
+        setTimeout(() => setHighlightedItemId(null), 1500);
       }
     },
     [onAddItem, service.items.length]
@@ -313,6 +321,8 @@ export function ServiceFrame({
     (item: ServiceItem) => {
       handleUpdateItem(item);
       setEditingItem(null);
+      setHighlightedItemId(item.id);
+      setTimeout(() => setHighlightedItemId(null), 1500);
     },
     [handleUpdateItem]
   );
@@ -360,7 +370,7 @@ export function ServiceFrame({
   return (
     <div
       ref={frameRef}
-      className="bg-white relative rounded-[16px] shrink-0 w-full border border-[#e5e5e5] transition-opacity duration-200 ease-out"
+      className={`bg-white relative rounded-[16px] shrink-0 w-full border transition-all duration-200 ease-out ${highlight ? "border-[#8270ff] shadow-[0_0_0_1px_#8270ff,0_0_12px_rgba(130,112,255,0.15)] animate-[highlightPulse_2s_ease-out_forwards]" : "border-[#e5e5e5]"}`}
       style={{
         opacity: isDragging ? 0.4 : isDeleting || isEntering ? 0 : 1,
       }}
@@ -538,6 +548,7 @@ export function ServiceFrame({
                                   handleMoveItemInList(sortedAllItems, dragIndex, hoverIndex);
                                 }}
                                 onClick={() => setEditingItem(item)}
+                                highlighted={highlightedItemId === item.id}
                               >
                                 {(grip) => (<>
                                 <TableCell className="pl-0 pr-[16px] py-[8px]">
@@ -562,7 +573,7 @@ export function ServiceFrame({
                                 <TableCell className="w-[24px] !p-0">
                                   <button
                                     className="flex items-center justify-center size-[24px] rounded-[6px] cursor-pointer transition-colors duration-200 ease-out not-disabled:hover:bg-[#e5e5e5]"
-                                    onClick={(e) => { e.stopPropagation(); handleDeleteItem(item.id); }}
+                                    onClick={(e) => { e.stopPropagation(); setDeleteItemId(item.id); }}
                                   >
                                     <Trash2 className="size-[14px] text-[#71717a]" />
                                   </button>
@@ -583,6 +594,7 @@ export function ServiceFrame({
                                   handleMoveItemInList(sortedAllItems, dragIndex, hoverIndex);
                                 }}
                                 onClick={() => setEditingItem(item)}
+                                highlighted={highlightedItemId === item.id}
                               >
                                 {(grip) => (<>
                                 <TableCell className="pl-0 pr-[16px] py-[8px]">
@@ -625,7 +637,7 @@ export function ServiceFrame({
                                 <TableCell className="w-[24px] !p-0">
                                   <button
                                     className="flex items-center justify-center size-[24px] rounded-[6px] cursor-pointer transition-colors duration-200 ease-out not-disabled:hover:bg-[#e5e5e5]"
-                                    onClick={(e) => { e.stopPropagation(); handleDeleteItem(item.id); }}
+                                    onClick={(e) => { e.stopPropagation(); setDeleteItemId(item.id); }}
                                   >
                                     <Trash2 className="size-[14px] text-[#71717a]" />
                                   </button>
@@ -647,6 +659,7 @@ export function ServiceFrame({
                                   handleMoveItemInList(sortedAllItems, dragIndex, hoverIndex);
                                 }}
                                 onClick={() => setEditingItem(item)}
+                                highlighted={highlightedItemId === item.id}
                               >
                                 {(grip) => (<>
                                 <TableCell className="pl-0 pr-[16px] py-[8px]">
@@ -671,7 +684,7 @@ export function ServiceFrame({
                                 <TableCell className="w-[24px] !p-0">
                                   <button
                                     className="flex items-center justify-center size-[24px] rounded-[6px] cursor-pointer transition-colors duration-200 ease-out not-disabled:hover:bg-[#e5e5e5]"
-                                    onClick={(e) => { e.stopPropagation(); handleDeleteItem(item.id); }}
+                                    onClick={(e) => { e.stopPropagation(); setDeleteItemId(item.id); }}
                                   >
                                     <Trash2 className="size-[14px] text-[#71717a]" />
                                   </button>
@@ -692,6 +705,7 @@ export function ServiceFrame({
                                   handleMoveItemInList(sortedAllItems, dragIndex, hoverIndex);
                                 }}
                                 onClick={() => setEditingItem(item)}
+                                highlighted={highlightedItemId === item.id}
                               >
                                 {(grip) => (<>
                                 <TableCell className="pl-0 pr-[16px] py-[8px]">
@@ -714,7 +728,7 @@ export function ServiceFrame({
                                 <TableCell className="w-[24px] !p-0">
                                   <button
                                     className="flex items-center justify-center size-[24px] rounded-[6px] cursor-pointer transition-colors duration-200 ease-out not-disabled:hover:bg-[#e5e5e5]"
-                                    onClick={(e) => { e.stopPropagation(); handleDeleteItem(item.id); }}
+                                    onClick={(e) => { e.stopPropagation(); setDeleteItemId(item.id); }}
                                   >
                                     <Trash2 className="size-[14px] text-[#71717a]" />
                                   </button>
@@ -774,6 +788,7 @@ export function ServiceFrame({
                                   handleMoveItemInList(sortedLaborItems, dragIndex, hoverIndex);
                                 }}
                                 onClick={() => setEditingItem(item)}
+                                highlighted={highlightedItemId === item.id}
                               >
                                 {(grip) => (<>
                                 <TableCell className="pl-0 pr-[16px] py-[8px]">
@@ -802,7 +817,7 @@ export function ServiceFrame({
                                 <TableCell className="w-[24px] !p-0">
                                   <button
                                     className="flex items-center justify-center size-[24px] rounded-[6px] cursor-pointer transition-colors duration-200 ease-out not-disabled:hover:bg-[#e5e5e5]"
-                                    onClick={(e) => { e.stopPropagation(); handleDeleteItem(item.id); }}
+                                    onClick={(e) => { e.stopPropagation(); setDeleteItemId(item.id); }}
                                   >
                                     <Trash2 className="size-[14px] text-[#71717a]" />
                                   </button>
@@ -865,6 +880,7 @@ export function ServiceFrame({
                                   handleMoveItemInList(sortedPartItems, dragIndex, hoverIndex);
                                 }}
                                 onClick={() => setEditingItem(item)}
+                                highlighted={highlightedItemId === item.id}
                               >
                                 {(grip) => (<>
                                 <TableCell className="pl-0 pr-[16px] py-[8px]">
@@ -907,7 +923,7 @@ export function ServiceFrame({
                                 <TableCell className="w-[24px] !p-0">
                                   <button
                                     className="flex items-center justify-center size-[24px] rounded-[6px] cursor-pointer transition-colors duration-200 ease-out not-disabled:hover:bg-[#e5e5e5]"
-                                    onClick={(e) => { e.stopPropagation(); handleDeleteItem(item.id); }}
+                                    onClick={(e) => { e.stopPropagation(); setDeleteItemId(item.id); }}
                                   >
                                     <Trash2 className="size-[14px] text-[#71717a]" />
                                   </button>
@@ -969,6 +985,7 @@ export function ServiceFrame({
                                   handleMoveItemInList(sortedConsChargeItems, dragIndex, hoverIndex);
                                 }}
                                 onClick={() => setEditingItem(item)}
+                                highlighted={highlightedItemId === item.id}
                               >
                                 {(grip) => (<>
                                 <TableCell className="pl-0 pr-[16px] py-[8px]">
@@ -999,7 +1016,7 @@ export function ServiceFrame({
                                 <TableCell className="w-[24px] !p-0">
                                   <button
                                     className="flex items-center justify-center size-[24px] rounded-[6px] cursor-pointer transition-colors duration-200 ease-out not-disabled:hover:bg-[#e5e5e5]"
-                                    onClick={(e) => { e.stopPropagation(); handleDeleteItem(item.id); }}
+                                    onClick={(e) => { e.stopPropagation(); setDeleteItemId(item.id); }}
                                   >
                                     <Trash2 className="size-[14px] text-[#71717a]" />
                                   </button>
@@ -1107,6 +1124,52 @@ export function ServiceFrame({
         editItem={editingItem}
         serviceItems={service.items}
       />
+
+      {/* Delete item confirmation */}
+      <AlertDialog open={!!deleteItemId} onOpenChange={(open) => { if (!open) setDeleteItemId(null); }}>
+        <AlertDialogContent className="bg-[#f4f4f5] flex flex-col gap-[24px] p-[24px] rounded-[12px] border border-[#e5e5e5] max-w-[400px]">
+          <div className="flex items-start gap-[8px] relative w-full">
+            <AlertDialogTitle className="flex-1 text-[16px] text-[#27272a]">
+              Eliminar item
+            </AlertDialogTitle>
+            <AlertDialogCancel asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="size-[32px] cursor-pointer absolute right-[-8px] top-[-8px] !border-0 !shadow-none !bg-transparent hover:!bg-[#e5e5e5]"
+              >
+                <X className="size-[16px] text-[#27272a]" />
+              </Button>
+            </AlertDialogCancel>
+          </div>
+          <div className="flex items-center w-full">
+            <AlertDialogDescription className="flex-1 text-[14px] text-[#27272a] font-normal">
+              Tens a certeza que queres eliminar este item?
+            </AlertDialogDescription>
+          </div>
+          <div className="flex gap-[8px] items-center justify-end w-full">
+            <AlertDialogCancel asChild>
+              <Button
+                variant="ghost"
+                className="cursor-pointer h-[40px] px-[16px] text-[14px] text-[#27272a] !border-0 !shadow-none !bg-transparent hover:!bg-[#e5e5e5]"
+              >
+                Cancelar
+              </Button>
+            </AlertDialogCancel>
+            <Button
+              className="cursor-pointer h-[40px] px-[16px] text-[14px] text-white bg-[#fb2c36] not-disabled:hover:bg-[#e53e3e] rounded-[8px] shadow-[inset_0px_1px_0px_0px_#fb2c36,inset_0px_2px_0px_0px_rgba(255,255,255,0.15)] transition-colors duration-200 ease-out"
+              onClick={() => {
+                if (deleteItemId) {
+                  handleDeleteItem(deleteItemId);
+                  setDeleteItemId(null);
+                }
+              }}
+            >
+              Eliminar
+            </Button>
+          </div>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

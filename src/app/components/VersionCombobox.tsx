@@ -549,6 +549,7 @@ export function VersionCombobox({ value, onChange, model, year, disabled, label,
           </div>
         </div>
       )}
+      {error && !disabled && <p className="text-[12px] text-[#ef4444] leading-[1.5]">Campo obrigatório</p>}
     </div>
   );
 }

@@ -127,6 +127,7 @@ export function YearCombobox({ value, onChange, disabled, label, error }: YearCo
           </div>
         </div>
       )}
+      {error && !disabled && <p className="text-[12px] text-[#ef4444] leading-[1.5]">Campo obrigatório</p>}
     </div>
   );
 }

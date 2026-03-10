@@ -1,11 +1,11 @@
-import { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useMemo, useRef, useEffect, type ReactNode } from "react";
 import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
 import { Label } from "./ui/label";
 import { cn } from "./ui/utils";
 import svgPaths from "../../imports/svg-3t20tc1fen";
 
-export function NotesSection({ rightSlot, rightSlotExiting }: { rightSlot?: React.ReactNode; rightSlotExiting?: boolean }) {
+export function NotesSection({ rightSlot, rightSlotExiting, readOnly }: { rightSlot?: ReactNode; rightSlotExiting?: boolean; readOnly?: boolean }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [fadeIn, setFadeIn] = useState(false);
@@ -75,7 +75,7 @@ export function NotesSection({ rightSlot, rightSlotExiting }: { rightSlot?: Reac
           </svg>
           <span className="font-medium text-[14px] text-[#3f3f46]">Notas</span>
           {filledCount > 0 && (
-            <span className="bg-[#8270FF] text-white text-[12px] font-medium leading-4 h-[22px] min-w-[22px] px-2 flex items-center justify-center rounded-full">
+            <span className="bg-[#8270FF] text-white text-[12px] font-medium leading-4 size-[20px] flex items-center justify-center rounded-full">
               {filledCount}
             </span>
           )}
@@ -110,7 +110,11 @@ export function NotesSection({ rightSlot, rightSlotExiting }: { rightSlot?: Reac
                     placeholder="Adicionar notas"
                     value={clientNotes}
                     onChange={(e) => setClientNotes(e.target.value)}
-                    className="h-16 min-h-16 resize-none text-[14px] rounded-lg border-[#e5e5e5] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] bg-white"
+                    disabled={readOnly}
+                    className={cn(
+                      "h-16 min-h-16 resize-none text-[14px] rounded-lg border-[#e5e5e5] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] bg-[#fafafa]",
+                      readOnly && "disabled:cursor-default disabled:opacity-70"
+                    )}
                   />
                 </div>
 
@@ -123,7 +127,11 @@ export function NotesSection({ rightSlot, rightSlotExiting }: { rightSlot?: Reac
                     placeholder="Adicionar notas"
                     value={internalNotes}
                     onChange={(e) => setInternalNotes(e.target.value)}
-                    className="h-16 min-h-16 resize-none text-[14px] rounded-lg border-[#e5e5e5] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] bg-white"
+                    disabled={readOnly}
+                    className={cn(
+                      "h-16 min-h-16 resize-none text-[14px] rounded-lg border-[#e5e5e5] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] bg-[#fafafa]",
+                      readOnly && "disabled:cursor-default disabled:opacity-70"
+                    )}
                   />
                 </div>
               </div>

@@ -240,7 +240,7 @@ export default function AddNewClientModal({ isOpen, onClose, onAddClient }: AddN
       style={{ opacity: isAnimating ? 1 : 0 }}
     >
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/20" onClick={onClose} />
+      <div className="absolute inset-0 bg-black/50" onClick={onClose} />
 
       {/* Modal */}
       <div className="bg-[#f4f4f5] flex flex-col gap-[24px] items-start p-[24px] relative rounded-[12px] w-[576px] max-h-[90vh] overflow-auto z-10">
@@ -482,6 +482,7 @@ function ContactoTab({
           onChange={(e) => { setName(e.target.value); clearError("name"); }}
           className={`h-[40px] bg-white${errorFields.has("name") ? " border-[#ef4444] focus-visible:border-[#ef4444] focus-visible:ring-[#ef4444]/20" : ""}`}
         />
+        {errorFields.has("name") && <p className="text-[12px] text-[#ef4444] leading-[1.5]">Campo obrigatório</p>}
       </div>
 
       {/* Método preferencial de contacto */}
@@ -514,83 +515,82 @@ function ContactoTab({
         {...(errorFields.has("phone") ? { "data-client-field": "phone" } : {})}
       >
         <Label>{`Número de telefone${isPhoneRequired ? " *" : ""}`}</Label>
-        <div className="flex flex-col gap-[6px] relative w-full">
-          <div className="relative w-full flex">
-            {/* Country code button */}
-            <button
-              ref={countryBtnRef}
-              type="button"
-              onClick={() => countryDropdownOpen ? closeCountryDropdown() : openCountryDropdown()}
-              className={`flex items-center gap-[6px] h-[40px] px-[12px] bg-white border border-[var(--input)] rounded-l-md border-r-0 cursor-pointer hover:bg-[#e4e4e7] transition-colors duration-200 ease-out shrink-0${errorFields.has("phone") ? " border-[#ef4444]" : ""}`}
-            >
-              <span className="text-[16px] leading-none">{selectedCountry.flag}</span>
-              <span className="font-['Inter:Regular',sans-serif] text-[14px] text-[#3f3f46] leading-[1.5]">{selectedCountry.dial}</span>
-              <svg width="10" height="6" viewBox="0 0 10 6" fill="none" className="ml-[2px]">
-                <path d="M1 1L5 5L9 1" stroke="#A1A1AA" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
+        <div className={`relative w-full flex rounded-[8px] border transition-[border-color,box-shadow] duration-200 ease-out ${phoneError || errorFields.has("phone") ? "border-[#ef4444]" : "border-[var(--input)]"} focus-within:ring-[3px] ${phoneError || errorFields.has("phone") ? "focus-within:border-[#ef4444] focus-within:ring-[#ef4444]/20" : "focus-within:border-ring focus-within:ring-ring/20"}`}>
+          {/* Country code button */}
+          <button
+            ref={countryBtnRef}
+            type="button"
+            onClick={() => countryDropdownOpen ? closeCountryDropdown() : openCountryDropdown()}
+            className="flex items-center gap-[6px] h-[40px] px-[12px] bg-white border-r border-r-[var(--input)] rounded-l-[7px] cursor-pointer hover:bg-[#e4e4e7] transition-colors duration-200 ease-out shrink-0"
+          >
+            <span className="text-[16px] leading-none">{selectedCountry.flag}</span>
+            <span className="font-['Inter:Regular',sans-serif] text-[14px] text-[#3f3f46] leading-[1.5]">{selectedCountry.dial}</span>
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" className="ml-[2px]">
+              <path d="M1 1L5 5L9 1" stroke="#A1A1AA" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
 
-            {/* Phone input */}
-            <Input
-              type="tel"
-              inputMode="numeric"
-              value={phone}
-              onChange={(e) => { handlePhoneChange(e); clearError("phone"); }}
-              className={`h-[40px] bg-white rounded-l-none flex-1${phoneError || errorFields.has("phone") ? " border-[#ef4444] focus-visible:border-[#ef4444] focus-visible:ring-[#ef4444]/20" : ""}`}
-            />
+          {/* Phone input */}
+          <Input
+            type="tel"
+            inputMode="numeric"
+            value={phone}
+            onChange={(e) => { handlePhoneChange(e); clearError("phone"); }}
+            className="h-[40px] bg-white rounded-l-none rounded-r-[7px] flex-1 border-none shadow-none focus-visible:ring-0 focus-visible:border-none"
+          />
 
-          </div>
-
-          {/* Country dropdown — portal */}
-          {countryDropdownOpen && dropdownPos && createPortal(
-            <div
-              ref={countryDropdownRef}
-              className="fixed w-[280px] bg-white rounded-[8px] border border-[#e4e4e7] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] z-[200] flex flex-col transition-opacity duration-200 ease-out overflow-hidden"
-              style={{ opacity: dropdownVisible ? 1 : 0, top: dropdownPos.top, left: dropdownPos.left }}
-            >
-              {/* Search */}
-              <div className="flex items-center gap-[8px] px-[12px] py-[8px] border-b border-[#e4e4e7]">
-                <Search className="size-4 text-[#a1a1aa] shrink-0" />
-                <input
-                  ref={countrySearchRef}
-                  type="text"
-                  value={countrySearch}
-                  onChange={(e) => setCountrySearch(e.target.value)}
-                  placeholder="Pesquisar país..."
-                  className="flex-1 text-[14px] text-[#3f3f46] placeholder:text-[#a1a1aa] outline-none bg-transparent"
-                />
-              </div>
-              {/* List */}
-              <div className="max-h-[200px] overflow-y-auto py-[4px]">
-                {filteredCountries.length > 0 ? (
-                  filteredCountries.map((c) => (
-                    <button
-                      key={c.code}
-                      type="button"
-                      onClick={() => {
-                        setSelectedCountry(c);
-                        closeCountryDropdown();
-                      }}
-                      className={`flex items-center gap-[10px] w-full px-[12px] py-[8px] cursor-pointer border-none bg-transparent hover:bg-[#f4f4f5] transition-colors duration-200 ease-out ${selectedCountry.code === c.code ? "bg-[rgba(39,39,42,0.05)]" : ""}`}
-                    >
-                      <span className="text-[16px] leading-none">{c.flag}</span>
-                      <span className="font-['Inter:Regular',sans-serif] text-[14px] text-[#27272a] leading-[1.5] flex-1 text-left">{c.name}</span>
-                      <span className="font-['Inter:Regular',sans-serif] text-[14px] text-[#a1a1aa] leading-[1.5]">{c.dial}</span>
-                    </button>
-                  ))
-                ) : (
-                  <div className="px-[12px] py-[8px]">
-                    <p className="font-['Inter:Regular',sans-serif] text-[14px] text-[#a1a1aa] leading-[1.5]">Sem resultados</p>
-                  </div>
-                )}
-              </div>
-            </div>,
-            document.body
-          )}
-          {phoneError && (
-            <p className="font-['Inter:Regular',sans-serif] text-[13px] text-[#ef4444] leading-[1.5]">{phoneError}</p>
-          )}
         </div>
+
+        {/* Country dropdown — portal */}
+        {countryDropdownOpen && dropdownPos && createPortal(
+          <div
+            ref={countryDropdownRef}
+            className="fixed w-[280px] bg-white rounded-[8px] border border-[#e4e4e7] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] z-[200] flex flex-col transition-opacity duration-200 ease-out overflow-hidden"
+            style={{ opacity: dropdownVisible ? 1 : 0, top: dropdownPos.top, left: dropdownPos.left }}
+          >
+            {/* Search */}
+            <div className="flex items-center gap-[8px] px-[12px] py-[8px] border-b border-[#e4e4e7]">
+              <Search className="size-4 text-[#a1a1aa] shrink-0" />
+              <input
+                ref={countrySearchRef}
+                type="text"
+                value={countrySearch}
+                onChange={(e) => setCountrySearch(e.target.value)}
+                placeholder="Pesquisar país..."
+                className="flex-1 text-[14px] text-[#3f3f46] placeholder:text-[#a1a1aa] outline-none bg-transparent"
+              />
+            </div>
+            {/* List */}
+            <div className="max-h-[200px] overflow-y-auto py-[4px]">
+              {filteredCountries.length > 0 ? (
+                filteredCountries.map((c) => (
+                  <button
+                    key={c.code}
+                    type="button"
+                    onClick={() => {
+                      setSelectedCountry(c);
+                      closeCountryDropdown();
+                    }}
+                    className={`flex items-center gap-[10px] w-full px-[12px] py-[8px] cursor-pointer border-none bg-transparent hover:bg-[#f4f4f5] transition-colors duration-200 ease-out ${selectedCountry.code === c.code ? "bg-[rgba(39,39,42,0.05)]" : ""}`}
+                  >
+                    <span className="text-[16px] leading-none">{c.flag}</span>
+                    <span className="font-['Inter:Regular',sans-serif] text-[14px] text-[#27272a] leading-[1.5] flex-1 text-left">{c.name}</span>
+                    <span className="font-['Inter:Regular',sans-serif] text-[14px] text-[#a1a1aa] leading-[1.5]">{c.dial}</span>
+                  </button>
+                ))
+              ) : (
+                <div className="px-[12px] py-[8px]">
+                  <p className="font-['Inter:Regular',sans-serif] text-[14px] text-[#a1a1aa] leading-[1.5]">Sem resultados</p>
+                </div>
+              )}
+            </div>
+          </div>,
+          document.body
+        )}
+        {phoneError && (
+          <p className="font-['Inter:Regular',sans-serif] text-[13px] text-[#ef4444] leading-[1.5]">{phoneError}</p>
+        )}
+        {!phoneError && errorFields.has("phone") && <p className="text-[12px] text-[#ef4444] leading-[1.5]">Campo obrigatório</p>}
       </div>
 
       {/* Endereço de email */}
@@ -609,6 +609,7 @@ function ContactoTab({
           {emailError && (
             <p className="font-['Inter:Regular',sans-serif] text-[13px] text-[#ef4444] leading-[1.5]">{emailError}</p>
           )}
+          {!emailError && errorFields.has("email") && <p className="text-[12px] text-[#ef4444] leading-[1.5]">Campo obrigatório</p>}
         </div>
       </div>
     </>

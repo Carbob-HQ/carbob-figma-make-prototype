@@ -97,7 +97,7 @@ export function ExpandableSidebar({ isExpanded, onToggle }: ExpandableSidebarPro
               !isExpanded && isHovering && !justCollapsed ? "opacity-100" : "opacity-0 pointer-events-none",
               justCollapsed && "!transition-none"
             )}>
-              <Tooltip>
+              <Tooltip delayDuration={200}>
                 <TooltipTrigger asChild>
                   <Button
                     variant="ghost"
@@ -120,7 +120,7 @@ export function ExpandableSidebar({ isExpanded, onToggle }: ExpandableSidebarPro
             "shrink-0 ml-auto px-1 z-0",
             isExpanded ? "visible" : "invisible"
           )}>
-            <Tooltip>
+            <Tooltip delayDuration={200}>
               <TooltipTrigger asChild>
                 <Button
                   variant="ghost"
@@ -146,7 +146,7 @@ export function ExpandableSidebar({ isExpanded, onToggle }: ExpandableSidebarPro
 
       {/* Add Button (Criar) */}
       <div className={cn("flex flex-col items-start relative shrink-0 w-full px-2")}>
-        <Tooltip>
+        <Tooltip delayDuration={200}>
           <TooltipTrigger asChild>
             <Button
               ref={newBtnRef}
@@ -176,7 +176,7 @@ export function ExpandableSidebar({ isExpanded, onToggle }: ExpandableSidebarPro
       {/* Main Buttons */}
       <div className="flex flex-1 flex-col gap-1 items-start w-full px-2">
         {/* Home Button */}
-        <Tooltip>
+        <Tooltip delayDuration={200}>
           <TooltipTrigger asChild>
             <Button
               variant="ghost"
@@ -199,7 +199,7 @@ export function ExpandableSidebar({ isExpanded, onToggle }: ExpandableSidebarPro
         </Tooltip>
 
         {/* Scheduling Button */}
-        <Tooltip>
+        <Tooltip delayDuration={200}>
           <TooltipTrigger asChild>
             <Button
               variant="ghost"
@@ -224,7 +224,7 @@ export function ExpandableSidebar({ isExpanded, onToggle }: ExpandableSidebarPro
         {/* Job Board Button (Selected) */}
         <div className="relative w-full">
           <div className="absolute left-[-8px] top-2 w-1 h-6 bg-[#8270ff] rounded-r-lg" />
-          <Tooltip>
+          <Tooltip delayDuration={200}>
             <TooltipTrigger asChild>
               <Button
                 variant="ghost"
@@ -248,7 +248,7 @@ export function ExpandableSidebar({ isExpanded, onToggle }: ExpandableSidebarPro
         </div>
 
         {/* Lists Button */}
-        <Tooltip>
+        <Tooltip delayDuration={200}>
           <TooltipTrigger asChild>
             <Button
               ref={listsBtnRef}
@@ -281,7 +281,7 @@ export function ExpandableSidebar({ isExpanded, onToggle }: ExpandableSidebarPro
       {/* Bottom Buttons */}
       <div className="flex flex-col gap-1 items-start w-full px-2">
         {/* Help Button */}
-        <Tooltip>
+        <Tooltip delayDuration={200}>
           <TooltipTrigger asChild>
             <Button
               variant="ghost"
@@ -304,7 +304,7 @@ export function ExpandableSidebar({ isExpanded, onToggle }: ExpandableSidebarPro
         </Tooltip>
 
         {/* Settings Button */}
-        <Tooltip>
+        <Tooltip delayDuration={200}>
           <TooltipTrigger asChild>
             <Button
               variant="ghost"

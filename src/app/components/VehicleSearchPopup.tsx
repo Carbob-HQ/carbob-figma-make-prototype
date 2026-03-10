@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Loader2, CirclePlus } from "lucide-react";
+import { Loader2, CirclePlus, Car } from "lucide-react";
 import svgPaths from "../../imports/svg-g6n61e5umj";
 import svgPathsVehicle from "../../imports/svg-psklxsa2su";
 import renaultClioImg from "figma:asset/971d9046756a1e32d8e7cdd4cbdb495f422b5cd2.png";
@@ -44,7 +44,7 @@ const mockVehicles: Vehicle[] = [
     km: "50.232",
     displacement: 1499,
     power: 75,
-    fuel: "Gas��leo",
+    fuel: "Gasleo",
     engineCode: "BHY (DV6FD)",
     imageUrl: renaultClioImg,
   },
@@ -152,17 +152,8 @@ function VehicleResultFrame({ vehicle, onSelect }: { vehicle: Vehicle; onSelect?
       onClick={() => onSelect?.(vehicle)}
     >
       {/* Avatar with car icon */}
-      <div className="bg-white relative rounded-[9999px] shrink-0 size-[32px]" data-name="Light Mode / Avatar">
-        <div className="content-stretch flex items-center justify-center overflow-clip relative rounded-[inherit] size-full">
-          <div className="overflow-clip relative shrink-0 size-[14px]" data-name="car">
-            <div className="absolute bottom-[16.67%] left-[4.17%] right-[4.17%] top-1/4" data-name="Vector (Stroke)">
-              <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 12.8333 8.16667">
-                <path d={svgPathsVehicle.p3208e100} fill="var(--fill-0, #27272A)" id="Vector (Stroke)" />
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[9999px]" />
+      <div className="bg-zinc-300 flex items-center justify-center relative rounded-[9999px] shrink-0 size-[32px]" data-name="Light Mode / Avatar">
+        <Car className="size-[16px] text-[#27272A]" />
       </div>
       {/* Content Frame */}
       <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start min-h-px min-w-px relative" data-name="Content Frame">
@@ -172,26 +163,11 @@ function VehicleResultFrame({ vehicle, onSelect }: { vehicle: Vehicle; onSelect?
             {vehicle.brand} {vehicle.model}
           </p>
         </div>
-        {/* Line 2: Plate | VIN */}
+        {/* Line 2: Plate | Client Name */}
         <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Description">
           <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis">
-            {vehicle.plate} | {vehicle.vin}
+            {vehicle.plate}{vehicle.clientName ? ` | ${vehicle.clientName}` : ""}
           </p>
-        </div>
-        {/* Line 3: Owner */}
-        <div className="content-stretch flex gap-[6px] items-center relative shrink-0 w-full" data-name="User Frame">
-          <div className="overflow-clip relative shrink-0 size-[12px]" data-name="user-round">
-            <div className="absolute inset-[8.33%_12.5%]" data-name="Vector (Stroke)">
-              <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 9 10">
-                <path d={svgPathsVehicle.p18385e00} fill="var(--fill-0, #27272A)" id="Vector (Stroke)" />
-              </svg>
-            </div>
-          </div>
-          <div className="content-stretch flex flex-[1_0_0] items-center min-h-px min-w-px relative" data-name="User">
-            <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[12px] text-ellipsis">
-              {vehicle.clientName || "Sem cliente associado"}
-            </p>
-          </div>
         </div>
       </div>
     </div>

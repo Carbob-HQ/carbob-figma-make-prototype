@@ -2,7 +2,6 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 import {
   Table,
   TableHeader,
@@ -23,6 +22,9 @@ import {
   Wrench,
   Droplet,
   Euro,
+  Clock,
+  CircleCheck,
+  CircleX,
 } from "lucide-react";
 import {
   AlertDialog,
@@ -86,6 +88,8 @@ interface ServiceFrameProps {
   autoFocus?: boolean;
   autoScroll?: boolean;
   onAutoScrollDone?: () => void;
+  readOnly?: boolean;
+  serviceStatus?: "pending" | "approved" | "rejected";
 }
 
 type ViewMode = "list" | "grid";
@@ -165,6 +169,8 @@ export function ServiceFrame({
   autoFocus = false,
   autoScroll = false,
   onAutoScrollDone,
+  readOnly = false,
+  serviceStatus,
 }: ServiceFrameProps) {
   const [isExpanded, setIsExpanded] = useState(true);
   const [viewMode, setViewMode] = useState<ViewMode>("list");
@@ -220,7 +226,7 @@ export function ServiceFrame({
       const timer = setTimeout(() => {
         setDisplayedView(viewMode);
         setViewTransitioning(false);
-      }, 100);
+      }, 200);
       return () => clearTimeout(timer);
     }
   }, [viewMode, displayedView]);
@@ -371,12 +377,14 @@ export function ServiceFrame({
         <div className="w-full">
           <div className="flex items-center gap-[16px] w-full pl-[16px] pr-[12px] py-[12px]">
             <div className="flex flex-1 items-center min-h-[32px]">
-              <div
-                ref={handleRef}
-                className="cursor-grab active:cursor-grabbing p-[4px] group/drag"
-              >
-                <GripVertical className="size-[16px] text-[#D4D4D8] transition-colors duration-200 ease-out group-hover/drag:text-[#71717a]" />
-              </div>
+              {!readOnly && (
+                <div
+                  ref={handleRef}
+                  className="cursor-grab active:cursor-grabbing p-[4px] group/drag"
+                >
+                  <GripVertical className="size-[16px] text-[#D4D4D8] transition-colors duration-200 ease-out group-hover/drag:text-[#71717a]" />
+                </div>
+              )}
               <Button
                 variant="ghost"
                 size="icon"
@@ -391,6 +399,11 @@ export function ServiceFrame({
                 />
               </Button>
               <div className="flex-1 min-w-0">
+                {readOnly ? (
+                  <div className="flex w-full h-[36px] items-center px-3 py-1">
+                    <span className="!text-[16px] text-[#27272a] font-semibold truncate">{localTitle || "Novo serviço"}</span>
+                  </div>
+                ) : (
                 <input
                   ref={inputRef}
                   type="text"
@@ -417,24 +430,50 @@ export function ServiceFrame({
                   placeholder="Novo serviço"
                   className="flex w-full h-[36px] min-w-0 border border-transparent bg-transparent !text-[16px] text-[#27272a] font-semibold shadow-none rounded-md px-3 py-1 outline-none transition-[color,box-shadow,border-color] duration-200 ease-out focus-visible:border-ring focus-visible:ring-ring/20 focus-visible:ring-[3px] placeholder:text-muted-foreground"
                 />
+                )}
               </div>
             </div>
+            {/* Status badge for readOnly mode */}
+            {readOnly && serviceStatus && (
+              <Button
+                variant="outline"
+                size="sm"
+                className="cursor-default shrink-0 gap-[4px] text-[14px] text-[#27272a] font-medium pointer-events-none"
+              >
+                {serviceStatus === "pending" && <Clock className="size-[16px] text-[#27272a]" />}
+                {serviceStatus === "approved" && <CircleCheck className="size-[16px] text-[#16a34a]" />}
+                {serviceStatus === "rejected" && <CircleX className="size-[16px] text-[#dc2626]" />}
+                {serviceStatus === "pending" && "Pendente"}
+                {serviceStatus === "approved" && "Aprovado"}
+                {serviceStatus === "rejected" && "Rejeitado"}
+              </Button>
+            )}
             <span
               className="hidden xl:inline shrink-0 text-[16px] text-[#27272a] font-semibold leading-[1.5] whitespace-nowrap transition-opacity duration-200 ease-out"
               style={{ opacity: isExpanded ? 0 : 1, pointerEvents: isExpanded ? "none" : "auto" }}
             >
               {formattedSubtotal} €
             </span>
+            {!readOnly && (
             <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
-              <AlertDialogTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="size-[32px] cursor-pointer shrink-0"
-                >
-                  <Trash2 className="size-[16px] text-[#27272a]" />
-                </Button>
-              </AlertDialogTrigger>
+              <Tooltip delayDuration={200}>
+                <TooltipTrigger asChild>
+                  <span className="shrink-0">
+                    <AlertDialogTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="size-[32px] cursor-pointer shrink-0"
+                      >
+                        <Trash2 className="size-[16px] text-[#27272a]" />
+                      </Button>
+                    </AlertDialogTrigger>
+                  </span>
+                </TooltipTrigger>
+                <TooltipContent sideOffset={4}>
+                  Eliminar serviço
+                </TooltipContent>
+              </Tooltip>
               <AlertDialogContent className="bg-[#f4f4f5] flex flex-col gap-[24px] p-[24px] rounded-[12px] border border-[#e5e5e5] max-w-[400px]">
                 {/* Header */}
                 <div className="flex items-start gap-[10px] relative w-full">
@@ -468,7 +507,8 @@ export function ServiceFrame({
                     </Button>
                   </AlertDialogCancel>
                   <Button
-                    className="cursor-pointer h-[40px] px-[16px] text-[14px] text-white bg-[#fb2c36] not-disabled:hover:bg-[#e53e3e] rounded-[8px] shadow-[inset_0px_1px_0px_0px_#fb2c36,inset_0px_2px_0px_0px_rgba(255,255,255,0.15)] transition-colors duration-200 ease-out"
+                    variant="destructive"
+                    className="cursor-pointer bg-[#fb2c36] not-disabled:hover:bg-[#e53e3e] transition-colors duration-200 ease-out"
                     onClick={handleDelete}
                   >
                     Eliminar
@@ -476,6 +516,7 @@ export function ServiceFrame({
                 </div>
               </AlertDialogContent>
             </AlertDialog>
+            )}
           </div>
         </div>
 
@@ -488,11 +529,11 @@ export function ServiceFrame({
           }}
         >
           <div className="overflow-hidden">
-          <div className="p-[16px] pt-0 border-t border-[#e5e5e5]">
+          <div className={`p-[16px] pt-0 ${readOnly ? '[&_th:last-child]:hidden [&_td:last-child]:hidden [&_.cursor-grab]:hidden' : ''}`}>
             <div className="flex flex-col gap-[16px] items-end w-full pt-[16px]">
               {/* Items table / Grid view with crossfade */}
               <div
-                className="w-full transition-opacity duration-100 ease-out"
+                className="w-full transition-opacity duration-200 ease-out"
                 style={{ opacity: viewTransitioning ? 0 : 1 }}
               >
                 {displayedView === "list" ? (
@@ -591,11 +632,11 @@ export function ServiceFrame({
                                 <TableCell className="pl-0 pr-[16px] py-[8px]">
                                   <div className="flex items-center">
                                     {grip}
-                                    <div className="flex items-center gap-[8px]">
+                                    <div className="flex items-center gap-[8px] flex-1 min-w-0">
                                       <div className="flex items-center p-[4px] rounded-[8px] shrink-0" style={{ backgroundImage: "linear-gradient(90deg, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)" }}>
                                         <span className="text-[#3B82F6]">{PART_ICON}</span>
                                       </div>
-                                      <span className="text-[14px] text-[#27272a] font-normal truncate">
+                                      <span className="text-[14px] text-[#27272a] font-normal truncate flex-1 min-w-0">
                                         {part.designation || "Peça"}
                                       </span>
                                       {part.partType === "OEM" && (
@@ -879,11 +920,11 @@ export function ServiceFrame({
                                 <TableCell className="pl-0 pr-[16px] py-[8px]">
                                   <div className="flex items-center">
                                     {grip}
-                                    <div className="flex items-center gap-[8px]">
+                                    <div className="flex items-center gap-[8px] flex-1 min-w-0">
                                       <div className="flex items-center p-[4px] rounded-[8px] shrink-0" style={{ backgroundImage: "linear-gradient(90deg, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)" }}>
                                         <span className="text-[#3B82F6]">{PART_ICON}</span>
                                       </div>
-                                      <span className="text-[14px] text-[#27272a] font-normal truncate">
+                                      <span className="text-[14px] text-[#27272a] font-normal truncate flex-1 min-w-0">
                                         {part.designation || "Peça"}
                                       </span>
                                       {part.partType === "OEM" && (
@@ -1043,6 +1084,8 @@ export function ServiceFrame({
               {/* Bottom frame: view toggle + service price */}
               <div className="flex items-center justify-between w-full pl-[0px] pr-[4px] py-[0px]">
                 <div className="flex items-center gap-[8px]">
+                {!readOnly && (
+                <>
                 {/* New item button */}
                 <Button
                   variant="outline"
@@ -1053,17 +1096,28 @@ export function ServiceFrame({
                   <Plus className="size-[16px]" />
                   Novo item
                 </Button>
+                </>
+                )}
                 {/* View toggle tabs */}
-                <Tabs value={viewMode} onValueChange={(v) => setViewMode(v as "list" | "grid")} className="gap-0">
-                  <TabsList className="h-[32px] p-[3px]">
-                    <TabsTrigger value="list" className="h-[26px] px-[8px]">
-                      <AlignJustify className="size-[16px]" />
-                    </TabsTrigger>
-                    <TabsTrigger value="grid" className="h-[26px] px-[8px]">
-                      <LayoutGrid className="size-[16px]" />
-                    </TabsTrigger>
-                  </TabsList>
-                </Tabs>
+                <Tooltip delayDuration={200}>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="cursor-pointer size-[32px] p-0"
+                      onClick={() => setViewMode(viewMode === "list" ? "grid" : "list")}
+                    >
+                      {viewMode === "list" ? (
+                        <LayoutGrid className="size-[16px]" />
+                      ) : (
+                        <AlignJustify className="size-[16px]" />
+                      )}
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent sideOffset={4}>
+                    {viewMode === "list" ? "Ver por tipo" : "Ver agregado"}
+                  </TooltipContent>
+                </Tooltip>
                 </div>
 
                 {/* Service price */}
@@ -1071,7 +1125,7 @@ export function ServiceFrame({
                   <span className="text-[16px] text-[#27272a] font-semibold">
                     {formattedSubtotal} €
                   </span>
-                  <Tooltip>
+                  <Tooltip delayDuration={200}>
                     <TooltipTrigger asChild>
                       <button className="cursor-pointer flex items-center justify-center">
                         <Info className="size-[16px] text-[#a1a1aa]" />
@@ -1112,14 +1166,18 @@ export function ServiceFrame({
         </div>
       </div>
       
-      <NewItemSheet open={newItemSheetOpen} onOpenChange={setNewItemSheetOpen} onSave={handleAddItem} serviceItems={service.items} />
-      <NewItemSheet
-        open={!!editingItem}
-        onOpenChange={(open) => { if (!open) setEditingItem(null); }}
-        onSave={handleEditSheetSave}
-        editItem={editingItem}
-        serviceItems={service.items}
-      />
+      {!readOnly && (
+        <>
+          <NewItemSheet open={newItemSheetOpen} onOpenChange={setNewItemSheetOpen} onSave={handleAddItem} serviceItems={service.items} />
+          <NewItemSheet
+            open={!!editingItem}
+            onOpenChange={(open) => { if (!open) setEditingItem(null); }}
+            onSave={handleEditSheetSave}
+            editItem={editingItem}
+            serviceItems={service.items}
+          />
+        </>
+      )}
     </div>
   );
 }

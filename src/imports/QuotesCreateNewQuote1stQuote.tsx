@@ -10,6 +10,7 @@ import { getVehiclesByClientName, updateVehicleNotes, updateVehicleKm, updateVeh
 import { getClientByName, updateClientNotes } from "../app/components/ClientSearchPopup";
 import { NotesSection } from "../app/components/NotesSection";
 import { showToast } from "../app/components/Toast";
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "../app/components/ui/tooltip";
 import { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import PopoverQuotePricing from "./PopoverQuotePricing";
@@ -565,7 +566,7 @@ function Header() {
 
 function UserRound() {
   return (
-    <div className="relative shrink-0 size-[20px]" data-name="user-round">
+    <div className="relative shrink-0 size-[16px]" data-name="user-round">
       <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20 20">
         <g id="user-round">
           <path d={svgPaths.p112cb400} fill="var(--fill-0, #09090B)" id="Vector (Stroke)" />
@@ -577,9 +578,10 @@ function UserRound() {
 
 function IconFrame1() {
   return (
-    <div className="bg-[rgba(130,112,255,0.15)] content-stretch flex items-center p-[6px] relative rounded-[9999px] shrink-0" data-name="Icon Frame">
-      <div aria-hidden="true" className="absolute inset-0 pointer-events-none rounded-[9999px]" />
-      <UserRound />
+    <div className="relative rounded-[9999px] shrink-0 size-[32px]" style={{ background: '#8270FF26' }} data-name="Icon Frame">
+      <div className="content-stretch flex items-center justify-center overflow-clip relative rounded-[inherit] size-full">
+        <UserRound className="size-[16px] text-[#27272a]" />
+      </div>
     </div>
   );
 }
@@ -616,7 +618,7 @@ function UserFrame({ isOpen, selectedClient, onClearClient, associationHint }: {
   if (selectedClient) {
     return (
       <div className="bg-white content-stretch flex gap-[12px] h-[64px] items-center p-[12px] relative rounded-[12px] shrink-0 w-[320px] group cursor-pointer" data-name="User Frame">
-        <div aria-hidden="true" className="absolute border border-solid inset-0 pointer-events-none rounded-[12px] transition-[border-color] duration-200 ease-out border-[#e5e5e5] group-hover:border-[#71717a]" />
+        <div aria-hidden="true" className={`absolute border border-solid inset-0 pointer-events-none rounded-[12px] transition-[border-color] duration-200 ease-out border-[#e5e5e5] ${isOpen ? "" : "group-hover:border-[#71717a]"}`} />
         <IconFrame1 />
         <div className="content-stretch flex flex-[1_0_0] flex-col items-start justify-center min-h-px min-w-px not-italic relative" data-name="Content Frame">
           <p className="font-['Inter:Medium',sans-serif] font-medium leading-[1.5] relative shrink-0 text-[#27272a] text-[14px] w-full whitespace-pre-wrap">{selectedClient.name}</p>
@@ -648,7 +650,7 @@ function UserFrame({ isOpen, selectedClient, onClearClient, associationHint }: {
 
   return (
     <div className="bg-white content-stretch flex gap-[12px] h-[64px] items-center p-[12px] relative rounded-[12px] shrink-0 w-[320px] group cursor-pointer" data-name="User Frame">
-      <div aria-hidden="true" className="absolute border border-solid inset-0 pointer-events-none rounded-[12px] transition-[border-color] duration-200 ease-out border-[#e5e5e5] group-hover:border-[#71717a]" />
+      <div aria-hidden="true" className={`absolute border border-solid inset-0 pointer-events-none rounded-[12px] transition-[border-color] duration-200 ease-out border-[#e5e5e5] ${isOpen ? "" : "group-hover:border-[#71717a]"}`} />
       <IconFrame1 />
       <div className="content-stretch flex flex-[1_0_0] items-center min-h-px min-w-px relative" data-name="Content Frame">
         <div className="content-stretch flex items-center relative shrink-0" data-name="Light Mode / Text">
@@ -664,7 +666,7 @@ function UserFrame({ isOpen, selectedClient, onClearClient, associationHint }: {
 
 function Car() {
   return (
-    <div className="relative shrink-0 size-[20px]" data-name="car">
+    <div className="relative shrink-0 size-[16px]" data-name="car">
       <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20 20">
         <g id="car">
           <path d={svgPaths.p4c83f00} fill="var(--fill-0, #09090B)" id="Vector (Stroke)" />
@@ -676,8 +678,10 @@ function Car() {
 
 function IconFrame2() {
   return (
-    <div className="bg-[rgba(130,112,255,0.15)] content-stretch flex items-center p-[6px] relative rounded-[9999px] shrink-0" data-name="Icon Frame">
-      <Car />
+    <div className="relative rounded-[9999px] shrink-0 size-[32px]" style={{ background: '#8270FF26' }} data-name="Icon Frame">
+      <div className="content-stretch flex items-center justify-center overflow-clip relative rounded-[inherit] size-full">
+        <CarIcon size={16} color="#27272a" />
+      </div>
     </div>
   );
 }
@@ -714,12 +718,12 @@ function VehicleFrame({ isOpen, selectedVehicle, onClearVehicle, associationHint
   if (selectedVehicle) {
     return (
       <div className="bg-white content-stretch flex gap-[12px] h-[64px] items-center p-[12px] relative rounded-[12px] shrink-0 w-[320px] group cursor-pointer" data-name="Vehicle Frame">
-        <div aria-hidden="true" className="absolute border border-solid inset-0 pointer-events-none rounded-[12px] transition-[border-color] duration-200 ease-out border-[#e5e5e5] group-hover:border-[#71717a]" />
+        <div aria-hidden="true" className={`absolute border border-solid inset-0 pointer-events-none rounded-[12px] transition-[border-color] duration-200 ease-out border-[#e5e5e5] ${isOpen ? "" : "group-hover:border-[#71717a]"}`} />
         <IconFrame2 />
         <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start justify-center min-h-px min-w-px not-italic relative" data-name="Content Frame">
           <p className="font-medium leading-[1.5] relative shrink-0 text-[#27272a] text-[14px] w-full whitespace-pre-wrap">{selectedVehicle.brand} {selectedVehicle.model}</p>
           <p className="font-normal leading-[1.5] overflow-hidden relative shrink-0 text-[12px] text-ellipsis w-full whitespace-nowrap text-[#71717a]">
-            {[selectedVehicle.plate, selectedVehicle.vin].filter(Boolean).join(" | ")}
+            {selectedVehicle.plate}
           </p>
         </div>
         <button
@@ -741,14 +745,12 @@ function VehicleFrame({ isOpen, selectedVehicle, onClearVehicle, associationHint
 
   return (
     <div className="bg-white content-stretch flex gap-[12px] h-[64px] items-center p-[12px] relative rounded-[12px] shrink-0 w-[320px] group cursor-pointer" data-name="Vehicle Frame">
-      <div aria-hidden="true" className="absolute border border-solid inset-0 pointer-events-none rounded-[12px] transition-[border-color] duration-200 ease-out border-[#e5e5e5] group-hover:border-[#71717a]" />
+      <div aria-hidden="true" className={`absolute border border-solid inset-0 pointer-events-none rounded-[12px] transition-[border-color] duration-200 ease-out border-[#e5e5e5] ${isOpen ? "" : "group-hover:border-[#71717a]"}`} />
       <IconFrame2 />
       <div className="content-stretch flex flex-[1_0_0] flex-col items-start justify-center min-h-px min-w-px relative" data-name="Content Frame">
-        <div className="content-stretch flex items-center relative shrink-0" data-name="Light Mode / Text">
-          <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[14px] text-ellipsis">
-            {associationHint || "Selecionar veículo"}
-          </p>
-        </div>
+        <p className="font-normal leading-[1.5] not-italic overflow-hidden relative shrink-0 text-[#71717a] text-[14px] text-ellipsis">
+          {associationHint || "Selecionar veículo"}
+        </p>
       </div>
       <Search1 />
     </div>
@@ -1013,19 +1015,24 @@ function Wrench1() {
   );
 }
 
-function LightModeText2() {
+function LightModeText2({ hasVehicle }: { hasVehicle?: boolean }) {
   return (
-    <div className="content-stretch flex items-center justify-center relative shrink-0 w-full" data-name="Light Mode / Text">
-      <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[14px] text-center text-ellipsis whitespace-nowrap">Adiciona um serviço para iniciar</p>
+    <div className="content-stretch flex flex-col gap-[8px] items-center justify-center relative shrink-0 w-full" data-name="Light Mode / Text">
+      <p className="font-medium leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[16px] text-center whitespace-nowrap">Ainda não existem serviços</p>
+      <p className="font-normal leading-[1.5] not-italic relative shrink-0 text-[#71717a] text-[14px] text-center whitespace-nowrap">
+        {hasVehicle
+          ? "Adiciona um serviço do guia ou cria um do zero"
+          : "Seleciona um veículo para poder adicionar serviços"}
+      </p>
     </div>
   );
 }
 
-function TopFrame() {
+function TopFrame({ hasVehicle }: { hasVehicle?: boolean }) {
   return (
     <div className="content-stretch flex flex-col gap-[16px] items-center relative shrink-0 w-full" data-name="Top Frame">
       <Wrench1 />
-      <LightModeText2 />
+      <LightModeText2 hasVehicle={hasVehicle} />
     </div>
   );
 }
@@ -1072,25 +1079,40 @@ function LightModeButton6({ disabled, onClick }: { disabled?: boolean; onClick?:
   );
 }
 
+function DisabledTooltipWrapper({ disabled, children }: { disabled?: boolean; children: React.ReactNode }) {
+  if (!disabled) return <>{children}</>;
+  return (
+    <TooltipProvider delayDuration={200}>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <span className="inline-flex">{children}</span>
+        </TooltipTrigger>
+        <TooltipContent side="bottom" sideOffset={4}>
+          <p>Seleciona um veículo para poder adicionar serviços</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  );
+}
+
 function ButtonsFrame1({ disabled, onNewService, onServiceGuide }: { disabled?: boolean; onNewService?: () => void; onServiceGuide?: () => void }) {
   return (
     <div className="content-stretch flex gap-[16px] items-start relative shrink-0" data-name="Buttons Frame">
-      <LightModeButton5 disabled={disabled} onClick={onNewService} />
-      <LightModeButton6 disabled={disabled} onClick={onServiceGuide} />
+      <DisabledTooltipWrapper disabled={disabled}>
+        <LightModeButton5 disabled={disabled} onClick={onNewService} />
+      </DisabledTooltipWrapper>
+      <DisabledTooltipWrapper disabled={disabled}>
+        <LightModeButton6 disabled={disabled} onClick={onServiceGuide} />
+      </DisabledTooltipWrapper>
     </div>
   );
 }
 
 function EmptyServiceFrame({ hasVehicle, onNewService, onServiceGuide }: { hasVehicle?: boolean; onNewService?: () => void; onServiceGuide?: () => void }) {
   return (
-    <div className="bg-white h-[360px] relative rounded-[16px] shrink-0 w-full" data-name="Empty Service Frame">
-      <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[16px]" />
-      <div className="flex flex-col items-center justify-center size-full">
-        <div className="content-stretch flex flex-col gap-[24px] items-center justify-center p-[16px] relative size-full">
-          <TopFrame />
-          <ButtonsFrame1 disabled={!hasVehicle} onNewService={onNewService} onServiceGuide={onServiceGuide} />
-        </div>
-      </div>
+    <div className="flex flex-col gap-[24px] items-center justify-center flex-1 shrink-0 w-full" data-name="Empty Service Frame">
+      <TopFrame hasVehicle={hasVehicle} />
+      <ButtonsFrame1 disabled={!hasVehicle} onNewService={onNewService} onServiceGuide={onServiceGuide} />
     </div>
   );
 }
@@ -1142,7 +1164,9 @@ function ContentFrame2({ hasVehicle, selectedVehicle, clientId, services, onAddS
         </>
       ) : undefined} />
       {services.length === 0 ? (
-        <EmptyServiceFrame hasVehicle={hasVehicle} onNewService={onAddService} onServiceGuide={handleOpenServiceGuide} />
+        <div className="w-full h-full pb-[48px] flex items-center justify-center">
+          <EmptyServiceFrame hasVehicle={hasVehicle} onNewService={onAddService} onServiceGuide={handleOpenServiceGuide} />
+        </div>
       ) : (
         <div className="flex flex-col gap-[16px] w-full">
           {sortedServices.map((service, index) => (
@@ -1627,12 +1651,10 @@ function VehicleInfoSection({ vehicle }: { vehicle: Vehicle }) {
           <div className="content-stretch flex flex-[1_0_0] items-center min-h-px min-w-px relative">
             <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] text-left whitespace-pre-wrap">Informação geral</p>
           </div>
-          <div className="content-stretch flex items-center justify-center max-h-[24px] max-w-[24px] min-h-[24px] min-w-[24px] relative rounded-[6px] shrink-0 size-[24px]">
-            <ChevronRightIcon
-              className="size-[16px] text-[#27272a] transition-transform duration-200 ease-out"
-              style={{ transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)" }}
-            />
-          </div>
+          <ChevronRightIcon
+            className="size-[16px] text-[#27272a] transition-transform duration-200 ease-out shrink-0"
+            style={{ transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)" }}
+          />
         </button>
         {/* Expandable info details — smart animate via CSS grid */}
         <div
@@ -1710,15 +1732,13 @@ function VehicleServiceHistorySection({ vehicleId }: { vehicleId: string }) {
           <div className="content-stretch flex flex-[1_0_0] items-center min-h-px min-w-px relative">
             <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] text-left whitespace-pre-wrap">Histórico de serviços</p>
           </div>
-          <span className="bg-[#8270FF] text-white text-[12px] font-medium leading-[1.5] h-[22px] min-w-[22px] px-2 flex items-center justify-center rounded-full shrink-0">
+          <span className="bg-[#8270FF] text-white text-[12px] font-medium leading-[1.5] size-[20px] flex items-center justify-center rounded-full shrink-0">
             {entries.length}
           </span>
-          <div className="content-stretch flex items-center justify-center max-h-[24px] max-w-[24px] min-h-[24px] min-w-[24px] relative rounded-[6px] shrink-0 size-[24px]">
-            <ChevronRightIcon
-              className="size-[16px] text-[#27272a] transition-transform duration-200 ease-out"
-              style={{ transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)" }}
-            />
-          </div>
+          <ChevronRightIcon
+            className="size-[16px] text-[#27272a] transition-transform duration-200 ease-out shrink-0"
+            style={{ transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)" }}
+          />
         </button>
         {/* Expandable service list — smart animate via CSS grid */}
         <div
@@ -1840,7 +1860,7 @@ function UpdateKmModal({ isOpen, onClose, currentKm, currentNoOdometer, onSave }
       style={{ opacity: isAnimating ? 1 : 0 }}
     >
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/20" onClick={onClose} />
+      <div className="absolute inset-0 bg-black/50" onClick={onClose} />
 
       {/* Modal */}
       <div className="bg-white flex flex-col gap-[20px] items-start p-[24px] relative rounded-[12px] w-[400px] z-10">
@@ -2033,7 +2053,7 @@ function VehicleTabContent({ vehicle, onVehicleUpdate, containerRef }: { vehicle
           placeholder="Notas sobre o veículo"
           defaultValue={vehicle.notes || ""}
           onChange={handleNotesChange}
-          className="min-h-[64px] h-[64px] text-[14px] leading-[1.5] font-normal resize-none bg-white"
+          className="min-h-[64px] h-[64px] text-[14px] leading-[1.5] font-normal resize-none bg-[#fafafa]"
         />
       </div>
 
@@ -2117,15 +2137,13 @@ function ClientVehiclesSection({ clientName }: { clientName: string }) {
           <div className="content-stretch flex flex-[1_0_0] items-center min-h-px min-w-px relative">
             <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] text-left whitespace-pre-wrap">Veículos</p>
           </div>
-          <span className="bg-[#8270FF] text-white text-[12px] font-medium leading-[1.5] h-[22px] min-w-[22px] px-2 flex items-center justify-center rounded-full shrink-0">
+          <span className="bg-[#8270FF] text-white text-[12px] font-medium leading-[1.5] size-[20px] flex items-center justify-center rounded-full shrink-0">
             {vehicles.length}
           </span>
-          <div className="content-stretch flex items-center justify-center max-h-[24px] max-w-[24px] min-h-[24px] min-w-[24px] relative rounded-[6px] shrink-0 size-[24px]">
-            <ChevronRightIcon
-              className="size-[16px] text-[#27272a] transition-transform duration-200 ease-out"
-              style={{ transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)" }}
-            />
-          </div>
+          <ChevronRightIcon
+            className="size-[16px] text-[#27272a] transition-transform duration-200 ease-out shrink-0"
+            style={{ transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)" }}
+          />
         </button>
         {/* Expandable vehicle list — smart animate via CSS grid */}
         <div
@@ -2229,15 +2247,13 @@ function ClientAppointmentsSection({ clientName }: { clientName: string }) {
           <div className="content-stretch flex flex-[1_0_0] items-center min-h-px min-w-px relative">
             <p className="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#27272a] text-[14px] text-left whitespace-pre-wrap">Marcações</p>
           </div>
-          <span className="bg-[#8270FF] text-white text-[12px] font-medium leading-[1.5] h-[22px] min-w-[22px] px-2 flex items-center justify-center rounded-full shrink-0">
+          <span className="bg-[#8270FF] text-white text-[12px] font-medium leading-[1.5] size-[20px] flex items-center justify-center rounded-full shrink-0">
             {appointments.length}
           </span>
-          <div className="content-stretch flex items-center justify-center max-h-[24px] max-w-[24px] min-h-[24px] min-w-[24px] relative rounded-[6px] shrink-0 size-[24px]">
-            <ChevronRightIcon
-              className="size-[16px] text-[#27272a] transition-transform duration-200 ease-out"
-              style={{ transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)" }}
-            />
-          </div>
+          <ChevronRightIcon
+            className="size-[16px] text-[#27272a] transition-transform duration-200 ease-out shrink-0"
+            style={{ transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)" }}
+          />
         </button>
         {/* Expandable appointment list — smart animate via CSS grid */}
         <div
@@ -2702,7 +2718,7 @@ function ClientTabContent({ client, onClientUpdate, containerRef }: { client: Se
             placeholder="Notas sobre o cliente"
             defaultValue={client.notes || ""}
             onChange={handleNotesChange}
-            className="min-h-[64px] h-[64px] text-[14px] leading-[1.5] font-normal resize-none bg-white"
+            className="min-h-[64px] h-[64px] text-[14px] leading-[1.5] font-normal resize-none bg-[#fafafa]"
           />
         </div>
       </div>
@@ -2738,7 +2754,7 @@ function ClientTabContent({ client, onClientUpdate, containerRef }: { client: Se
   );
 }
 
-function SideMenuEstPending({ selectedClient, onClientUpdate, selectedVehicle, onVehicleUpdate, services }: { selectedClient?: SelectedClient | null; onClientUpdate?: (client: SelectedClient) => void; selectedVehicle?: Vehicle | null; onVehicleUpdate?: (vehicle: Vehicle) => void; services?: QuoteService[] }) {
+function SideMenuEstPending({ selectedClient, onClientUpdate, selectedVehicle, onVehicleUpdate, services, onFinalize }: { selectedClient?: SelectedClient | null; onClientUpdate?: (client: SelectedClient) => void; selectedVehicle?: Vehicle | null; onVehicleUpdate?: (vehicle: Vehicle) => void; services?: QuoteService[]; onFinalize?: () => void }) {
   const showClientEmptyState = !selectedClient || selectedClient.isEndConsumer;
   const showVehicleEmptyState = !selectedVehicle;
   const sideMenuRef = useRef<HTMLDivElement>(null);
@@ -2746,7 +2762,7 @@ function SideMenuEstPending({ selectedClient, onClientUpdate, selectedVehicle, o
   return (
     <div ref={sideMenuRef} className="bg-white flex flex-col gap-[24px] items-start relative size-full flex-1 min-h-0">
       <Tabs defaultValue="orcamento" className="flex flex-col gap-[24px] items-start relative size-full flex-1 min-h-0">
-        <TabsList className="w-full">
+        <TabsList className="w-full" style={{ backgroundColor: '#f5f5f5' }}>
           <TabsTrigger value="orcamento" className="cursor-pointer">Orçamento</TabsTrigger>
           <TabsTrigger value="cliente" className="cursor-pointer">Cliente</TabsTrigger>
           <TabsTrigger value="veiculo" className="cursor-pointer">Veículo</TabsTrigger>
@@ -2754,7 +2770,7 @@ function SideMenuEstPending({ selectedClient, onClientUpdate, selectedVehicle, o
         <TabsContent value="orcamento" className="flex flex-col gap-[24px] items-start w-full m-0">
           <MainFrame />
           <LightModeSeparator />
-          <ActionButtons selectedClient={selectedClient} selectedVehicle={selectedVehicle} services={services} />
+          <ActionButtons selectedClient={selectedClient} selectedVehicle={selectedVehicle} services={services} onFinalize={onFinalize} />
         </TabsContent>
         <TabsContent value="cliente" className={`flex flex-col flex-1 w-full m-0 ${showClientEmptyState ? 'items-center justify-center pt-[4px]' : 'items-start'}`}>
           {showClientEmptyState ? <ClientTabEmptyState /> : <ClientTabContent client={selectedClient!} onClientUpdate={onClientUpdate} containerRef={sideMenuRef} />}
@@ -2767,10 +2783,10 @@ function SideMenuEstPending({ selectedClient, onClientUpdate, selectedVehicle, o
   );
 }
 
-function SideMenuFrame({ selectedClient, onClientUpdate, selectedVehicle, onVehicleUpdate, services }: { selectedClient?: SelectedClient | null; onClientUpdate?: (client: SelectedClient) => void; selectedVehicle?: Vehicle | null; onVehicleUpdate?: (vehicle: Vehicle) => void; services?: QuoteService[] }) {
+function SideMenuFrame({ selectedClient, onClientUpdate, selectedVehicle, onVehicleUpdate, services, onFinalize }: { selectedClient?: SelectedClient | null; onClientUpdate?: (client: SelectedClient) => void; selectedVehicle?: Vehicle | null; onVehicleUpdate?: (vehicle: Vehicle) => void; services?: QuoteService[]; onFinalize?: () => void }) {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col gap-[16px] items-start max-w-[360px] min-h-px min-w-px relative w-full @container" data-name="Side Menu Frame">
-      <SideMenuEstPending selectedClient={selectedClient} onClientUpdate={onClientUpdate} selectedVehicle={selectedVehicle} onVehicleUpdate={onVehicleUpdate} services={services} />
+      <SideMenuEstPending selectedClient={selectedClient} onClientUpdate={onClientUpdate} selectedVehicle={selectedVehicle} onVehicleUpdate={onVehicleUpdate} services={services} onFinalize={onFinalize} />
     </div>
   );
 }
@@ -2887,7 +2903,7 @@ function LeftFrame2({ services }: { services?: QuoteService[] }) {
         <>
           {/* Dark overlay */}
           <div
-            className="fixed inset-0 bg-black/20 transition-opacity duration-200 ease-out"
+            className="fixed inset-0 bg-black/50 transition-opacity duration-200 ease-out"
             style={{ opacity: isVisible ? 1 : 0, zIndex: 9998 }}
             onMouseDown={closePopover}
           />
@@ -2948,8 +2964,9 @@ function ContentFrame4({ services }: { services?: QuoteService[] }) {
   );
 }
 
-function ActionButtons({ selectedClient, selectedVehicle, services }: { selectedClient?: SelectedClient | null; selectedVehicle?: Vehicle | null; services?: QuoteService[] }) {
+function ActionButtons({ selectedClient, selectedVehicle, services, onFinalize }: { selectedClient?: SelectedClient | null; selectedVehicle?: Vehicle | null; services?: QuoteService[]; onFinalize?: () => void }) {
   const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const canFinalize = useMemo(() => {
     const hasClient = !!selectedClient;
@@ -2958,11 +2975,26 @@ function ActionButtons({ selectedClient, selectedVehicle, services }: { selected
     return hasClient && hasVehicle && hasServiceWithValue;
   }, [selectedClient, selectedVehicle, services]);
 
+  const handleFinalize = () => {
+    if (!canFinalize || isLoading) return;
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      onFinalize?.();
+    }, 1500);
+  };
+
   return (
     <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full" data-name="Action Buttons">
       <ContentFrame4 services={services} />
       <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full" data-name="Buttons Frame">
-        <Button className="w-full h-[40px] bg-[#262124] text-white not-disabled:hover:bg-[#3f3f46] cursor-pointer" disabled={!canFinalize}>
+        <Button className="w-full h-[40px] bg-[#262124] text-white not-disabled:hover:bg-[#3f3f46] cursor-pointer gap-[8px]" disabled={!canFinalize || isLoading} onClick={handleFinalize}>
+          {isLoading && (
+            <svg className="animate-spin size-[16px] text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+            </svg>
+          )}
           Finalizar orçamento
         </Button>
         <Button variant="outline" className="w-full h-[40px] cursor-pointer" onClick={() => setIsCancelModalOpen(true)}>
@@ -2983,22 +3015,23 @@ function ActionButtons({ selectedClient, selectedVehicle, services }: { selected
   );
 }
 
-function RightFrame({ selectedClient, onClientUpdate, selectedVehicle, onVehicleUpdate, services }: { selectedClient?: SelectedClient | null; onClientUpdate?: (client: SelectedClient) => void; selectedVehicle?: Vehicle | null; onVehicleUpdate?: (vehicle: Vehicle) => void; services?: QuoteService[] }) {
+function RightFrame({ selectedClient, onClientUpdate, selectedVehicle, onVehicleUpdate, services, onFinalize }: { selectedClient?: SelectedClient | null; onClientUpdate?: (client: SelectedClient) => void; selectedVehicle?: Vehicle | null; onVehicleUpdate?: (vehicle: Vehicle) => void; services?: QuoteService[]; onFinalize?: () => void }) {
   return (
-    <div className="bg-white content-stretch flex flex-col gap-[24px] h-full items-start p-[16px] relative shrink-0 w-[clamp(320px,28vw,360px)]" data-name="Right Frame">
+    <div className="bg-white content-stretch flex flex-col gap-[24px] h-full items-start px-[20px] py-[24px] relative shrink-0 w-[360px]" data-name="Right Frame">
       <div aria-hidden="true" className="absolute border-[#e5e5e5] border-l border-solid inset-0 pointer-events-none" />
-      <SideMenuFrame selectedClient={selectedClient} onClientUpdate={onClientUpdate} selectedVehicle={selectedVehicle} onVehicleUpdate={onVehicleUpdate} services={services} />
+      <SideMenuFrame selectedClient={selectedClient} onClientUpdate={onClientUpdate} selectedVehicle={selectedVehicle} onVehicleUpdate={onVehicleUpdate} services={services} onFinalize={onFinalize} />
     </div>
   );
 }
 
-function Main({ selectedClient, setSelectedClient, selectedVehicle, setSelectedVehicle, services, setServices }: {
+function Main({ selectedClient, setSelectedClient, selectedVehicle, setSelectedVehicle, services, setServices, onFinalize }: {
   selectedClient: SelectedClient | null;
   setSelectedClient: (client: SelectedClient | null) => void;
   selectedVehicle: Vehicle | null;
   setSelectedVehicle: (vehicle: Vehicle | null) => void;
   services: QuoteService[];
   setServices: React.Dispatch<React.SetStateAction<QuoteService[]>>;
+  onFinalize?: () => void;
 }) {
   const handleClientUpdate = useCallback((updatedClient: SelectedClient) => {
     setSelectedClient(updatedClient);
@@ -3011,25 +3044,32 @@ function Main({ selectedClient, setSelectedClient, selectedVehicle, setSelectedV
   return (
     <div className="content-stretch flex flex-[1_0_0] items-center min-h-px min-w-px relative w-full" data-name="Main">
       <LeftFrame1 selectedClient={selectedClient} setSelectedClient={setSelectedClient} selectedVehicle={selectedVehicle} setSelectedVehicle={setSelectedVehicle} services={services} setServices={setServices} />
-      <RightFrame selectedClient={selectedClient} onClientUpdate={handleClientUpdate} selectedVehicle={selectedVehicle} onVehicleUpdate={handleVehicleUpdate} services={services} />
+      <RightFrame selectedClient={selectedClient} onClientUpdate={handleClientUpdate} selectedVehicle={selectedVehicle} onVehicleUpdate={handleVehicleUpdate} services={services} onFinalize={onFinalize} />
     </div>
   );
 }
 
-function Content() {
+function Content({ onFinalize }: { onFinalize?: (data: { client: SelectedClient; vehicle: Vehicle; services: QuoteService[] }) => void }) {
   const [selectedClient, setSelectedClient] = useState<SelectedClient | null>(null);
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
   const [services, setServices] = useState<QuoteService[]>([]);
 
+  const handleFinalize = useCallback(() => {
+    if (selectedClient && selectedVehicle && services.length > 0) {
+      onFinalize?.({ client: selectedClient, vehicle: selectedVehicle, services });
+    }
+  }, [selectedClient, selectedVehicle, services, onFinalize]);
+
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col h-full items-start min-h-px min-w-px overflow-clip relative" data-name="Content">
       <Navbar />
-      <Main selectedClient={selectedClient} setSelectedClient={setSelectedClient} selectedVehicle={selectedVehicle} setSelectedVehicle={setSelectedVehicle} services={services} setServices={setServices} />
+      <Main selectedClient={selectedClient} setSelectedClient={setSelectedClient} selectedVehicle={selectedVehicle} setSelectedVehicle={setSelectedVehicle} services={services} setServices={setServices} onFinalize={handleFinalize} />
     </div>
   );
 }
 
 export { Content };
+export type { SelectedClient };
 
 export default function QuotesCreateNewQuote1stQuote() {
   return (

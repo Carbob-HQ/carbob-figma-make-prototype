@@ -303,6 +303,7 @@ export function BrandCombobox({ value, onChange, disabled, label, error }: Brand
           </div>
         </div>
       )}
+      {error && !disabled && <p className="text-[12px] text-[#ef4444] leading-[1.5]">Campo obrigatório</p>}
     </div>
   );
 }

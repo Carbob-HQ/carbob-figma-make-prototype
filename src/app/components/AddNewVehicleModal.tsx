@@ -7,6 +7,11 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Label } from "./ui/label";
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "./ui/tooltip";
 import { BrandCombobox } from "./BrandCombobox";
 import { YearCombobox } from "./YearCombobox";
 import { ModelCombobox } from "./ModelCombobox";
@@ -288,7 +293,7 @@ export default function AddNewVehicleModal({ isOpen, onClose, onVehicleAdded, as
 
       {/* Modal */}
       <div
-        className="bg-[#f4f4f5] flex flex-col gap-[24px] items-start p-[24px] relative rounded-[12px] w-[640px] h-[613px] z-10 overflow-visible"
+        className="bg-[#f4f4f5] flex flex-col gap-[24px] items-start p-[24px] relative rounded-[12px] w-[640px] h-[581px] z-10 overflow-visible"
         style={{ transform: isAnimating ? "scale(1)" : "scale(0.98)", transition: "transform 200ms ease-out" }}
       >
         <div aria-hidden="true" className="absolute border border-[#e5e5e5] border-solid inset-0 pointer-events-none rounded-[12px]" />
@@ -344,16 +349,22 @@ export default function AddNewVehicleModal({ isOpen, onClose, onVehicleAdded, as
                       </p>
                     </div>
                     <div className="flex items-start relative shrink-0 group/tooltip">
-                      <div className="overflow-clip relative shrink-0 size-[12px]">
-                        <div className="absolute inset-[4.17%]">
-                          <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 11 11">
-                            <path d={svgPaths.p169dfe80} fill="#A1A1AA" />
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-[6px] px-[10px] py-[6px] bg-[#27272a] text-white text-[12px] leading-[1.5] font-normal rounded-[6px] whitespace-nowrap opacity-0 pointer-events-none group-hover/tooltip:opacity-100 transition-opacity duration-200 ease-out">
-                        Apenas válido para veículos ligeiros nacionais
-                      </div>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <div className="flex items-start relative shrink-0 cursor-default">
+                            <div className="overflow-clip relative shrink-0 size-[12px]">
+                              <div className="absolute inset-[4.17%]">
+                                <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 11 11">
+                                  <path d={svgPaths.p169dfe80} fill="#A1A1AA" />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          Apenas válido para veículos ligeiros nacionais
+                        </TooltipContent>
+                      </Tooltip>
                     </div>
                   </div>
 
@@ -408,24 +419,8 @@ export default function AddNewVehicleModal({ isOpen, onClose, onVehicleAdded, as
                       Identificar
                     </Button>
                   </form>
+                  {inputError && <p className="text-[12px] text-[#ef4444] leading-[1.5]">Campo obrigatório</p>}
 
-                  {/* Info text */}
-                  <div className="flex gap-[8px] items-start relative shrink-0 w-full">
-                    <div className="overflow-clip relative shrink-0 size-[16px]">
-                      <div className="absolute inset-[4.17%]">
-                        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 14.6667 14.6667">
-                          <path d={svgPaths.p68b4ff0} fill="#09090B" />
-                        </svg>
-                      </div>
-                    </div>
-                    <div className="flex flex-[1_0_0] items-center min-h-px min-w-px relative">
-                      <p className="flex-[1_0_0] font-normal leading-[1.5] min-h-px min-w-px not-italic overflow-hidden relative text-[#71717a] text-[12px] text-ellipsis whitespace-pre-wrap">
-                        {activeTab === "matricula"
-                          ? "Iremos identificar o veículo automaticamente com base na sua matrícula"
-                          : "Iremos identificar o veículo automaticamente com base no seu VIN"}
-                      </p>
-                    </div>
-                  </div>
                 </div>
 
                 {/* Outputs section - shown after identification */}

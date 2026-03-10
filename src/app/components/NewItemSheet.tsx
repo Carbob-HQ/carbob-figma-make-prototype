@@ -22,6 +22,12 @@ import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 import { X, Wrench, Droplet, Euro, Check, Info } from "lucide-react";
 import { showToast } from "./Toast";
+
+function FieldError({ show }: { show: boolean }) {
+  if (!show) return null;
+  return <p className="text-[12px] text-[#ef4444] leading-[1.5]">Campo obrigatório</p>;
+}
+
 import svgPaths from "../../imports/svg-0sy48dm4o2";
 import svgCalc from "../../imports/svg-xonq35r5ws";
 import {
@@ -284,11 +290,13 @@ function LaborFields({
       <div className="flex flex-col gap-[8px] w-full" data-field="designation">
         <Label className="text-[14px] text-[#27272a]">Mão de obra *</Label>
         <Input placeholder="Designação" value={designation} onChange={(e) => { setDesignation(e.target.value); clearError("designation"); }} autoFocus className={`h-[40px] rounded-[8px] ${errorFields.has("designation") ? "border-[#ef4444]" : "border-[#e5e5e5]"} bg-white text-[14px] text-[#27272a] placeholder:text-[#d4d4d8] px-[12px]`} />
+        <FieldError show={errorFields.has("designation")} />
       </div>
 
       <div className="flex flex-col gap-[8px] w-full" data-field="hours">
         <Label className="text-[14px] text-[#27272a]">Horas *</Label>
         <TimeInput value={hours} onChange={(v) => { setHours(v); clearError("hours"); }} className={`h-[40px] rounded-[8px] ${errorFields.has("hours") ? "border-[#ef4444]" : "border-[#e5e5e5]"} bg-white text-[14px] text-[#3f3f46] placeholder:text-[#3f3f46] px-[12px]`} />
+        <FieldError show={errorFields.has("hours")} />
       </div>
 
       <div className="flex flex-col gap-[8px] w-full">
@@ -520,6 +528,7 @@ function PartFields({
           autoFocus
           className={`h-[40px] rounded-[8px] ${errorFields.has("designation") ? "border-[#ef4444]" : "border-[#e5e5e5]"} bg-white text-[14px] text-[#27272a] placeholder:text-[#d4d4d8] px-[12px]`}
         />
+        <FieldError show={errorFields.has("designation")} />
       </div>
 
       {/* Referência */}
@@ -617,6 +626,7 @@ function PartFields({
               Custo unitário OEM: {oemCost.toFixed(2).replace(".", ",")} €
             </span>
           )}
+          <FieldError show={errorFields.has("partUnitCost")} />
         </div>
 
         {/* Cost Calculator Panel */}
@@ -673,7 +683,7 @@ function PartFields({
         <div className="flex gap-[4px] items-center">
           <Label className="text-[14px] text-[#27272a]">Markup</Label>
           <TooltipProvider>
-              <Tooltip>
+              <Tooltip delayDuration={200}>
                 <TooltipTrigger asChild>
                   <Info className="size-[12px] text-[#a1a1aa] cursor-help" />
                 </TooltipTrigger>
@@ -782,6 +792,7 @@ function ConsumableFields({
           autoFocus
           className={`h-[40px] rounded-[8px] ${errorFields.has("designation") ? "border-[#ef4444]" : "border-[#e5e5e5]"} bg-white text-[14px] text-[#27272a] placeholder:text-[#d4d4d8] px-[12px]`}
         />
+        <FieldError show={errorFields.has("designation")} />
       </div>
 
       {/* Tipo (Radio Group) */}
@@ -870,6 +881,7 @@ function ConsumableFields({
                 />
                 <span className="text-[14px] text-[#71717a] shrink-0 ml-[8px]">€</span>
               </div>
+              <FieldError show={errorFields.has("consUnitPrice")} />
             </div>
           </div>
         )}
@@ -910,12 +922,14 @@ function ConsumableFields({
                   )}
                 </SelectContent>
               </Select>
+              <FieldError show={errorFields.has("consTargetItemId")} />
             </div>
 
             {/* Percentagem */}
             <div className="flex flex-col gap-[8px] w-full" data-field="consPercentage">
               <Label className="text-[14px] text-[#27272a]">Percentagem *</Label>
               <DiscountInput value={percentage} onChange={(v) => { setPercentage(v); clearError("consPercentage"); }} error={errorFields.has("consPercentage")} />
+              <FieldError show={errorFields.has("consPercentage")} />
             </div>
 
             {/* Preço unitário (readonly, calculated) */}
@@ -929,6 +943,7 @@ function ConsumableFields({
             <div className="flex flex-col gap-[8px] w-full" data-field="consPercentage">
               <Label className="text-[14px] text-[#27272a]">Percentagem *</Label>
               <DiscountInput value={percentage} onChange={(v) => { setPercentage(v); clearError("consPercentage"); }} error={errorFields.has("consPercentage")} />
+              <FieldError show={errorFields.has("consPercentage")} />
             </div>
 
             {/* Preço unitário (readonly, calculated) */}
@@ -1004,6 +1019,7 @@ function ChargeFields({
           autoFocus
           className={`h-[40px] rounded-[8px] ${errorFields.has("designation") ? "border-[#ef4444]" : "border-[#e5e5e5]"} bg-white text-[14px] text-[#27272a] placeholder:text-[#d4d4d8] px-[12px]`}
         />
+        <FieldError show={errorFields.has("designation")} />
       </div>
 
       {/* Tipo de cálculo (Radio Group) */}
@@ -1058,6 +1074,7 @@ function ChargeFields({
                 />
                 <span className="text-[14px] text-[#71717a] shrink-0 ml-[8px]">€</span>
               </div>
+              <FieldError show={errorFields.has("chargeUnitPrice")} />
             </div>
           </div>
         )}
@@ -1098,12 +1115,14 @@ function ChargeFields({
                   )}
                 </SelectContent>
               </Select>
+              <FieldError show={errorFields.has("chargeTargetItemId")} />
             </div>
 
             {/* Percentagem */}
             <div className="flex flex-col gap-[8px] w-full" data-field="chargePercentage">
               <Label className="text-[14px] text-[#27272a]">Percentagem *</Label>
               <DiscountInput value={percentage} onChange={(v) => { setPercentage(v); clearError("chargePercentage"); }} error={errorFields.has("chargePercentage")} />
+              <FieldError show={errorFields.has("chargePercentage")} />
             </div>
 
             {/* Preço unitário (readonly, calculated) */}
@@ -1117,6 +1136,7 @@ function ChargeFields({
             <div className="flex flex-col gap-[8px] w-full" data-field="chargePercentage">
               <Label className="text-[14px] text-[#27272a]">Percentagem *</Label>
               <DiscountInput value={percentage} onChange={(v) => { setPercentage(v); clearError("chargePercentage"); }} error={errorFields.has("chargePercentage")} />
+              <FieldError show={errorFields.has("chargePercentage")} />
             </div>
 
             {/* Preço unitário (readonly, calculated) */}
@@ -1631,7 +1651,7 @@ export function NewItemSheet({ open, onOpenChange, onSave, preselectedType, edit
     <Sheet open={open} onOpenChange={handleOpenChange}>
       <SheetContent
         side="right"
-        className="bg-[#f4f4f5] flex flex-col gap-[24px] px-[16px] py-[24px] w-[clamp(320px,28vw,360px)] sm:max-w-[clamp(320px,28vw,360px)] border-l border-[#e5e5e5] shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1),0px_2px_4px_-1px_rgba(0,0,0,0.06)] data-[state=open]:duration-200 data-[state=closed]:duration-200 data-[state=open]:ease-out data-[state=closed]:ease-out [&>button:last-of-type]:hidden"
+        className="bg-[#f4f4f5] flex flex-col gap-[24px] px-[20px] py-[24px] w-[360px] sm:max-w-[360px] border-l border-[#e5e5e5] shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1),0px_2px_4px_-1px_rgba(0,0,0,0.06)] data-[state=open]:duration-200 data-[state=closed]:duration-200 data-[state=open]:ease-out data-[state=closed]:ease-out [&>button:last-of-type]:hidden"
       >
         {/* Header */}
         <div className="flex gap-[10px] items-start relative w-full shrink-0">

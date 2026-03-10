@@ -116,7 +116,7 @@ export default function CancelQuoteModal({
           </Button>
           <Button
             variant="destructive"
-            className="cursor-pointer"
+            className="cursor-pointer bg-[#fb2c36] not-disabled:hover:bg-[#e53e3e] transition-colors duration-200 ease-out"
             onClick={() => {
               onCancelQuote();
               onClose();

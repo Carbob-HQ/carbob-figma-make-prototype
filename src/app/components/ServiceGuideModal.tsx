@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { createPortal } from "react-dom";
-import { X, ChevronRight, ChevronLeft, ChevronDown, CirclePlus, CircleMinus, Loader2, Trash2, Clock, Search } from "lucide-react";
+import { X, ChevronRight, ChevronLeft, ChevronDown, CirclePlus, CircleMinus, Loader2, Trash2, Clock, Search, ClipboardList, Wrench } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
@@ -110,7 +110,7 @@ const GUIDE_CATEGORIES: GuideCategory[] = [
     name: "Gerais",
     services: [
       {
-        id: "gs-1", title: "Check-up de verão / inverno", timeMinutes: 40,
+        id: "gs-1", title: "Check-up de verão / inverno", subtitle: "Inspeção geral de níveis, luzes, travões, etc.", timeMinutes: 40,
         items: [
           makeLabor("Check-up sazonal", 0.67, 35, 0, 0),
           makeConsumable("Líquido limpa-vidros", 1, 4.50, 0, 1),
@@ -551,7 +551,7 @@ function generateRevisions(): MaintenanceRevision[] {
         id: `${id}-as-7`, title: "Substituição da correia dentada, polia tensora, polia de desvio e bomba do líquido de refrigeração",
         subtitle: "Todos 180.000 km / 10 anos", timeMinutes: 75,
         items: [
-          makeLabor("Substituição kit distribuição completo", 1.25, 45, 0, 0),
+          makeLabor("Substitui��ão kit distribuição completo", 1.25, 45, 0, 0),
           makePart("Kit correia distribuição", 1, 85.00, 145.00, "OEM", "130C11508R", 0, 1),
           makePart("Bomba de água", 1, 42.00, 72.00, "OEM", "210108845R", 0, 2),
         ],
@@ -747,7 +747,7 @@ const SEARCH_CATEGORIES: SearchCategory[] = [
     subcategories: [
       { id: "sc-caf-para-choques", name: "Para-choques dianteiro", services: [
         { id: "scs-caf-1", title: "Para-choques dianteiro", subtitle: "Desmontagem e montagem", timeMinutes: 60, items: [makeLabor("Desmontagem e montagem para-choques", 1, 40, 0, 0)] },
-        { id: "scs-caf-2", title: "Para-choques dianteiro", subtitle: "Substituir", timeMinutes: 75, items: [makeLabor("Substituição para-choques dianteiro", 1.25, 40, 0, 0), makePart("Para-choques dianteiro", 1, 120.00, 195.00, "OEM", "620224419R", 0, 1)] },
+        { id: "scs-caf-2", title: "Para-choques dianteiro", subtitle: "Substituir", timeMinutes: 75, items: [makeLabor("Substituiç��o para-choques dianteiro", 1.25, 40, 0, 0), makePart("Para-choques dianteiro", 1, 120.00, 195.00, "OEM", "620224419R", 0, 1)] },
       ]},
       { id: "sc-caf-farois", name: "Faróis", services: [
         { id: "scs-caf-3", title: "Farol dianteiro", subtitle: "Substituir", timeMinutes: 45, items: [makeLabor("Substituição farol dianteiro", 0.75, 40, 0, 0), makePart("Farol dianteiro", 1, 180.00, 295.00, "OEM", "260608085R", 0, 1)] },
@@ -824,6 +824,20 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
   const [selectedServices, setSelectedServices] = useState<SelectedGuideService[]>([]);
   const backdropRef = useRef<HTMLDivElement>(null);
+  const selectedListRef = useRef<HTMLDivElement>(null);
+  const [showTopFade, setShowTopFade] = useState(false);
+  const [showBottomFade, setShowBottomFade] = useState(false);
+
+  const handleSelectedListScroll = useCallback(() => {
+    const el = selectedListRef.current;
+    if (!el) return;
+    setShowTopFade(el.scrollTop > 0);
+    setShowBottomFade(el.scrollTop + el.clientHeight < el.scrollHeight - 1);
+  }, []);
+
+  useEffect(() => {
+    handleSelectedListScroll();
+  }, [selectedServices, handleSelectedListScroll]);
   const tabsRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -1158,7 +1172,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
     }));
     onAddServices(newQuoteServices);
     const count = newQuoteServices.length;
-    showToast(count === 1 ? "Serviço adicionado com sucesso" : "Serviços adicionados com sucesso", "info");
+    showToast(count === 1 ? "Servi��o adicionado com sucesso" : "Serviços adicionados com sucesso", "info");
     handleClose();
   }, [selectedServices, onAddServices, handleClose]);
 
@@ -1217,7 +1231,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
         </div>
 
         {/* Content Frame */}
-        <div className="flex flex-1 gap-[16px] items-start min-h-0 w-full">
+        <div className="flex flex-1 gap-[24px] items-start min-h-0 w-full">
 
           {/* Left Frame */}
           <div className="flex flex-1 flex-col gap-[16px] h-full items-start min-w-0">
@@ -1303,17 +1317,25 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                           {GUIDE_CATEGORIES.map((cat) => {
                             const isActive = selectedCategoryId === cat.id;
                             return (
-                              <Button
+                              <button
                                 key={cat.id}
-                                variant="ghost"
                                 onClick={() => setSelectedCategoryId(cat.id)}
-                                className={`h-[40px] min-h-[40px] rounded-[8px] shrink-0 w-full justify-between px-[16px] ${isActive ? "bg-[#e4e4e7] not-disabled:hover:bg-[#e4e4e7]" : ""}`}
+                                className={`relative flex items-center rounded-[8px] shrink-0 w-full px-[16px] py-[8px] transition-colors duration-200 ease-out cursor-pointer border-0 ${isActive ? "bg-[#F7F7FD]" : "bg-transparent hover:bg-accent"}`}
                               >
-                                <span className="flex-1 text-[14px] text-[#27272a] leading-[1.5] text-left font-medium">
-                                  {cat.name}
-                                </span>
+                                {/* Active indicator bar */}
+                                {isActive && (
+                                  <span className="absolute left-0 top-[6px] bottom-[6px] w-[3px] rounded-full bg-[#8270FF]" />
+                                )}
+                                <div className="flex flex-1 flex-col items-start min-w-0">
+                                  <span className="text-[14px] text-[#27272a] leading-[1.5] text-left font-normal truncate w-full">
+                                    {cat.name}
+                                  </span>
+                                  <span className={`text-[12px] leading-[1.5] font-normal ${isActive ? "text-[#8270FF]" : "text-[#71717a]"}`}>
+                                    {cat.services.length} {cat.services.length === 1 ? "serviço" : "serviços"}
+                                  </span>
+                                </div>
                                 <ChevronRight className="size-[16px] shrink-0" style={{ color: isActive ? "#27272A" : "#A1A1AA" }} />
-                              </Button>
+                              </button>
                             );
                           })}
                         </div>
@@ -1324,8 +1346,9 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                     {/* Content area (services list) */}
                     <div className="flex flex-1 flex-col gap-[8px] h-full items-start min-w-[360px] overflow-x-clip overflow-y-auto">
                       {!selectedCategory ? (
-                        <div className="flex flex-1 flex-col items-center justify-center w-full">
-                          <p className="text-[14px] text-[#71717a] leading-[1.5] text-center">
+                        <div className="flex flex-1 flex-col gap-[16px] items-center justify-center w-full">
+                          <ClipboardList className="size-[24px] text-[#a1a1aa]" />
+                          <p className="text-[14px] text-[#71717a] leading-[1.5] text-center max-w-[240px]">
                             Seleciona uma categoria para aceder aos serviços
                           </p>
                         </div>
@@ -1344,11 +1367,11 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                 <div className="flex gap-[12px] items-center p-[16px] relative w-full">
                                   {/* Label – categories tab */}
                                   <div className="flex flex-1 flex-col gap-[4px] items-start justify-center min-w-0">
-                                    <p className="text-[14px] text-[#27272a] leading-[1.5] truncate w-full">
+                                    <p className="text-[14px] text-[#27272a] leading-[1.5] truncate w-full font-medium">
                                       {svc.title}
                                     </p>
                                     {svc.subtitle && (
-                                      <p className="text-[12px] text-[#71717a] leading-[1.5]">
+                                      <p className="text-[12px] text-[#71717a] leading-[1.5] truncate w-full">
                                         {svc.subtitle}
                                       </p>
                                     )}
@@ -1372,7 +1395,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                       <Loader2 className="size-[16px] text-[#a1a1aa] animate-spin" />
                                     </div>
                                   ) : (
-                                    <Tooltip>
+                                    <Tooltip delayDuration={200}>
                                       <TooltipTrigger asChild>
                                         <Button
                                           variant="outline"
@@ -1420,22 +1443,24 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                           {deferredQuotes.map((quote) => {
                             const isActive = selectedDeferredQuoteId === quote.id;
                             return (
-                              <Button
+                              <button
                                 key={quote.id}
-                                variant="ghost"
                                 onClick={() => setSelectedDeferredQuoteId(quote.id)}
-                                className={`h-auto min-h-[60px] rounded-[8px] shrink-0 w-full justify-between px-[16px] py-[10px] ${isActive ? "bg-[#e4e4e7] not-disabled:hover:bg-[#e4e4e7]" : ""}`}
+                                className={`relative flex items-center rounded-[8px] shrink-0 w-full px-[16px] py-[8px] transition-colors duration-200 ease-out cursor-pointer border-0 ${isActive ? "bg-[#F7F7FD]" : "bg-transparent hover:bg-accent"}`}
                               >
-                                <div className="flex flex-1 flex-col gap-[4px] items-start justify-center min-w-0">
-                                  <span className="text-[14px] text-[#27272a] leading-[1.5] text-left font-medium">
+                                {isActive && (
+                                  <span className="absolute left-0 top-[6px] bottom-[6px] w-[3px] rounded-full bg-[#8270FF]" />
+                                )}
+                                <div className="flex flex-1 flex-col items-start min-w-0">
+                                  <span className="text-[14px] text-[#27272a] leading-[1.5] text-left font-normal truncate w-full">
                                     {quote.orderNumber}
                                   </span>
-                                  <span className="text-[12px] text-[#71717a] leading-[1.5] text-left font-normal">
+                                  <span className={`text-[12px] leading-[1.5] font-normal ${isActive ? "text-[#8270FF]" : "text-[#71717a]"}`}>
                                     {quote.date}
                                   </span>
                                 </div>
                                 <ChevronRight className="size-[16px] shrink-0" style={{ color: isActive ? "#27272A" : "#A1A1AA" }} />
-                              </Button>
+                              </button>
                             );
                           })}
                         </div>
@@ -1445,8 +1470,9 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                     {/* Content area (rejected services from selected quote) */}
                     <div className="flex flex-1 flex-col gap-[8px] h-full items-start min-w-[360px] overflow-x-clip overflow-y-auto">
                       {!selectedDeferredQuote ? (
-                        <div className="flex flex-1 flex-col items-center justify-center w-full">
-                          <p className="text-[14px] text-[#71717a] leading-[1.5] text-center">
+                        <div className="flex flex-1 flex-col gap-[16px] items-center justify-center w-full">
+                          <ClipboardList className="size-[24px] text-[#a1a1aa]" />
+                          <p className="text-[14px] text-[#71717a] leading-[1.5] text-center max-w-[240px]">
                             Seleciona um orçamento para aceder aos serviços
                           </p>
                         </div>
@@ -1465,7 +1491,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                 <div className="flex gap-[12px] items-center p-[16px] relative w-full">
                                   {/* Label */}
                                   <div className="flex flex-1 flex-col gap-[4px] items-start justify-center min-w-0">
-                                    <p className="text-[14px] text-[#27272a] leading-[1.5] truncate w-full">
+                                    <p className="text-[14px] text-[#27272a] leading-[1.5] truncate w-full font-medium">
                                       {svc.title}
                                     </p>
                                     {svc.subtitle && (
@@ -1493,7 +1519,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                       <Loader2 className="size-[16px] text-[#a1a1aa] animate-spin" />
                                     </div>
                                   ) : (
-                                    <Tooltip>
+                                    <Tooltip delayDuration={200}>
                                       <TooltipTrigger asChild>
                                         <Button
                                           variant="outline"
@@ -1555,40 +1581,44 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                               /* Revisions list */
                               <div className="flex flex-1 flex-col gap-[8px] items-start min-h-0 overflow-x-clip overflow-y-auto relative w-full">
                                 {/* Next revision */}
-                                <Button
-                                  variant="ghost"
+                                <button
                                   onClick={() => { setSelectedRevisionId(maintRevisions.next.id); setMaintPlanExpanded(true); setMaintAdditionalExpanded(false); }}
-                                  className={`h-auto min-h-[60px] rounded-[8px] shrink-0 w-full justify-between px-[16px] py-[10px] ${selectedRevisionId === maintRevisions.next.id ? "bg-[#e4e4e7] not-disabled:hover:bg-[#e4e4e7]" : ""}`}
+                                  className={`relative flex items-center rounded-[8px] shrink-0 w-full px-[16px] py-[8px] transition-colors duration-200 ease-out cursor-pointer border-0 ${selectedRevisionId === maintRevisions.next.id ? "bg-[#F7F7FD]" : "bg-transparent hover:bg-accent"}`}
                                 >
-                                  <div className="flex flex-1 flex-col gap-[4px] items-start justify-center min-w-0">
+                                  {selectedRevisionId === maintRevisions.next.id && (
+                                    <span className="absolute left-0 top-[6px] bottom-[6px] w-[3px] rounded-full bg-[#8270FF]" />
+                                  )}
+                                  <div className="flex flex-1 flex-col items-start min-w-0">
                                     <div className="flex gap-[16px] items-center">
-                                      <span className="text-[14px] text-[#27272a] leading-[1.5] text-left font-medium">Próxima revisão</span>
+                                      <span className="text-[14px] text-[#27272a] leading-[1.5] text-left font-normal">Próxima revisão</span>
                                       {maintRevisions.recommendedId === maintRevisions.next.id && (
                                         <span className="bg-[rgba(96,165,250,0.2)] text-[#1e40af] text-[12px] leading-[1.5] px-[8px] py-[4px] rounded-[6px]">Recomendado</span>
                                       )}
                                     </div>
-                                    <span className="text-[12px] text-[#71717a] leading-[1.5] text-left font-normal">{maintRevisions.next.km.toLocaleString("pt-PT")} Kms</span>
+                                    <span className={`text-[12px] leading-[1.5] font-normal ${selectedRevisionId === maintRevisions.next.id ? "text-[#8270FF]" : "text-[#71717a]"}`}>{maintRevisions.next.km.toLocaleString("pt-PT")} Kms</span>
                                   </div>
                                   <ChevronRight className="size-[16px] shrink-0" style={{ color: selectedRevisionId === maintRevisions.next.id ? "#27272A" : "#A1A1AA" }} />
-                                </Button>
+                                </button>
                                 {/* Previous revision */}
                                 {maintRevisions.previous && (
-                                  <Button
-                                    variant="ghost"
+                                  <button
                                     onClick={() => { setSelectedRevisionId(maintRevisions.previous!.id); setMaintPlanExpanded(true); setMaintAdditionalExpanded(false); }}
-                                    className={`h-auto min-h-[60px] rounded-[8px] shrink-0 w-full justify-between px-[16px] py-[10px] ${selectedRevisionId === maintRevisions.previous.id ? "bg-[#e4e4e7] not-disabled:hover:bg-[#e4e4e7]" : ""}`}
+                                    className={`relative flex items-center rounded-[8px] shrink-0 w-full px-[16px] py-[8px] transition-colors duration-200 ease-out cursor-pointer border-0 ${selectedRevisionId === maintRevisions.previous.id ? "bg-[#F7F7FD]" : "bg-transparent hover:bg-accent"}`}
                                   >
-                                    <div className="flex flex-1 flex-col gap-[4px] items-start justify-center min-w-0">
+                                    {selectedRevisionId === maintRevisions.previous.id && (
+                                      <span className="absolute left-0 top-[6px] bottom-[6px] w-[3px] rounded-full bg-[#8270FF]" />
+                                    )}
+                                    <div className="flex flex-1 flex-col items-start min-w-0">
                                       <div className="flex gap-[16px] items-center">
-                                        <span className="text-[14px] text-[#27272a] leading-[1.5] text-left font-medium">Revisão anterior</span>
+                                        <span className="text-[14px] text-[#27272a] leading-[1.5] text-left font-normal">Revisão anterior</span>
                                         {maintRevisions.recommendedId === maintRevisions.previous.id && (
                                           <span className="bg-[rgba(96,165,250,0.2)] text-[#1e40af] text-[12px] leading-[1.5] px-[8px] py-[4px] rounded-[6px]">Recomendado</span>
                                         )}
                                       </div>
-                                      <span className="text-[12px] text-[#71717a] leading-[1.5] text-left font-normal">{maintRevisions.previous.km.toLocaleString("pt-PT")} Kms</span>
+                                      <span className={`text-[12px] leading-[1.5] font-normal ${selectedRevisionId === maintRevisions.previous.id ? "text-[#8270FF]" : "text-[#71717a]"}`}>{maintRevisions.previous.km.toLocaleString("pt-PT")} Kms</span>
                                     </div>
                                     <ChevronRight className="size-[16px] shrink-0" style={{ color: selectedRevisionId === maintRevisions.previous.id ? "#27272A" : "#A1A1AA" }} />
-                                  </Button>
+                                  </button>
                                 )}
                               </div>
                             ) : (
@@ -1665,9 +1695,10 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                     {/* Content area */}
                     <div className="flex flex-1 flex-col gap-[16px] h-full items-start min-w-[360px] overflow-x-clip overflow-y-auto">
                       {!selectedRevision ? (
-                        <div className="flex flex-1 flex-col items-center justify-center w-full">
-                          <p className="text-[14px] text-[#71717a] leading-[1.5] text-center">
-                            Seleciona a revisão adequada de acordo com a quilometragem do veículo para aceder à respetiva manutenção programada
+                        <div className="flex flex-1 flex-col gap-[16px] items-center justify-center w-full">
+                          <ClipboardList className="size-[24px] text-[#a1a1aa]" />
+                          <p className="text-[14px] text-[#71717a] leading-[1.5] text-center max-w-[240px]">
+                            Introduz a quilometragem do veículo para acederes à manutenção programada
                           </p>
                         </div>
                       ) : (
@@ -1721,7 +1752,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                       return (
                                         <div key={svc.id} className="bg-white flex gap-[12px] items-center py-[8px] shrink-0 w-full">
                                           <div className="flex flex-1 flex-col gap-[4px] items-start justify-center min-w-0">
-                                            <p className="text-[14px] text-[#27272a] leading-[1.5] truncate w-full">{svc.title}</p>
+                                            <p className="text-[14px] text-[#27272a] leading-[1.5] truncate w-full font-medium">{svc.title}</p>
                                             {svc.subtitle && (
                                               <p className="text-[12px] text-[#71717a] leading-[1.5] truncate w-full">{svc.subtitle}</p>
                                             )}
@@ -1735,7 +1766,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                               <Loader2 className="size-[16px] text-[#a1a1aa] animate-spin" />
                                             </div>
                                           ) : (
-                                            <Tooltip>
+                                            <Tooltip delayDuration={200}>
                                               <TooltipTrigger asChild>
                                                 <Button
                                                   variant="outline"
@@ -1827,7 +1858,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                               <Loader2 className="size-[16px] text-[#a1a1aa] animate-spin" />
                                             </div>
                                           ) : (
-                                            <Tooltip>
+                                            <Tooltip delayDuration={200}>
                                               <TooltipTrigger asChild>
                                                 <Button
                                                   variant="outline"
@@ -1908,22 +1939,24 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                     searchMatchedCategories.map((cat) => {
                                       const isActive = serviceSearchFilterCatId === cat.id;
                                       return (
-                                        <Button
+                                        <button
                                           key={cat.id}
-                                          variant="ghost"
                                           onClick={() => setServiceSearchFilterCatId(isActive ? null : cat.id)}
-                                          className={`h-[40px] min-h-[40px] rounded-[8px] shrink-0 w-full justify-between px-[16px] ${isActive ? "bg-[#e4e4e7] not-disabled:hover:bg-[#e4e4e7]" : ""}`}
+                                          className={`relative flex items-center rounded-[8px] shrink-0 w-full px-[16px] py-[8px] transition-colors duration-200 ease-out cursor-pointer border-0 ${isActive ? "bg-[#F7F7FD]" : "bg-transparent hover:bg-accent"}`}
                                         >
-                                          <span className="flex-1 text-[14px] text-[#27272a] leading-[1.5] text-left font-medium truncate">
+                                          {isActive && (
+                                            <span className="absolute left-0 top-[6px] bottom-[6px] w-[3px] rounded-full bg-[#8270FF]" />
+                                          )}
+                                          <span className="flex-1 text-[14px] text-[#27272a] leading-[1.5] text-left font-normal truncate">
                                             {cat.name}
                                           </span>
                                           <div className="flex items-center gap-[8px] shrink-0">
-                                            <Badge className="h-[20px] min-w-[20px] px-[6px] rounded-full bg-[#8270FF] text-[12px] text-white leading-[1.5] border-none not-disabled:hover:bg-[#8270FF]">
+                                            <Badge className="size-[20px] p-0 flex items-center justify-center rounded-full bg-[#8270FF] text-[12px] text-white leading-[1.5] border-none not-disabled:hover:bg-[#8270FF]">
                                               {cat.count}
                                             </Badge>
-                                            <ChevronRight className="size-[16px] shrink-0 text-[#a1a1aa]" />
+                                            <ChevronRight className="size-[16px] shrink-0" style={{ color: isActive ? "#27272A" : "#A1A1AA" }} />
                                           </div>
-                                        </Button>
+                                        </button>
                                       );
                                     })
                                   ) : (
@@ -1934,34 +1967,40 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                 ) : !searchCategory ? (
                                   /* Level 0: Categories */
                                   SEARCH_CATEGORIES.map((cat) => (
-                                    <Button
+                                    <button
                                       key={cat.id}
-                                      variant="ghost"
                                       onClick={() => { setSearchCategoryId(cat.id); setSearchSubcategoryId(null); }}
-                                      className="h-[40px] min-h-[40px] rounded-[8px] shrink-0 w-full justify-between px-[16px]"
+                                      className="relative flex items-center rounded-[8px] shrink-0 w-full px-[16px] py-[8px] transition-colors duration-200 ease-out cursor-pointer border-0 bg-transparent hover:bg-accent"
                                     >
-                                      <span className="flex-1 text-[14px] text-[#27272a] leading-[1.5] text-left font-medium">
+                                      <span className="flex-1 text-[14px] text-[#27272a] leading-[1.5] text-left font-normal truncate">
                                         {cat.name}
                                       </span>
                                       <ChevronRight className="size-[16px] shrink-0" style={{ color: "#A1A1AA" }} />
-                                    </Button>
+                                    </button>
                                   ))
                                 ) : (
                                   /* Level 1/2: Subcategories */
                                   searchCategory.subcategories.map((sub) => {
                                     const isActive = searchSubcategoryId === sub.id;
                                     return (
-                                      <Button
+                                      <button
                                         key={sub.id}
-                                        variant="ghost"
                                         onClick={() => setSearchSubcategoryId(sub.id)}
-                                        className={`h-[40px] min-h-[40px] rounded-[8px] shrink-0 w-full justify-between px-[16px] ${isActive ? "bg-[#e4e4e7] not-disabled:hover:bg-[#e4e4e7]" : ""}`}
+                                        className={`relative flex items-center rounded-[8px] shrink-0 w-full px-[16px] py-[8px] transition-colors duration-200 ease-out cursor-pointer border-0 ${isActive ? "bg-[#F7F7FD]" : "bg-transparent hover:bg-accent"}`}
                                       >
-                                        <span className="flex-1 text-[14px] text-[#27272a] leading-[1.5] text-left font-medium">
-                                          {sub.name}
-                                        </span>
+                                        {isActive && (
+                                          <span className="absolute left-0 top-[6px] bottom-[6px] w-[3px] rounded-full bg-[#8270FF]" />
+                                        )}
+                                        <div className="flex flex-1 flex-col items-start min-w-0">
+                                          <span className="text-[14px] text-[#27272a] leading-[1.5] text-left font-normal truncate w-full">
+                                            {sub.name}
+                                          </span>
+                                          <span className={`text-[12px] leading-[1.5] font-normal ${isActive ? "text-[#8270FF]" : "text-[#71717a]"}`}>
+                                            {sub.services.length} {sub.services.length === 1 ? "serviço" : "serviços"}
+                                          </span>
+                                        </div>
                                         <ChevronRight className="size-[16px] shrink-0" style={{ color: isActive ? "#27272A" : "#A1A1AA" }} />
-                                      </Button>
+                                      </button>
                                     );
                                   })
                                 )}
@@ -1983,7 +2022,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                       {/* Content area (services list) */}
                       <div className="flex flex-1 flex-col gap-[8px] h-full items-start min-w-[360px] overflow-x-clip overflow-y-auto">
                         {!searchSubcategory && !serviceSearchActive ? (
-                          <div className="flex flex-1 flex-col items-start w-full">
+                          <div className="flex flex-1 flex-col items-start w-full h-full">
                             {/* Search input */}
                             <div className="w-full shrink-0">
                               <form onSubmit={handleServiceSearchSubmit}>
@@ -2010,8 +2049,9 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                 <button type="submit" hidden />
                               </form>
                             </div>
-                            <div className="flex flex-1 items-center justify-center w-full">
-                              <p className="text-[14px] text-[#71717a] leading-[1.5] text-center">
+                            <div className="flex flex-1 flex-col gap-[16px] items-center justify-center w-full pb-[40px]">
+                              <ClipboardList className="size-[24px] text-[#a1a1aa]" />
+                              <p className="text-[14px] text-[#71717a] leading-[1.5] text-center max-w-[240px]">
                                 Seleciona uma categoria ou pesquisa para aceder aos serviços
                               </p>
                             </div>
@@ -2087,7 +2127,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                         <div className="flex gap-[12px] items-center p-[16px] relative w-full">
                                           {/* Label */}
                                           <div className="flex flex-1 flex-col gap-[4px] items-start justify-center min-w-0">
-                                            <p className="text-[14px] text-[#27272a] leading-[1.5] truncate w-full">
+                                            <p className="text-[14px] text-[#27272a] leading-[1.5] truncate w-full font-medium">
                                               {svc.title}
                                             </p>
                                             <p className="text-[12px] text-[#71717a] leading-[1.5]">
@@ -2113,7 +2153,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                               <Loader2 className="size-[16px] text-[#a1a1aa] animate-spin" />
                                             </div>
                                           ) : (
-                                            <Tooltip>
+                                            <Tooltip delayDuration={200}>
                                               <TooltipTrigger asChild>
                                                 <Button
                                                   variant="outline"
@@ -2161,7 +2201,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                   <div className="flex gap-[12px] items-center p-[16px] relative w-full">
                                     {/* Label */}
                                     <div className="flex flex-1 flex-col gap-[4px] items-start justify-center min-w-0">
-                                      <p className="text-[14px] text-[#27272a] leading-[1.5] truncate w-full">
+                                      <p className="text-[14px] text-[#27272a] leading-[1.5] truncate w-full font-medium">
                                         {svc.title}
                                       </p>
                                       {svc.subtitle && (
@@ -2189,7 +2229,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                                         <Loader2 className="size-[16px] text-[#a1a1aa] animate-spin" />
                                       </div>
                                     ) : (
-                                      <Tooltip>
+                                      <Tooltip delayDuration={200}>
                                         <TooltipTrigger asChild>
                                           <Button
                                             variant="outline"
@@ -2226,7 +2266,7 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
           </div>  {/* end Left Frame */}
 
           {/* Right Frame */}
-          <div className="flex flex-col gap-[16px] h-full items-start relative shrink-0 w-[clamp(320px,28vw,360px)]">
+          <div className="flex flex-col gap-[16px] h-full items-start relative shrink-0 w-[320px]">
 
             {/* Selected Services Frame */}
             <div className="flex flex-1 flex-col gap-[24px] items-start min-h-0 relative w-full">
@@ -2234,77 +2274,133 @@ export default function ServiceGuideModal({ open, onClose, vehicle, onAddService
                 <div className="flex h-[24px] items-center relative shrink-0 w-full">
                   <p className="flex-1 text-[16px] text-[#27272a] leading-[1.5] font-medium">
                     Serviços selecionados
+                    {selectedServices.length > 0 && (
+                      <span className="inline-flex items-center justify-center ml-[8px] size-[20px] rounded-full bg-[#8270FF] text-white text-[12px] font-medium leading-[1.5] align-middle">{selectedServices.length}</span>
+                    )}
                   </p>
+                  {selectedServices.length > 0 && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="cursor-pointer text-[#71717a] transition-colors duration-200 ease-out"
+                      onClick={() => setSelectedServices([])}
+                    >
+                      Limpar
+                    </Button>
+                  )}
                 </div>
               </div>
 
               {/* Services list */}
-              <div className="flex flex-col gap-[16px] items-start w-full overflow-y-auto flex-1 min-h-0">
-                {selectedServices.length === 0 ? (
-                  <div className="flex items-center relative shrink-0 w-full">
-                    <p className="flex-1 text-[14px] text-[#71717a] leading-[1.5]">
-                      Lista de serviços vazia.
-                    </p>
-                  </div>
-                ) : (
-                  selectedServices.map((sel, idx) => {
-                    const bd = computeServiceBreakdown(sel.items);
-                    return (
-                    <div key={sel.templateId} className="flex flex-col gap-[16px] items-start w-full shrink-0">
-                      {idx > 0 && (
-                        <div className="bg-[rgba(39,39,42,0.15)] h-px shrink-0 w-full" />
-                      )}
-                      <div className="flex gap-[16px] items-start w-full rounded-[8px]">
-                        {/* Left: details */}
-                        <div className="flex flex-1 flex-col gap-[4px] items-start justify-center min-w-0">
-                          <p className="text-[14px] text-[#27272a] leading-[1.5] line-clamp-2 w-full">
-                            {sel.title}
-                          </p>
-                          {sel.subtitle && (
-                            <p className="text-[12px] text-[#27272a] leading-[1.5]">
-                              {sel.subtitle}
+              <div className="relative flex-1 min-h-0 w-full">
+                {/* Top fade */}
+                <div
+                  className="pointer-events-none absolute top-0 left-0 right-0 h-[24px] z-10 transition-opacity duration-200 ease-out"
+                  style={{
+                    background: "linear-gradient(to bottom, white, transparent)",
+                    opacity: showTopFade ? 1 : 0,
+                  }}
+                />
+                <div
+                  ref={selectedListRef}
+                  onScroll={handleSelectedListScroll}
+                  className="flex flex-col gap-[16px] items-start w-full overflow-y-auto h-full"
+                >
+                  {selectedServices.length === 0 ? (
+                    <div className="flex flex-1 flex-col gap-[16px] items-center justify-center w-full">
+                      <Wrench className="size-[24px] text-[#a1a1aa]" />
+                      <p className="text-[14px] text-[#71717a] leading-[1.5] text-center max-w-[240px]">
+                        Ainda não existem serviços
+                      </p>
+                    </div>
+                  ) : (
+                    selectedServices.map((sel, idx) => {
+                      const bd = computeServiceBreakdown(sel.items);
+                      return (
+                      <div key={sel.templateId} className="flex flex-col gap-[16px] items-start w-full shrink-0">
+                        {idx > 0 && (
+                          <div className="bg-[rgba(39,39,42,0.15)] h-px shrink-0 w-full" />
+                        )}
+                        <div className="flex flex-col gap-[8px] items-start w-full rounded-[8px]">
+                          {/* Row 1: title + total price */}
+                          <div className="flex items-start justify-between w-full gap-[16px]">
+                            <div className="flex flex-col gap-[4px] items-start min-w-0 flex-1">
+                              <p className="text-[14px] text-[#27272a] leading-[1.5] font-medium line-clamp-2 w-full">
+                                {sel.title}
+                              </p>
+                              {sel.subtitle && (
+                                <p className="text-[12px] text-[#71717a] leading-[1.5]">
+                                  {sel.subtitle}
+                                </p>
+                              )}
+                            </div>
+                            <p className="text-[14px] text-[#27272a] leading-[1.5] font-medium shrink-0 pr-[8px]">
+                              {fmtCurrency(bd.laborSubtotal + bd.partsSubtotal + bd.consumablesSubtotal)}
                             </p>
+                          </div>
+                          {/* Breakdown rows */}
+                          <div className="flex flex-col gap-[4px] w-full">
+                          {bd.hasLabor && (
+                            <div className="flex items-center justify-between w-full">
+                              <p className="text-[12px] text-[#71717a] leading-[1.5]">
+                                Mão de obra ({bd.hoursStr})
+                              </p>
+                              <p className="text-[12px] text-[#71717a] leading-[1.5] shrink-0 pr-[8px]">
+                                {fmtCurrency(bd.laborSubtotal)}
+                              </p>
+                            </div>
                           )}
-                          {/* Breakdown */}
-                          <div className="flex flex-col gap-[4px] items-start w-full mt-[4px]">
-                            {bd.hasLabor && (
-                              <p className="text-[12px] text-[#71717a] leading-[1.5] w-full" style={{ display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden", wordBreak: "break-word" }}>
-                                Mão de obra: {fmtCurrency(bd.laborSubtotal)} ({bd.hoursStr} * {bd.rateStr}/h)
+                          {bd.hasParts && (
+                            <div className="flex items-center justify-between w-full">
+                              <p className="text-[12px] text-[#71717a] leading-[1.5]">
+                                Peças
                               </p>
-                            )}
-                            {bd.hasParts && (
-                              <p className="text-[12px] text-[#71717a] leading-[1.5] truncate w-full">
-                                Peças: {fmtCurrency(bd.partsSubtotal)}
+                              <p className="text-[12px] text-[#71717a] leading-[1.5] shrink-0 pr-[8px]">
+                                {fmtCurrency(bd.partsSubtotal)}
                               </p>
-                            )}
-                            {bd.hasConsumables && (
-                              <p className="text-[12px] text-[#71717a] leading-[1.5] truncate w-full">
-                                Consumíveis: {fmtCurrency(bd.consumablesSubtotal)}
+                            </div>
+                          )}
+                          {bd.hasConsumables && (
+                            <div className="flex items-center justify-between w-full">
+                              <p className="text-[12px] text-[#71717a] leading-[1.5]">
+                                Consumíveis
                               </p>
-                            )}
+                              <p className="text-[12px] text-[#71717a] leading-[1.5] shrink-0 pr-[8px]">
+                                {fmtCurrency(bd.consumablesSubtotal)}
+                              </p>
+                            </div>
+                          )}
+                          </div>
+                          {/* Delete button */}
+                          <div className="flex justify-end w-full">
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              onClick={() => removeSelectedService(sel.templateId)}
+                              className="size-[32px] min-w-[32px] min-h-[32px] rounded-[6px] shrink-0 group/delete"
+                            >
+                              <Trash2 className="size-[16px] text-[#a1a1aa] transition-colors duration-200 ease-out group-hover/delete:text-[#27272a]" />
+                            </Button>
                           </div>
                         </div>
-                        {/* Right: price + delete */}
-                        <div className="flex flex-col items-end justify-between self-stretch shrink-0">
-                          <p className="text-[14px] text-[#27272a] leading-[1.5] font-semibold">
-                            {fmtCurrency(bd.laborSubtotal + bd.partsSubtotal + bd.consumablesSubtotal)}
-                          </p>
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={() => removeSelectedService(sel.templateId)}
-                            className="size-[32px] min-w-[32px] min-h-[32px] rounded-[6px] shrink-0"
-                          >
-                            <Trash2 className="size-[16px] text-[#a1a1aa]" />
-                          </Button>
-                        </div>
                       </div>
-                    </div>
-                    );
-                  })
-                )}
+                      );
+                    })
+                  )}
+                </div>
+                {/* Bottom fade */}
+                <div
+                  className="pointer-events-none absolute bottom-0 left-0 right-0 h-[24px] z-10 transition-opacity duration-200 ease-out"
+                  style={{
+                    background: "linear-gradient(to top, white, transparent)",
+                    opacity: showBottomFade ? 1 : 0,
+                  }}
+                />
               </div>
             </div>
+
+            {/* Separator */}
+            <div className="bg-[#e5e5e5] h-px shrink-0 w-full" />
 
             {/* Summary Frame */}
             <div className="flex flex-col gap-[16px] items-start relative shrink-0 w-full">
